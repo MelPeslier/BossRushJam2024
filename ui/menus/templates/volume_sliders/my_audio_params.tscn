@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bixi6ctx5n6tf"]
+
+[ext_resource type="Script" path="res://ui/menus/templates/volume_sliders/my_audio_params.gd" id="1_pjlnn"]
+
+[node name="MyAudioParams" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_pjlnn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "dummy"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.013
+scrollable = false

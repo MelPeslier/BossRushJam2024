@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpdiyf0f7e3tq"]
+
+[ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qn88j")
+target_scene_path = "res://ui/menus/main_menu/main_menu2.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.356863, 0.494118, 0.505882, 1)
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Play" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "play"
+
+[node name="Parameters" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "other"
+
+[node name="Credits" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "other"
+
+[node name="Quit" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "other"
+
+[connection signal="button_down" from="ButtonsContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_mouse_entered"]
+[connection signal="button_down" from="ButtonsContainer/Parameters" to="." method="_on_parameters_button_down"]
+[connection signal="mouse_entered" from="ButtonsContainer/Parameters" to="." method="_on_mouse_entered"]
+[connection signal="button_down" from="ButtonsContainer/Credits" to="." method="_on_credits_button_down"]
+[connection signal="mouse_entered" from="ButtonsContainer/Credits" to="." method="_on_mouse_entered"]
+[connection signal="button_down" from="ButtonsContainer/Quit" to="." method="_on_quit_button_down"]
+[connection signal="mouse_entered" from="ButtonsContainer/Quit" to="." method="_on_mouse_entered"]

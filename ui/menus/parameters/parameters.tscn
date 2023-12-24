@@ -1,0 +1,274 @@
+[gd_scene load_steps=4 format=3 uid="uid://fk5ufucu336g"]
+
+[ext_resource type="Script" path="res://ui/menus/parameters/parameters.gd" id="1_lonfr"]
+[ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_noiyu"]
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_gnp5s"]
+
+[node name="Parameters" type="CanvasLayer" node_paths=PackedStringArray("section_buttons", "section_contents", "game_content", "display_content", "display_mode_value", "display_screen_value", "resolution_value", "anchor_value", "framerate_limit_value", "audio_content", "controls_content")]
+layer = 10
+script = ExtResource("1_lonfr")
+section_buttons = NodePath("ParametersContainer/UpContainer/VBoxContainer/SectionButtons")
+section_contents = NodePath("ParametersContainer/ScrollContainer/SectionContents")
+game_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/GameContent")
+display_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent")
+display_mode_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayMode/DisplayModeValue")
+display_screen_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayScreen/DisplayScreenValue")
+resolution_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamResolution/ResolutionValue")
+anchor_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamAnchor/AnchorValue")
+framerate_limit_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamFramerateLimit/FramerateLimitValue")
+audio_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/AudioContent")
+controls_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/ControlsContent")
+
+[node name="ParametersContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 22.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="UpContainer" type="HBoxContainer" parent="ParametersContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ParametersContainer/UpContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_noiyu")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ParametersContainer/UpContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SectionButtons" type="HBoxContainer" parent="ParametersContainer/UpContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Game" type="Button" parent="ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "P_GAME"
+script = ExtResource("2_gnp5s")
+
+[node name="Display" type="Button" parent="ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "P_DISPLAY"
+script = ExtResource("2_gnp5s")
+
+[node name="Audio" type="Button" parent="ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "P_AUDIO"
+script = ExtResource("2_gnp5s")
+
+[node name="Controls" type="Button" parent="ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+text = "P_CONTROLS"
+script = ExtResource("2_gnp5s")
+
+[node name="ActualSettingContainer" type="PanelContainer" parent="ParametersContainer/UpContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActualSettingLabel" type="Label" parent="ParametersContainer/UpContainer/VBoxContainer/ActualSettingContainer"]
+layout_mode = 2
+text = "ActualSection"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ParametersContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SectionContents" type="PanelContainer" parent="ParametersContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GameContent" type="VBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DisplayContent" type="VBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HParamDisplayMode" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayModeLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DISPLAY_MODE"
+
+[node name="DisplayModeValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy"
+
+[node name="HParamDisplayScreen" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DisplayScreenLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DISPLAY_SCREEN"
+
+[node name="DisplayScreenValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy "
+
+[node name="HParamV-Sync" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="V-syncLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamV-Sync"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "V_SYNC"
+
+[node name="V-syncValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamV-Sync"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy"
+
+[node name="HParamResolution" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResolutionLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamResolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESOLUTION"
+
+[node name="ResolutionValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamResolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy"
+
+[node name="HParamAnchor" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AnchorLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamAnchor"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ANCHOR"
+
+[node name="AnchorValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamAnchor"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy"
+
+[node name="HParamFramerateLimit" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FramerateLimitLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamFramerateLimit"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FRAMERATE_LIMIT"
+
+[node name="FramerateLimitValue" type="MenuButton" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamFramerateLimit"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "dummy"
+
+[node name="HParamRunInBackground" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RunInBackgroundLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamRunInBackground"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RUN_IN_BACKGROUND"
+
+[node name="RunInBackgroundValue" type="Control" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamRunInBackground"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HParamConstrainMouse" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConstrainMouseLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamConstrainMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CONSTRAIN_MOUSE"
+
+[node name="ConstrainMouseValue" type="CheckBox" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamConstrainMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HParamUIScale" type="HBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UIScaleLabel" type="Label" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamUIScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "UI_SCALE"
+
+[node name="UIScaleValue" type="Control" parent="ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamUIScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AudioContent" type="VBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ControlsContent" type="VBoxContainer" parent="ParametersContainer/ScrollContainer/SectionContents"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BotContainer" type="HBoxContainer" parent="ParametersContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 200
+
+[node name="BackToMenu" type="Button" parent="ParametersContainer/BotContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "BACK_TO_MENU"
+script = ExtResource("2_gnp5s")
+
+[node name="Back" type="Button" parent="ParametersContainer/BotContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "BACK"
+script = ExtResource("2_gnp5s")
+
+[node name="Resume" type="Button" parent="ParametersContainer/BotContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "RESUME"
+script = ExtResource("2_gnp5s")
+
+[node name="Abandon" type="Button" parent="ParametersContainer/BotContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "ABANDON"
+script = ExtResource("2_gnp5s")
+
+[connection signal="button_down" from="ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Game" to="." method="_on_game_button_down"]
+[connection signal="button_down" from="ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Display" to="." method="_on_display_button_down"]
+[connection signal="button_down" from="ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Audio" to="." method="_on_audio_button_down"]
+[connection signal="button_down" from="ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Controls" to="." method="_on_controls_button_down"]

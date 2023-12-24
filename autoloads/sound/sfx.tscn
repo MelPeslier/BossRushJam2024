@@ -1,0 +1,20 @@
+[gd_scene load_steps=9 format=3 uid="uid://be5wo3ytvi6t"]
+
+[ext_resource type="Script" path="res://autoloads/sound/sfx.gd" id="1_c4qcj"]
+[ext_resource type="AudioStream" uid="uid://0m0kvfd7hlxt" path="res://ui/sound/Play_00.wav" id="2_phcgq"]
+[ext_resource type="AudioStream" uid="uid://bmcv1me4ly44d" path="res://ui/sound/Over_00.wav" id="3_hu3pd"]
+[ext_resource type="AudioStream" uid="uid://fo1y2terkwfo" path="res://ui/sound/Cancel_00.wav" id="5_gpnk6"]
+[ext_resource type="AudioStream" uid="uid://ne3dhsff4s2h" path="res://ui/sound/Press_00.wav" id="6_6ie22"]
+[ext_resource type="AudioStream" uid="uid://cci86cdjq0r1d" path="res://ui/sound/Reset_00.wav" id="6_8vpje"]
+[ext_resource type="AudioStream" uid="uid://c22h207m2p5us" path="res://ui/sound/CheckedOn_00.wav" id="8_e58kc"]
+[ext_resource type="AudioStream" uid="uid://dfbk2g2bq8ehe" path="res://ui/sound/CheckedOff_00.wav" id="9_j0qpt"]
+
+[node name="Sfx" type="Node"]
+script = ExtResource("1_c4qcj")
+ui_play = ExtResource("2_phcgq")
+ui_over = ExtResource("3_hu3pd")
+ui_press = ExtResource("6_6ie22")
+ui_cancel = ExtResource("5_gpnk6")
+ui_reset = ExtResource("6_8vpje")
+ui_checked_on = ExtResource("8_e58kc")
+ui_checked_off = ExtResource("9_j0qpt")
