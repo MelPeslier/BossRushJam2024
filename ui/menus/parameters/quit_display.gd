@@ -8,12 +8,11 @@ enum Type {
 const menu_path: String = "res://ui/menus/main_menu/main_menu.tscn"
 
 var type: Type
-@export var parameters: Parameters
 
-@onready var label_quit: Label = $PanelContainer/MarginContainer/VBoxContainer/LabelQuit
-@onready var label_quit_content: Label = $PanelContainer/MarginContainer/VBoxContainer/LabelQuitContent
-@onready var back_button: MyButton = $PanelContainer/MarginContainer/VBoxContainer/ChoiceContainer/BackButton
-@onready var continue_button: MyButton = $PanelContainer/MarginContainer/VBoxContainer/ChoiceContainer/ContinueButton
+@export var label_quit: Label
+@export var label_quit_content: Label
+@export var back_button: MyButton
+@export var continue_button: MyButton
 
 
 func show_content(_type : Type) -> void:
@@ -34,7 +33,7 @@ func show_content(_type : Type) -> void:
 
 func hide_content() -> void:
 	visible = false
-	parameters.previous_button.grab_focus()
+	Parameters.previous_button.grab_focus()
 
 
 func _on_back_button_button_down() -> void:

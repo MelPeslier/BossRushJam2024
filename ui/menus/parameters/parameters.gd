@@ -1,4 +1,3 @@
-class_name Parameters
 extends CanvasLayer
 
 
@@ -55,10 +54,11 @@ const RESET: String = "RESET"
 
 @export_category("Sections Contents")
 @export var section_contents: PanelContainer
+@export var quit_display: QuitDisplay
 
 @export_group("Game")
 @export var game_content: VBoxContainer
-@export var quit_display: QuitDisplay
+@export var languages_value: MenuButton
 
 @export_group("Display")
 @export var min_rect_size: Vector2i = Vector2i(150, 60)
@@ -91,6 +91,7 @@ var remap_buttons: Array[ControllerButton]
 var user_display_prefs: UserDisplayPreferences
 var user_audio_prefs: UserAudioPreferences
 var user_controls_prefs: UserControlsPreferences
+var user_game_prefs: UserGamePreferences
 
 var first_item_path: Array[NodePath] = ["", "", "", ""]
 
@@ -105,6 +106,7 @@ var remap_container_scene: PackedScene = load("res://ui/menus/templates/button/r
 
 
 func _ready() -> void:
+	visible = false
 	_init_audio_content()
 	_init_display_content()
 	_init_controls_content()
@@ -159,7 +161,6 @@ func _init_display_content() -> void:
 
 	resolution_value.get_popup().id_pressed.connect( _on_resolution_value_selected )
 	_update_resolution_options()
-	resolution_value.custom_minimum_size = min_rect_size
 
 	anchor_value.get_popup().id_pressed.connect( _on_anchor_value_selected )
 	_update_screen_anchor_options()
@@ -425,7 +426,6 @@ func _init_audio_content() -> void:
 		if not _bus_name.begins_with(PRIVATE_BUS_START):
 			var _audio_params: MyAudioParams = audio_params.instantiate() as MyAudioParams
 			_audio_params.bus_index = _bus_index
-			_audio_params.parameters = self
 			AudioServer.set_bus_volume_db(
 				_bus_index,
 				linear_to_db( user_audio_prefs.volumes[_bus_index] )
@@ -475,7 +475,6 @@ func _init_controls_content() -> void:
 		var action_name: StringName = user_controls_prefs.action_names[i]
 		var remap_container: RemapContainer = remap_container_scene.instantiate() as RemapContainer
 		remap_container.action_name = action_name
-		remap_container.parameters = self
 		remap_container.user_controls_prefs = user_controls_prefs
 		controls_content.add_child(remap_container)
 		remap_container.remap_button.custom_minimum_size = Vector2(50, 50)
@@ -513,10 +512,65 @@ func _on_controls_reset_button_down() -> void:
 
 #region *** Game ***
 func _init_game_content() -> void:
+	user_game_prefs = UserGamePreferences.load_or_create()
+	_update_game_options()
 
-	TranslationServer.get_loaded_locales()
-	print( TranslationServer.get_language_name("en") )
-	print( TranslationServer.get_language_name("fr") )
+	languages_value.get_popup().id_pressed.connect( _on_languages_value_selected )
+	_update_languages_options()
+
+	var first := true
+	var last_item: Control = game
+	for _item in game_content.get_children():
+		if _item is HBoxContainer:
+			var second = _item.get_child(1)
+			if first:
+				first_item_path[0] = second.get_path()
+				first = false
+
+			if second is MenuButton:
+				second.focus_mode = Control.FOCUS_ALL
+
+			second.custom_minimum_size = Vector2(120, 30)
+			second.custom_minimum_size = Vector2(80, 30)
+			last_item.focus_neighbor_bottom = second.get_path()
+			second.focus_neighbor_top = last_item.get_path()
+			last_item = second
+
+	var game_reset_button: MyButton = my_button_scene.instantiate() as MyButton
+	game_content.add_child(game_reset_button)
+	game_reset_button.text = RESET
+	game_reset_button.button_down.connect( _on_game_reset_button_down )
+
+	game_reset_button.focus_neighbor_top = last_item.get_path()
+	game_reset_button.focus_neighbor_bottom = back.get_path()
+
+	last_item_path[0] = game_reset_button.get_path()
+
+
+
+#region Language
+func _update_languages_options() -> void:
+	languages_value.get_popup().clear()
+	for local: String in TranslationServer.get_loaded_locales():
+		languages_value.get_popup().add_item( TranslationServer.get_language_name(local) )
+
+func _on_languages_value_selected(_id: int) -> void:
+	user_game_prefs.language = languages_value.get_popup().get_item_text( _id )
+	user_game_prefs.save()
+	_set_language()
+
+func _set_language() -> void:
+	print(user_game_prefs.language)
+	languages_value.text = user_game_prefs.language
+	TranslationServer.set_locale( user_game_prefs.language.left(2).to_lower() )
+#endregion
+
+func _on_game_reset_button_down() -> void:
+	user_game_prefs = UserGamePreferences.reset()
+	_update_game_options()
+
+func _update_game_options() -> void:
+	_set_language()
 #endregion
 
 
@@ -549,15 +603,12 @@ func _update_bot_buttons() -> void:
 			last_item = button
 
 
-
-
 func update_focus_main_buttons(id: int) -> void:
 	for button: MyButton in section_buttons.get_children():
 		button.focus_neighbor_bottom = first_item_path[id]
 
 	for button: MyButton in bot_container.get_children():
 		button.focus_neighbor_top = last_item_path[id]
-
 
 
 func _on_game_button_down() -> void:

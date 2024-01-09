@@ -38,25 +38,25 @@ grow_vertical = 2
 theme_override_constants/separation = 26
 
 [node name="Play" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(140, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "PLAY"
 script = ExtResource("2_fcyyy")
 
 [node name="Parameters" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(140, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "PARAMETERS"
 script = ExtResource("2_fcyyy")
 
 [node name="Credits" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(140, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "CREDITS"
 script = ExtResource("2_fcyyy")
 
 [node name="Quit" type="Button" parent="ButtonsContainer"]
-custom_minimum_size = Vector2(140, 50)
+custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "QUIT"
 script = ExtResource("2_fcyyy")

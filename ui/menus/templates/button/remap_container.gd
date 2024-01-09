@@ -4,7 +4,6 @@ extends HBoxContainer
 
 var action_name: String
 
-static var parameters: Parameters
 static var user_controls_prefs: UserControlsPreferences
 
 @onready var remap_label: Label = $RemapLabel
@@ -51,7 +50,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	var replaced_action: String = user_controls_prefs.change_and_replace(action_name, _event)
 	# If the key was existing we update the older key (only the icon, as the changes have been made in the previous function)
 	if not replaced_action.is_empty() and not replaced_action == "not_allowed":
-		for _remap_button: ControllerButton in parameters.remap_buttons:
+		for _remap_button: ControllerButton in Parameters.remap_buttons:
 			if _remap_button.path == replaced_action:
 				_remap_button.path = replaced_action
 				print("\n\n\n _remap_button.path : ", replaced_action)

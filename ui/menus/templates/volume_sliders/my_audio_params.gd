@@ -9,7 +9,6 @@ var bus_index: int
 @onready var slider: HSlider = $Slider
 
 var _old_val: float
-var parameters: Parameters
 
 func _ready() -> void:
 	update_params()
@@ -30,8 +29,8 @@ func _on_slider_value_changed(_new_val: float) -> void:
 	else:
 		AudioServer.set_bus_mute(bus_index, false)
 	_old_val = _new_val
-	parameters.user_audio_prefs.volumes[bus_index] = _new_val
-	parameters.user_audio_prefs.save()
+	Parameters.user_audio_prefs.volumes[bus_index] = _new_val
+	Parameters.user_audio_prefs.save()
 
 
 func update_params() -> void:

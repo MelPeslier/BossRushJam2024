@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BaseProject"
-run/main_scene="res://ui/menus/parameters/parameters.tscn"
+run/main_scene="res://ui/menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -28,6 +28,7 @@ Sfx2d="*res://autoloads/sound/sfx_2d.tscn"
 DisplayUI="*res://autoloads/ui/display_ui.tscn"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 GameState="*res://autoloads/game/game_state.gd"
+Parameters="*res://ui/menus/parameters/parameters.tscn"
 
 [display]
 

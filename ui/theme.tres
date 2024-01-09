@@ -1,4 +1,18 @@
-[gd_resource type="Theme" format=3 uid="uid://cr133lahb4w31"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cr133lahb4w31"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sm8y1"]
+bg_color = Color(0.0235294, 0.0196078, 0.0901961, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.215686, 0.0745098, 0.396078, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [resource]
 RemapButton/base_type = &"Button"
+back_ground/base_type = &"PanelContainer"
+back_ground/styles/panel = SubResource("StyleBoxFlat_sm8y1")
