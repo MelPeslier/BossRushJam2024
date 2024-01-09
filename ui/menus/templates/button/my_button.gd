@@ -10,7 +10,7 @@ static var buttons: Array[MyButton] = []
 
 func _init() -> void:
 	buttons.append(self)
-
+	custom_minimum_size = min_size
 
 static func _update_min_size() -> void:
 	for button: MyButton in buttons:

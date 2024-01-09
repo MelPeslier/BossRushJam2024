@@ -15,6 +15,7 @@ actual_setting_label = NodePath("ParametersContainer/UpContainer/VBoxContainer/A
 section_contents = NodePath("ParametersContainer/ScrollContainer/SectionContents")
 game_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/GameContent")
 quit_display = NodePath("QuitDisplay")
+min_rect_size = null
 display_content = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent")
 display_screen_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayScreen/DisplayScreenValue")
 display_mode_value = NodePath("ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayMode/DisplayModeValue")
@@ -265,8 +266,7 @@ size_flags_horizontal = 6
 text = "ABANDON"
 script = ExtResource("2_gnp5s")
 
-[node name="QuitDisplay" type="Control" parent="." node_paths=PackedStringArray("parameters")]
-visible = false
+[node name="QuitDisplay" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -274,7 +274,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_xhodx")
-parameters = NodePath("..")
 
 [node name="PanelContainer" type="PanelContainer" parent="QuitDisplay"]
 layout_mode = 1
@@ -323,7 +322,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BackButton" type="Button" parent="QuitDisplay/PanelContainer/MarginContainer/VBoxContainer/ChoiceContainer"]
-custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "BACK"
@@ -352,5 +350,3 @@ size_flags_horizontal = 3
 [connection signal="button_down" from="ParametersContainer/BotContainer/BackToMenu" to="." method="_on_back_to_menu_button_down"]
 [connection signal="button_down" from="ParametersContainer/BotContainer/Back" to="." method="_on_back_button_down"]
 [connection signal="button_down" from="ParametersContainer/BotContainer/Abandon" to="." method="_on_abandon_button_down"]
-[connection signal="button_down" from="QuitDisplay/PanelContainer/MarginContainer/VBoxContainer/ChoiceContainer/BackButton" to="QuitDisplay" method="_on_back_button_button_down"]
-[connection signal="button_down" from="QuitDisplay/PanelContainer/MarginContainer/VBoxContainer/ChoiceContainer/ContinueButton" to="QuitDisplay" method="_on_continue_button_button_down"]

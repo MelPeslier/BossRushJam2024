@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpdiyf0f7e3tq"]
+[gd_scene load_steps=3 format=3 uid="uid://bpdiyf0f7e3tq"]
 
 [ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_fcyyy"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -22,25 +23,43 @@ grow_vertical = 2
 color = Color(0.356863, 0.494118, 0.505882, 1)
 
 [node name="ButtonsContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.5
+offset_top = -66.0
+offset_right = 21.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 26
 
 [node name="Play" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
-text = "play"
+text = "PLAY"
+script = ExtResource("2_fcyyy")
 
 [node name="Parameters" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
-text = "other"
+text = "PARAMETERS"
+script = ExtResource("2_fcyyy")
 
 [node name="Credits" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
-text = "other"
+text = "CREDITS"
+script = ExtResource("2_fcyyy")
 
 [node name="Quit" type="Button" parent="ButtonsContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
-text = "other"
+text = "QUIT"
+script = ExtResource("2_fcyyy")
 
 [connection signal="button_down" from="ButtonsContainer/Play" to="." method="_on_play_button_down"]
 [connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_mouse_entered"]

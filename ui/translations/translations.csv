@@ -1,43 +1,48 @@
 keys,en,fr
+ANCHOR,Anchor,Ancrage
+AUDIO,Audio,Audio
 BACK,Back,Retour
-CREDITS_EXAMPLE,made by ...,Créer par ...
-GAME_OVER,You couldn't handle your new powers,Tu n'as pas su gérer tes nouveaux pouvoirs
-GAME_OVER_TRY_AGAIN,Try again,Réessayer
 BACK_TO_MENU,Back to menu,Retour à l'acceuil
+CONSTRAIN_MOUSE,Constrain mouse,Garder la souris à l'intérieur de l'écran
+CONTROLS,Controls,Commandes
 CREDITS,Credits,Crédits
+CREDITS_EXAMPLE,made by ...,Créer par ...
+DISPLAY,Display,Affichage
+DISPLAY_MODE,Display mode,Mode d'affichage
+DISPLAY_SCREEN,Display screen,Ecran d'affichage
+DOWN,Down,Bas
+FRAMERATE_LIMIT,Framerate limit,Limite de la fréquence d'affichage
+FULL_SCREEN,Full screen,Plein écran
+GAME,Game,Jeu
+GAME_OVER,GameOver,Jeu terminé
+GAME_OVER_TRY_AGAIN,Try again,Réessayer
+INTERACT,Interact,Intéragir
+LANGUAGES,Languages,Langues
+LEFT,Left,Gauche
+MASTER,Master,Général
+MUSIC,Music,Musique
 PAUSE,Paused,En pause
-RESUME,Resume,Reprendre
 PLAY,Play,Jouer
 QUIT,Quit,Quitter
-SETTINGS,Settings,Réglages
-LANGUAGES,Languages,Langues
-GAME,Game,Jeu
-DISPLAY,Display,Affichage
-AUDIO,Audio,Audio
-CONTROLS,Controls,Commandes
-DISPLAY_SCREEN,Display screen,Ecran d'affichage
-DISPLAY_MODE,Display mode,Mode d'affichage
+RESET,Reset,Rénitialiser
 RESOLUTION,Resolution,Résolution
-ANCHOR,Anchor,Ancrage
-V_SYNC,V Sync,V Sync
-FRAMERATE_LIMIT,Framerate limit,Limite de la fréquence d'affichage
-SHOW_FRAMERATE,Show framerate,Afficher la fréquence d'affichage
-CONSTRAIN_MOUSE,Constrain mouse,Garder la souris à l'intérieur de l'écran
 RESUME,Resume,Reprendre
-UP,Up,Haut
-DOWN,Down,Bas
-LEFT,Left,Gauche
 RIGHT,Right,Droite
-INTERACT,Interact,Intéragir
-FULL_SCREEN,Full screen,Plein écran
+SETTINGS,Settings,Réglages
+SFX,SFX,SFX
+SHOW_FRAMERATE,Show framerate,Afficher la fréquence d'affichage
+UI,User Interface,Interface Utilisateur
+UP,Up,Haut
+V_SYNC,V Sync,V Sync
+V_SYNC_ADAPTATIVE,Adaptative,Adaptative
+V_SYNC_DISABLED,Disabled,Désactivée
+V_SYNC_ENABLED,Enabled,Activée
+V_SYNC_MAILBOX,Mailbox,Mailbox
 WINDOWED,Windowed,Fenêtré
 WINDOWED_BORDERLESS,Windowed Borderless,Fenêtré sans bordures
-V_SYNC_ENABLED,Enabled,Activée
-V_SYNC_DISABLED,Disabled,Désactivée
-V_SYNC_ADAPTATIVE,Adaptative,Adaptative
-V_SYNC_MAILBOX,Mailbox,Mailbox
-RESET,Reset,Rénitialiser
-MASTER,Master,Général
-UI,User Interface,Interface Utilisateur
-MUSIC,Music,Musique
-SFX,SFX,SFX
+GAME_NAME,Game name,Nom du jeu
+PARAMETERS,Parameters,Paramètres
+ABANDON,Abandon,Abandonner
+CONTINUE,Continue,Continuer
+BACK_TO_MENU_CONTENT,Current progress will be saved,La progression de la partie sera sauvegardée
+ABANDON_CONTENT,Current progress will be deleted,La progression de la partie sera supprimée

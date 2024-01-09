@@ -58,6 +58,7 @@ const RESET: String = "RESET"
 
 @export_group("Game")
 @export var game_content: VBoxContainer
+@export var quit_display: QuitDisplay
 
 @export_group("Display")
 @export var min_rect_size: Vector2i = Vector2i(150, 60)
@@ -95,6 +96,7 @@ var first_item_path: Array[NodePath] = ["", "", "", ""]
 
 var last_item_path: Array[NodePath] = ["", "", "", ""]
 
+var previous_button: MyButton = game
 
 @onready var my_button_scene: PackedScene = preload("res://ui/menus/templates/button/my_button.tscn")
 var remap_container_scene: PackedScene = load("res://ui/menus/templates/button/remap_container.tscn")
@@ -109,12 +111,17 @@ func _ready() -> void:
 	_init_game_content()
 	_connect_buttons()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("back"):
+		if quit_display.visible:
+			quit_display.hide_content()
+			return
+
 		if visible:
 			resume_game()
 		elif can_pause():
 			pause()
+
 
 #region *** Pause ***
 func can_pause() -> bool:
@@ -126,14 +133,20 @@ func pause() -> void:
 	if GameState.in_game:
 		back.text = "RESUME"
 		get_tree().paused = true
+		back_to_menu.visible = true
+		abandon.visible = true
 	else:
 		back.text = "BACK"
+		back_to_menu.visible = false
+		abandon.visible = false
+	_update_bot_buttons()
+	previous_button.grab_focus()
+	previous_button.button_down.emit()
 
 
 func resume_game() -> void:
 	visible = false
 	if GameState.in_game:
-
 		get_tree().paused = false
 #endregion
 
@@ -219,8 +232,21 @@ func _on_display_screen_value_selected(_id: int) -> void:
 
 func _set_screen() -> void:
 	display_screen_value.text = str( user_display_prefs.actual_screen + 1 )
-	DisplayServer.window_set_current_screen( user_display_prefs.actual_screen )
+	var available_screens: int = DisplayServer.get_screen_count()
+	var is_in:= false
+	for i: int in available_screens:
+		if i == user_display_prefs.actual_screen:
+			is_in = true
+			DisplayServer.window_set_current_screen( user_display_prefs.actual_screen )
+			break
+
+	if not is_in:
+		DisplayServer.window_set_current_screen( 0 )
 	_update_resolution_options()
+
+
+func _on_display_screen_value_about_to_popup() -> void:
+	_update_display_screen_options()
 #endregion
 
 #region Mode
@@ -487,7 +513,10 @@ func _on_controls_reset_button_down() -> void:
 
 #region *** Game ***
 func _init_game_content() -> void:
-	print( TranslationServer.get_loaded_locales() )
+
+	TranslationServer.get_loaded_locales()
+	print( TranslationServer.get_language_name("en") )
+	print( TranslationServer.get_language_name("fr") )
 #endregion
 
 
@@ -506,13 +535,20 @@ func _connect_buttons() -> void:
 	for button: MyButton in bot_container.get_children():
 		button.button_down.connect(Sfx.on_button_down)
 		button.mouse_entered.connect(Sfx.on_mouse_entered)
-		if last_item:
-			last_item.focus_neighbor_right = button.get_path()
-			button.focus_neighbor_left = last_item.get_path()
-		last_item = button
 
-
+	_update_bot_buttons()
 	_on_game_button_down()
+
+func _update_bot_buttons() -> void:
+	var last_item: MyButton = null
+	for button: MyButton in bot_container.get_children():
+		if button.visible:
+			if last_item:
+				last_item.focus_neighbor_right = button.get_path()
+				button.focus_neighbor_left = last_item.get_path()
+			last_item = button
+
+
 
 
 func update_focus_main_buttons(id: int) -> void:
@@ -529,6 +565,7 @@ func _on_game_button_down() -> void:
 	game_content.visible = true
 	actual_setting_label.text = game.text
 	update_focus_main_buttons(0)
+	previous_button = game
 
 
 func _on_display_button_down() -> void:
@@ -536,6 +573,7 @@ func _on_display_button_down() -> void:
 	display_content.visible = true
 	actual_setting_label.text = display.text
 	update_focus_main_buttons(1)
+	previous_button = display
 
 
 func _on_audio_button_down() -> void:
@@ -543,6 +581,7 @@ func _on_audio_button_down() -> void:
 	audio_content.visible = true
 	actual_setting_label.text = audio.text
 	update_focus_main_buttons(2)
+	previous_button = audio
 
 
 func _on_controls_button_down() -> void:
@@ -550,6 +589,7 @@ func _on_controls_button_down() -> void:
 	controls_content.visible = true
 	actual_setting_label.text = controls.text
 	update_focus_main_buttons(3)
+	previous_button = controls
 
 
 func _disable_sections() -> void:
@@ -558,17 +598,19 @@ func _disable_sections() -> void:
 
 
 func _on_back_to_menu_button_down() -> void:
-	pass # Replace with function body.
+	quit_display.show_content(QuitDisplay.Type.RETURN)
 
 
 func _on_back_button_down() -> void:
-	pass # Replace with function body.
+	resume_game()
 
 
 func _on_abandon_button_down() -> void:
-	pass # Replace with function body.
+	quit_display.show_content(QuitDisplay.Type.ABANDON)
 
 #endregion
+
+
 
 
 

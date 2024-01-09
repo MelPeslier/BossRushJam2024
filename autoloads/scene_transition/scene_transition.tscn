@@ -213,7 +213,7 @@ _data = {
 }
 
 [node name="SceneTransition" type="CanvasLayer" node_paths=PackedStringArray("animator")]
-layer = 10
+layer = 30
 script = ExtResource("1_61uoq")
 animator = NodePath("Animator")
 
