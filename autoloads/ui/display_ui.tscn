@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck7skn4gf5tqa"]
+
+[ext_resource type="Script" path="res://autoloads/ui/display_ui.gd" id="1_hst57"]
+
+[node name="DisplayUI" type="CanvasLayer" node_paths=PackedStringArray("framerate", "framerate_timer")]
+layer = 15
+script = ExtResource("1_hst57")
+framerate = NodePath("Control/Framerate")
+framerate_timer = NodePath("Control/Framerate/FramerateTimer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Framerate" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -51.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = 33.0
+grow_horizontal = 0
+
+[node name="FramerateTimer" type="Timer" parent="Control/Framerate"]
+wait_time = 0.3
+
+[connection signal="timeout" from="Control/Framerate/FramerateTimer" to="." method="_on_framerate_timer_timeout"]

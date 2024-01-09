@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://fmthmkxxh35d"]
+
+[ext_resource type="Script" path="res://ui/menus/templates/button/remap_container.gd" id="1_lagkp"]
+[ext_resource type="Texture2D" uid="uid://dim5mk7g4q043" path="res://addons/controller_icons/assets/key/q.png" id="2_112dv"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerButton.gd" id="2_ng21g"]
+
+[node name="RemapContainer" type="HBoxContainer"]
+script = ExtResource("1_lagkp")
+
+[node name="RemapLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "zrgzgr"
+vertical_alignment = 1
+
+[node name="RemapButton" type="Button" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+icon = ExtResource("2_112dv")
+flat = true
+expand_icon = true
+script = ExtResource("2_ng21g")
+path = "left"
+
+[connection signal="toggled" from="RemapButton" to="." method="_on_remap_button_toggled"]

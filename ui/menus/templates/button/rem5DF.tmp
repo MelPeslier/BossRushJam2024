@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjg48hv221s7e"]
+
+[ext_resource type="Script" path="res://ui/menus/templates/button/remap_container.gd" id="1_8ihjp"]
+
+[node name="RemapContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8ihjp")
+
+[node name="RemapLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+text = "key"
+vertical_alignment = 1
+
+[node name="RemapButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_type_variation = &"RemapButton"
+toggle_mode = true
+text = "button"
+
+[connection signal="toggled" from="RemapButton" to="." method="_on_remap_button_toggled"]

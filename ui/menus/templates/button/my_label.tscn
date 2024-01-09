@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://kbipnaxf247l"]
+
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_label.gd" id="1_gb4on"]
+
+[node name="MyLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 22.0
+size_flags_horizontal = 3
+vertical_alignment = 1
+script = ExtResource("1_gb4on")
