@@ -555,7 +555,13 @@ func _on_languages_value_selected(_id: int) -> void:
 	_set_language()
 
 func _set_language() -> void:
-	print(user_game_prefs.language)
+	var locals := TranslationServer.get_loaded_locales()
+	if user_game_prefs.language.is_empty():
+		var local := TranslationServer.get_locale().left(2)
+		if local in locals:
+			user_game_prefs.language = TranslationServer.get_language_name(local)
+		else:
+			user_game_prefs.language = locals[0]
 	languages_value.text = user_game_prefs.language
 	TranslationServer.set_locale( user_game_prefs.language.left(2).to_lower() )
 #endregion
