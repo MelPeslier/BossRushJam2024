@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="BaseProject"
+config/name="BossRushJam2024"
+config/tags=PackedStringArray("jam")
 run/main_scene="res://ui/menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
