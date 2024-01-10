@@ -22,7 +22,6 @@ LEFT,Left,Gauche
 MASTER,Master,Général
 MUSIC,Music,Musique
 PAUSE,Paused,En pause
-PLAY,Play,Jouer
 QUIT,Quit,Quitter
 RESET,Reset,Rénitialiser
 RESOLUTION,Resolution,Résolution
@@ -46,3 +45,4 @@ ABANDON,Abandon,Abandonner
 CONTINUE,Continue,Continuer
 BACK_TO_MENU_CONTENT,Current progress will be saved,La progression de la partie sera sauvegardée
 ABANDON_CONTENT,Current progress will be deleted,La progression de la partie sera supprimée
+NEW_GAME,New game,Nouvelle partie
