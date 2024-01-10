@@ -1,24 +1,17 @@
 extends Node
 
-
-@export_group("UI", "ui_")
-@export var ui_bus_name : String = "UI"
-@export var ui_play: AudioStream
-@export var ui_over: AudioStream
-@export var ui_press: AudioStream
-@export var ui_cancel: AudioStream
-@export var ui_reset: AudioStream
-@export var ui_slide: AudioStream
-@export var ui_checked_on: AudioStream
-@export var ui_checked_off: AudioStream
-
-@onready var asp := AudioStreamPlayer.new()
+@onready var ui_play: AudioStreamPlayer = $Play
+@onready var ui_over: AudioStreamPlayer = $Over
+@onready var ui_press: AudioStreamPlayer = $Press
+@onready var ui_cancel: AudioStreamPlayer = $Cancel
+@onready var ui_reset: AudioStreamPlayer = $Reset
+@onready var ui_slide: AudioStreamPlayer = $Slide
+@onready var ui_checked_on: AudioStreamPlayer = $CheckedOn
+@onready var ui_checked_off: AudioStreamPlayer = $CheckedOff
 
 
-func _play(_audio_stream: AudioStream, _bus_name: String) -> void:
-	var _asp := asp.duplicate()
-	_asp.stream = _audio_stream
-	_asp.bus = _bus_name
+func _play(_audio_stream_player: AudioStreamPlayer) -> void:
+	var _asp := _audio_stream_player.duplicate()
 	_asp.finished.connect(_on_play_finished.bind(_asp))
 	add_child(_asp)
 	_asp.play()
@@ -30,9 +23,9 @@ func _on_play_finished(_asp: AudioStreamPlayer) -> void:
 
 #region UI
 
-func play_ui(_audio_stream: AudioStream) -> void:
-	if not _audio_stream: return
-	_play(_audio_stream, ui_bus_name)
+func play_ui(_audio_stream_player: AudioStreamPlayer) -> void:
+	if not _audio_stream_player: return
+	_play(_audio_stream_player)
 
 #
 #func play_other(_audio_stream: AudioStream, _bus: String = other_bus) -> void:

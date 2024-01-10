@@ -12,6 +12,11 @@ func _init() -> void:
 	buttons.append(self)
 	custom_minimum_size = min_size
 
+
+func _ready() -> void:
+	pass
+
+
 static func _update_min_size() -> void:
 	for button: MyButton in buttons:
 		button.custom_minimum_size = min_size
@@ -24,3 +29,4 @@ func _set_apply(_do: bool) -> void:
 
 func _exit_tree() -> void:
 	buttons.erase(self)
+

@@ -121,14 +121,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 		if visible:
 			resume_game()
-		elif can_pause():
+		elif GameState.can_pause():
 			pause()
 
 
 #region *** Pause ***
-func can_pause() -> bool:
-	return true
-
 #TODO appear and disappear transitions
 func pause() -> void:
 	visible = true

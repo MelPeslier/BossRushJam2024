@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpdiyf0f7e3tq"]
+[gd_scene load_steps=5 format=3 uid="uid://bpdiyf0f7e3tq"]
 
 [ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_fcyyy"]
+[ext_resource type="PackedScene" uid="uid://dfx3sw5lhdmun" path="res://ui/menus/Credits/credit_canvas_layer.tscn" id="3_xr1nn"]
+[ext_resource type="Script" path="res://ui/menus/Credits/credit_canvas_layer.gd" id="4_hvi11"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" node_paths=PackedStringArray("credits_canvas_layer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qn88j")
-target_scene_path = "res://ui/menus/main_menu/main_menu2.tscn"
+credits_canvas_layer = NodePath("CreditCanvasLayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,6 +62,10 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "QUIT"
 script = ExtResource("2_fcyyy")
+
+[node name="CreditCanvasLayer" parent="." instance=ExtResource("3_xr1nn")]
+visible = false
+script = ExtResource("4_hvi11")
 
 [connection signal="button_down" from="ButtonsContainer/Play" to="." method="_on_play_button_down"]
 [connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_mouse_entered"]
