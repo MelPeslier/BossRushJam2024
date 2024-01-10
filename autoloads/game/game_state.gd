@@ -3,13 +3,26 @@ extends Node
 var in_game := false
 var in_credits := false
 
+var saved_game: GameSave
+
+func _ready() -> void:
+	saved_game = GameSave.load_or_create()
+
+
+func has_saved_game() -> bool:
+	return saved_game.level == 0
+
 
 func save_game() -> void:
-	pass
+	saved_game.save()
 
 
 func erase_game() -> void:
 	pass
+
+
+func new_game() -> void:
+	saved_game = GameSave.reset()
 
 
 func can_pause() -> bool:

@@ -13,6 +13,5 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [resource]
-RemapButton/base_type = &"Button"
 back_ground/base_type = &"PanelContainer"
 back_ground/styles/panel = SubResource("StyleBoxFlat_sm8y1")

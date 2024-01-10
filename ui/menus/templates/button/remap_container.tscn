@@ -23,5 +23,7 @@ flat = true
 expand_icon = true
 script = ExtResource("2_ng21g")
 path = "left"
+ui_focused = null
+ui_pressed = null
 
 [connection signal="toggled" from="RemapButton" to="." method="_on_remap_button_toggled"]

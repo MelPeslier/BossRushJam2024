@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpdiyf0f7e3tq"]
+[gd_scene load_steps=4 format=3 uid="uid://bpdiyf0f7e3tq"]
 
 [ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_fcyyy"]
 [ext_resource type="PackedScene" uid="uid://dfx3sw5lhdmun" path="res://ui/menus/Credits/credit_canvas_layer.tscn" id="3_xr1nn"]
-[ext_resource type="Script" path="res://ui/menus/Credits/credit_canvas_layer.gd" id="4_hvi11"]
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("credits_canvas_layer")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("credits_canvas_layer", "play")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qn88j")
 credits_canvas_layer = NodePath("CreditCanvasLayer")
+play = NodePath("VBoxContainer/ButtonsContainer/Continue")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -24,54 +24,79 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.356863, 0.494118, 0.505882, 1)
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -21.5
-offset_top = -66.0
-offset_right = 21.5
-offset_bottom = 66.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Dummy" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 120
+text = "GAME_NAME"
+
+[node name="Dummy3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 26
 
-[node name="Play" type="Button" parent="ButtonsContainer"]
+[node name="Continue" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-text = "PLAY"
+text = "CONTINUE"
 script = ExtResource("2_fcyyy")
+ui_pressed = 0
 
-[node name="Parameters" type="Button" parent="ButtonsContainer"]
+[node name="NewGame" type="Button" parent="VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "NEW_GAME"
+script = ExtResource("2_fcyyy")
+ui_pressed = 0
+
+[node name="Parameters" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "PARAMETERS"
 script = ExtResource("2_fcyyy")
+ui_pressed = -1
 
-[node name="Credits" type="Button" parent="ButtonsContainer"]
+[node name="Credits" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "CREDITS"
 script = ExtResource("2_fcyyy")
 
-[node name="Quit" type="Button" parent="ButtonsContainer"]
+[node name="Quit" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 text = "QUIT"
 script = ExtResource("2_fcyyy")
+ui_pressed = 3
+
+[node name="Dummy2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 
 [node name="CreditCanvasLayer" parent="." instance=ExtResource("3_xr1nn")]
 visible = false
-script = ExtResource("4_hvi11")
 
-[connection signal="button_down" from="ButtonsContainer/Play" to="." method="_on_play_button_down"]
-[connection signal="mouse_entered" from="ButtonsContainer/Play" to="." method="_on_mouse_entered"]
-[connection signal="button_down" from="ButtonsContainer/Parameters" to="." method="_on_parameters_button_down"]
-[connection signal="mouse_entered" from="ButtonsContainer/Parameters" to="." method="_on_mouse_entered"]
-[connection signal="button_down" from="ButtonsContainer/Credits" to="." method="_on_credits_button_down"]
-[connection signal="mouse_entered" from="ButtonsContainer/Credits" to="." method="_on_mouse_entered"]
-[connection signal="button_down" from="ButtonsContainer/Quit" to="." method="_on_quit_button_down"]
-[connection signal="mouse_entered" from="ButtonsContainer/Quit" to="." method="_on_mouse_entered"]
+[connection signal="button_down" from="VBoxContainer/ButtonsContainer/Continue" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonsContainer/NewGame" to="." method="_on_new_game_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonsContainer/Parameters" to="." method="_on_parameters_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonsContainer/Credits" to="." method="_on_credits_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonsContainer/Quit" to="." method="_on_quit_button_down"]

@@ -15,6 +15,10 @@ var type: Type
 @export var continue_button: MyButton
 
 
+func _ready() -> void:
+	visible = false
+
+
 func show_content(_type : Type) -> void:
 	type = _type
 	match type:

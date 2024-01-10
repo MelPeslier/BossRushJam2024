@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://dfx3sw5lhdmun"]
+[gd_scene load_steps=3 format=3 uid="uid://dfx3sw5lhdmun"]
+
+[ext_resource type="Script" path="res://ui/menus/Credits/credit_canvas_layer.gd" id="1_jnsr6"]
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_54qj8"]
 
 [node name="CreditCanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_jnsr6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -40,3 +44,20 @@ horizontal_alignment = 1
 
 [node name="CreditContent" type="Label" parent="Control/PanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Back" type="Button" parent="Control"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0526042
+anchor_top = 0.917593
+anchor_right = 0.0526042
+anchor_bottom = 0.917593
+offset_top = -60.0
+offset_right = 200.0
+grow_vertical = 0
+text = "BACK"
+script = ExtResource("2_54qj8")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Control/Back" to="." method="_on_back_button_down"]

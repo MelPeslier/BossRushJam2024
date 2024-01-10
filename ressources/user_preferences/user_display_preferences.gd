@@ -4,7 +4,7 @@ extends Resource
 
 const SAVE_PATH: String = "user://user_display_prefs.tres"
 
-@export var actual_screen: int = 0
+@export var actual_screen: int = DisplayServer.get_primary_screen()
 @export var display_mode: String = Parameters.display_modes.find_key(Parameters.display_modes.FULL_SCREEN)
 @export var resolution: Vector2i = Parameters.resolutions[1]
 @export var screen_anchor: String = Parameters.screen_anchors.find_key(Parameters.screen_anchors.CENTER)

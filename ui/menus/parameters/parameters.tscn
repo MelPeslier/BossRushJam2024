@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://fk5ufucu336g"]
+[gd_scene load_steps=7 format=3 uid="uid://fk5ufucu336g"]
 
 [ext_resource type="Script" path="res://ui/menus/parameters/parameters.gd" id="1_lonfr"]
 [ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_noiyu"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_gnp5s"]
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_menu_button.gd" id="4_n7mte"]
 [ext_resource type="Script" path="res://ui/menus/parameters/quit_display.gd" id="4_xhodx"]
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_check_box.gd" id="5_60q8c"]
 
 [node name="Parameters" type="CanvasLayer" node_paths=PackedStringArray("section_buttons", "bot_container", "actual_setting_label", "section_contents", "quit_display", "game_content", "languages_value", "display_content", "display_screen_value", "display_mode_value", "resolution_value", "anchor_value", "v_sync_value", "framerate_limit_value", "show_framerate_value", "constrain_mouse_value", "audio_content", "controls_content", "game", "display", "audio", "controls", "back_to_menu", "back", "abandon")]
 process_mode = 3
@@ -34,6 +36,14 @@ controls = NodePath("Control/MarginContainer/ParametersContainer/UpContainer/VBo
 back_to_menu = NodePath("Control/MarginContainer/ParametersContainer/BotContainer/BackToMenu")
 back = NodePath("Control/MarginContainer/ParametersContainer/BotContainer/Back")
 abandon = NodePath("Control/MarginContainer/ParametersContainer/BotContainer/Abandon")
+
+[node name="BackGround" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(1152, 648)
@@ -154,6 +164,7 @@ text = "LANGUAGES"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy "
+script = ExtResource("4_n7mte")
 
 [node name="DisplayContent" type="VBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents"]
 visible = false
@@ -176,6 +187,7 @@ text = "DISPLAY_SCREEN"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy "
+script = ExtResource("4_n7mte")
 
 [node name="HParamDisplayMode" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -190,6 +202,7 @@ text = "DISPLAY_MODE"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy"
+script = ExtResource("4_n7mte")
 
 [node name="HParamResolution" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -204,6 +217,7 @@ text = "RESOLUTION"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy"
+script = ExtResource("4_n7mte")
 
 [node name="HParamAnchor" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -219,6 +233,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy"
 icon_alignment = 1
+script = ExtResource("4_n7mte")
 
 [node name="HParamV-Sync" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -233,6 +248,7 @@ text = "V_SYNC"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dummy"
+script = ExtResource("4_n7mte")
 
 [node name="HParamFramerateLimit" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -247,6 +263,7 @@ text = "FRAMERATE_LIMIT"
 layout_mode = 2
 size_flags_horizontal = 6
 text = "dummy"
+script = ExtResource("4_n7mte")
 
 [node name="HParamShowFramerate" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -262,6 +279,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 alignment = 1
+script = ExtResource("5_60q8c")
 
 [node name="HParamConstrainMouse" type="HBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent"]
 layout_mode = 2
@@ -276,6 +294,7 @@ text = "CONSTRAIN_MOUSE"
 layout_mode = 2
 size_flags_horizontal = 6
 icon_alignment = 1
+script = ExtResource("5_60q8c")
 
 [node name="AudioContent" type="VBoxContainer" parent="Control/MarginContainer/ParametersContainer/ScrollContainer/SectionContents"]
 layout_mode = 2
@@ -316,6 +335,7 @@ text = "ABANDON"
 script = ExtResource("2_gnp5s")
 
 [node name="QuitDisplay" type="Control" parent="." node_paths=PackedStringArray("label_quit", "label_quit_content", "back_button", "continue_button")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

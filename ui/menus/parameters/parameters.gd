@@ -58,17 +58,17 @@ const RESET: String = "RESET"
 
 @export_group("Game")
 @export var game_content: VBoxContainer
-@export var languages_value: MenuButton
+@export var languages_value: MyMenuButton
 
 @export_group("Display")
 @export var min_rect_size: Vector2i = Vector2i(150, 60)
 @export var display_content: VBoxContainer
-@export var display_screen_value: MenuButton
-@export var display_mode_value: MenuButton
-@export var resolution_value: MenuButton
-@export var anchor_value: MenuButton
-@export var v_sync_value: MenuButton
-@export var framerate_limit_value: MenuButton
+@export var display_screen_value: MyMenuButton
+@export var display_mode_value: MyMenuButton
+@export var resolution_value: MyMenuButton
+@export var anchor_value: MyMenuButton
+@export var v_sync_value: MyMenuButton
+@export var framerate_limit_value: MyMenuButton
 @export var show_framerate_value: CheckBox
 @export var constrain_mouse_value: CheckBox
 
@@ -103,8 +103,6 @@ var previous_button: MyButton = game
 var remap_container_scene: PackedScene = load("res://ui/menus/templates/button/remap_container.tscn")
 
 
-
-
 func _ready() -> void:
 	visible = false
 	_init_audio_content()
@@ -122,12 +120,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if visible:
 			resume_game()
 		elif GameState.can_pause():
-			pause()
+			pause_game()
 
 
 #region *** Pause ***
 #TODO appear and disappear transitions
-func pause() -> void:
+func pause_game() -> void:
 	visible = true
 	if GameState.in_game:
 		back.text = "RESUME"
@@ -217,8 +215,6 @@ func _update_display_screen_options() -> void:
 	for i: int in available_screens:
 		var item: String = str( i + 1 )
 		display_screen_value.get_popup().add_item(item)
-	if not user_display_prefs.actual_screen:
-		user_display_prefs.actual_screen = DisplayServer.get_primary_screen()
 
 func _on_display_screen_value_selected(_id: int) -> void:
 	user_display_prefs.actual_screen = _id
@@ -229,19 +225,15 @@ func _on_display_screen_value_selected(_id: int) -> void:
 	_set_anchor()
 
 func _set_screen() -> void:
-	display_screen_value.text = str( user_display_prefs.actual_screen + 1 )
-	var available_screens: int = DisplayServer.get_screen_count()
-	var is_in:= false
-	for i: int in available_screens:
-		if i == user_display_prefs.actual_screen:
-			is_in = true
-			DisplayServer.window_set_current_screen( user_display_prefs.actual_screen )
-			break
-
-	if not is_in:
-		DisplayServer.window_set_current_screen( 0 )
+	display_screen_value.text = str( DisplayServer.window_get_current_screen() + 1 )
+	DisplayServer.window_set_current_screen( _get_screen() )
 	_update_resolution_options()
 
+func _get_screen() -> int:
+	for i: int in DisplayServer.get_screen_count():
+		if i == user_display_prefs.actual_screen:
+			return user_display_prefs.actual_screen
+	return DisplayServer.get_primary_screen()
 
 func _on_display_screen_value_about_to_popup() -> void:
 	_update_display_screen_options()
@@ -274,7 +266,7 @@ func _set_display_mode() -> void:
 #region Resolution
 func _update_resolution_options() -> void:
 	resolution_value.get_popup().clear()
-	var monitor_size : Vector2i = DisplayServer.screen_get_size(user_display_prefs.actual_screen)
+	var monitor_size : Vector2i = DisplayServer.screen_get_size(_get_screen())
 	for res: Vector2i in resolutions:
 		if res <= monitor_size:
 			var title: String = str(res.x) + " x " + str(res.y)
@@ -289,6 +281,12 @@ func _on_resolution_value_selected(_id: int) -> void:
 func _set_resolution() -> void:
 	resolution_value.text = str(user_display_prefs.resolution.x) + " x " + str(user_display_prefs.resolution.y)
 	DisplayServer.window_set_size(user_display_prefs.resolution)
+
+func _get_resolution() -> Vector2i:
+	var monitor_size : Vector2i = DisplayServer.screen_get_size(_get_screen())
+	if user_display_prefs.resolution <= monitor_size:
+		return user_display_prefs.resolution
+	return monitor_size
 #endregion
 
 #region Anchor
@@ -320,8 +318,8 @@ func _set_anchor() -> void:
 	elif y == 2: y = 0
 	var path: String = "res://ui/menus/parameters/grid/grid_" + str( x ) + "_" + str( y ) + ".png"
 	anchor_value.icon = load( path )
-	var _size := user_display_prefs.resolution
-	var _usable_rect := DisplayServer.screen_get_usable_rect(user_display_prefs.actual_screen)
+	var _size := _get_resolution()
+	var _usable_rect := DisplayServer.screen_get_usable_rect(_get_screen())
 	var _new_pos := _usable_rect.size - _size
 	_new_pos.x = _new_pos.x - int( _new_pos.x * screen_anchors.get(user_display_prefs.screen_anchor).x / 2 ) + _usable_rect.position.x
 	_new_pos.y = _new_pos.y - int( _new_pos.y * screen_anchors.get(user_display_prefs.screen_anchor).y / 2 ) + _usable_rect.position.y
@@ -372,7 +370,7 @@ func _on_show_framerate_value_toggled(toggled: bool) -> void:
 	_set_show_framerate()
 
 func _set_show_framerate() -> void:
-	show_framerate_value.button_pressed = user_display_prefs.show_framerate
+	show_framerate_value.set_pressed_no_signal( user_display_prefs.show_framerate )
 	DisplayUI.show_framerate( user_display_prefs.show_framerate )
 #endregion
 
@@ -575,8 +573,8 @@ func _update_game_options() -> void:
 func _connect_buttons() -> void:
 	var last_item: MyButton = null
 	for button: MyButton in section_buttons.get_children():
-		button.button_down.connect(Sfx.on_button_down)
-		button.mouse_entered.connect(Sfx.on_mouse_entered)
+		#button.button_down.connect(Sfx.on_button_down)
+		#button.mouse_entered.connect(Sfx.on_mouse_entered)
 		if last_item:
 			last_item.focus_neighbor_right = button.get_path()
 			button.focus_neighbor_left = last_item.get_path()
@@ -584,8 +582,9 @@ func _connect_buttons() -> void:
 
 	last_item = null
 	for button: MyButton in bot_container.get_children():
-		button.button_down.connect(Sfx.on_button_down)
-		button.mouse_entered.connect(Sfx.on_mouse_entered)
+		break
+		#button.button_down.connect(Sfx.on_button_down)
+		#button.mouse_entered.connect(Sfx.on_mouse_entered)
 
 	_update_bot_buttons()
 	_on_game_button_down()

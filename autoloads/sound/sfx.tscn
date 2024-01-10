@@ -10,8 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://c22h207m2p5us" path="res://ui/sound/CheckedOn_00.wav" id="8_e58kc"]
 [ext_resource type="AudioStream" uid="uid://dfbk2g2bq8ehe" path="res://ui/sound/CheckedOff_00.wav" id="9_j0qpt"]
 
-[node name="Sfx" type="Node"]
+[node name="Sfx" type="Node" node_paths=PackedStringArray("ui_sounds")]
 script = ExtResource("1_c4qcj")
+ui_sounds = [NodePath("Play"), NodePath("Over"), NodePath("Pressed"), NodePath("Cancel"), NodePath("Reset"), NodePath("Slide"), NodePath("CheckedOn"), NodePath("CheckedOff")]
 
 [node name="Play" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_phcgq")
@@ -19,9 +20,8 @@ stream = ExtResource("2_phcgq")
 [node name="Over" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_hu3pd")
 
-[node name="Press" type="AudioStreamPlayer" parent="."]
+[node name="Pressed" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_6ie22")
-volume_db = 5.0
 
 [node name="Cancel" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_gpnk6")

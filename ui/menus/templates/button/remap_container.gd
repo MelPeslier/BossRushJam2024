@@ -53,7 +53,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		for _remap_button: ControllerButton in Parameters.remap_buttons:
 			if _remap_button.path == replaced_action:
 				_remap_button.path = replaced_action
-				print("\n\n\n _remap_button.path : ", replaced_action)
 	remap_button.button_pressed = false
 
 

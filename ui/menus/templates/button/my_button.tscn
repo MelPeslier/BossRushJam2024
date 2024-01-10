@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="1_jcqq1"]
 
 [node name="MyButton" type="Button"]
-custom_minimum_size = Vector2(120, 60)
+custom_minimum_size = Vector2(200, 60)
 size_flags_horizontal = 6
 text = "MY_BUTTON"
 script = ExtResource("1_jcqq1")

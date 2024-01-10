@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3xa6biw045x1"]
+
+[ext_resource type="Script" path="res://ui/menus/templates/button/my_check_box.gd" id="1_ko4kd"]
+
+[node name="MyCheckBox" type="CheckBox"]
+script = ExtResource("1_ko4kd")

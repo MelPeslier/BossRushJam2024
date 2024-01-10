@@ -8,18 +8,22 @@ var bus_index: int
 @onready var label: Label = $Label
 @onready var slider: HSlider = $Slider
 
+@export_category("Audio")
+@export var ui_focused := SoundList.Ui.FOCUSSED
+@export var ui_slide := SoundList.Ui.SLIDE
+
 var _old_val: float
 
 func _ready() -> void:
 	update_params()
-
 	slider.value_changed.connect(_on_slider_value_changed)
-	slider.value_changed.connect(Sfx.on_slider_value_changed)
-	slider.mouse_entered.connect(Sfx.on_mouse_entered)
+	slider.mouse_entered.connect(_on_mouse_entered)
+	slider.focus_entered.connect(_on_focus_entered)
 
 
 func _on_slider_value_changed(_new_val: float) -> void:
 	if _old_val == _new_val: return
+	Sfx.play_ui( ui_slide )
 	AudioServer.set_bus_volume_db(
 		bus_index,
 		linear_to_db(_new_val)
@@ -31,6 +35,13 @@ func _on_slider_value_changed(_new_val: float) -> void:
 	_old_val = _new_val
 	Parameters.user_audio_prefs.volumes[bus_index] = _new_val
 	Parameters.user_audio_prefs.save()
+
+
+func _on_mouse_entered() -> void:
+	slider.grab_focus()
+
+func _on_focus_entered() -> void:
+	Sfx.play_ui( ui_focused )
 
 
 func update_params() -> void:
