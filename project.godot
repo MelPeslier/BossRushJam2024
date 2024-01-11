@@ -48,7 +48,8 @@ enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://add
 folder_colors={
 "res://addons/": "gray",
 "res://autoloads/": "red",
-"res://ressources/": "yellow"
+"res://ressources/": "yellow",
+"res://ui/menus/parameters/": "red"
 }
 
 [gui]
