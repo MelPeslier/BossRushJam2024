@@ -9,11 +9,12 @@ var action_names: Array[String] = [
 	"left",
 	"right",
 	"interact",
+	"melee_attack",
+	"distance_attack",
+	"special_ability_1",
 ]
 var special_action_names: Array[String] = [
-	"back",
-	"tab_right",
-	"tab_left",
+	"back"
 ]
 
 @export var user_input_map: Dictionary = {}
@@ -50,10 +51,12 @@ func _take_user_input_map() -> void:
 
 
 func _replace_user_input_map() -> void:
-	if user_input_map.is_empty():
+	if user_input_map.is_empty() or not user_input_map.size() == action_names.size():
 		_take_user_input_map()
+		return
 	for _action_name: String in user_input_map:
 		var _input_events = user_input_map[_action_name]
+		print( "\n\nevents : ", _input_events )
 		InputMap.action_erase_events(_action_name)
 		for _input_event: InputEvent in _input_events:
 			InputMap.action_add_event(_action_name, _input_event)
