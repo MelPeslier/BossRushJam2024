@@ -5,7 +5,7 @@ import shutil
 
 godot_path = 'godot.exe'
 butler_path = 'butler.exe'
-butler_game = 'melpeslier/florist-king'
+butler_game = 'melpeslier/teambossrushjam'
 
 # # Found under the Steam sdk > tools > ContentBuilder > builder
 # steamcmd_path = 'steamcmd.exe'
@@ -16,7 +16,7 @@ butler_game = 'melpeslier/florist-king'
 # steam_app_script = ''
 # steam_credentials_path = 'steam_credentials.txt'
 
-build_path = '../../Godot Export/Game Name/'
+build_path = '../../Godot Export/BossRushJam2024/'
 game_name = 'game_name'
 exe_name_windows = game_name + '.exe'
 exe_name_linux = game_name + '.x86_64'
@@ -32,12 +32,14 @@ linux_template_itch = "Linux ITCH"
 templates = [windows_template_itch, linux_template_itch]
 
 def parse_build_nb_from_file(file):
+    print("look")
     # If you have a better way of parsing the file, tell me!
     with open(file, 'r', encoding='UTF-8') as f:
         for line in f:
             if 'config/version' in line:
                 number = line.strip().split("config/version=", 1)[1]
                 number = number.replace('"', '')
+                print("find")
                 return number
 
 def export_template(template, build_path, build_number):
