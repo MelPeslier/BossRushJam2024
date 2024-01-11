@@ -49,3 +49,5 @@ V_SYNC_ENABLED,Enabled,Activée
 V_SYNC_MAILBOX,Mailbox,Mailbox
 WINDOWED,Windowed,Fenêtré
 WINDOWED_BORDERLESS,Windowed Borderless,Fenêtré sans bordures
+JUMP,Jump,Saut
+DASH,Dash,Ruée

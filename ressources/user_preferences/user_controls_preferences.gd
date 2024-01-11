@@ -8,6 +8,8 @@ var action_names: Array[String] = [
 	"down",
 	"left",
 	"right",
+	"jump",
+	"dash",
 	"interact",
 	"melee_attack",
 	"distance_attack",

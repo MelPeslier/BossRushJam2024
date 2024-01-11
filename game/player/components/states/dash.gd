@@ -5,7 +5,6 @@ extends PlayerState
 @export var jump: State
 @export var fall: State
 @export var dash: State
-@export var ray_casts: RayCasts
 
 @export_category("light_particles")
 @export var light_particles_number: int
@@ -13,8 +12,8 @@ extends PlayerState
 @export var light_particles_lifetime: float
 @export var light_particles_explosiveness: float
 
-var light_particles_scene: PackedScene = preload("res://shared/vfx/light_particles/light_particles.tscn")
-var dash_particles_scene: PackedScene = preload("res://shared/vfx/dash/dash_particles.tscn")
+var light_particles_scene: PackedScene
+var dash_particles_scene: PackedScene
 
 
 func enter() -> void:
@@ -24,16 +23,10 @@ func enter() -> void:
 	player.dash_timer = move_data.dash_time
 	player.dash_interval_timer = player.dash_interval_time
 	parent.velocity.y = 0
-	ray_casts.activate()
-
-
-func exit() -> void:
-	ray_casts.deactivate()
 
 
 func process_physics(delta: float) -> State:
 	parent.velocity.x = move_data.dash_distance * move_data.old_dir
-	ray_casts.process_physics_right(delta)
 	parent.move_and_slide()
 
 	player.jump_buffer_timer -= delta
@@ -78,12 +71,12 @@ func process_frame(_delta: float) -> State:
 
 
 func spawn_particles() -> void:
-	var dash_instance: DashParticles = dash_particles_scene.instantiate()
+	var dash_instance = dash_particles_scene.instantiate()
 	parent.add_child(dash_instance)
 	dash_instance.position = player.mid_pos.position
 	dash_instance.play(move_data.old_dir)
 
-	var light_instance: LightParticles = light_particles_scene.instantiate() as LightParticles
+	var light_instance = light_particles_scene.instantiate()
 	parent.add_child(light_instance)
 	light_instance.position = player.mid_pos.position
 	light_instance.play(light_particles_number, light_particles_sphere_size, light_particles_lifetime, light_particles_explosiveness)

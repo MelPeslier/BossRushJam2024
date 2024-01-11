@@ -2,15 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 enum MovementState{
-	IDLE,
 	DASH,
-	JUMP,
-	WALK,
-	FALL,
-	BURST,
-	FINISHER,
+	DIE,
 	HIT,
-	DIE
+	IDLE,
+	JUMP,
+	FALL,
+	WALK,
 }
 
 @export_category("Components & Nodes")
