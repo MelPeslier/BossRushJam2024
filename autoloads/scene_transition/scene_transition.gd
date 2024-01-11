@@ -17,8 +17,8 @@ func change_scene(_target_path: String) -> void:
 	control_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	visible = true
 	_scene_path = _target_path
-	ResourceLoader.load_threaded_request( _target_path )
 	animator.play("appear")
+	ResourceLoader.load_threaded_request( _target_path )
 	set_process(true)
 
 
@@ -29,7 +29,11 @@ func _process(_delta: float) -> void:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
 			disappear()
 		ResourceLoader.THREAD_LOAD_LOADED:
+			set_process(false)
+			if animator.is_playing():
+				await animator.animation_finished
 			change_scene_to_resource()
+			disappear()
 
 
 func get_status() -> ResourceLoader.ThreadLoadStatus:
@@ -52,14 +56,10 @@ func change_scene_to_resource() -> void:
 	if err:
 		push_error("failed to change scenes: %d" % err)
 		get_tree().quit()
-	disappear()
 
 
 func disappear() -> void:
-	if animator.is_playing():
-		await animator.animation_finished
 	control_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	set_process(false)
 	animator.play("disappear")
 	await animator.animation_finished
 	visible = false
