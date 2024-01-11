@@ -56,7 +56,6 @@ func _replace_user_input_map() -> void:
 		return
 	for _action_name: String in user_input_map:
 		var _input_events = user_input_map[_action_name]
-		print( "\n\nevents : ", _input_events )
 		InputMap.action_erase_events(_action_name)
 		for _input_event: InputEvent in _input_events:
 			InputMap.action_add_event(_action_name, _input_event)

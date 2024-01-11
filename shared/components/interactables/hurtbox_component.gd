@@ -20,16 +20,20 @@ func _on_area_entered(hitbox: HitboxComponent) -> void:
 		return
 	if hitbox.parent == parent:
 		return
+	var attack_data := hitbox.attack_data
+
 	var dir := hitbox.parent.global_position.direction_to(global_position)
 	dir.x = 1 if dir.x > 0 else -1
 	dir.y = 1 if dir.y > 0 else -1
+	var kb: Vector2 = dir * attack_data.knock_back
 
-	var kb: Vector2 = dir * hitbox.knock_back
-	var dm: int = hitbox.damage
+	var dm: int = attack_data.damage
 
-		# Special interactions depending on types
+	# Special interactions depending on types
 
 	if health_component:
 		health_component.damage(dm)
 
-	hit_received.emit(kb)
+	if attack_data.knock_back > 0:
+		hit_received.emit(kb)
+
