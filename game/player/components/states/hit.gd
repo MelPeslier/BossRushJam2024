@@ -2,18 +2,20 @@ extends PlayerState
 
 @export var idle: State
 @export var die: State
+@export_range(0.05, 8) var hit_timer: float = 0.1
 
 var is_dead := false
 
+
 func enter() -> void:
 	super()
-	player.disable_attack()
-	player.disable_input()
+	move_data.disable_attack()
+	move_data.disable_input()
 
 
 func exit() -> void:
-	player.enable_attack()
-	player.enable_input()
+	move_data.enable_attack()
+	move_data.enable_input()
 
 
 func process_physics(delta: float) -> State:

@@ -1,10 +1,11 @@
 extends PlayerState
 
 #@export var soul_scene: PackedScene
+@export var ability_input_component: AbilityInputComponent
 
 func enter() -> void:
 	super()
-	player.disable_attack()
+	ability_input_component.disable_attack()
 	player.disable_input()
 	GameState.player_died()
 

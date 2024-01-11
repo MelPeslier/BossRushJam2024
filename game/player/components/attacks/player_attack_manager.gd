@@ -9,6 +9,10 @@ var combo_interval_timer: float: set = _set_combo_interval_timer
 var combo_timer: float: set = _set_combo_timer
 
 
+func process_unhandled_input(_event: InputEvent) -> void:
+	pass
+
+
 func timers(delta: float) -> void:
 	super(delta)
 	combo_timer -= delta

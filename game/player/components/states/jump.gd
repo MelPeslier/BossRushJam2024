@@ -19,23 +19,23 @@ var want_jump := true
 func enter() -> void:
 	super()
 	#if not parent.is_on_floor():
-		#spawn_step_light(player.get_jump_coef())
-	#spawn_light_particles(player.get_jump_coef())
-	parent.velocity.y = -move_data.initial_jump_velocity * player.get_jump_coef()
-	player.alter_jumps(-1)
-	player.jump_time = 0
+		#spawn_step_light(move_data.get_jump_coef())
+	#spawn_light_particles(move_data.get_jump_coef())
+	do_jump()
+	move_data.alter_jumps(-1)
+	move_data.jump_time = 0
 	want_jump = true
 
 
 func process_physics(delta: float) -> State:
 	super(delta)
-	player.jump_time += delta
+	move_data.jump_time += delta
 
 	if not Input.is_action_pressed("jump"):
 		want_jump = false
 
-	if not( want_jump and player.jump_time < move_data.jump_time_to_peak) and\
-			player.jump_time > player.min_jump_time\
+	if not( want_jump and move_data.jump_time < move_data.jump_time_to_peak) and\
+			move_data.jump_time > move_data.min_jump_time\
 	:
 		parent.velocity.y += move_data.fall_gravity * delta
 		parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
@@ -43,7 +43,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y += move_data.gravity * delta
 
 	move_data.dir = get_movement_input()
-	if not move_data.dir or not player.can_move:
+	if not move_data.dir or not move_data.can_move:
 		do_walk_decelerate(delta)
 	else:
 		do_walk_accelerate(delta)
@@ -55,9 +55,9 @@ func process_physics(delta: float) -> State:
 
 
 func process_unhandled_input(_event: InputEvent) -> State:
-	if get_dash() and player.can_dash():
+	if get_dash() and move_data.can_dash():
 		return dash
-	if get_jump() and player.can_jump():
+	if get_jump() and move_data.can_jump():
 		return jump
 	return null
 

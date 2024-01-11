@@ -23,12 +23,6 @@ enum MovementState{
 @export var bot_pos: Marker2D
 @export var mid_pos: Marker2D
 
-@export_category("attacks")
-@export_range(0.05, 8) var finisher_time: float = 8
-@export_range(0.05, 5) var burst_time: float = 3.5
-
-@export_category("hit")
-@export_range(0.05, 8) var hit_timer: float = 0.1
 
 var current_movement_state: MovementState
 

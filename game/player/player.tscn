@@ -1,41 +1,102 @@
-[gd_scene load_steps=14 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=21 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
+[ext_resource type="Script" path="res://game/player/components/interactables/player_interactor_component.gd" id="2_q8f32"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_7ycnr"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
 [ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_ability_input_component.gd" id="4_o1kg2"]
 [ext_resource type="Script" path="res://game/player/components/states/die.gd" id="5_1w3nl"]
 [ext_resource type="Script" path="res://game/player/components/movements/player_move_input_component.gd" id="5_bbfuc"]
+[ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="5_nbbkh"]
 [ext_resource type="Script" path="res://game/player/components/states/fall.gd" id="6_0uwup"]
+[ext_resource type="Script" path="res://shared/components/stats/energy_component.gd" id="6_1m6jn"]
 [ext_resource type="Script" path="res://game/player/components/states/hit.gd" id="7_86s88"]
 [ext_resource type="Script" path="res://game/player/components/states/idle.gd" id="8_eankw"]
 [ext_resource type="Script" path="res://game/player/components/states/jump.gd" id="9_4m1xy"]
 [ext_resource type="Script" path="res://game/player/components/states/walk.gd" id="10_03hiq"]
+[ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="14_ahxo2"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "move_input_component", "move_data", "attack_manager")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
+size = Vector2(114, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u75w7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ahxo2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
+radius = 290.629
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos")]
+collision_layer = 8
 script = ExtResource("1_msn3r")
 movement_state_machine = NodePath("Components/StateMachine")
-move_input_component = NodePath("Components/MoveInputComponent")
-move_data = NodePath("Components/Data/MoveData")
-attack_manager = NodePath("PlayerAttackManager")
+movement_animator = NodePath("MovementAnimator")
+animated_sprite = NodePath("AnimatedSprite")
+move_input_component = NodePath("Components/Inputs/MoveInputComponent")
+health_component = NodePath("Components/Datas/HealthComponent")
+move_data = NodePath("Components/Datas/MoveData")
+attack_manager = NodePath("Components2D/PlayerAttackManager")
+interactor_component = NodePath("Components2D/PlayerInteractorComponent")
+bot_pos = NodePath("Components2D/OtherStuff/BotPos")
+mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 
-[node name="PlayerAttackManager" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_trxky")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u75w7")
+animation = &"idle"
+
+[node name="MovementAnimator" type="AnimationPlayer" parent="."]
+
+[node name="Components2D" type="Node2D" parent="."]
+
+[node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
+script = ExtResource("2_q8f32")
+player = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/PlayerInteractorComponent"]
+shape = SubResource("CircleShape2D_jjjul")
+
+[node name="OtherStuff" type="Node2D" parent="Components2D"]
+
+[node name="BotPos" type="Marker2D" parent="Components2D/OtherStuff"]
+
+[node name="MidPos" type="Marker2D" parent="Components2D/OtherStuff"]
+
+[node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("attack_input_component")]
 script = ExtResource("2_0x4jq")
+attack_input_component = NodePath("../../Components/Inputs/AbilityInputComponent")
 
 [node name="Components" type="Node" parent="."]
 
-[node name="AbilityInputComponent" type="Node" parent="Components"]
+[node name="Datas" type="Node" parent="Components"]
+
+[node name="MoveData" type="Node" parent="Components/Datas"]
+script = ExtResource("3_7ycnr")
+
+[node name="HealthComponent" type="Node" parent="Components/Datas"]
+script = ExtResource("5_nbbkh")
+
+[node name="EnergyComponent" type="Node" parent="Components/Datas"]
+script = ExtResource("6_1m6jn")
+
+[node name="Inputs" type="Node" parent="Components"]
+
+[node name="AbilityInputComponent" type="Node" parent="Components/Inputs"]
 script = ExtResource("4_o1kg2")
 
-[node name="MoveInputComponent" type="Node" parent="Components"]
+[node name="MoveInputComponent" type="Node" parent="Components/Inputs"]
 script = ExtResource("5_bbfuc")
-
-[node name="Data" type="Node" parent="Components"]
-
-[node name="MoveData" type="Node" parent="Components/Data"]
-script = ExtResource("3_7ycnr")
 
 [node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_8188k")
@@ -49,8 +110,9 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath(".")
 
-[node name="die" type="Node" parent="Components/StateMachine"]
+[node name="die" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("ability_input_component")]
 script = ExtResource("5_1w3nl")
+ability_input_component = NodePath("../../Inputs/AbilityInputComponent")
 
 [node name="fall" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "dash")]
 script = ExtResource("6_0uwup")
@@ -77,9 +139,9 @@ jump = NodePath(".")
 fall = NodePath("../fall")
 dash = NodePath("../dash")
 
-[node name="walk" type="Node" parent="Components/StateMachine"]
+[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "jump", "fall", "dash")]
 script = ExtResource("10_03hiq")
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-
-[node name="MovementAnimator" type="AnimationPlayer" parent="."]
+idle = NodePath("../idle")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+dash = NodePath("../dash")

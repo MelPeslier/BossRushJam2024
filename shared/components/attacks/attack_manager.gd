@@ -45,6 +45,10 @@ func process_physics(delta: float) -> void:
 	attack_holder = null
 
 
+func process_unhandled_input(_event: InputEvent) -> void:
+	pass
+
+
 func timers(delta: float) -> void:
 	attack_interval_timer -= delta
 

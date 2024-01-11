@@ -5,16 +5,14 @@ extends PlayerState
 @export var jump: State
 @export var dash: State
 
-
 func enter() -> void:
 	super()
-	player.jump_coyote_timer = player.jump_coyote_time
-
+	move_data.jump_coyote_timer = move_data.jump_coyote_time
 
 func process_physics(delta: float) -> State:
 	super(delta)
 	move_data.dir = get_movement_input()
-	if not move_data.dir or not player.can_move:
+	if not move_data.dir or not move_data.can_move:
 		do_walk_decelerate(delta)
 	else:
 		do_walk_accelerate(delta)
@@ -23,17 +21,17 @@ func process_physics(delta: float) -> State:
 	#ray_casts.process_physics_right(delta)
 	parent.move_and_slide()
 
-	player.jump_coyote_timer -= delta
-	player.jump_buffer_timer -= delta
-	player.dash_buffer_timer -= delta
+	move_data.jump_coyote_timer -= delta
+	move_data.jump_buffer_timer -= delta
+	move_data.dash_buffer_timer -= delta
 
 	if parent.is_on_floor():
 		# Is on floor and will change state, perfect moment to reset jumps
-		player.alter_jumps(player.jumps_number)
+		move_data.alter_jumps(move_data.jumps_number)
 
-		if player.jump_buffer_timer > 0 and player.can_jump():
+		if move_data.jump_buffer_timer > 0 and move_data.can_jump():
 			return jump
-		if player.dash_buffer_timer > 0 and player.can_dash():
+		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
 			return dash
 
 		if get_movement_input():
@@ -45,16 +43,16 @@ func process_physics(delta: float) -> State:
 
 func process_unhandled_input(_event: InputEvent) -> State:
 	if get_dash():
-		if player.can_dash():
+		if move_data.can_dash():
 			return dash
-		player.dash_buffer_timer = player.dash_buffer_time
+		move_data.dash_buffer_timer = move_data.dash_buffer_time
 
 	if get_jump():
-		if player.can_jump():
-			if not player.jump_coyote_timer > 0:
-				player.alter_jumps(-1)
+		if move_data.can_jump():
+			if not move_data.jump_coyote_timer > 0:
+				move_data.alter_jumps(-1)
 			return jump
-		player.jump_buffer_timer = player.jump_buffer_time
+		move_data.jump_buffer_timer = move_data.jump_buffer_time
 
 	return null
 

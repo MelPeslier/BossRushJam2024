@@ -43,5 +43,5 @@ func do_gravity(delta: float) -> void:
 	parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
 
 func do_jump() -> void:
-	parent.velocity.y = - move_data.initial_jump_velocity
+	parent.velocity.y = - move_data.initial_jump_velocity * move_data.get_jump_coef()
 #endregion

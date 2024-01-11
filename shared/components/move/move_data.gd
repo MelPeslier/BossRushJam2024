@@ -65,9 +65,7 @@ var remaining_dashes: int = dashes_number
 var dash_interval_timer: float = 0: set = _set_dash_interval_timer
 
 
-
-
-
+var _can_move: bool = true
 
 
 func _ready() -> void:
@@ -77,6 +75,38 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_update_data()
+
+
+
+func can_jump() -> bool:
+	return remaining_jumps > 0 and can_move()
+
+func alter_jumps(val: int) -> void:
+	remaining_jumps = clampi(remaining_jumps + val, 0, jumps_number)
+
+func get_jump_coef() -> float:
+	return 1.0 - next_jumps_coef * ( jumps_number - remaining_jumps )
+
+
+func can_dash() -> bool:
+	return remaining_dashes > 0 and can_move
+
+func alter_dashes(val: int) -> void:
+	remaining_dashes = clampi(remaining_dashes + val, 0, dashes_number)
+
+func reload_dashes() -> void:
+	alter_dashes(dashes_number)
+
+
+func can_move() -> bool:
+	return _can_move
+
+func disable_move() -> void:
+	_can_move = false
+
+func enable_move() -> void:
+	_can_move = true
+
 
 
 func _update_data() -> void:
