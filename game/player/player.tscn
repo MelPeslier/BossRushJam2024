@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=22 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_ability_input_component.gd" id="4_o1kg2"]
 [ext_resource type="Script" path="res://game/player/components/states/die.gd" id="5_1w3nl"]
+[ext_resource type="Script" path="res://shared/components/camera/my_camera.gd" id="5_2i0cb"]
 [ext_resource type="Script" path="res://game/player/components/movements/player_move_input_component.gd" id="5_bbfuc"]
 [ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="5_nbbkh"]
 [ext_resource type="Script" path="res://game/player/components/states/fall.gd" id="6_0uwup"]
@@ -35,7 +36,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera")]
 collision_layer = 8
 script = ExtResource("1_msn3r")
 movement_state_machine = NodePath("Components/StateMachine")
@@ -48,6 +49,14 @@ attack_manager = NodePath("Components2D/PlayerAttackManager")
 interactor_component = NodePath("Components2D/PlayerInteractorComponent")
 bot_pos = NodePath("Components2D/OtherStuff/BotPos")
 mid_pos = NodePath("Components2D/OtherStuff/MidPos")
+camera = NodePath("Camera")
+
+[node name="Camera" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("5_2i0cb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_trxky")

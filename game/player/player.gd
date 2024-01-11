@@ -22,6 +22,7 @@ enum MovementState{
 @export var interactor_component: InteractorComponent
 @export var bot_pos: Marker2D
 @export var mid_pos: Marker2D
+@export var camera: MyCamera
 
 
 var current_movement_state: MovementState
