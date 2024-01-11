@@ -26,7 +26,8 @@ func enter() -> void:
 
 
 func process_physics(delta: float) -> State:
-	parent.velocity.x = move_data.dash_distance * move_data.old_dir
+	super(delta)
+	do_dash()
 	parent.move_and_slide()
 
 	player.jump_buffer_timer -= delta

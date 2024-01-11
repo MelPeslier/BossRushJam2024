@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://duxsyfskxdlf3"]
+
+[ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
+[ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
+[ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_7ycnr"]
+[ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
+[ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
+[ext_resource type="Script" path="res://game/player/components/attacks/player_ability_input_component.gd" id="4_o1kg2"]
+[ext_resource type="Script" path="res://game/player/components/states/die.gd" id="5_1w3nl"]
+[ext_resource type="Script" path="res://game/player/components/movements/player_move_input_component.gd" id="5_bbfuc"]
+[ext_resource type="Script" path="res://game/player/components/states/fall.gd" id="6_0uwup"]
+[ext_resource type="Script" path="res://game/player/components/states/hit.gd" id="7_86s88"]
+[ext_resource type="Script" path="res://game/player/components/states/idle.gd" id="8_eankw"]
+[ext_resource type="Script" path="res://game/player/components/states/jump.gd" id="9_4m1xy"]
+[ext_resource type="Script" path="res://game/player/components/states/walk.gd" id="10_03hiq"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "move_input_component", "move_data", "attack_manager")]
+script = ExtResource("1_msn3r")
+movement_state_machine = NodePath("Components/StateMachine")
+move_input_component = NodePath("Components/MoveInputComponent")
+move_data = NodePath("Components/Data/MoveData")
+attack_manager = NodePath("PlayerAttackManager")
+
+[node name="PlayerAttackManager" type="Node2D" parent="."]
+script = ExtResource("2_0x4jq")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="AbilityInputComponent" type="Node" parent="Components"]
+script = ExtResource("4_o1kg2")
+
+[node name="MoveInputComponent" type="Node" parent="Components"]
+script = ExtResource("5_bbfuc")
+
+[node name="Data" type="Node" parent="Components"]
+
+[node name="MoveData" type="Node" parent="Components/Data"]
+script = ExtResource("3_7ycnr")
+
+[node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_8188k")
+starting_state = NodePath("idle")
+
+[node name="dash" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "fall", "dash")]
+script = ExtResource("4_noi8l")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+dash = NodePath(".")
+
+[node name="die" type="Node" parent="Components/StateMachine"]
+script = ExtResource("5_1w3nl")
+
+[node name="fall" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "dash")]
+script = ExtResource("6_0uwup")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+dash = NodePath("../dash")
+
+[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die")]
+script = ExtResource("7_86s88")
+idle = NodePath("../idle")
+die = NodePath("../die")
+
+[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "jump", "fall", "dash")]
+script = ExtResource("8_eankw")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+fall = NodePath("../fall")
+dash = NodePath("../dash")
+
+[node name="jump" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("jump", "fall", "dash")]
+script = ExtResource("9_4m1xy")
+jump = NodePath(".")
+fall = NodePath("../fall")
+dash = NodePath("../dash")
+
+[node name="walk" type="Node" parent="Components/StateMachine"]
+script = ExtResource("10_03hiq")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="MovementAnimator" type="AnimationPlayer" parent="."]

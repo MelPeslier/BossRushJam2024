@@ -17,6 +17,7 @@ func exit() -> void:
 
 
 func process_physics(delta: float) -> State:
+	super(delta)
 	do_air_decelerate(delta)
 	do_gravity(delta)
 	parent.move_and_slide()
@@ -35,7 +36,6 @@ func _on_hit_received(kb: Vector2) -> void:
 	parent.velocity = kb
 
 
-func _on_health_component_health_changed(_health: int, _max_health: int) -> void:
-	print("new_health : ", _health)
+func _on_health_component_health_changed(_health: float, _max_health: float) -> void:
 	if _health == 0:
 		is_dead = true

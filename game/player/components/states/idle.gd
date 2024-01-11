@@ -7,6 +7,7 @@ extends PlayerState
 
 
 func process_physics(delta: float) -> State:
+	super(delta)
 	do_walk_decelerate(delta)
 	parent.move_and_slide()
 

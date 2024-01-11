@@ -3,7 +3,6 @@ extends PlayerState
 @export var jump: State
 @export var fall: State
 @export var dash: State
-@export var ray_casts: RayCasts
 
 @export_category("light_particles")
 @export var light_particles_number: int
@@ -11,29 +10,25 @@ extends PlayerState
 @export var light_particles_lifetime: float
 @export var light_particles_explosiveness: float
 
-var light_particles_scene: PackedScene = preload("res://shared/vfx/light_particles/light_particles.tscn")
-var step_light_particles_scene: PackedScene = preload("res://shared/vfx/steps/step_light.tscn")
+#var light_particles_scene: PackedScene
+#var step_light_particles_scene: PackedScene
 
 var want_jump := true
 
 
 func enter() -> void:
 	super()
-	if not parent.is_on_floor():
-		spawn_step_light(player.get_jump_coef())
-	spawn_light_particles(player.get_jump_coef())
+	#if not parent.is_on_floor():
+		#spawn_step_light(player.get_jump_coef())
+	#spawn_light_particles(player.get_jump_coef())
 	parent.velocity.y = -move_data.initial_jump_velocity * player.get_jump_coef()
 	player.alter_jumps(-1)
 	player.jump_time = 0
 	want_jump = true
-	#ray_casts.activate()
-
-
-#func exit() -> void:
-	#ray_casts.deactivate()
 
 
 func process_physics(delta: float) -> State:
+	super(delta)
 	player.jump_time += delta
 
 	if not Input.is_action_pressed("jump"):
@@ -46,8 +41,6 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
 	else:
 		parent.velocity.y += move_data.gravity * delta
-	#ray_casts.process_physics_up(delta)
-	#ray_casts.process_physics_right(delta)
 
 	move_data.dir = get_movement_input()
 	if not move_data.dir or not player.can_move:
@@ -73,16 +66,16 @@ func process_frame(_delta: float) -> State:
 	return null
 
 
-func spawn_step_light(coef: float) -> void:
-	var step_instance: StepLight = step_light_particles_scene.instantiate() as StepLight
-	parent.add_child(step_instance)
-	step_instance.position = player.bot_pos.position
-	step_instance.play(coef)
-
-
-func spawn_light_particles(coef: float) -> void:
-	var light_instance: LightParticles = light_particles_scene.instantiate() as LightParticles
-	parent.add_child(light_instance)
-	light_instance.position = player.bot_pos.position
-	var number := int (light_particles_number * coef)
-	light_instance.play(number, light_particles_sphere_size, light_particles_lifetime, light_particles_explosiveness)
+#func spawn_step_light(coef: float) -> void:
+	#var step_instance = step_light_particles_scene.instantiate()
+	#parent.add_child(step_instance)
+	#step_instance.position = player.bot_pos.position
+	#step_instance.play(coef)
+#
+#
+#func spawn_light_particles(coef: float) -> void:
+	#var light_instance = light_particles_scene.instantiate()
+	#parent.add_child(light_instance)
+	#light_instance.position = player.bot_pos.position
+	#var number := int (light_particles_number * coef)
+	#light_instance.play(number, light_particles_sphere_size, light_particles_lifetime, light_particles_explosiveness)

@@ -19,10 +19,21 @@ signal dir_changed(new_dir: int)
 @export_range(0, 3) var jump_time_to_peak: float = 0.6
 @export_range(0, 3) var jump_time_to_descent: float = 0.36
 @export_range(0, 2000, 1) var max_fall_speed: float = 1200
+@export_range(0, 1) var min_jump_coef: float = 0.35
+
+@export var jumps_number: int = 2
+@export var next_jumps_coef: float = 0.25
+@export var jump_buffer_time: float = 0.1
+@export var jump_coyote_time: float = 0.1
 
 @export_category("dash")
 @export_range(0, 2000, 1) var dash_distance: float = 1024
 @export_range(0.05, 1) var dash_time: float = 0.25
+
+@export var dashes_number: int = 1
+@export_range(0.05, 1) var dash_buffer_time: float = 0.15
+@export_range(0.05, 3) var dash_interval_time: float = 1
+
 
 # Walk
 var walk_accel: float
@@ -33,6 +44,11 @@ var air_decel: float
 
 # Jump
 var initial_jump_velocity: float
+var remaining_jumps: int = jumps_number
+var jump_buffer_timer: float = 0
+var jump_time: float = 0
+var min_jump_time: float = 0
+var jump_coyote_timer: float = 0
 
 # Gravity
 var gravity: float
@@ -41,6 +57,17 @@ var fall_gravity: float
 # Direction
 var old_dir: int = 1
 var dir: float = 1: set = _set_dir
+
+# Dash
+var dash_buffer_timer: float = 0
+var dash_timer: float = 0
+var remaining_dashes: int = dashes_number
+var dash_interval_timer: float = 0: set = _set_dash_interval_timer
+
+
+
+
+
 
 
 func _ready() -> void:
@@ -59,6 +86,7 @@ func _update_data() -> void:
 	walk_decel = get_velocity(walk_distance, walk_decel_time)
 	walk_accel = get_velocity(walk_distance, walk_accel_time)
 	air_decel = get_velocity(walk_distance, air_decel_time)
+	min_jump_time = jump_time_to_peak * min_jump_coef
 
 
 #region Maths
@@ -83,4 +111,7 @@ func _set_dir(new_dir: float) -> void:
 	old_dir = signi( int(new_dir) )
 	dir = new_dir
 	dir_changed.emit(dir)
+
+func _set_dash_interval_timer(new_val: float) -> void:
+	dash_interval_timer = maxf(new_val, 0)
 #endregion

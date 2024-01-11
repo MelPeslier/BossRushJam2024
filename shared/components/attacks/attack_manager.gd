@@ -1,17 +1,13 @@
 class_name AttackManager
 extends Node2D
 
-@export var attack_input_component: AttackInputComponent
+@export var attack_input_component: AbilityInputComponent
 
 @export_category("Intervals")
 @export_range(0.05, 2) var attack_interval_time: float
 @export_range(0.05, 2) var attack_buffer_time: float = 0.4
 @export_range(0.05, 2) var can_attack_buffer_time: float = 0.4
 
-#@export_range(0.05, 2) var combo_interval_time: float = 2
-#@export_range(0.05, 2) var combo_time: float = 2
-#var combo_interval_timer: float: set = _set_combo_interval_timer
-#var combo_timer: float: set = _set_combo_timer
 
 var attack_interval_timer: float: set = _set_attack_interval_timer
 var can_attack_buffer_timer: float: set = _set_can_attack_buffer_timer
@@ -51,14 +47,10 @@ func process_physics(delta: float) -> void:
 
 func timers(delta: float) -> void:
 	attack_interval_timer -= delta
-	#combo_timer -= delta
-	#combo_interval_timer -= delta
 
 
 func launch_attack(_attack_holder: AttackHolder) -> void:
 	attack_holder.activate()
-	#combo_interval_timer = combo_interval_time
-	#combo_timer = combo_time
 
 
 func _set_attack_interval_timer(new_val: float) -> void:
@@ -66,9 +58,3 @@ func _set_attack_interval_timer(new_val: float) -> void:
 
 func _set_can_attack_buffer_timer(new_val: float) -> void:
 	can_attack_buffer_timer = maxf(0, new_val)
-
-#func _set_combo_timer(new_val: float) -> void:
-	#combo_timer = maxf(0, new_val)
-
-#func _set_combo_interval_timer(new_val: float) -> void:
-	#combo_interval_timer = maxf(0, new_val)

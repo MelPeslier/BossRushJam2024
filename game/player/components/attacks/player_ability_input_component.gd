@@ -1,8 +1,4 @@
-extends AttackInputComponent
-
-@export var player: Player
-
-var _can_attack := true
+extends AbilityInputComponent
 
 
 func wants_melee_attack() -> bool:
@@ -18,11 +14,3 @@ func wants_attack() -> bool:
 	return wants_melee_attack() or wants_distance_attack()
 
 
-func can_attack() -> bool:
-	return _can_attack and player.can_receive_input()
-
-func disable_attack() -> void:
-	_can_attack = false
-
-func enable_attack() -> void:
-	_can_attack = true

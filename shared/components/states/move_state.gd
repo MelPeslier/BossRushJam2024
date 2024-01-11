@@ -16,6 +16,9 @@ func do_walk_decelerate(delta: float) -> void:
 	var vel: float = abs(parent.velocity.x) - move_data.walk_decel * delta
 	parent.velocity.x = dir * maxf(vel, 0)
 
+func do_dash() -> void:
+	parent.velocity.x = move_data.dash_distance * move_data.old_dir
+
 #endregion
 
 #region Hit

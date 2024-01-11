@@ -7,6 +7,7 @@ extends PlayerState
 
 
 func process_physics(delta: float) -> State:
+	super(delta)
 	move_data.dir = get_movement_input()
 	if not move_data.dir or not player.can_move:
 		return idle

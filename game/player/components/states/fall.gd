@@ -4,20 +4,15 @@ extends PlayerState
 @export var walk: State
 @export var jump: State
 @export var dash: State
-@export var ray_casts: RayCasts
 
 
 func enter() -> void:
 	super()
 	player.jump_coyote_timer = player.jump_coyote_time
-	#ray_casts.activate()
-
-
-#func exit() -> void:
-	#ray_casts.deactivate()
 
 
 func process_physics(delta: float) -> State:
+	super(delta)
 	move_data.dir = get_movement_input()
 	if not move_data.dir or not player.can_move:
 		do_walk_decelerate(delta)

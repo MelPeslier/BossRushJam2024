@@ -1,7 +1,7 @@
 class_name PlayerState
 extends MoveState
 
-@export var player_movement_state: Player.MovementState
+@onready var player_movement_state: Player.MovementState = Player.MovementState[name.to_upper()]
 
 var player: Player
 
@@ -12,6 +12,12 @@ func _ready() -> void:
 func _on_parent_update() -> void:
 	player = parent
 
+func process_physics(delta: float) -> State:
+	# Dash
+	move_data.dash_interval_timer -= delta
+	if parent.is_on_floor() and move_data.dash_interval_timer == 0:
+		move_data.reload_dashes()
+	return null
 
 func enter() -> void:
 	super()
