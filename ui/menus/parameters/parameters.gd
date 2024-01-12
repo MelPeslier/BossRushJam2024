@@ -87,7 +87,6 @@ const RESET: String = "RESET"
 
 var remap_buttons: Array[ControllerButton]
 
-
 var user_display_prefs: UserDisplayPreferences
 var user_audio_prefs: UserAudioPreferences
 var user_controls_prefs: UserControlsPreferences
@@ -99,8 +98,10 @@ var last_item_path: Array[NodePath] = ["", "", "", ""]
 
 var previous_button: MyButton = game
 
-@onready var my_button_scene: PackedScene = preload("res://ui/menus/templates/button/my_button.tscn")
 var remap_container_scene: PackedScene = load("res://ui/menus/templates/button/remap_container.tscn")
+@onready var my_button_scene: PackedScene = preload("res://ui/menus/templates/button/my_button.tscn")
+
+var ui_elements: Array = []
 
 
 func _ready() -> void:
@@ -112,15 +113,20 @@ func _ready() -> void:
 	_connect_buttons()
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("back"):
-		if quit_display.visible:
-			quit_display.hide_content()
-			return
+	if not ui_elements.is_empty():
+		ui_elements.back().process_unhandled_input(_event)
+		get_viewport().set_input_as_handled()
+		return
 
+	if Input.is_action_just_pressed("back"):
 		if visible:
 			resume_game()
+
 		elif GameState.can_pause():
 			pause_game()
+
+		get_viewport().set_input_as_handled()
+
 
 
 #region *** Pause ***

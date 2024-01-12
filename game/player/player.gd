@@ -27,16 +27,16 @@ enum MovementState{
 
 var current_movement_state: MovementState
 
-var _can_receive_input := true
-
-
 
 func _ready() -> void:
 	movement_state_machine.init(self, movement_animator, animated_sprite, move_input_component, move_data)
+	GameEvents.cinematic_ended.connect( _on_cinematic_ended )
+	GameEvents.cinematic_started.connect( _on_cinematic_started )
+	GameEvents.menu_opened.connect( _on_menu_opened )
+	GameEvents.menu_closed.connect( _on_menu_closed )
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not can_receive_input(): return
 	movement_state_machine.process_unhandled_input(event)
 	attack_manager.process_unhandled_input(event)
 	interactor_component.process_unhandled_input(event)
@@ -52,18 +52,6 @@ func _process(delta: float) -> void:
 	movement_state_machine.process_frame(delta)
 
 
-#region Can do
-func can_receive_input() -> bool:
-	return _can_receive_input
-
-func disable_input() -> void:
-	_can_receive_input = false
-
-func enable_input() -> void:
-	_can_receive_input = true
-#endregion
-
-
 #region Signals Connected
 func _on_move_data_dir_changed(new_dir: int) -> void:
 	animated_sprite.flip_h = new_dir < 0
@@ -71,5 +59,24 @@ func _on_move_data_dir_changed(new_dir: int) -> void:
 	mid_pos.scale.x = float( new_dir )
 	bot_pos.scale.x = float( new_dir )
 #endregion
+
+func _on_menu_opened() -> void:
+	movement_state_machine.change_state(movement_state_machine.starting_state)
+	set_process_unhandled_input(false)
+
+func _on_menu_closed() -> void:
+	set_process_unhandled_input(true)
+
+
+func _on_cinematic_started() -> void:
+	set_process_unhandled_input(false)
+	set_physics_process(false)
+	set_process(false)
+	movement_state_machine.change_state(movement_state_machine.starting_state)
+
+func _on_cinematic_ended() -> void:
+	set_process_unhandled_input(true)
+	set_physics_process(true)
+	set_process(true)
 
 

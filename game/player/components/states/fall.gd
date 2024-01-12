@@ -12,7 +12,7 @@ func enter() -> void:
 func process_physics(delta: float) -> State:
 	super(delta)
 	move_data.dir = get_movement_input()
-	if not move_data.dir or not move_data.can_move:
+	if not move_data.dir:
 		do_walk_decelerate(delta)
 	else:
 		do_walk_accelerate(delta)

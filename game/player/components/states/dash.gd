@@ -19,6 +19,7 @@ var dash_particles_scene: PackedScene
 func enter() -> void:
 	super()
 	move_data.alter_dashes(-1)
+	move_data.can_reload_dashes = false
 	#spawn_particles()
 	move_data.dash_timer = move_data.dash_time
 	move_data.dash_interval_timer = move_data.dash_interval_time

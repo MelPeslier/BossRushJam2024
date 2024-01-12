@@ -63,6 +63,7 @@ var dash_buffer_timer: float = 0
 var dash_timer: float = 0
 var remaining_dashes: int = dashes_number
 var dash_interval_timer: float = 0: set = _set_dash_interval_timer
+var can_reload_dashes := false
 
 
 var _can_move: bool = true

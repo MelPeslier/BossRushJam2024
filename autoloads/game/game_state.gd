@@ -1,8 +1,7 @@
 extends Node
 
-var in_credits := false
-var in_menu := false
 var in_game := false
+var in_cinematic := false
 
 var saved_game: GameSave
 
@@ -27,4 +26,4 @@ func new_game() -> void:
 
 
 func can_pause() -> bool:
-	return not in_credits
+	return not in_cinematic

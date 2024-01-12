@@ -1,11 +1,18 @@
 extends Control
 
 @export var credits_canvas_layer: CreditCanvasLayer
-@export var play: MyButton
+@export var buttons_container: VBoxContainer
+
+
+func _ready() -> void:
+	for button: MyButton in buttons_container.get_children():
+		if button.visible:
+			button.grab_focus()
+			return
 
 
 func _on_continue_button_down() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_new_game_button_down() -> void:

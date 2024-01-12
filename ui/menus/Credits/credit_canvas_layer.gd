@@ -8,22 +8,20 @@ func _ready() -> void:
 	hide_content()
 
 
-func _unhandled_input(_event: InputEvent) -> void:
+func process_unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("back"):
 		hide_content()
-		get_viewport().set_input_as_handled()
-
 
 
 func show_content() -> void:
-	GameState.in_menu = true
+	Parameters.ui_elements.push_back(self)
 	visible = true
 	set_process_unhandled_input(true)
 	back.disabled = false
 
 
 func hide_content() -> void:
-	GameState.in_menu = false
+	Parameters.ui_elements.pop_back()
 	visible = false
 	back.disabled = true
 	set_process_unhandled_input(false)

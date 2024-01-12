@@ -18,6 +18,11 @@ func _ready() -> void:
 	choice.continue_button.button_down.connect( _on_continue_button_button_down )
 
 
+func process_unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("back"):
+		hide_content()
+
+
 func show_content(_type : Type) -> void:
 	type = _type
 	match type:
@@ -32,11 +37,14 @@ func show_content(_type : Type) -> void:
 			choice.back_button.grab_focus()
 
 	visible = true
+	Parameters.ui_elements.push_back(self)
 
 
 func hide_content() -> void:
 	visible = false
+	Parameters.ui_elements.pop_back()
 	Parameters.previous_button.grab_focus()
+
 
 
 func _on_back_button_button_down() -> void:

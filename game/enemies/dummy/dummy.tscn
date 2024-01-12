@@ -1,9 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://71lp8hkfy5c7"]
+[gd_scene load_steps=19 format=3 uid="uid://71lp8hkfy5c7"]
 
 [ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="1_sex1y"]
 [ext_resource type="Script" path="res://game/enemies/dummy/dummy.gd" id="1_tk1am"]
 [ext_resource type="Texture2D" uid="uid://cwr3dcxbjcgo2" path="res://game/enemies/dummy/art/training_dummy_sprite_sheet.png" id="2_345hs"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="3_64nrc"]
+[ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_gnf2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4qp5"]
+size = Vector2(21, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omojr"]
 atlas = ExtResource("2_345hs")
@@ -99,17 +103,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ccfx"]
 size = Vector2(21, 23)
 
-[node name="Dummy" type="Node2D" node_paths=PackedStringArray("components_2d", "animated_sprite")]
+[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("components_2d", "animated_sprite")]
 z_index = -1
 scale = Vector2(6, 6)
+collision_layer = 8
 script = ExtResource("1_tk1am")
 components_2d = NodePath("Components2D")
 animated_sprite = NodePath("Components2D/AnimatedSprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 0.5)
+shape = SubResource("RectangleShape2D_k4qp5")
 
 [node name="Components" type="Node" parent="."]
 
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("1_sex1y")
+
+[node name="MoveData" type="Node" parent="Components"]
+script = ExtResource("3_gnf2v")
+max_fall_speed = 1800.0
 
 [node name="Components2D" type="Node2D" parent="."]
 
