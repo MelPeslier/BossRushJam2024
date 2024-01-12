@@ -10,7 +10,8 @@ CONSTRAIN_MOUSE,Constrain mouse,Garder la souris à l'intérieur de l'écran
 CONTINUE,Continue,Continuer
 CONTROLS,Controls,Commandes
 CREDITS,Credits,Crédits
-CREDITS_EXAMPLE,made by ...,Créer par ...
+CREDITS_MADE_BY,made by ...,Créer par ...
+CREDITS_MADE_BY_CONTENT,"Juan-Carlos, Yasmina & Mel",
 DISPLAY,Display,Affichage
 DISPLAY_MODE,Display mode,Mode d'affichage
 DISPLAY_SCREEN,Display screen,Ecran d'affichage

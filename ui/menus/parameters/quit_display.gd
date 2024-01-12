@@ -9,28 +9,27 @@ const menu_path: String = "res://ui/menus/main_menu/main_menu.tscn"
 
 var type: Type
 
-@export var label_quit: Label
-@export var label_quit_content: Label
-@export var back_button: MyButton
-@export var continue_button: MyButton
+@export var choice: ControlChoice
 
 
 func _ready() -> void:
 	visible = false
+	choice.back_button.button_down.connect( _on_back_button_button_down )
+	choice.continue_button.button_down.connect( _on_continue_button_button_down )
 
 
 func show_content(_type : Type) -> void:
 	type = _type
 	match type:
 		Type.RETURN:
-			label_quit.text = "BACK_TO_MENU"
-			label_quit_content.text = "BACK_TO_MENU_CONTENT"
-			continue_button.grab_focus()
+			choice.title_label.text = "BACK_TO_MENU"
+			choice.content_label.text = "BACK_TO_MENU_CONTENT"
+			choice.continue_button.grab_focus()
 
 		Type.ABANDON:
-			label_quit.text = "ABANDON"
-			label_quit_content.text = "ABANDON_CONTENT"
-			back_button.grab_focus()
+			choice.title_label.text = "ABANDON"
+			choice.content_label.text = "ABANDON_CONTENT"
+			choice.back_button.grab_focus()
 
 	visible = true
 

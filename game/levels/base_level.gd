@@ -1,7 +1,7 @@
 class_name BaseLevel
 extends Node2D
 
-@export var limits: Array[Vector2i] = [Vector2i(0, 3000) , Vector2i(-3000, 0)]
+@export var limits: Array[Vector2i] = [Vector2i(0, 1920) , Vector2i(-1400, 0)]
 @export var player: Player
 
 func _ready() -> void:

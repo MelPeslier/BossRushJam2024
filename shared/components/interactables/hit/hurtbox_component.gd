@@ -1,7 +1,7 @@
 class_name HurtboxComponent
 extends Area2D
 
-signal hit_received(kb: Vector2)
+signal hit_received(_kb: float, _dir: Vector2)
 
 @export var parent: Node2D
 @export var health_component: HealthComponent
@@ -25,15 +25,12 @@ func _on_area_entered(hitbox: HitboxComponent) -> void:
 	var dir := hitbox.parent.global_position.direction_to(global_position)
 	dir.x = 1 if dir.x > 0 else -1
 	dir.y = 1 if dir.y > 0 else -1
-	var kb: Vector2 = dir * attack_data.knock_back
 
-	var dm: int = attack_data.damage
+	var dm := attack_data.damage
 
 	# Special interactions depending on types
 
+	hit_received.emit(attack_data.knock_back, dir)
 	if health_component:
 		health_component.damage(dm)
-
-	if attack_data.knock_back > 0:
-		hit_received.emit(kb)
 

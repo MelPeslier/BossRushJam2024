@@ -16,14 +16,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func show_content() -> void:
-	GameState.in_credits = true
+	GameState.in_menu = true
 	visible = true
 	set_process_unhandled_input(true)
 	back.disabled = false
 
 
 func hide_content() -> void:
-	GameState.in_credits = false
+	GameState.in_menu = false
 	visible = false
 	back.disabled = true
 	set_process_unhandled_input(false)

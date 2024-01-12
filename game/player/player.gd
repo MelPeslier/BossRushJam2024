@@ -19,7 +19,7 @@ enum MovementState{
 @export var health_component: HealthComponent
 @export var move_data: MoveData
 @export var attack_manager: PlayerAttackManager
-@export var interactor_component: InteractorComponent
+@export var interactor_component: PlayerInteractorComponent
 @export var bot_pos: Marker2D
 @export var mid_pos: Marker2D
 @export var camera: MyCamera
@@ -39,11 +39,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not can_receive_input(): return
 	movement_state_machine.process_unhandled_input(event)
 	attack_manager.process_unhandled_input(event)
+	interactor_component.process_unhandled_input(event)
 
 
 func _physics_process(delta: float) -> void:
 	movement_state_machine.process_physics(delta)
 	attack_manager.process_physics(delta)
+	interactor_component.process_physics(delta)
 
 
 func _process(delta: float) -> void:

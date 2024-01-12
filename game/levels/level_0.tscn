@@ -1,14 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dry5pvwo8v6i3"]
+[gd_scene load_steps=10 format=3 uid="uid://dry5pvwo8v6i3"]
 
 [ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_a4ank"]
 [ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_decge"]
 [ext_resource type="PackedScene" uid="uid://duxsyfskxdlf3" path="res://game/player/player.tscn" id="2_1qai7"]
+[ext_resource type="Texture2D" uid="uid://byrc0acrtj4te" path="res://ui/art/menu_background.jpeg" id="2_e408d"]
+[ext_resource type="PackedScene" uid="uid://71lp8hkfy5c7" path="res://game/enemies/dummy/dummy.tscn" id="5_bbbes"]
+[ext_resource type="PackedScene" uid="uid://coq8efhc1vjop" path="res://game/altar/altar.tscn" id="5_y7usr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxcre"]
 size = Vector2(128, 126)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0sw2"]
+size = Vector2(208, 1563)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et5jd"]
+size = Vector2(208, 1584)
+
 [node name="MainLevel" type="Node2D" node_paths=PackedStringArray("player")]
-position = Vector2(-30, -1109)
 script = ExtResource("1_decge")
 player = NodePath("Player")
 
@@ -16,20 +24,61 @@ player = NodePath("Player")
 
 [node name="LevelStuff2D" type="Node2D" parent="."]
 
-[node name="Floor" type="StaticBody2D" parent="LevelStuff2D"]
+[node name="BackGround" type="Node2D" parent="LevelStuff2D"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/BackGround"]
+z_index = -10
+z_as_relative = false
+position = Vector2(1088.56, -749)
+scale = Vector2(0.676852, 0.676852)
+texture = ExtResource("2_e408d")
+flip_h = true
+
+[node name="Terrain" type="Node2D" parent="LevelStuff2D"]
+
+[node name="Floor" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
 modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
-position = Vector2(968, 1114)
-scale = Vector2(19.515, 1.475)
+z_index = -10
+position = Vector2(1108, 19)
+scale = Vector2(22.755, 1.475)
 collision_mask = 0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor"]
 shape = SubResource("RectangleShape2D_uxcre")
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/Floor"]
+[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/Terrain/Floor"]
 texture = ExtResource("1_a4ank")
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D"]
+[node name="Floor2" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
+modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
+z_index = -10
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor2"]
+position = Vector2(0, -685.5)
+shape = SubResource("RectangleShape2D_j0sw2")
+
+[node name="Floor3" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
+modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
+z_index = -10
+position = Vector2(1920, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor3"]
+position = Vector2(0, -680)
+shape = SubResource("RectangleShape2D_et5jd")
+
+[node name="Dummy" parent="LevelStuff2D" instance=ExtResource("5_bbbes")]
+position = Vector2(1510, -134)
+
+[node name="Dummy2" parent="LevelStuff2D" instance=ExtResource("5_bbbes")]
+position = Vector2(1668, -129)
+
+[node name="Altar" parent="LevelStuff2D" instance=ExtResource("5_y7usr")]
+position = Vector2(1092, -138)
 
 [node name="Player" parent="." instance=ExtResource("2_1qai7")]
-position = Vector2(772, 754)
+position = Vector2(486, -158)

@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://coq8efhc1vjop"]
+
+[ext_resource type="Script" path="res://game/altar/altar.gd" id="1_hfclc"]
+[ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="2_jn3oy"]
+[ext_resource type="Script" path="res://shared/components/interactables/interact/interactable_component.gd" id="3_dltmw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vku08"]
+radius = 148.93
+
+[node name="Altar" type="Node2D"]
+script = ExtResource("1_hfclc")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="Components2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Components2D"]
+texture = ExtResource("2_jn3oy")
+
+[node name="InteractableComponent" type="Area2D" parent="Components2D"]
+script = ExtResource("3_dltmw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/InteractableComponent"]
+shape = SubResource("CircleShape2D_vku08")
+
+[node name="AltarMenu" type="CanvasLayer" parent="."]
+
+[node name="ControlRoot" type="CenterContainer" parent="AltarMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="AltarMenu/ControlRoot"]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+
+[node name="ControlMargin" type="MarginContainer" parent="AltarMenu/ControlRoot/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+text = "ALTAR_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dummy" type="Control" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BE_A_TRUE_CHALLENGER"
+
+[node name="TextureButton" type="TextureButton" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_jn3oy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CHALLENGE _BOSS_1"
+
+[node name="TextureButton" type="TextureButton" parent="AltarMenu/ControlRoot/PanelContainer/ControlMargin/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_jn3oy")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="focused" from="Components2D/InteractableComponent" to="." method="_on_interactable_component_focused"]
+[connection signal="interacted" from="Components2D/InteractableComponent" to="." method="_on_interactable_component_interacted"]
+[connection signal="unfocused" from="Components2D/InteractableComponent" to="." method="_on_interactable_component_unfocused"]

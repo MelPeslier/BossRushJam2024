@@ -1,7 +1,8 @@
 extends Node
 
-var in_game := false
 var in_credits := false
+var in_menu := false
+var in_game := false
 
 var saved_game: GameSave
 
