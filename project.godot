@@ -47,9 +47,11 @@ enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg", "res://add
 [file_customization]
 
 folder_colors={
+"res://000_shader_lib/": "purple",
 "res://addons/": "gray",
 "res://autoloads/": "red",
 "res://ressources/": "yellow",
+"res://shared/materials/": "teal",
 "res://ui/menus/parameters/": "red"
 }
 
@@ -136,3 +138,7 @@ locale/translations=PackedStringArray("res://ui/translations/translations.en.tra
 2d_physics/layer_2="HitBox"
 2d_physics/layer_3="Interactable"
 2d_physics/layer_4="Entity"
+
+[rendering]
+
+viewport/hdr_2d=true

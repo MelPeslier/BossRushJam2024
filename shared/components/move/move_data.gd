@@ -1,7 +1,7 @@
 class_name MoveData
 extends Node
 
-signal dir_changed(new_dir: int)
+signal dir_changed(new_dir: float)
 
 @export_category("test")
 @export var test: bool: set =  _set_test
@@ -55,7 +55,7 @@ var gravity: float
 var fall_gravity: float
 
 # Direction
-var old_dir: int = 1
+var old_dir: float = 1
 var dir: float = 1: set = _set_dir
 
 # Dash
@@ -139,8 +139,8 @@ func _set_dir(new_dir: float) -> void:
 	if new_dir == 0:
 		dir = new_dir
 		return
-	old_dir = signi( int(new_dir) )
-	dir = new_dir
+	old_dir = signf( new_dir )
+	dir = old_dir
 	dir_changed.emit(dir)
 
 func _set_dash_interval_timer(new_val: float) -> void:

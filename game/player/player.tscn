@@ -1,7 +1,8 @@
-[gd_scene load_steps=81 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=82 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
+[ext_resource type="PackedScene" uid="uid://bg50i53wie1sx" path="res://game/gui/gui.tscn" id="2_c5wfi"]
 [ext_resource type="Script" path="res://game/player/components/interactables/player_interactor_component.gd" id="2_q8f32"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_7ycnr"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
@@ -72,6 +73,38 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
 size = Vector2(54, 133)
+
+[sub_resource type="Animation" id="Animation_vxab7"]
+resource_name = "dash"
+
+[sub_resource type="Animation" id="Animation_mekx8"]
+resource_name = "die"
+
+[sub_resource type="Animation" id="Animation_dk6ef"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_c87bg"]
+resource_name = "hit"
+
+[sub_resource type="Animation" id="Animation_hcmfn"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_emopd"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_3c8e8"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
+_data = {
+"dash": SubResource("Animation_vxab7"),
+"die": SubResource("Animation_mekx8"),
+"fall": SubResource("Animation_dk6ef"),
+"hit": SubResource("Animation_c87bg"),
+"idle": SubResource("Animation_hcmfn"),
+"jump": SubResource("Animation_emopd"),
+"walk": SubResource("Animation_3c8e8")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u75w7"]
 animations = [{
@@ -292,47 +325,15 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Animation" id="Animation_vxab7"]
-resource_name = "dash"
-
-[sub_resource type="Animation" id="Animation_mekx8"]
-resource_name = "die"
-
-[sub_resource type="Animation" id="Animation_dk6ef"]
-resource_name = "fall"
-
-[sub_resource type="Animation" id="Animation_c87bg"]
-resource_name = "hit"
-
-[sub_resource type="Animation" id="Animation_hcmfn"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_emopd"]
-resource_name = "jump"
-
-[sub_resource type="Animation" id="Animation_3c8e8"]
-resource_name = "walk"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
-_data = {
-"dash": SubResource("Animation_vxab7"),
-"die": SubResource("Animation_mekx8"),
-"fall": SubResource("Animation_dk6ef"),
-"hit": SubResource("Animation_c87bg"),
-"idle": SubResource("Animation_hcmfn"),
-"jump": SubResource("Animation_emopd"),
-"walk": SubResource("Animation_3c8e8")
-}
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "components_2d")]
 collision_layer = 8
 script = ExtResource("1_msn3r")
 movement_state_machine = NodePath("Components/StateMachine")
 movement_animator = NodePath("MovementAnimator")
-animated_sprite = NodePath("AnimatedSprite")
+animated_sprite = NodePath("Components2D/AnimatedSprite")
 move_input_component = NodePath("Components/Inputs/MoveInputComponent")
 health_component = NodePath("Components/Datas/HealthComponent")
 move_data = NodePath("Components/Datas/MoveData")
@@ -341,6 +342,11 @@ interactor_component = NodePath("Components2D/PlayerInteractorComponent")
 bot_pos = NodePath("Components2D/OtherStuff/BotPos")
 mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
+components_2d = NodePath("Components2D")
+
+[node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component") instance=ExtResource("2_c5wfi")]
+energy_component = NodePath("../Components/Datas/EnergyComponent")
+health_component = NodePath("../Components/Datas/HealthComponent")
 
 [node name="Camera" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
@@ -350,13 +356,7 @@ editor_draw_drag_margin = true
 script = ExtResource("5_2i0cb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-13, 5.5)
 shape = SubResource("RectangleShape2D_trxky")
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"idle"
 
 [node name="MovementAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -364,6 +364,12 @@ libraries = {
 }
 
 [node name="Components2D" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
+position = Vector2(13, -5)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_u75w7")
+animation = &"idle"
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_q8f32")
@@ -391,9 +397,13 @@ script = ExtResource("3_7ycnr")
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")
+max_health = 4.0
+health = 4.0
 
 [node name="EnergyComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("6_1m6jn")
+max_energy = 9.0
+energy = 3.0
 
 [node name="Inputs" type="Node" parent="Components"]
 

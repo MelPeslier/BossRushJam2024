@@ -1,7 +1,7 @@
 class_name EnergyComponent
 extends Node
 
-signal energy_updated(_energy: float)
+signal energy_updated(_energy: float, _max_energy:  float)
 
 @export var max_energy: float
 @export var energy: float: set = _set_energy
@@ -21,4 +21,4 @@ func gain(amount: float) -> void:
 
 func _set_energy(val) -> void:
 	energy = clampf(val, 0, max_energy)
-	energy_updated.emit()
+	energy_updated.emit(energy, max_energy)

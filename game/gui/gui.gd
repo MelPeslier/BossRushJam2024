@@ -1,0 +1,55 @@
+extends CanvasLayer
+
+@export var energy_component: EnergyComponent
+@export var health_component: HealthComponent
+@export var health_point_scene: PackedScene
+
+@export var fill_time: float = 0.25
+@export var drop_time: float = 0.4
+@export var energy: float: set = _set_energy
+
+@export var fill: TextureRect
+@export var health_gui: HBoxContainer
+
+
+var energy_tween: Tween
+
+
+func _ready() -> void:
+	energy_component.energy_updated.connect( _on_energy_updated )
+	health_component.health_changed.connect( _on_health_changed )
+	energy_component.energy = energy_component.energy
+	health_component.health = health_component.health
+	for i: int in health_component.max_health:
+		var hp: HealthPoint = health_point_scene.instantiate() as HealthPoint
+		health_gui.add_child(hp)
+		if health_component.health >= i :
+			hp.gain_health()
+		else:
+			hp.lose_health()
+
+
+
+
+func _on_health_changed(_health: float, _max_health: float) -> void:
+	pass
+
+
+
+func _on_energy_updated(_energy: float, _energy_max: float) -> void:
+	var new_energy = clampf( remap(_energy, 0, _energy_max, 0, 1), 0, 1)
+	if energy_tween and energy_tween.is_running():
+		energy_tween.kill()
+
+	var speed = fill_time if new_energy > energy else drop_time
+	#speed *= new_energy - energy
+
+	energy_tween = create_tween()
+	energy_tween.tween_property(self, "energy", new_energy, speed)
+
+
+func _set_energy(new_energy: float) -> void:
+	energy = new_energy
+
+	var mat: ShaderMaterial = fill.material as ShaderMaterial
+	mat.set_shader_parameter("energy", energy)

@@ -182,9 +182,10 @@ func _init_display_content() -> void:
 
 	constrain_mouse_value.toggled.connect( _on_constrain_mouse_value_toggled )
 
-	var display_reset_button = my_button_scene.instantiate()
+	var display_reset_button: MyButton = my_button_scene.instantiate() as MyButton
 	display_content.add_child(display_reset_button)
 	display_reset_button.text = RESET
+	display_reset_button.ui_pressed = SoundList.Ui.RESET
 	display_reset_button.button_down.connect( _on_display_reset_button_down )
 	last_item_path[1] = display_reset_button.get_path()
 
@@ -445,6 +446,7 @@ func _init_audio_content() -> void:
 	var audio_reset_button = my_button_scene.instantiate()
 	audio_content.add_child(audio_reset_button)
 	audio_reset_button.text = RESET
+	audio_reset_button.ui_pressed = SoundList.Ui.RESET
 	audio_reset_button.button_down.connect( _on_audio_reset_button_down )
 	last_item_path[2] = audio_reset_button.get_path()
 
@@ -491,6 +493,7 @@ func _init_controls_content() -> void:
 			var controls_reset_button: MyButton = my_button_scene.instantiate() as MyButton
 			controls_content.add_child(controls_reset_button)
 			controls_reset_button.text = RESET
+			controls_reset_button.ui_pressed = SoundList.Ui.RESET
 			controls_reset_button.button_down.connect( _on_controls_reset_button_down )
 			last_item_path[3] = controls_reset_button.get_path()
 
@@ -541,7 +544,7 @@ func _init_game_content() -> void:
 	game_content.add_child(game_reset_button)
 	game_reset_button.text = RESET
 	game_reset_button.button_down.connect( _on_game_reset_button_down )
-
+	game_reset_button.ui_pressed = SoundList.Ui.RESET
 	game_reset_button.focus_neighbor_top = last_item.get_path()
 	game_reset_button.focus_neighbor_bottom = back.get_path()
 

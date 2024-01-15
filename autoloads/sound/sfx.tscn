@@ -1,47 +1,47 @@
 [gd_scene load_steps=10 format=3 uid="uid://be5wo3ytvi6t"]
 
 [ext_resource type="Script" path="res://autoloads/sound/sfx.gd" id="1_c4qcj"]
-[ext_resource type="AudioStream" uid="uid://0m0kvfd7hlxt" path="res://ui/sound/Play_00.wav" id="2_phcgq"]
-[ext_resource type="AudioStream" uid="uid://bmcv1me4ly44d" path="res://ui/sound/Over_00.wav" id="3_hu3pd"]
-[ext_resource type="AudioStream" uid="uid://fo1y2terkwfo" path="res://ui/sound/Cancel_00.wav" id="5_gpnk6"]
-[ext_resource type="AudioStream" uid="uid://ne3dhsff4s2h" path="res://ui/sound/Press_00.wav" id="6_6ie22"]
-[ext_resource type="AudioStream" uid="uid://cci86cdjq0r1d" path="res://ui/sound/Reset_00.wav" id="6_8vpje"]
-[ext_resource type="AudioStream" uid="uid://b0elv153od5vv" path="res://ui/sound/Slide_00.wav" id="7_g2tgm"]
-[ext_resource type="AudioStream" uid="uid://c22h207m2p5us" path="res://ui/sound/CheckedOn_00.wav" id="8_e58kc"]
-[ext_resource type="AudioStream" uid="uid://dfbk2g2bq8ehe" path="res://ui/sound/CheckedOff_00.wav" id="9_j0qpt"]
+[ext_resource type="AudioStream" uid="uid://cip7w3mbw61al" path="res://ui/sound/Play.wav" id="2_raiit"]
+[ext_resource type="AudioStream" uid="uid://cvq8e24c6d5q5" path="res://ui/sound/Over.wav" id="3_5ppw2"]
+[ext_resource type="AudioStream" uid="uid://dpsuibalv2ouh" path="res://ui/sound/Press.wav" id="4_h3ta7"]
+[ext_resource type="AudioStream" uid="uid://e0dmg738o3t1" path="res://ui/sound/Cancel.wav" id="5_se5ns"]
+[ext_resource type="AudioStream" uid="uid://chq6ol6rs6lvk" path="res://ui/sound/Reset.wav" id="6_l1pvc"]
+[ext_resource type="AudioStream" uid="uid://dblsf6ewmngls" path="res://ui/sound/Slide.wav" id="7_jwmp7"]
+[ext_resource type="AudioStream" uid="uid://dw6epoowkn02t" path="res://ui/sound/CheckedOn.wav" id="8_ae0du"]
+[ext_resource type="AudioStream" uid="uid://cf3dhjrwq4416" path="res://ui/sound/CheckedOff.wav" id="9_u12y0"]
 
 [node name="Sfx" type="Node" node_paths=PackedStringArray("ui_sounds")]
 script = ExtResource("1_c4qcj")
 ui_sounds = [NodePath("Play"), NodePath("Over"), NodePath("Pressed"), NodePath("Cancel"), NodePath("Reset"), NodePath("Slide"), NodePath("CheckedOn"), NodePath("CheckedOff")]
 
 [node name="Play" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_phcgq")
+stream = ExtResource("2_raiit")
 bus = &"UI"
 
 [node name="Over" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hu3pd")
+stream = ExtResource("3_5ppw2")
 bus = &"UI"
 
 [node name="Pressed" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_6ie22")
+stream = ExtResource("4_h3ta7")
 bus = &"UI"
 
 [node name="Cancel" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_gpnk6")
+stream = ExtResource("5_se5ns")
 bus = &"UI"
 
 [node name="Reset" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_8vpje")
+stream = ExtResource("6_l1pvc")
 bus = &"UI"
 
 [node name="Slide" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_g2tgm")
+stream = ExtResource("7_jwmp7")
 bus = &"UI"
 
 [node name="CheckedOn" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_e58kc")
+stream = ExtResource("8_ae0du")
 bus = &"UI"
 
 [node name="CheckedOff" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_j0qpt")
+stream = ExtResource("9_u12y0")
 bus = &"UI"

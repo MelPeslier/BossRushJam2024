@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://5k0g2xrbjy4m"]
+
+[ext_resource type="Script" path="res://game/gui/health/health_point.gd" id="1_dfqst"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ydakq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_nr41n"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4r282"]
+
+[node name="HealthPoint" type="PanelContainer" node_paths=PackedStringArray("fill")]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_type_variation = &"container"
+script = ExtResource("1_dfqst")
+fill = NodePath("Fill")
+
+[node name="Under" type="TextureRect" parent="."]
+self_modulate = Color(0.12549, 0.12549, 0.12549, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_ydakq")
+
+[node name="Fill" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("CanvasTexture_nr41n")
+
+[node name="Over" type="TextureRect" parent="."]
+self_modulate = Color(0.635294, 0.635294, 0.635294, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = SubResource("CanvasTexture_4r282")
