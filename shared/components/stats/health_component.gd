@@ -11,7 +11,7 @@ signal health_healed(_heal_amount: float)
 
 func damage(_damage: float) -> void:
 	health -= _damage
-	health_damaged.emit(damage)
+	health_damaged.emit(_damage)
 
 
 func heal(amount: float) -> void:

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @export var energy_component: EnergyComponent
 @export var health_component: HealthComponent
+@export var energy_ability: EnergyAttackHolder
 @export var health_point_scene: PackedScene
 
 @export var fill_time: float = 0.25
@@ -10,6 +11,8 @@ extends CanvasLayer
 
 @export var fill: TextureRect
 @export var health_gui: HBoxContainer
+@export var spell_1: GUI_Spell
+@export var spell_2: GUI_Spell
 
 
 var energy_tween: Tween
@@ -29,14 +32,21 @@ func _ready() -> void:
 			hp.lose_health()
 
 
-
-
 func _on_health_changed(_health: float, _max_health: float) -> void:
 	pass
 
 
-
 func _on_energy_updated(_energy: float, _energy_max: float) -> void:
+	if _energy >= energy_ability.energy_cost:
+		spell_1.show_possible()
+	else:
+		spell_1.hide_possible()
+
+	if _energy >= energy_ability.energy_cost * 2:
+		spell_2.show_possible()
+	else:
+		spell_2.hide_possible()
+
 	var new_energy = clampf( remap(_energy, 0, _energy_max, 0, 1), 0, 1)
 	if energy_tween and energy_tween.is_running():
 		energy_tween.kill()
@@ -46,6 +56,7 @@ func _on_energy_updated(_energy: float, _energy_max: float) -> void:
 
 	energy_tween = create_tween()
 	energy_tween.tween_property(self, "energy", new_energy, speed)
+
 
 
 func _set_energy(new_energy: float) -> void:

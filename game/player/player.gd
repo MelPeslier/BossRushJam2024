@@ -9,6 +9,7 @@ enum MovementState{
 	IDLE,
 	JUMP,
 	WALK,
+	ABILITY,
 }
 
 @export_category("Components & Nodes")
@@ -35,6 +36,7 @@ func _ready() -> void:
 	GameEvents.cinematic_started.connect( _on_cinematic_started )
 	GameEvents.menu_opened.connect( _on_menu_opened )
 	GameEvents.menu_closed.connect( _on_menu_closed )
+	attack_manager.init(self)
 
 
 func _unhandled_input(event: InputEvent) -> void:

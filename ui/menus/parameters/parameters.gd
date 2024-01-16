@@ -50,7 +50,6 @@ const RESET: String = "RESET"
 
 @export var section_buttons: HBoxContainer
 @export var bot_container: HBoxContainer
-@export var actual_setting_label: Label
 
 @export_category("Sections Contents")
 @export var section_contents: PanelContainer
@@ -625,7 +624,6 @@ func update_focus_main_buttons(id: int) -> void:
 func _on_game_button_down() -> void:
 	_disable_sections()
 	game_content.visible = true
-	actual_setting_label.text = game.text
 	update_focus_main_buttons(0)
 	previous_button = game
 
@@ -633,7 +631,6 @@ func _on_game_button_down() -> void:
 func _on_display_button_down() -> void:
 	_disable_sections()
 	display_content.visible = true
-	actual_setting_label.text = display.text
 	update_focus_main_buttons(1)
 	previous_button = display
 
@@ -641,7 +638,6 @@ func _on_display_button_down() -> void:
 func _on_audio_button_down() -> void:
 	_disable_sections()
 	audio_content.visible = true
-	actual_setting_label.text = audio.text
 	update_focus_main_buttons(2)
 	previous_button = audio
 
@@ -649,7 +645,6 @@ func _on_audio_button_down() -> void:
 func _on_controls_button_down() -> void:
 	_disable_sections()
 	controls_content.visible = true
-	actual_setting_label.text = controls.text
 	update_focus_main_buttons(3)
 	previous_button = controls
 

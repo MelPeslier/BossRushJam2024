@@ -4,7 +4,6 @@ uniform vec4 main_color: source_color;
 uniform vec4 secondary_color: source_color;
 
 uniform float energy;
-uniform float stroke_width;
 uniform float amplitude = 0.07;
 uniform float frequency = 4.4;
 uniform float waves_diff = 1.2;
@@ -20,7 +19,7 @@ float energy_wave(vec2 uv, float wave_diff){
 void fragment() {
 	vec2 uv = UV;
 	uv.y = 1.0 - uv.y;
-	float wave_1 = energy_wave(uv, 1.0);
+	float wave_1 = energy_wave(vec2(-uv.x, uv.y) , 1.0);
 	float wave_2 = energy_wave(uv, waves_diff);
 
 	vec4 tex = texture( TEXTURE, uv );

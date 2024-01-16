@@ -3,19 +3,21 @@ extends PlayerState
 @export var idle: State
 @export var die: State
 @export_range(0.05, 8) var hit_timer: float = 0.1
+@export var attack_input_component: AbilityInputComponent
+@export var attack_manager: AttackManager
 
 var is_dead := false
 
 
 func enter() -> void:
 	super()
-	move_data.disable_attack()
-	move_data.disable_input()
+	attack_input_component.disable_attack()
+	move_input_component.disable_input()
 
 
 func exit() -> void:
-	move_data.enable_attack()
-	move_data.enable_input()
+	attack_input_component.enable_attack()
+	move_input_component.enable_input()
 
 
 func process_physics(delta: float) -> State:
@@ -35,6 +37,9 @@ func process_physics(delta: float) -> State:
 # Listening HurtboxComponent
 func _on_hit_received(kb: Vector2) -> void:
 	player.movement_state_machine.change_state(self)
+	if attack_manager.last_attack and is_instance_valid( attack_manager.last_attack ):
+		attack_manager.last_attack.interupt()
+
 	parent.velocity = kb
 
 

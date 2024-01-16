@@ -1,18 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg50i53wie1sx"]
+[gd_scene load_steps=9 format=3 uid="uid://bg50i53wie1sx"]
 
 [ext_resource type="Material" uid="uid://kk6an5b8n84n" path="res://game/gui/energy/energy_bar.tres" id="1_3m31a"]
 [ext_resource type="Script" path="res://game/gui/gui.gd" id="1_t8w72"]
 [ext_resource type="PackedScene" uid="uid://5k0g2xrbjy4m" path="res://game/gui/health/health_point.tscn" id="3_1s2yv"]
+[ext_resource type="Script" path="res://game/gui/gui_spell.gd" id="4_goygt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_41d60"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_d1t2o"]
 
-[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("fill", "health_gui")]
+[sub_resource type="CanvasTexture" id="CanvasTexture_rb2w6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_npltm"]
+
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("fill", "health_gui", "spell_1", "spell_2")]
 script = ExtResource("1_t8w72")
 health_point_scene = ExtResource("3_1s2yv")
 fill = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/Fill")
 health_gui = NodePath("ControlRoot/MarginContainer/HBoxContainer/HealtGUI")
+spell_1 = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer/Spell1")
+spell_2 = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer/Spell2")
 
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3
@@ -28,8 +35,8 @@ layout_mode = 1
 offset_right = 125.0
 offset_bottom = 100.0
 mouse_filter = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ControlRoot/MarginContainer"]
 layout_mode = 2
@@ -60,6 +67,29 @@ texture = SubResource("CanvasTexture_d1t2o")
 visible = false
 layout_mode = 2
 texture = SubResource("CanvasTexture_41d60")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlRoot/MarginContainer/HBoxContainer/EnergyGUI"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Spell2" type="TextureRect" parent="ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = SubResource("CanvasTexture_rb2w6")
+script = ExtResource("4_goygt")
+
+[node name="Spell1" type="TextureRect" parent="ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = SubResource("CanvasTexture_npltm")
+script = ExtResource("4_goygt")
 
 [node name="HealtGUI" type="HBoxContainer" parent="ControlRoot/MarginContainer/HBoxContainer"]
 layout_mode = 2

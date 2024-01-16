@@ -14,6 +14,7 @@ static var buttons: Array[MyButton] = []
 
 
 func _init() -> void:
+	theme_type_variation = "MyButton"
 	if not unique:
 		buttons.append(self)
 		custom_minimum_size = min_size

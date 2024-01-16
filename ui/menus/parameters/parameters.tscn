@@ -1,20 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://fk5ufucu336g"]
+[gd_scene load_steps=7 format=3 uid="uid://fk5ufucu336g"]
 
 [ext_resource type="Script" path="res://ui/menus/parameters/parameters.gd" id="1_lonfr"]
-[ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_noiyu"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_gnp5s"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_menu_button.gd" id="4_n7mte"]
 [ext_resource type="Script" path="res://ui/menus/parameters/quit_display.gd" id="4_xhodx"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_check_box.gd" id="5_60q8c"]
 [ext_resource type="PackedScene" uid="uid://dioyg4xr3jcmc" path="res://ui/menus/templates/choice/control_choice.tscn" id="7_gyx2t"]
 
-[node name="Parameters" type="CanvasLayer" node_paths=PackedStringArray("section_buttons", "bot_container", "actual_setting_label", "section_contents", "quit_display", "game_content", "languages_value", "display_content", "display_screen_value", "display_mode_value", "resolution_value", "anchor_value", "v_sync_value", "framerate_limit_value", "show_framerate_value", "constrain_mouse_value", "audio_content", "controls_content", "game", "display", "audio", "controls", "back_to_menu", "back", "abandon")]
+[node name="Parameters" type="CanvasLayer" node_paths=PackedStringArray("section_buttons", "bot_container", "section_contents", "quit_display", "game_content", "languages_value", "display_content", "display_screen_value", "display_mode_value", "resolution_value", "anchor_value", "v_sync_value", "framerate_limit_value", "show_framerate_value", "constrain_mouse_value", "audio_content", "controls_content", "game", "display", "audio", "controls", "back_to_menu", "back", "abandon")]
 process_mode = 3
 layer = 10
 script = ExtResource("1_lonfr")
-section_buttons = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons")
+section_buttons = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons")
 bot_container = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/BotContainer")
-actual_setting_label = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/ActualSettingContainer/ActualSettingLabel")
 section_contents = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents")
 quit_display = NodePath("QuitDisplay")
 game_content = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/GameContent")
@@ -30,10 +28,10 @@ show_framerate_value = NodePath("ParametersDisplay/MarginContainer/ParametersCon
 constrain_mouse_value = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamConstrainMouse/ConstrainMouseValue")
 audio_content = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/AudioContent")
 controls_content = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/ControlsContent")
-game = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Game")
-display = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Display")
-audio = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Audio")
-controls = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Controls")
+game = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Game")
+display = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Display")
+audio = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Audio")
+controls = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Controls")
 back_to_menu = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/BotContainer/BackToMenu")
 back = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/BotContainer/Back")
 abandon = NodePath("ParametersDisplay/MarginContainer/ParametersContainer/BotContainer/Abandon")
@@ -45,6 +43,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0235294, 0.0235294, 0.054902, 0.945098)
 
 [node name="ParametersDisplay" type="Control" parent="."]
 custom_minimum_size = Vector2(1152, 648)
@@ -62,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="ColorRect" type="PanelContainer" parent="ParametersDisplay"]
+[node name="RootPanelContainer" type="PanelContainer" parent="ParametersDisplay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,53 +94,38 @@ theme_override_constants/margin_bottom = 25
 [node name="ParametersContainer" type="VBoxContainer" parent="ParametersDisplay/MarginContainer"]
 layout_mode = 2
 
-[node name="UpContainer" type="HBoxContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_noiyu")
-expand_mode = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SectionButtons" type="HBoxContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer"]
+[node name="SectionButtons" type="HBoxContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+alignment = 1
 
-[node name="Game" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+[node name="Game" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "GAME"
 script = ExtResource("2_gnp5s")
 
-[node name="Display" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+[node name="Display" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "DISPLAY"
 script = ExtResource("2_gnp5s")
 
-[node name="Audio" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+[node name="Audio" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "AUDIO"
 script = ExtResource("2_gnp5s")
 
-[node name="Controls" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons"]
+[node name="Controls" type="Button" parent="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "CONTROLS"
 script = ExtResource("2_gnp5s")
-
-[node name="ActualSettingContainer" type="PanelContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ActualSettingLabel" type="Label" parent="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/ActualSettingContainer"]
-layout_mode = 2
-text = "ActualSection"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer"]
 layout_mode = 2
@@ -144,6 +136,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
+theme_type_variation = &"container"
 
 [node name="GameContent" type="VBoxContainer" parent="ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents"]
 layout_mode = 2
@@ -318,6 +311,7 @@ theme_override_constants/separation = 200
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_type_variation = &"MyButton"
 text = "BACK_TO_MENU"
 script = ExtResource("2_gnp5s")
 
@@ -325,6 +319,7 @@ script = ExtResource("2_gnp5s")
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_type_variation = &"MyButton"
 text = "BACK"
 script = ExtResource("2_gnp5s")
 
@@ -332,6 +327,7 @@ script = ExtResource("2_gnp5s")
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
+theme_type_variation = &"MyButton"
 text = "ABANDON"
 script = ExtResource("2_gnp5s")
 
@@ -350,10 +346,10 @@ choice = NodePath("ChoiceLabel")
 [node name="ChoiceLabel" parent="QuitDisplay" instance=ExtResource("7_gyx2t")]
 layout_mode = 1
 
-[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Game" to="." method="_on_game_button_down"]
-[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Display" to="." method="_on_display_button_down"]
-[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Audio" to="." method="_on_audio_button_down"]
-[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/UpContainer/VBoxContainer/SectionButtons/Controls" to="." method="_on_controls_button_down"]
+[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Game" to="." method="_on_game_button_down"]
+[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Display" to="." method="_on_display_button_down"]
+[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Audio" to="." method="_on_audio_button_down"]
+[connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/SectionButtons/Controls" to="." method="_on_controls_button_down"]
 [connection signal="about_to_popup" from="ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamDisplayScreen/DisplayScreenValue" to="." method="_on_display_screen_value_about_to_popup"]
 [connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/ScrollContainer/SectionContents/DisplayContent/HParamAnchor/AnchorValue" to="." method="_on_anchor_value_button_down"]
 [connection signal="button_down" from="ParametersDisplay/MarginContainer/ParametersContainer/BotContainer/BackToMenu" to="." method="_on_back_to_menu_button_down"]

@@ -79,6 +79,7 @@ focus_neighbor_left = NodePath("../ContinueButton")
 focus_neighbor_top = NodePath("../ContinueButton")
 focus_neighbor_right = NodePath("../ContinueButton")
 focus_neighbor_bottom = NodePath("../ContinueButton")
+theme_type_variation = &"MyButton"
 text = "BACK"
 script = ExtResource("1_84m44")
 
@@ -94,6 +95,7 @@ focus_neighbor_left = NodePath("../BackButton")
 focus_neighbor_top = NodePath("../BackButton")
 focus_neighbor_right = NodePath("../BackButton")
 focus_neighbor_bottom = NodePath("../BackButton")
+theme_type_variation = &"MyButton"
 text = "CONTINUE"
 script = ExtResource("1_84m44")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=88 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -70,6 +70,11 @@
 [ext_resource type="Texture2D" uid="uid://dcnh1co30ivn2" path="res://game/player/art/tmp/Run (6).png" id="52_kxh12"]
 [ext_resource type="Texture2D" uid="uid://bjygof4a7mtti" path="res://game/player/art/tmp/Run (7).png" id="53_q21u5"]
 [ext_resource type="Texture2D" uid="uid://8ons8n38fljo" path="res://game/player/art/tmp/Run (8).png" id="54_1w26y"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_holder.gd" id="58_d7eiw"]
+[ext_resource type="PackedScene" uid="uid://bb3jrenjx6t7y" path="res://game/player/components/attacks/sword/sword_1.tscn" id="59_546gv"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="59_hfdwx"]
+[ext_resource type="Script" path="res://shared/components/attacks/energy_attack_holder.gd" id="60_3qfbr"]
+[ext_resource type="Script" path="res://game/player/components/states/ability.gd" id="74_6efk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
 size = Vector2(54, 133)
@@ -95,6 +100,9 @@ resource_name = "jump"
 [sub_resource type="Animation" id="Animation_3c8e8"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_is6y3"]
+resource_name = "sword_1"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
 _data = {
 "dash": SubResource("Animation_vxab7"),
@@ -103,6 +111,7 @@ _data = {
 "hit": SubResource("Animation_c87bg"),
 "idle": SubResource("Animation_hcmfn"),
 "jump": SubResource("Animation_emopd"),
+"sword_1": SubResource("Animation_is6y3"),
 "walk": SubResource("Animation_3c8e8")
 }
 
@@ -257,6 +266,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("44_3imbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_7c60t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_teb4c")
+}],
+"loop": false,
+"name": &"shoot_1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("37_fyjcs")
 }, {
 "duration": 1.0,
@@ -278,22 +301,8 @@ animations = [{
 "texture": ExtResource("43_b0ucv")
 }],
 "loop": false,
-"name": &"melee_1",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("44_3imbr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("45_7c60t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("46_teb4c")
-}],
-"loop": false,
-"name": &"shoot_1",
-"speed": 10.0
+"name": &"sword_1",
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -344,9 +353,10 @@ mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
 components_2d = NodePath("Components2D")
 
-[node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component") instance=ExtResource("2_c5wfi")]
+[node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 energy_component = NodePath("../Components/Datas/EnergyComponent")
 health_component = NodePath("../Components/Datas/HealthComponent")
+energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
 
 [node name="Camera" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
@@ -356,6 +366,7 @@ editor_draw_drag_margin = true
 script = ExtResource("5_2i0cb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-13, 4)
 shape = SubResource("RectangleShape2D_trxky")
 
 [node name="MovementAnimator" type="AnimationPlayer" parent="."]
@@ -366,10 +377,9 @@ libraries = {
 [node name="Components2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
-position = Vector2(13, -5)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"idle"
+animation = &"sword_1"
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_q8f32")
@@ -384,9 +394,73 @@ shape = SubResource("CircleShape2D_jjjul")
 
 [node name="MidPos" type="Marker2D" parent="Components2D/OtherStuff"]
 
-[node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("attack_input_component")]
+[node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("swords", "hand", "arm", "attack_input_component")]
 script = ExtResource("2_0x4jq")
+combo_time = 2.0
+swords = [NodePath("sword_1"), NodePath("sword_2"), null]
+hand = NodePath("hand")
+arm = NodePath("arm")
 attack_input_component = NodePath("../../Components/Inputs/AbilityInputComponent")
+attack_interval_time = 1.0
+attack_buffer_time = 0.15
+can_attack_buffer_time = 0.15
+
+[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "state_machine", "ability")]
+script = ExtResource("58_d7eiw")
+attack_data = NodePath("AttackData")
+attack_scene = ExtResource("59_546gv")
+cooldown = 0.25
+state_machine = NodePath("../../../Components/StateMachine")
+ability = NodePath("../../../Components/StateMachine/ability")
+
+[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_1"]
+script = ExtResource("59_hfdwx")
+team = 1
+damage = 1.0
+
+[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data")]
+script = ExtResource("58_d7eiw")
+attack_data = NodePath("../sword_1/AttackData")
+cooldown = 0.15
+
+[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_2"]
+script = ExtResource("59_hfdwx")
+team = 1
+damage = 1.0
+
+[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data")]
+script = ExtResource("58_d7eiw")
+attack_data = NodePath("../sword_1/AttackData")
+cooldown = 0.15
+
+[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_3"]
+script = ExtResource("59_hfdwx")
+team = 1
+damage = 3.0
+
+[node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("energy_component", "attack_data")]
+script = ExtResource("60_3qfbr")
+energy_component = NodePath("../../../Components/Datas/EnergyComponent")
+energy_cost = 3.0
+attack_data = NodePath("AttackData")
+cooldown = 0.25
+
+[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/hand"]
+script = ExtResource("59_hfdwx")
+team = 1
+damage = 3.0
+
+[node name="arm" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("energy_component", "attack_data")]
+script = ExtResource("60_3qfbr")
+energy_component = NodePath("../../../Components/Datas/EnergyComponent")
+energy_cost = 9.0
+attack_data = NodePath("AttackData")
+cooldown = 3.0
+
+[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/arm"]
+script = ExtResource("59_hfdwx")
+team = 1
+damage = 9.0
 
 [node name="Components" type="Node" parent="."]
 
@@ -436,10 +510,12 @@ walk = NodePath("../walk")
 jump = NodePath("../jump")
 dash = NodePath("../dash")
 
-[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die")]
+[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die", "attack_input_component", "attack_manager")]
 script = ExtResource("7_86s88")
 idle = NodePath("../idle")
 die = NodePath("../die")
+attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
+attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
 
 [node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "jump", "fall", "dash")]
 script = ExtResource("8_eankw")
@@ -460,5 +536,11 @@ idle = NodePath("../idle")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath("../dash")
+
+[node name="ability" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "attack_manager", "state_machine")]
+script = ExtResource("74_6efk3")
+idle = NodePath("../idle")
+attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
+state_machine = NodePath("..")
 
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]

@@ -18,7 +18,6 @@ func process_physics(delta: float) -> State:
 		do_walk_accelerate(delta)
 	parent.velocity.y += move_data.fall_gravity * delta
 	parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
-	#ray_casts.process_physics_right(delta)
 	parent.move_and_slide()
 
 	move_data.jump_coyote_timer -= delta

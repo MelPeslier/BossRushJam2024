@@ -1,9 +1,13 @@
 extends CanvasLayer
 
 @export var animator: AnimationPlayer
+@export var bg: ColorRect
 
 var thread: Thread
 var _scene_path: String = ""
+var progress: float: set = _set_progress
+var progress_tween: Tween
+@export var fill_speed: float = 2
 
 
 @onready var control_root: Control = $ControlRoot
@@ -14,9 +18,11 @@ func _ready() -> void:
 
 
 func change_scene(_target_path: String) -> void:
+	GameState.in_cinematic = true
 	control_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	visible = true
 	_scene_path = _target_path
+	progress = 0
 	animator.play("appear")
 	ResourceLoader.load_threaded_request( _target_path )
 	set_process(true)
@@ -24,16 +30,20 @@ func change_scene(_target_path: String) -> void:
 
 func _process(_delta: float) -> void:
 	var status = get_status()
-	var progress = get_progress()
+	if progress_tween and progress_tween.is_running():
+		progress_tween.kill()
+	progress_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	progress_tween.tween_property(self, "progress", get_progress(), fill_speed)
+
 	match(status):
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
 			disappear()
 		ResourceLoader.THREAD_LOAD_LOADED:
-			set_process(false)
 			if animator.is_playing():
 				await animator.animation_finished
-			change_scene_to_resource()
-			disappear()
+			progress_tween.tween_callback( change_scene_to_resource )
+			progress_tween.tween_callback( disappear )
+			set_process(false)
 
 
 func get_status() -> ResourceLoader.ThreadLoadStatus:
@@ -62,4 +72,11 @@ func disappear() -> void:
 	control_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	animator.play("disappear")
 	await animator.animation_finished
+	GameState.in_cinematic = false
 	visible = false
+
+
+func _set_progress(_progress: float) -> void:
+	progress = _progress
+	var mat: ShaderMaterial = bg.material as ShaderMaterial
+	mat.set_shader_parameter("progress", progress)

@@ -36,7 +36,7 @@ func wants_attack() -> bool:
 
 
 func can_attack() -> bool:
-	return false
+	return _can_attack
 
 func disable_attack() -> void:
 	_can_attack = false

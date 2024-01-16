@@ -13,13 +13,14 @@ var attack_interval_timer: float: set = _set_attack_interval_timer
 var can_attack_buffer_timer: float: set = _set_can_attack_buffer_timer
 
 var attack_holder: AttackHolder
+var last_attack: Attack
 var parent: Node2D
 
 
 func init(_parent: Node2D) -> void:
 	parent = _parent
 	for _attack_holder: AttackHolder in get_children():
-		_attack_holder.init(parent)
+		_attack_holder.init(parent, self)
 
 
 func process_physics(delta: float) -> void:
@@ -55,6 +56,11 @@ func timers(delta: float) -> void:
 
 func launch_attack(_attack_holder: AttackHolder) -> void:
 	attack_holder.activate()
+
+
+func interupt_attack() -> void:
+	if is_instance_valid(last_attack):
+		last_attack.interupt()
 
 
 func _set_attack_interval_timer(new_val: float) -> void:

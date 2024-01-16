@@ -16,7 +16,7 @@ func _on_timer_timeout() -> void:
 		can_attack = true
 
 
-func activate(_pos: Vector2 = parent.global_position) -> void:
+func activate() -> void:
 	super()
 	energy_component.use(energy_cost)
 
