@@ -20,6 +20,8 @@ signal dir_changed(new_dir: float)
 @export_range(0, 3) var jump_time_to_descent: float = 0.36
 @export_range(0, 2000, 1) var max_fall_speed: float = 1200
 @export_range(0, 1) var min_jump_coef: float = 0.35
+@export var jump_peak_slow_gravity_threshold: float = 50
+@export_range(0.2, 1) var jump_peak_slow_gravity_coef: float = 0.9
 
 @export var jumps_number: int = 2
 @export var next_jumps_coef: float = 0.25

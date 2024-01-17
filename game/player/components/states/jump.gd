@@ -33,14 +33,18 @@ func process_physics(delta: float) -> State:
 
 	if not Input.is_action_pressed("jump"):
 		want_jump = false
-
-	if not( want_jump and move_data.jump_time < move_data.jump_time_to_peak) and\
+	var slow: float = 1.0
+	if not( want_jump and move_data.jump_time < move_data.jump_time_to_peak ) and\
 			move_data.jump_time > move_data.min_jump_time\
 	:
 		parent.velocity.y += move_data.fall_gravity * delta
 		parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
+
 	else:
-		parent.velocity.y += move_data.gravity * delta
+		if parent.velocity.y > - move_data.jump_peak_slow_gravity_threshold:
+			slow = move_data.jump_peak_slow_gravity_coef
+
+		parent.velocity.y += move_data.gravity * delta * slow
 
 	move_data.dir = get_movement_input()
 	if not move_data.dir:

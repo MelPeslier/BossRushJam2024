@@ -48,7 +48,7 @@ func process_unhandled_input(_event: InputEvent) -> State:
 
 	if get_jump():
 		if move_data.can_jump():
-			if not move_data.jump_coyote_timer > 0:
+			if not move_data.jump_coyote_timer > 0 and move_data.jumps_number == move_data.remaining_jumps:
 				move_data.alter_jumps(-1)
 			return jump
 		move_data.jump_buffer_timer = move_data.jump_buffer_time

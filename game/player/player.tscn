@@ -97,11 +97,11 @@ resource_name = "idle"
 [sub_resource type="Animation" id="Animation_emopd"]
 resource_name = "jump"
 
-[sub_resource type="Animation" id="Animation_3c8e8"]
-resource_name = "walk"
-
 [sub_resource type="Animation" id="Animation_is6y3"]
 resource_name = "sword_1"
+
+[sub_resource type="Animation" id="Animation_3c8e8"]
+resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
 _data = {
@@ -380,6 +380,8 @@ libraries = {
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_u75w7")
 animation = &"sword_1"
+frame = 6
+frame_progress = 1.0
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_q8f32")
@@ -468,6 +470,8 @@ damage = 9.0
 
 [node name="MoveData" type="Node" parent="Components/Datas"]
 script = ExtResource("3_7ycnr")
+jump_peak_slow_gravity_threshold = 200.0
+jump_peak_slow_gravity_coef = 0.8
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")
@@ -537,10 +541,15 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath("../dash")
 
-[node name="ability" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "attack_manager", "state_machine")]
+[node name="ability" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "attack_manager", "state_machine")]
 script = ExtResource("74_6efk3")
 idle = NodePath("../idle")
+walk = NodePath("../walk")
+dash = NodePath("../dash")
+jump = NodePath("../jump")
 attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
 state_machine = NodePath("..")
+dash_time = 0.0
+frame_move = 4
 
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]
