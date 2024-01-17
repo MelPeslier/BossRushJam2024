@@ -339,6 +339,7 @@ radius = 290.629
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "components_2d")]
 collision_layer = 8
+safe_margin = 0.2
 script = ExtResource("1_msn3r")
 movement_state_machine = NodePath("Components/StateMachine")
 movement_animator = NodePath("MovementAnimator")
@@ -403,16 +404,15 @@ swords = [NodePath("sword_1"), NodePath("sword_2"), null]
 hand = NodePath("hand")
 arm = NodePath("arm")
 attack_input_component = NodePath("../../Components/Inputs/AbilityInputComponent")
-attack_interval_time = 1.0
+attack_interval_time = 0.3
 attack_buffer_time = 0.15
 can_attack_buffer_time = 0.15
 
-[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "state_machine", "ability")]
+[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
 script = ExtResource("58_d7eiw")
 attack_data = NodePath("AttackData")
 attack_scene = ExtResource("59_546gv")
 cooldown = 0.25
-state_machine = NodePath("../../../Components/StateMachine")
 ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_1"]
@@ -549,7 +549,5 @@ dash = NodePath("../dash")
 jump = NodePath("../jump")
 attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
 state_machine = NodePath("..")
-dash_time = 0.0
-frame_move = 4
 
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]

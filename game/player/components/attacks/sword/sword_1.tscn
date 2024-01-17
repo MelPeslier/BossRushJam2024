@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bb3jrenjx6t7y"]
+[gd_scene load_steps=23 format=3 uid="uid://bb3jrenjx6t7y"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/attack.gd" id="1_3jud2"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="2_3isi8"]
 [ext_resource type="Texture2D" uid="uid://c7xu6h1twgair" path="res://game/player/art/tmp/Melee (1).png" id="2_yakv3"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_special_effects.gd" id="2_ybpd5"]
 [ext_resource type="Texture2D" uid="uid://dtbgegxo2i2bw" path="res://game/player/art/tmp/Melee (2).png" id="3_4oo45"]
 [ext_resource type="Texture2D" uid="uid://btx2vcjulcxge" path="res://game/player/art/tmp/Melee (3).png" id="4_ifu57"]
 [ext_resource type="Texture2D" uid="uid://c82qutr304x6n" path="res://game/player/art/tmp/Melee (4).png" id="5_rlqlk"]
@@ -73,7 +74,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02, 1.4),
+"times": PackedFloat32Array(0, 0.02, 1.43),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [true],
@@ -83,7 +84,7 @@ tracks/1/keys = {
 "method": &"preparing"
 }, {
 "args": [],
-"method": &"queue_free"
+"method": &"_on_timer_timeout"
 }]
 }
 tracks/2/type = "value"
@@ -178,8 +179,13 @@ scale_min = 0.03
 scale_max = 0.05
 scale_curve = SubResource("CurveTexture_kjk58")
 
-[node name="Sword1" type="Node2D"]
+[node name="Sword1" type="Node2D" node_paths=PackedStringArray("attack_special_effects")]
 script = ExtResource("1_3jud2")
+attack_special_effects = NodePath("AttackSpecialEffects")
+
+[node name="AttackSpecialEffects" type="Node" parent="."]
+script = ExtResource("2_ybpd5")
+frame_move = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

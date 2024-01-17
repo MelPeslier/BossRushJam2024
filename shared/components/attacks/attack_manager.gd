@@ -17,10 +17,10 @@ var last_attack: Attack
 var parent: Node2D
 
 
-func init(_parent: Node2D) -> void:
+func init(_parent: Node2D, _state_machine: StateMachine) -> void:
 	parent = _parent
 	for _attack_holder: AttackHolder in get_children():
-		_attack_holder.init(parent, self)
+		_attack_holder.init(parent, self, _state_machine)
 
 
 func process_physics(delta: float) -> void:

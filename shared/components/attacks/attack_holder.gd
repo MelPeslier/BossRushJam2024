@@ -10,7 +10,7 @@ signal attack_up(_can_attack: bool, _damage: float)
 var can_attack := true: set = _set_can_attack
 var parent: Node2D
 var attack_manager: AttackManager
-@export var state_machine: StateMachine
+var state_machine: StateMachine
 @export var ability: State
 
 @onready var timer := Timer.new()
@@ -22,9 +22,10 @@ func _ready() -> void:
 	timer.one_shot = true
 
 
-func init(_parent: Node2D, _attack_manager: AttackManager) -> void:
+func init(_parent: Node2D, _attack_manager: AttackManager, _state_machine) -> void:
 	parent = _parent
 	attack_manager = _attack_manager
+	state_machine = _state_machine
 
 
 func activate() -> void:
@@ -40,12 +41,13 @@ func _on_timer_timeout() -> void:
 func spawn_attack() -> void:
 	var attack_instance: Attack = attack_scene.instantiate() as Attack
 	attack_instance.init(parent, attack_data, attack_manager, name)
-	add_child(attack_instance)
-	#attack_instance.scale.x = attack_manager.get_parent().scale.x
+	if attack_instance.stick_to_parent:
+		add_child(attack_instance)
+	else:
+		get_window().add_child(attack_instance)
 	attack_instance.global_position = global_position
-	if state_machine and not attack_instance.is_independent:
+	if attack_instance.attack_special_effects:
 		state_machine.change_state(ability)
-	print(attack_instance.my_name)
 
 
 func _set_can_attack(_can_attack: bool) -> void:
