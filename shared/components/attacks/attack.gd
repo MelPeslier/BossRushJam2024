@@ -8,16 +8,18 @@ extends Node2D
 @export var stick_to_parent := true
 @export var attack_special_effects: AttackSpecialEffects
 
+
 var parent: Node2D
 var attack_data: AttackData
 var attack_manager: AttackManager
 var is_preparing := false
 var my_name: String = ""
+var energy_component: EnergyComponent
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hitbox_component: HitboxComponent = $HitboxComponent
-@onready var collision_shape_2d: CollisionShape2D = $HitboxComponent/CollisionShape2D
+@export var animation_player: AnimationPlayer
+@export var animated_sprite_2d: AnimatedSprite2D
+@export var hitbox_component: HitboxComponent
+@export var collision_shape_2d: CollisionShape2D
 
 
 func _ready() -> void:
@@ -27,10 +29,13 @@ func _ready() -> void:
 	else:
 		add_child(Camera2D.new() )
 	animated_sprite_2d.visible = testing
-	hitbox_component.attack_data = attack_data
+	if hitbox_component:
+		hitbox_component.attack_data = attack_data
+		hitbox_component.energy_component = energy_component
 	for child in get_children():
 		if child is Area2D:
 			child.parent = parent
+
 	start()
 
 
@@ -41,12 +46,12 @@ func start() -> void:
 		animated_sprite_2d.play("default")
 
 
-func init(_parent: Node2D, _attack_data: AttackData, _attack_manager: AttackManager, _name: String) -> void:
+func init(_parent: Node2D, _attack_data: AttackData, _attack_manager: AttackManager, _name: String, _energy_component: EnergyComponent) -> void:
 	parent = _parent
 	attack_data = _attack_data
 	attack_manager = _attack_manager
 	my_name = _name
-
+	energy_component = _energy_component
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("melee_attack"):

@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://x1u1mr7yevef"]
+
+[ext_resource type="Script" path="res://shared/components/attacks/bullet_attack.gd" id="1_cn12c"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_special_effects.gd" id="2_ql74r"]
+[ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="2_tie1d"]
+[ext_resource type="Texture2D" uid="uid://7dtfudapt58w" path="res://game/player/art/tmp/Shoot (1).png" id="3_5vwet"]
+[ext_resource type="Texture2D" uid="uid://bw40mjp1fvvqx" path="res://game/player/art/tmp/Shoot (2).png" id="4_sa40j"]
+[ext_resource type="Texture2D" uid="uid://bxwide1ovkb66" path="res://game/player/art/tmp/Shoot (3).png" id="5_2i1fx"]
+
+[sub_resource type="Animation" id="Animation_som5a"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_vsn7o"]
+resource_name = "activate"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_bullet"
+}, {
+"args": [],
+"method": &"_on_timer_timeout"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ulev"]
+_data = {
+"RESET": SubResource("Animation_som5a"),
+"activate": SubResource("Animation_vsn7o")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q05uv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5vwet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sa40j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2i1fx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Hand" type="Node2D" node_paths=PackedStringArray("marker", "attack_special_effects", "animation_player", "animated_sprite_2d")]
+script = ExtResource("1_cn12c")
+bullet_scene = ExtResource("2_tie1d")
+marker = NodePath("BulletPosition")
+attack_special_effects = NodePath("AttackSpecialEffects")
+animation_player = NodePath("AnimationPlayer")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+
+[node name="AttackSpecialEffects" type="Node" parent="."]
+script = ExtResource("2_ql74r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ulev")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_q05uv")
+
+[node name="BulletPosition" type="Marker2D" parent="."]
+position = Vector2(66, 1)

@@ -5,7 +5,7 @@ signal hit_received(_kb: float, _dir: Vector2)
 
 @export var parent: Node2D
 @export var health_component: HealthComponent
-
+@export_range(0, 10, 1) var energy_to_give: float
 
 func _init() -> void:
 	collision_layer = 0
@@ -20,6 +20,9 @@ func _on_area_entered(hitbox: HitboxComponent) -> void:
 		return
 	if hitbox.parent == parent:
 		return
+	if hitbox.energy_component and energy_to_give > 0:
+		hitbox.energy_component.gain(energy_to_give)
+
 	var attack_data := hitbox.attack_data
 
 	var dir := hitbox.parent.global_position.direction_to(global_position)

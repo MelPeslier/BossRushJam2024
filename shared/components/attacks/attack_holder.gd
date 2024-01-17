@@ -11,6 +11,7 @@ var can_attack := true: set = _set_can_attack
 var parent: Node2D
 var attack_manager: AttackManager
 var state_machine: StateMachine
+var energy_component: EnergyComponent
 @export var ability: State
 
 @onready var timer := Timer.new()
@@ -22,10 +23,11 @@ func _ready() -> void:
 	timer.one_shot = true
 
 
-func init(_parent: Node2D, _attack_manager: AttackManager, _state_machine) -> void:
+func init(_parent: Node2D, _attack_manager: AttackManager, _state_machine: StateMachine, _energy_component: EnergyComponent) -> void:
 	parent = _parent
 	attack_manager = _attack_manager
 	state_machine = _state_machine
+	energy_component = _energy_component
 
 
 func activate() -> void:
@@ -40,7 +42,7 @@ func _on_timer_timeout() -> void:
 
 func spawn_attack() -> void:
 	var attack_instance: Attack = attack_scene.instantiate() as Attack
-	attack_instance.init(parent, attack_data, attack_manager, name)
+	attack_instance.init(parent, attack_data, attack_manager, name, energy_component)
 	if attack_instance.stick_to_parent:
 		add_child(attack_instance)
 	else:

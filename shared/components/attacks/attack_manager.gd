@@ -2,6 +2,7 @@ class_name AttackManager
 extends Node2D
 
 @export var attack_input_component: AbilityInputComponent
+@export var energy_component: EnergyComponent
 
 @export_category("Intervals")
 @export_range(0.05, 2) var attack_interval_time: float
@@ -20,7 +21,7 @@ var parent: Node2D
 func init(_parent: Node2D, _state_machine: StateMachine) -> void:
 	parent = _parent
 	for _attack_holder: AttackHolder in get_children():
-		_attack_holder.init(parent, self, _state_machine)
+		_attack_holder.init(parent, self, _state_machine, energy_component)
 
 
 func process_physics(delta: float) -> void:
@@ -39,7 +40,7 @@ func process_physics(delta: float) -> void:
 
 	if not attack_holder: return
 
-	launch_attack(attack_holder)
+	launch_attack()
 
 	can_attack_buffer_timer = can_attack_buffer_time
 	attack_interval_timer = attack_interval_time
@@ -54,7 +55,7 @@ func timers(delta: float) -> void:
 	attack_interval_timer -= delta
 
 
-func launch_attack(_attack_holder: AttackHolder) -> void:
+func launch_attack() -> void:
 	attack_holder.activate()
 
 

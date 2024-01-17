@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=88 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -74,7 +74,6 @@
 [ext_resource type="PackedScene" uid="uid://bb3jrenjx6t7y" path="res://game/player/components/attacks/sword/sword_1.tscn" id="59_546gv"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="59_hfdwx"]
 [ext_resource type="Script" path="res://shared/components/attacks/energy_attack_holder.gd" id="60_3qfbr"]
-[ext_resource type="PackedScene" uid="uid://x1u1mr7yevef" path="res://game/player/components/attacks/hand/hand.tscn" id="62_detxh"]
 [ext_resource type="Script" path="res://game/player/components/states/ability.gd" id="74_6efk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
@@ -104,59 +103,20 @@ resource_name = "sword_1"
 [sub_resource type="Animation" id="Animation_3c8e8"]
 resource_name = "walk"
 
-[sub_resource type="Animation" id="Animation_f1qdp"]
-resource_name = "hand"
-
-[sub_resource type="Animation" id="Animation_pmpty"]
-resource_name = "sword_2"
-
-[sub_resource type="Animation" id="Animation_d86ax"]
-resource_name = "sword_3"
-
-[sub_resource type="Animation" id="Animation_nwt0g"]
-resource_name = "arm"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
 _data = {
-"arm": SubResource("Animation_nwt0g"),
 "dash": SubResource("Animation_vxab7"),
 "die": SubResource("Animation_mekx8"),
 "fall": SubResource("Animation_dk6ef"),
-"hand": SubResource("Animation_f1qdp"),
 "hit": SubResource("Animation_c87bg"),
 "idle": SubResource("Animation_hcmfn"),
 "jump": SubResource("Animation_emopd"),
 "sword_1": SubResource("Animation_is6y3"),
-"sword_2": SubResource("Animation_pmpty"),
-"sword_3": SubResource("Animation_d86ax"),
 "walk": SubResource("Animation_3c8e8")
 }
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u75w7"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("44_3imbr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("44_3imbr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("45_7c60t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("45_7c60t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("46_teb4c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("46_teb4c")
-}],
-"loop": false,
-"name": &"arm",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_qkcad")
@@ -224,20 +184,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("44_3imbr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("45_7c60t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("46_teb4c")
-}],
-"loop": false,
-"name": &"hand",
 "speed": 10.0
 }, {
 "frames": [{
@@ -320,6 +266,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("44_3imbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_7c60t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_teb4c")
+}],
+"loop": false,
+"name": &"shoot_1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("37_fyjcs")
 }, {
 "duration": 1.0,
@@ -342,58 +302,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword_1",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("37_fyjcs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_3smnh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_kuatv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_o6m8b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_kisn0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("42_6kbwm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_b0ucv")
-}],
-"loop": false,
-"name": &"sword_2",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("37_fyjcs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_3smnh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_kuatv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_o6m8b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("41_kisn0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("42_6kbwm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("43_b0ucv")
-}],
-"loop": false,
-"name": &"sword_3",
 "speed": 20.0
 }, {
 "frames": [{
@@ -429,7 +337,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "components_2d")]
 collision_layer = 8
 safe_margin = 0.2
 script = ExtResource("1_msn3r")
@@ -444,7 +352,7 @@ interactor_component = NodePath("Components2D/PlayerInteractorComponent")
 bot_pos = NodePath("Components2D/OtherStuff/BotPos")
 mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
-need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager")]
+components_2d = NodePath("Components2D")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 energy_component = NodePath("../Components/Datas/EnergyComponent")
@@ -472,7 +380,9 @@ libraries = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"arm"
+animation = &"sword_1"
+frame = 6
+frame_progress = 1.0
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_q8f32")
@@ -488,163 +398,4 @@ shape = SubResource("CircleShape2D_jjjul")
 [node name="MidPos" type="Marker2D" parent="Components2D/OtherStuff"]
 
 [node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("swords", "hand", "arm", "attack_input_component", "energy_component")]
-script = ExtResource("2_0x4jq")
-combo_time = 1.5
-swords = [NodePath("sword_1"), NodePath("sword_2"), NodePath("sword_3")]
-hand = NodePath("hand")
-arm = NodePath("arm")
-attack_input_component = NodePath("../../Components/Inputs/AbilityInputComponent")
-energy_component = NodePath("../../Components/Datas/EnergyComponent")
-attack_interval_time = 0.3
-attack_buffer_time = 0.15
-can_attack_buffer_time = 0.15
-
-[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
-script = ExtResource("58_d7eiw")
-attack_data = NodePath("AttackData")
-attack_scene = ExtResource("59_546gv")
-cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
-
-[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_1"]
-script = ExtResource("59_hfdwx")
-team = 1
-damage = 1.0
-
-[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
-script = ExtResource("58_d7eiw")
-attack_data = NodePath("../sword_1/AttackData")
-attack_scene = ExtResource("59_546gv")
-cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
-
-[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_2"]
-script = ExtResource("59_hfdwx")
-team = 1
-damage = 1.0
-
-[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
-script = ExtResource("58_d7eiw")
-attack_data = NodePath("../sword_1/AttackData")
-attack_scene = ExtResource("59_546gv")
-cooldown = 0.15
-ability = NodePath("../../../Components/StateMachine/ability")
-
-[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_3"]
-script = ExtResource("59_hfdwx")
-team = 1
-damage = 3.0
-
-[node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
-script = ExtResource("60_3qfbr")
-energy_cost = 3.0
-attack_data = NodePath("AttackData")
-attack_scene = ExtResource("62_detxh")
-cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
-
-[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/hand"]
-script = ExtResource("59_hfdwx")
-team = 1
-damage = 2.0
-
-[node name="arm" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
-script = ExtResource("60_3qfbr")
-energy_cost = 9.0
-attack_data = NodePath("AttackData")
-attack_scene = ExtResource("62_detxh")
-cooldown = 3.0
-ability = NodePath("../../../Components/StateMachine/ability")
-
-[node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/arm"]
-script = ExtResource("59_hfdwx")
-team = 1
-damage = 9.0
-
-[node name="Components" type="Node" parent="."]
-
-[node name="Datas" type="Node" parent="Components"]
-
-[node name="MoveData" type="Node" parent="Components/Datas"]
-script = ExtResource("3_7ycnr")
-jump_peak_slow_gravity_threshold = 200.0
-jump_peak_slow_gravity_coef = 0.8
-
-[node name="HealthComponent" type="Node" parent="Components/Datas"]
-script = ExtResource("5_nbbkh")
-max_health = 4.0
-health = 4.0
-
-[node name="EnergyComponent" type="Node" parent="Components/Datas"]
-script = ExtResource("6_1m6jn")
-max_energy = 9.0
-energy = 3.0
-
-[node name="Inputs" type="Node" parent="Components"]
-
-[node name="AbilityInputComponent" type="Node" parent="Components/Inputs"]
-script = ExtResource("4_o1kg2")
-
-[node name="MoveInputComponent" type="Node" parent="Components/Inputs"]
-script = ExtResource("5_bbfuc")
-
-[node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
-script = ExtResource("3_8188k")
-starting_state = NodePath("idle")
-
-[node name="dash" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "fall", "dash")]
-script = ExtResource("4_noi8l")
-idle = NodePath("../idle")
-walk = NodePath("../walk")
-jump = NodePath("../jump")
-fall = NodePath("../fall")
-dash = NodePath(".")
-
-[node name="die" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("ability_input_component")]
-script = ExtResource("5_1w3nl")
-ability_input_component = NodePath("../../Inputs/AbilityInputComponent")
-
-[node name="fall" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "dash")]
-script = ExtResource("6_0uwup")
-idle = NodePath("../idle")
-walk = NodePath("../walk")
-jump = NodePath("../jump")
-dash = NodePath("../dash")
-
-[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die", "attack_input_component", "attack_manager")]
-script = ExtResource("7_86s88")
-idle = NodePath("../idle")
-die = NodePath("../die")
-attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
-attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
-
-[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "jump", "fall", "dash")]
-script = ExtResource("8_eankw")
-walk = NodePath("../walk")
-jump = NodePath("../jump")
-fall = NodePath("../fall")
-dash = NodePath("../dash")
-
-[node name="jump" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("jump", "fall", "dash")]
-script = ExtResource("9_4m1xy")
-jump = NodePath(".")
-fall = NodePath("../fall")
-dash = NodePath("../dash")
-
-[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "jump", "fall", "dash")]
-script = ExtResource("10_03hiq")
-idle = NodePath("../idle")
-jump = NodePath("../jump")
-fall = NodePath("../fall")
-dash = NodePath("../dash")
-
-[node name="ability" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "attack_manager", "state_machine")]
-script = ExtResource("74_6efk3")
-idle = NodePath("../idle")
-walk = NodePath("../walk")
-dash = NodePath("../dash")
-jump = NodePath("../jump")
-attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
-state_machine = NodePath("..")
-
-[connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]
+script = ExtResour

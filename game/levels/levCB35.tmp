@@ -1,0 +1,160 @@
+[gd_scene load_steps=21 format=3 uid="uid://dry5pvwo8v6i3"]
+
+[ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_a4ank"]
+[ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_decge"]
+[ext_resource type="Script" path="res://game/levels/tutorial/tutorial.gd" id="2_1fp5q"]
+[ext_resource type="PackedScene" uid="uid://duxsyfskxdlf3" path="res://game/player/player.tscn" id="2_1qai7"]
+[ext_resource type="Texture2D" uid="uid://byrc0acrtj4te" path="res://ui/art/menu_background.jpeg" id="2_e408d"]
+[ext_resource type="Texture2D" uid="uid://dvu4qvrwgslv3" path="res://addons/controller_icons/assets/key/z.png" id="3_1m3iq"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/Sprite.gd" id="4_kyh46"]
+[ext_resource type="PackedScene" uid="uid://71lp8hkfy5c7" path="res://game/enemies/dummy/dummy.tscn" id="5_bbbes"]
+[ext_resource type="Texture2D" uid="uid://db6nbed6w2fis" path="res://addons/controller_icons/assets/key/s.png" id="5_fmy4b"]
+[ext_resource type="PackedScene" uid="uid://coq8efhc1vjop" path="res://game/altar/altar.tscn" id="5_y7usr"]
+[ext_resource type="Texture2D" uid="uid://dim5mk7g4q043" path="res://addons/controller_icons/assets/key/q.png" id="6_o7cgq"]
+[ext_resource type="Texture2D" uid="uid://dlwamiuq1f5t6" path="res://addons/controller_icons/assets/key/d.png" id="7_45spq"]
+[ext_resource type="Texture2D" uid="uid://dq0fide2iu37s" path="res://addons/controller_icons/assets/key/shift_alt.png" id="8_qxgwn"]
+[ext_resource type="Texture2D" uid="uid://b8vuy7l8npt6w" path="res://addons/controller_icons/assets/mouse/left.png" id="9_j1bkk"]
+[ext_resource type="Texture2D" uid="uid://cy7e67qj2flir" path="res://addons/controller_icons/assets/mouse/right.png" id="10_dod64"]
+[ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="11_hgimj"]
+
+[sub_resource type="Environment" id="Environment_sjouq"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.5
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxcre"]
+size = Vector2(128, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0sw2"]
+size = Vector2(208, 1563)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et5jd"]
+size = Vector2(208, 1584)
+
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_decge")
+player = NodePath("Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sjouq")
+
+[node name="LevelStuff" type="Node" parent="."]
+
+[node name="LevelStuff2D" type="Node2D" parent="."]
+
+[node name="Tutorial" type="Node2D" parent="LevelStuff2D"]
+visible = false
+script = ExtResource("2_1fp5q")
+
+[node name="up" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(474, -544)
+texture = ExtResource("3_1m3iq")
+script = ExtResource("4_kyh46")
+path = "up"
+
+[node name="down" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(478, -455)
+texture = ExtResource("5_fmy4b")
+script = ExtResource("4_kyh46")
+path = "down"
+
+[node name="left" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(392, -457)
+texture = ExtResource("6_o7cgq")
+script = ExtResource("4_kyh46")
+path = "left"
+
+[node name="right" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(568, -457)
+texture = ExtResource("7_45spq")
+script = ExtResource("4_kyh46")
+path = "right"
+
+[node name="dash" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(243, -364)
+texture = ExtResource("8_qxgwn")
+script = ExtResource("4_kyh46")
+path = "dash"
+
+[node name="melee_attack" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(670, -379)
+texture = ExtResource("9_j1bkk")
+script = ExtResource("4_kyh46")
+path = "melee_attack"
+
+[node name="distance_attack" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(746, -381)
+texture = ExtResource("10_dod64")
+script = ExtResource("4_kyh46")
+path = "distance_attack"
+
+[node name="interact" type="Sprite2D" parent="LevelStuff2D/Tutorial"]
+position = Vector2(631, -595)
+texture = ExtResource("11_hgimj")
+script = ExtResource("4_kyh46")
+path = "interact"
+
+[node name="BackGround" type="Node2D" parent="LevelStuff2D"]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/BackGround"]
+z_index = -10
+z_as_relative = false
+position = Vector2(1088.56, -749)
+scale = Vector2(0.676852, 0.676852)
+texture = ExtResource("2_e408d")
+flip_h = true
+
+[node name="Terrain" type="Node2D" parent="LevelStuff2D"]
+
+[node name="Floor" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
+modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
+z_index = -10
+position = Vector2(1108, 19)
+scale = Vector2(22.755, 1.475)
+collision_mask = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor"]
+shape = SubResource("RectangleShape2D_uxcre")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/Terrain/Floor"]
+texture = ExtResource("1_a4ank")
+
+[node name="Floor2" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
+modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
+z_index = -10
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor2"]
+position = Vector2(0, -685.5)
+shape = SubResource("RectangleShape2D_j0sw2")
+
+[node name="Floor3" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
+modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
+z_index = -10
+position = Vector2(1920, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor3"]
+position = Vector2(0, -680)
+shape = SubResource("RectangleShape2D_et5jd")
+
+[node name="Dummy" parent="LevelStuff2D" instance=ExtResource("5_bbbes")]
+position = Vector2(1510, -134)
+
+[node name="Dummy2" parent="LevelStuff2D" instance=ExtResource("5_bbbes")]
+position = Vector2(1668, -129)
+
+[node name="Altar" parent="LevelStuff2D" node_paths=PackedStringArray("spawn_marker") instance=ExtResource("5_y7usr")]
+position = Vector2(1092, -138)
+spawn_marker = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="LevelStuff2D/Altar"]
+position = Vector2(247, -445)
+
+[node name="Player" parent="." instance=ExtResource("2_1qai7")]
+position = Vector2(486, -158)

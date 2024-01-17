@@ -29,18 +29,18 @@ func process_unhandled_input(_event: InputEvent) -> void:
 
 
 
-func launch_attack(_attack_holder: AttackHolder) -> void:
+func launch_attack() -> void:
 	if wants_sword:
 		if not combo_timer > 0:
 			sword_index = 0
 
-		_attack_holder = swords[sword_index]
+		attack_holder = swords[sword_index]
 		sword_index += 1
 		sword_index = sword_index % swords.size()
 		wants_sword = false
 		combo_timer = combo_time
 
-	super(_attack_holder)
+	super()
 
 	#combo_interval_timer = combo_interval_time
 

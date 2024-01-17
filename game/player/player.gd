@@ -24,7 +24,7 @@ enum MovementState{
 @export var bot_pos: Marker2D
 @export var mid_pos: Marker2D
 @export var camera: MyCamera
-@export var components_2d: Node2D
+@export var need_dir: Array[Node2D]
 
 
 var current_movement_state: MovementState
@@ -57,7 +57,8 @@ func _process(delta: float) -> void:
 
 #region Signals Connected
 func _on_move_data_dir_changed(new_dir: float) -> void:
-	components_2d.scale.x = new_dir * abs( components_2d.scale.x )
+	for node: Node2D in need_dir:
+		node.scale.x = new_dir * abs( node.scale.x )
 #endregion
 
 func _on_menu_opened() -> void:

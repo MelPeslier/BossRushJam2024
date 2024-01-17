@@ -11,6 +11,6 @@ func show_possible() -> void:
 
 
 func hide_possible() -> void:
-	if not _is_activated:
+	if _is_activated:
 		modulate = Color.WHITE
 		_is_activated = false

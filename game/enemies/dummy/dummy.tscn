@@ -136,6 +136,7 @@ animation = &"hit_normal"
 script = ExtResource("3_64nrc")
 parent = NodePath("../..")
 health_component = NodePath("../../Components/HealthComponent")
+energy_to_give = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
 position = Vector2(-2.5, 0.5)
