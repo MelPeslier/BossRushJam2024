@@ -46,7 +46,7 @@ func spawn_attack() -> void:
 	if attack_instance.stick_to_parent:
 		add_child(attack_instance)
 	else:
-		get_window().add_child(attack_instance)
+		attack_manager.world_2d.add_child(attack_instance)
 	attack_instance.global_position = global_position
 	if attack_instance.attack_special_effects:
 		state_machine.change_state(ability)

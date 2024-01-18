@@ -80,6 +80,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
 size = Vector2(54, 133)
 
+[sub_resource type="Animation" id="Animation_nwt0g"]
+resource_name = "arm"
+
 [sub_resource type="Animation" id="Animation_vxab7"]
 resource_name = "dash"
 
@@ -88,6 +91,9 @@ resource_name = "die"
 
 [sub_resource type="Animation" id="Animation_dk6ef"]
 resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_f1qdp"]
+resource_name = "hand"
 
 [sub_resource type="Animation" id="Animation_c87bg"]
 resource_name = "hit"
@@ -101,20 +107,14 @@ resource_name = "jump"
 [sub_resource type="Animation" id="Animation_is6y3"]
 resource_name = "sword_1"
 
-[sub_resource type="Animation" id="Animation_3c8e8"]
-resource_name = "walk"
-
-[sub_resource type="Animation" id="Animation_f1qdp"]
-resource_name = "hand"
-
 [sub_resource type="Animation" id="Animation_pmpty"]
 resource_name = "sword_2"
 
 [sub_resource type="Animation" id="Animation_d86ax"]
 resource_name = "sword_3"
 
-[sub_resource type="Animation" id="Animation_nwt0g"]
-resource_name = "arm"
+[sub_resource type="Animation" id="Animation_3c8e8"]
+resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
 _data = {

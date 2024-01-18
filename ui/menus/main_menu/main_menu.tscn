@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_fcyyy"]
-[ext_resource type="Texture2D" uid="uid://byrc0acrtj4te" path="res://ui/art/menu_background.jpeg" id="2_w6bii"]
+[ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="2_w6bii"]
 [ext_resource type="PackedScene" uid="uid://dfx3sw5lhdmun" path="res://ui/menus/Credits/credit_canvas_layer.tscn" id="3_xr1nn"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("credits_canvas_layer", "buttons_container")]
@@ -15,6 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_qn88j")
 credits_canvas_layer = NodePath("CreditCanvasLayer")
 buttons_container = NodePath("VBoxContainer/ButtonsContainer")
+music_intro_path = "res://shared/sound/main_menu/main_menu_intro.wav"
+music_loop_path = "res://shared/sound/main_menu/main_menu_boucle.wav"
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -24,7 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_w6bii")
-expand_mode = 1
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -59,6 +61,7 @@ theme_override_constants/separation = 26
 visible = false
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "CONTINUE"
 script = ExtResource("2_fcyyy")
 ui_pressed = 0
@@ -66,6 +69,7 @@ ui_pressed = 0
 [node name="NewGame" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "NEW_GAME"
 script = ExtResource("2_fcyyy")
 ui_pressed = 0
@@ -73,6 +77,7 @@ ui_pressed = 0
 [node name="Parameters" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "PARAMETERS"
 script = ExtResource("2_fcyyy")
 ui_pressed = -1
@@ -80,12 +85,14 @@ ui_pressed = -1
 [node name="Credits" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "CREDITS"
 script = ExtResource("2_fcyyy")
 
 [node name="Quit" type="Button" parent="VBoxContainer/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_type_variation = &"MyButton"
 text = "QUIT"
 script = ExtResource("2_fcyyy")
 ui_pressed = 3

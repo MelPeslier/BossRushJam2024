@@ -12,6 +12,9 @@ enum MovementState{
 	ABILITY,
 }
 
+@export_category("level")
+@export var world_2d: Node2D
+
 @export_category("Components & Nodes")
 @export var movement_state_machine: StateMachine
 @export var movement_animator: AnimationPlayer
@@ -26,7 +29,6 @@ enum MovementState{
 @export var camera: MyCamera
 @export var need_dir: Array[Node2D]
 
-
 var current_movement_state: MovementState
 
 
@@ -36,7 +38,7 @@ func _ready() -> void:
 	GameEvents.cinematic_started.connect( _on_cinematic_started )
 	GameEvents.menu_opened.connect( _on_menu_opened )
 	GameEvents.menu_closed.connect( _on_menu_closed )
-	attack_manager.init(self, movement_state_machine)
+	attack_manager.init(self, movement_state_machine, world_2d)
 
 
 func _unhandled_input(event: InputEvent) -> void:

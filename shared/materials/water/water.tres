@@ -1,0 +1,41 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dvb8c2d6ff474"]
+
+[ext_resource type="Shader" path="res://shared/materials/water/water.gdshader" id="1_jevd4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fh8x7"]
+frequency = 0.0206
+fractal_gain = 0.26
+fractal_weighted_strength = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kv4y8"]
+seamless = true
+noise = SubResource("FastNoiseLite_fh8x7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u8iys"]
+frequency = 0.0246
+offset = Vector3(0, 141, 0)
+fractal_type = 3
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnrer"]
+seamless = true
+noise = SubResource("FastNoiseLite_u8iys")
+
+[resource]
+shader = ExtResource("1_jevd4")
+shader_parameter/scale = Vector2(22.5078, 5.14062)
+shader_parameter/y_zoom = 1.05946
+shader_parameter/reflect_scale_y = 1.13
+shader_parameter/water_color = Color(0.0352941, 0, 1, 0.0588235)
+shader_parameter/distortion_scale = Vector2(0.03, 0.06)
+shader_parameter/distortion_intensity = 0.04
+shader_parameter/distortion_speed = 0.015
+shader_parameter/distortion_noise = SubResource("NoiseTexture2D_kv4y8")
+shader_parameter/wave_1_speed = -0.01
+shader_parameter/waves_min_intensity = 1.22
+shader_parameter/waves_hdr_value = 3.3
+shader_parameter/waves_smoothness = 0.12
+shader_parameter/wave_1_noise = SubResource("NoiseTexture2D_jnrer")
+shader_parameter/top_wave_amplitude = 0.02
+shader_parameter/top_wave_speed = 0.09
+shader_parameter/top_wave_period = 0.185

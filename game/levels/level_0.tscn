@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dry5pvwo8v6i3"]
+[gd_scene load_steps=22 format=3 uid="uid://dry5pvwo8v6i3"]
 
 [ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="1_a4ank"]
 [ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_decge"]
 [ext_resource type="Script" path="res://game/levels/tutorial/tutorial.gd" id="2_1fp5q"]
 [ext_resource type="PackedScene" uid="uid://duxsyfskxdlf3" path="res://game/player/player.tscn" id="2_1qai7"]
-[ext_resource type="Texture2D" uid="uid://byrc0acrtj4te" path="res://ui/art/menu_background.jpeg" id="2_e408d"]
 [ext_resource type="Texture2D" uid="uid://dvu4qvrwgslv3" path="res://addons/controller_icons/assets/key/z.png" id="3_1m3iq"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/Sprite.gd" id="4_kyh46"]
 [ext_resource type="PackedScene" uid="uid://71lp8hkfy5c7" path="res://game/enemies/dummy/dummy.tscn" id="5_bbbes"]
@@ -16,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b8vuy7l8npt6w" path="res://addons/controller_icons/assets/mouse/left.png" id="9_j1bkk"]
 [ext_resource type="Texture2D" uid="uid://cy7e67qj2flir" path="res://addons/controller_icons/assets/mouse/right.png" id="10_dod64"]
 [ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="11_hgimj"]
+[ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="12_t8ran"]
+[ext_resource type="PackedScene" uid="uid://247skqs7x8en" path="res://shared/materials/water/water.tscn" id="14_h7vui"]
 
 [sub_resource type="Environment" id="Environment_sjouq"]
 background_mode = 3
@@ -34,8 +35,9 @@ size = Vector2(208, 1563)
 size = Vector2(208, 1584)
 
 [node name="MainLevel" type="Node2D" node_paths=PackedStringArray("player")]
+position = Vector2(675, 10)
 script = ExtResource("1_decge")
-player = NodePath("Player")
+player = NodePath("LevelStuff2D/Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sjouq")
@@ -103,17 +105,15 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="Sprite2D" parent="LevelStuff2D/BackGround"]
 z_index = -10
 z_as_relative = false
-position = Vector2(1088.56, -749)
-scale = Vector2(0.676852, 0.676852)
-texture = ExtResource("2_e408d")
-flip_h = true
+position = Vector2(1304, -911)
+texture = ExtResource("12_t8ran")
 
 [node name="Terrain" type="Node2D" parent="LevelStuff2D"]
 
 [node name="Floor" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
 modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
 z_index = -10
-position = Vector2(1108, 19)
+position = Vector2(1266, 13)
 scale = Vector2(22.755, 1.475)
 collision_mask = 0
 metadata/_edit_group_ = true
@@ -136,7 +136,7 @@ shape = SubResource("RectangleShape2D_j0sw2")
 [node name="Floor3" type="StaticBody2D" parent="LevelStuff2D/Terrain"]
 modulate = Color(0.0862745, 0.105882, 0.0862745, 1)
 z_index = -10
-position = Vector2(1920, 0)
+position = Vector2(2559, -28)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelStuff2D/Terrain/Floor3"]
@@ -156,5 +156,12 @@ spawn_marker = NodePath("Marker2D")
 [node name="Marker2D" type="Marker2D" parent="LevelStuff2D/Altar"]
 position = Vector2(247, -445)
 
-[node name="Player" parent="." instance=ExtResource("2_1qai7")]
-position = Vector2(486, -158)
+[node name="Player" parent="LevelStuff2D" node_paths=PackedStringArray("world_2d") instance=ExtResource("2_1qai7")]
+position = Vector2(508, -160)
+world_2d = NodePath("..")
+
+[node name="Waters" type="Node2D" parent="."]
+
+[node name="Water" parent="Waters" instance=ExtResource("14_h7vui")]
+position = Vector2(1455, 280)
+scale = Vector2(50.4375, 5.14062)

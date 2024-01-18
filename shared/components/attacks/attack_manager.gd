@@ -16,10 +16,12 @@ var can_attack_buffer_timer: float: set = _set_can_attack_buffer_timer
 var attack_holder: AttackHolder
 var last_attack: Attack
 var parent: Node2D
+var world_2d: Node2D
 
 
-func init(_parent: Node2D, _state_machine: StateMachine) -> void:
+func init(_parent: Node2D, _state_machine: StateMachine, _world_2d) -> void:
 	parent = _parent
+	world_2d = _world_2d
 	for _attack_holder: AttackHolder in get_children():
 		_attack_holder.init(parent, self, _state_machine, energy_component)
 

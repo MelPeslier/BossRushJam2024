@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 
 func _on_hurtbox_component_hit_received(_kb: float, _dir: Vector2) -> void:
-	components_2d.scale.x = -_dir.x
+	components_2d.scale.x = _dir.x * abs( components_2d.scale.x )
 
 
 func _on_health_component_health_damaged(_damage_amount: float) -> void:
