@@ -19,7 +19,7 @@ group_uniforms waves;
 uniform sampler2D wave_1_noise: repeat_enable;
 uniform float wave_1_speed;
 uniform float waves_min_intensity = 1.22;
-uniform float waves_hdr_value = 5.6;
+uniform float waves_hdr_value = 3.3;
 uniform float waves_smoothness = 0.12;
 
 group_uniforms top_wave;

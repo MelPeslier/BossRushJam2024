@@ -23,17 +23,17 @@ noise = SubResource("FastNoiseLite_u8iys")
 
 [resource]
 shader = ExtResource("1_jevd4")
-shader_parameter/scale = Vector2(22.5078, 5.14062)
-shader_parameter/y_zoom = 1.05946
+shader_parameter/scale = Vector2(50.4375, 5.14062)
+shader_parameter/y_zoom = 1.0
 shader_parameter/reflect_scale_y = 1.13
 shader_parameter/water_color = Color(0.0352941, 0, 1, 0.0588235)
 shader_parameter/distortion_scale = Vector2(0.03, 0.06)
 shader_parameter/distortion_intensity = 0.04
-shader_parameter/distortion_speed = 0.015
+shader_parameter/distortion_speed = 0.012
 shader_parameter/distortion_noise = SubResource("NoiseTexture2D_kv4y8")
-shader_parameter/wave_1_speed = -0.01
+shader_parameter/wave_1_speed = -0.005
 shader_parameter/waves_min_intensity = 1.22
-shader_parameter/waves_hdr_value = 3.3
+shader_parameter/waves_hdr_value = 3.0
 shader_parameter/waves_smoothness = 0.12
 shader_parameter/wave_1_noise = SubResource("NoiseTexture2D_jnrer")
 shader_parameter/top_wave_amplitude = 0.02
