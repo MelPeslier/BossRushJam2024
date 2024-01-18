@@ -38,6 +38,10 @@ size = Vector2(208, 1584)
 position = Vector2(675, 10)
 script = ExtResource("1_decge")
 player = NodePath("LevelStuff2D/Player")
+music_intro_path = "res://shared/sound/boss_1/boss_1_intro.wav"
+music_loop_1_path = "res://shared/sound/boss_1/boss_1_phase_1.wav"
+music_loop_2_path = "res://shared/sound/boss_1/boss_1_phase_2.wav"
+music_loop_3_path = "res://shared/sound/boss_1/boss_1_phase_3.wav"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sjouq")
@@ -163,5 +167,5 @@ world_2d = NodePath("..")
 [node name="Waters" type="Node2D" parent="."]
 
 [node name="Water" parent="Waters" instance=ExtResource("14_h7vui")]
-position = Vector2(1455, 280)
-scale = Vector2(50.4375, 5.14062)
+position = Vector2(1327.5, 713)
+scale = Vector2(22.0234, 11.9062)

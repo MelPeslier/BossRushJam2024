@@ -7,8 +7,8 @@ extends Control
 
 
 func _ready() -> void:
-	Music.change_sound(music_intro_path, Music.CrossFade.NONE)
-	Music.finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
+	Music.change_sounds([music_intro_path], Music.CrossFade.NONE)
+	Music.audio_stream_players[0].finished.connect( _on_intro_finished )
 	for button: MyButton in buttons_container.get_children():
 		if button.visible:
 			button.grab_focus()
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_intro_finished() -> void:
-	Music.change_sound(music_loop_path, Music.CrossFade.NONE)
+	Music.change_sounds([music_loop_path], Music.CrossFade.NONE)
 
 
 func _on_continue_button_down() -> void:
