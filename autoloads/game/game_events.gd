@@ -6,6 +6,8 @@ signal cinematic_ended
 signal menu_opened
 signal menu_closed
 
+signal zoom_changed
+
 
 signal screen_shake(_strength: float, _fade: float)
 

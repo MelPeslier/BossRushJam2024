@@ -2,14 +2,29 @@
 
 [ext_resource type="Script" path="res://shared/components/attacks/attack.gd" id="1_3jud2"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="2_3isi8"]
-[ext_resource type="Texture2D" uid="uid://c7xu6h1twgair" path="res://game/player/art/tmp/Melee (1).png" id="2_yakv3"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_special_effects.gd" id="2_ybpd5"]
-[ext_resource type="Texture2D" uid="uid://dtbgegxo2i2bw" path="res://game/player/art/tmp/Melee (2).png" id="3_4oo45"]
-[ext_resource type="Texture2D" uid="uid://btx2vcjulcxge" path="res://game/player/art/tmp/Melee (3).png" id="4_ifu57"]
-[ext_resource type="Texture2D" uid="uid://c82qutr304x6n" path="res://game/player/art/tmp/Melee (4).png" id="5_rlqlk"]
-[ext_resource type="Texture2D" uid="uid://bosmnm1w3yok" path="res://game/player/art/tmp/Melee (5).png" id="6_j213g"]
-[ext_resource type="Texture2D" uid="uid://bin3ai1non6l1" path="res://game/player/art/tmp/Melee (6).png" id="7_pxbo7"]
-[ext_resource type="Texture2D" uid="uid://bamyjo3itlulb" path="res://game/player/art/tmp/Melee (7).png" id="8_nv3gu"]
+[ext_resource type="Texture2D" uid="uid://sim1x1gkmd3x" path="res://game/player/art/attack simple1/Attack_Simple1-1.png" id="3_odp4y"]
+[ext_resource type="Texture2D" uid="uid://2ewqh2863nro" path="res://game/player/art/attack simple1/Attack_Simple1-2.png" id="4_p4mvk"]
+[ext_resource type="Texture2D" uid="uid://bdds08lqge1pm" path="res://game/player/art/attack simple1/Attack_Simple1-3.png" id="5_gtdae"]
+[ext_resource type="Texture2D" uid="uid://v7cm72u1o3di" path="res://game/player/art/attack simple1/Attack_Simple1-4.png" id="6_fv0w4"]
+[ext_resource type="Texture2D" uid="uid://doeu4kvfi4fv1" path="res://game/player/art/attack simple1/Attack_Simple1-5.png" id="7_qd1mj"]
+[ext_resource type="Texture2D" uid="uid://cscrn0641v1vf" path="res://game/player/art/attack simple1/Attack_Simple1-7.png" id="8_12qhe"]
+[ext_resource type="Texture2D" uid="uid://y0h3ly0lq67a" path="res://game/player/art/attack simple1/Attack_Simple1-9.png" id="9_kn1lp"]
+
+[sub_resource type="Animation" id="Animation_p2tbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7lyuw"]
 resource_name = "activate"
@@ -47,21 +62,6 @@ tracks/1/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_p2tbk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_artof"]
 _data = {
 "RESET": SubResource("Animation_p2tbk"),
@@ -72,25 +72,25 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_yakv3")
+"texture": ExtResource("3_odp4y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_4oo45")
+"texture": ExtResource("4_p4mvk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ifu57")
+"texture": ExtResource("5_gtdae")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rlqlk")
+"texture": ExtResource("6_fv0w4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_j213g")
+"texture": ExtResource("7_qd1mj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_pxbo7")
+"texture": ExtResource("8_12qhe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_nv3gu")
+"texture": ExtResource("9_kn1lp")
 }],
 "loop": false,
 "name": &"default",
@@ -98,7 +98,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_406hl"]
-size = Vector2(53.5, 102)
+size = Vector2(178.75, 293.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oda67"]
 
@@ -120,14 +120,14 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_3m0lp")
+frame = 6
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_3isi8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(46.25, 18)
+position = Vector2(177, 37.75)
 shape = SubResource("RectangleShape2D_406hl")
 disabled = true
 

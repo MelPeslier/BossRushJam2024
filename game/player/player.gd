@@ -41,6 +41,7 @@ func _ready() -> void:
 	attack_manager.init(self, movement_state_machine, world_2d)
 
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	movement_state_machine.process_unhandled_input(event)
 	attack_manager.process_unhandled_input(event)

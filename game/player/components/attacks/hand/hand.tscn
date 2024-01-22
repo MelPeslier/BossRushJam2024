@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://x1u1mr7yevef"]
+[gd_scene load_steps=9 format=3 uid="uid://x1u1mr7yevef"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/bullet_attack.gd" id="1_cn12c"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_special_effects.gd" id="2_ql74r"]
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="2_tie1d"]
-[ext_resource type="Texture2D" uid="uid://7dtfudapt58w" path="res://game/player/art/tmp/Shoot (1).png" id="3_5vwet"]
-[ext_resource type="Texture2D" uid="uid://bw40mjp1fvvqx" path="res://game/player/art/tmp/Shoot (2).png" id="4_sa40j"]
-[ext_resource type="Texture2D" uid="uid://bxwide1ovkb66" path="res://game/player/art/tmp/Shoot (3).png" id="5_2i1fx"]
+[ext_resource type="Texture2D" uid="uid://d37ed555tkayn" path="res://game/player/art/attack combo epee lazer/Attack_Combo-11.png" id="4_b8bc1"]
 
 [sub_resource type="Animation" id="Animation_som5a"]
 length = 0.001
@@ -40,13 +38,7 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_5vwet")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_sa40j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_2i1fx")
+"texture": ExtResource("4_b8bc1")
 }],
 "loop": false,
 "name": &"default",
@@ -70,8 +62,7 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_q05uv")
 
 [node name="BulletPosition" type="Marker2D" parent="."]
-position = Vector2(66, 1)
+position = Vector2(178, -28)

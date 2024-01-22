@@ -22,6 +22,7 @@ func process_unhandled_input(_event: InputEvent) -> void:
 		attack_holder = swords[0]
 		wants_sword = true
 	if attack_input_component.wants_distance_attack():
+		wants_sword = false
 		if arm.can_attack:
 			attack_holder = arm
 		elif hand.can_attack:
