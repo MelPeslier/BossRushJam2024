@@ -18,6 +18,9 @@ func _ready() -> void:
 	Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
 	GameState.in_game = true
+	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoint"):
+		if checkpoint.id == GameState.saved_game.level_check_point_id:
+			player.global_position = checkpoint.global_position - Vector2(0, player.my_collision_shape.shape.get_rect().size.y)
 	return
 	player.camera.limit_left = limits[0].x
 	player.camera.limit_right = limits[0].y
@@ -28,7 +31,7 @@ func _ready() -> void:
 func _on_intro_finished() -> void:
 	Music.change_sounds(music_loop_paths, Music.CrossFade.NONE)
 
-# TODO DELTE : ONLY for testing
+# TODO DELETE : ONLY for testing
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("up"):
 		_on_loop_finished()

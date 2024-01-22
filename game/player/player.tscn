@@ -68,8 +68,9 @@
 [ext_resource type="PackedScene" uid="uid://x1u1mr7yevef" path="res://game/player/components/attacks/hand/hand.tscn" id="62_detxh"]
 [ext_resource type="Script" path="res://game/player/components/states/ability.gd" id="74_6efk3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trxky"]
-size = Vector2(136, 243)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dx5nc"]
+radius = 44.0
+height = 261.0
 
 [sub_resource type="Animation" id="Animation_nwt0g"]
 resource_name = "arm"
@@ -363,8 +364,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape")]
 collision_layer = 8
+floor_constant_speed = true
+floor_max_angle = 0.802851
+floor_snap_length = 20.0
 safe_margin = 0.2
 script = ExtResource("1_msn3r")
 movement_state_machine = NodePath("Components/StateMachine")
@@ -379,6 +383,7 @@ bot_pos = NodePath("Components2D/OtherStuff/BotPos")
 mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
 need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager")]
+my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionShape2D")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 energy_component = NodePath("../Components/Datas/EnergyComponent")
@@ -386,6 +391,7 @@ health_component = NodePath("../Components/Datas/HealthComponent")
 energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
 
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.615, 0.615)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_bottom_margin = 0.0
@@ -395,7 +401,7 @@ script = ExtResource("5_2i0cb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 95.5)
-shape = SubResource("RectangleShape2D_trxky")
+shape = SubResource("CapsuleShape2D_dx5nc")
 
 [node name="MovementAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -502,8 +508,13 @@ damage = 9.0
 
 [node name="MoveData" type="Node" parent="Components/Datas"]
 script = ExtResource("3_7ycnr")
+test = true
+walk_distance = 1000.0
+jump_height = 810.0
+max_fall_speed = 1800.0
 jump_peak_slow_gravity_threshold = 200.0
 jump_peak_slow_gravity_coef = 0.8
+dash_distance = 3000.0
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")

@@ -28,6 +28,7 @@ enum MovementState{
 @export var mid_pos: Marker2D
 @export var camera: MyCamera
 @export var need_dir: Array[Node2D]
+@export var my_collision_shape: CollisionShape2D
 
 var current_movement_state: MovementState
 

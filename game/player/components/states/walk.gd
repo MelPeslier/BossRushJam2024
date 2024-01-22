@@ -12,6 +12,7 @@ func process_physics(delta: float) -> State:
 	if not move_data.dir or not move_data.can_move:
 		return idle
 	do_walk_accelerate(delta)
+	parent.apply_floor_snap()
 	parent.move_and_slide()
 
 	if not parent.is_on_floor():

@@ -9,6 +9,10 @@ extends Control
 func _ready() -> void:
 	Music.change_sounds([music_intro_path], Music.CrossFade.NONE)
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished )
+
+	if GameState.saved_game.level == 0 and GameState.saved_game.level_check_point_id == 0:
+		buttons_container.get_child(0).visible = false
+
 	for button: MyButton in buttons_container.get_children():
 		if button.visible:
 			button.grab_focus()
@@ -20,7 +24,7 @@ func _on_intro_finished() -> void:
 
 
 func _on_continue_button_down() -> void:
-	pass
+	SceneTransition.change_scene( GameState.saved_game.level_path )
 
 
 func _on_new_game_button_down() -> void:

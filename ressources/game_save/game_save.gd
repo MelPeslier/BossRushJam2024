@@ -4,6 +4,7 @@ const SAVE_PATH: String = "user://saved_game.tres"
 
 @export var level: int = 0
 @export var level_path: String = "res://game/levels/level_0.tscn"
+@export var level_check_point_id: int = 0
 @export var show_commands := true
 
 

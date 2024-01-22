@@ -69,7 +69,7 @@ func fade_sounds(_fade: Fade, list_index: int = 0, _fade_time := Vector2(0.3, 0.
 				if i >= list_index and audio_stream_players[i].volume_db > -1:
 					var tween: Tween = create_tween()
 					_fade_out(tween, _fade_time.y, audio_stream_players[i])
-	-80.0
+
 
 # ******************* #
 #  PRIVATE functions  #

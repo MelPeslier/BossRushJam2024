@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_gnf2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4qp5"]
-size = Vector2(21, 23)
+size = Vector2(25.3333, 44.3333)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omojr"]
 atlas = ExtResource("2_345hs")
@@ -101,7 +101,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ccfx"]
-size = Vector2(21, 23)
+size = Vector2(25.5, 44.3333)
 
 [node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("components_2d", "animated_sprite")]
 z_index = -1
@@ -112,7 +112,7 @@ components_2d = NodePath("Components2D")
 animated_sprite = NodePath("Components2D/AnimatedSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 0.5)
+position = Vector2(-0.333333, 1.66667)
 shape = SubResource("RectangleShape2D_k4qp5")
 
 [node name="Components" type="Node" parent="."]
@@ -129,6 +129,7 @@ max_fall_speed = 1800.0
 [node name="Components2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_kj0rl")
 animation = &"hit_normal"
 
@@ -139,7 +140,7 @@ health_component = NodePath("../../Components/HealthComponent")
 energy_to_give = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
-position = Vector2(-2.5, 0.5)
+position = Vector2(-0.25, 1.66667)
 shape = SubResource("RectangleShape2D_8ccfx")
 
 [connection signal="health_damaged" from="Components/HealthComponent" to="." method="_on_health_component_health_damaged"]

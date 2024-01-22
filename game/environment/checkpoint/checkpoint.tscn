@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bp3xjdy6h1ux7"]
+
+[ext_resource type="Script" path="res://game/environment/checkpoint/checkpoint.gd" id="1_8epsj"]
+[ext_resource type="Texture2D" uid="uid://bs4i37q44qe1x" path="res://game/environment/checkpoint/art/object-19.png" id="2_okwgd"]
+[ext_resource type="Texture2D" uid="uid://b7em8db40wx7f" path="res://game/environment/checkpoint/art/object-20.png" id="3_1jdn3"]
+[ext_resource type="Texture2D" uid="uid://bbhmsxg65vps2" path="res://game/environment/checkpoint/art/object-21.png" id="4_guvtm"]
+[ext_resource type="Texture2D" uid="uid://cu4gt4m0x7ho5" path="res://shared/art/particles/circle_05.png" id="5_gig7b"]
+[ext_resource type="Script" path="res://shared/components/interactables/interact/interactable_component.gd" id="6_by1wk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_to081"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_okwgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1jdn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_guvtm")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_w1515"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0745763, 1), 0.0, 0.0, 0, 0, Vector2(0.881356, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0930233), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_x73n4"]
+curve = SubResource("Curve_w1515")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_scxqv"]
+resource_local_to_scene = true
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 250, 0)
+emission_shape = 3
+emission_box_extents = Vector3(200, 40, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 8.0
+initial_velocity_min = 200.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.14
+scale_curve = SubResource("CurveTexture_x73n4")
+color = Color(0.729412, 0.988235, 1, 1)
+turbulence_noise_strength = 15.01
+turbulence_noise_scale = 0.617
+turbulence_noise_speed = Vector3(0.26, 1.74, 0.475)
+turbulence_noise_speed_random = 0.62
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.072
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8m8p"]
+size = Vector2(532, 1577.31)
+
+[node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("collision_shape", "gpu_particles", "animated_sprite") groups=["checkpoint"]]
+script = ExtResource("1_8epsj")
+collision_shape = NodePath("InteractableComponent/CollisionShape2D")
+gpu_particles = NodePath("GPUParticles2D")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -128)
+sprite_frames = SubResource("SpriteFrames_to081")
+animation = &"open"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, -128)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_scxqv")
+texture = ExtResource("5_gig7b")
+lifetime = 4.0
+
+[node name="InteractableComponent" type="Area2D" parent="."]
+position = Vector2(0, -128)
+script = ExtResource("6_by1wk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+position = Vector2(0, -526.655)
+shape = SubResource("RectangleShape2D_r8m8p")
+
+[connection signal="focused" from="InteractableComponent" to="." method="_on_interactable_component_focused"]

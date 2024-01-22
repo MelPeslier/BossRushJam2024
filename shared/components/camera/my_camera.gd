@@ -10,6 +10,7 @@ var rng := RandomNumberGenerator.new()
 func _ready() -> void:
 	set_process(false)
 	GameEvents.screen_shake.connect(_on_screen_shake)
+	GameEvents.zoom_changed.emit()
 
 
 
