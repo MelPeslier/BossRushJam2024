@@ -27,8 +27,8 @@ const cycles : float = 3.0
 
 var cycle_time: float = 1
 var start_time: float = 0
-var coming_coef: float = 0.55
-var damaging_coef: float = 0.85
+var coming_coef: float = 0.5
+var damaging_coef: float = 0.7
 
 var cycle_timer: float = 0
 var start_timer: float = 0
@@ -36,7 +36,9 @@ var etat := Etat.DOWN
 
 
 func _ready() -> void:
-	cycle_time = Player.move_speed / 512.0 * damaging_coef
+	# 512.0 = sprite size
+	cycle_time = Player.move_speed * damaging_coef * 1.1 / 512.0
+
 	start_time = cycle_time * remap(cycle, 0, cycles, 0, 1)
 	#print(name, " : ", start_time)
 

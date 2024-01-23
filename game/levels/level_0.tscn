@@ -43,10 +43,9 @@ environment = SubResource("Environment_sjouq")
 
 [node name="LevelStuff2D" type="Node2D" parent="."]
 
-[node name="Player" parent="LevelStuff2D" node_paths=PackedStringArray("world_2d") instance=ExtResource("2_1qai7")]
+[node name="Player" parent="LevelStuff2D" instance=ExtResource("2_1qai7")]
 z_index = 1
 position = Vector2(5598, -2016)
-world_2d = NodePath("..")
 
 [node name="Part_1" type="Node2D" parent="LevelStuff2D"]
 
@@ -180,5 +179,5 @@ position = Vector2(4754, -2006)
 [node name="Waters" type="Node2D" parent="."]
 
 [node name="Water" parent="Waters" instance=ExtResource("14_h7vui")]
-position = Vector2(9648.5, 115.001)
+position = Vector2(9682, -86)
 scale = Vector2(72.2578, 8.8281)
