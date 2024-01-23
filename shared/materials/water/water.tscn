@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dbhwud3mv06q8" path="res://icon.svg" id="2_rviq2"]
 
 [node name="Water" type="Sprite2D"]
+z_index = 100
 material = ExtResource("1_o1as4")
 texture = ExtResource("2_rviq2")
 script = ExtResource("2_jxjpn")
