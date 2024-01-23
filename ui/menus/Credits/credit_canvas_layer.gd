@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func process_unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("back"):
-		hide_content()
+		_on_back_button_down()
 
 
 func show_content() -> void:

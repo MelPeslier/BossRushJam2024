@@ -25,6 +25,13 @@ func play_ui(_ui: SoundList.Ui) -> void:
 	if not _audio_stream_player: return
 	_play(_audio_stream_player)
 
+func play_chained(_ui: SoundList.Ui) -> void:
+	if _ui == SoundList.Ui.NONE:
+		return
+	var _audio_stream_player: AudioStreamPlayer = ui_sounds[_ui]
+	if not _audio_stream_player or _audio_stream_player.playing: return
+	_play(_audio_stream_player)
+
 #
 #func play_other(_audio_stream: AudioStream, _bus: String = other_bus) -> void:
 	#_play(asp_other, _audio_stream, _bus)

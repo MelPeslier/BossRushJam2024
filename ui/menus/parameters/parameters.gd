@@ -135,6 +135,7 @@ func pause_game() -> void:
 	if GameState.in_game:
 		back.text = "RESUME"
 		get_tree().paused = true
+		Sfx.play_ui(SoundList.Ui.MENU_OPEN)
 		back_to_menu.visible = true
 		abandon.visible = true
 	else:
@@ -150,6 +151,7 @@ func resume_game() -> void:
 	visible = false
 	if GameState.in_game:
 		get_tree().paused = false
+		Sfx.play_ui(SoundList.Ui.MENU_CLOSED)
 #endregion
 
 

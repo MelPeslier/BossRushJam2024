@@ -55,8 +55,10 @@ anchor_bottom = 0.917593
 offset_top = -60.0
 offset_right = 200.0
 grow_vertical = 0
+theme_type_variation = &"MyButton"
 text = "BACK"
 script = ExtResource("2_54qj8")
+ui_pressed = 3
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="Control/Back" to="." method="_on_back_button_down"]

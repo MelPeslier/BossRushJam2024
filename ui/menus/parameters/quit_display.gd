@@ -41,6 +41,7 @@ func show_content(_type : Type) -> void:
 
 
 func hide_content() -> void:
+	Sfx.play_ui(SoundList.Ui.CANCEL)
 	visible = false
 	Parameters.ui_elements.pop_back()
 	Parameters.previous_button.grab_focus()
