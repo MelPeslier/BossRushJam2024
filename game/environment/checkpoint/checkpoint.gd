@@ -30,6 +30,7 @@ func _ready() -> void:
 
 func _activate() -> void:
 	collision_shape.disabled = true
+	gpu_particles.amount_ratio = 1.0
 	gpu_particles.emitting = true
 	GameState.saved_game.level_check_point_id = id
 	GameState.save_game()
@@ -43,6 +44,7 @@ func _activate() -> void:
 
 func _deactivate() -> void:
 	gpu_particles.emitting = false
+	gpu_particles.amount_ratio = 0.0
 	collision_shape.disabled = true
 	animated_sprite.play_backwards("open")
 

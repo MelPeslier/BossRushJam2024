@@ -29,20 +29,6 @@ func process_physics(delta: float) -> State:
 	if animator.is_playing():
 		return null
 
-	if is_dead:
-		return die
-
 	return idle
 
-# Listening HurtboxComponent
-func _on_hit_received(kb: Vector2) -> void:
-	player.movement_state_machine.change_state(self)
-	if attack_manager.last_attack and is_instance_valid( attack_manager.last_attack ):
-		attack_manager.last_attack.interupt()
 
-	parent.velocity = kb
-
-
-func _on_health_component_health_changed(_health: float, _max_health: float) -> void:
-	if _health == 0:
-		is_dead = true

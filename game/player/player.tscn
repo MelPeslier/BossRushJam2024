@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=87 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://bh8p4p2dea61p" path="res://game/player/art/attack combo epee lazer/Attack_Combo-9.png" id="44_gmvkp"]
 [ext_resource type="Texture2D" uid="uid://bhjgq1uj60om" path="res://game/player/art/attack combo epee lazer/Attack_Combo-10.png" id="45_0dysp"]
 [ext_resource type="Texture2D" uid="uid://d37ed555tkayn" path="res://game/player/art/attack combo epee lazer/Attack_Combo-11.png" id="46_f6g4d"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="47_e78ti"]
 [ext_resource type="Texture2D" uid="uid://citvmp7ocfylu" path="res://game/player/art/Run/Run+epe_Ok_-1.png" id="47_kvhx2"]
 [ext_resource type="Texture2D" uid="uid://bo8m6i2ojaa0b" path="res://game/player/art/Run/Run+epe_Ok_-2.png" id="48_f8kmk"]
 [ext_resource type="Texture2D" uid="uid://br48djixupfdp" path="res://game/player/art/Run/Run+epe_Ok_-3.png" id="49_wiuim"]
@@ -361,11 +362,16 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5xqr"]
+radius = 44.0
+height = 261.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape")]
 collision_layer = 8
+collision_mask = 17
 floor_constant_speed = true
 floor_max_angle = 0.802851
 floor_snap_length = 20.0
@@ -410,10 +416,21 @@ libraries = {
 
 [node name="Components2D" type="Node2D" parent="."]
 
+[node name="Sprite2D" type="Sprite2D" parent="Components2D"]
+
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
 animation = &"idle"
+
+[node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "health_component")]
+position = Vector2(-1, 95.5)
+script = ExtResource("47_e78ti")
+parent = NodePath("../..")
+health_component = NodePath("../../Components/Datas/HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_v5xqr")
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
 script = ExtResource("2_q8f32")
@@ -509,12 +526,6 @@ damage = 9.0
 [node name="MoveData" type="Node" parent="Components/Datas"]
 script = ExtResource("3_7ycnr")
 test = true
-walk_distance = 1000.0
-jump_height = 810.0
-max_fall_speed = 1800.0
-jump_peak_slow_gravity_threshold = 200.0
-jump_peak_slow_gravity_coef = 0.8
-dash_distance = 3000.0
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")
@@ -594,4 +605,5 @@ attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
 state_machine = NodePath("..")
 
 [connection signal="item_rect_changed" from="Camera" to="Camera" method="_on_item_rect_changed"]
+[connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]

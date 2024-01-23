@@ -7,7 +7,7 @@ signal dir_changed(new_dir: float)
 @export var test: bool: set =  _set_test
 
 @export_category("walk")
-@export_range(0, 2000, 1) var walk_distance: float = 400
+@export_range(0, 2000, 1) var walk_distance: float = 1000
 @export_range(0, 3) var walk_accel_time: float = 0.125
 @export_range(0, 3) var walk_decel_time: float = 0.2
 
@@ -15,13 +15,13 @@ signal dir_changed(new_dir: float)
 @export_range(0.05, 100) var air_decel_time: float = 3
 
 @export_category("jump")
-@export_range(0, 5000, 1) var jump_height: float = 270
+@export_range(0, 5000, 1) var jump_height: float = 810
 @export_range(0, 3) var jump_time_to_peak: float = 0.6
 @export_range(0, 3) var jump_time_to_descent: float = 0.36
-@export_range(0, 5000, 1) var max_fall_speed: float = 1200
+@export_range(0, 5000, 1) var max_fall_speed: float = 1800
 @export_range(0, 1) var min_jump_coef: float = 0.35
-@export var jump_peak_slow_gravity_threshold: float = 50
-@export_range(0.2, 1) var jump_peak_slow_gravity_coef: float = 0.9
+@export var jump_peak_slow_gravity_threshold: float = 200
+@export_range(0.2, 1) var jump_peak_slow_gravity_coef: float = 0.8
 
 @export var jumps_number: int = 2
 @export var next_jumps_coef: float = 0.25
@@ -29,7 +29,7 @@ signal dir_changed(new_dir: float)
 @export var jump_coyote_time: float = 0.1
 
 @export_category("dash")
-@export_range(0, 5000, 1) var dash_distance: float = 1024
+@export_range(0, 5000, 1) var dash_distance: float = 3000
 @export_range(0.05, 1) var dash_time: float = 0.25
 
 @export var dashes_number: int = 1

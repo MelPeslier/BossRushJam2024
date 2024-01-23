@@ -32,8 +32,10 @@ enum MovementState{
 
 var current_movement_state: MovementState
 
+static var move_speed: float = -1
 
 func _ready() -> void:
+	move_speed = move_data.walk_distance
 	movement_state_machine.init(self, movement_animator, animated_sprite, move_input_component, move_data)
 	GameEvents.cinematic_ended.connect( _on_cinematic_ended )
 	GameEvents.cinematic_started.connect( _on_cinematic_started )
@@ -85,3 +87,13 @@ func _on_cinematic_ended() -> void:
 	set_process(true)
 
 
+
+
+func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2) -> void:
+	if attack_manager.last_attack and is_instance_valid( attack_manager.last_attack ):
+		attack_manager.last_attack.interupt()
+
+
+	#player.movement_state_machine.change_state(self)
+	health_component.damage(_attack_data.damage)
+	velocity = _attack_data.knock_back * _dir

@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciclcg332ibw7"]
+
+[ext_resource type="Script" path="res://game/environment/spike/spike.gd" id="1_aiy58"]
+[ext_resource type="Texture2D" uid="uid://c3o6mxnyvwahu" path="res://game/environment/spike/art/object-07.png" id="1_kihi4"]
+[ext_resource type="PackedScene" uid="uid://2l0xb07r5lgi" path="res://game/environment/spike/spike_hit_particles.tscn" id="2_3wswp"]
+[ext_resource type="Texture2D" uid="uid://ca3n74trv1wor" path="res://game/environment/spike/art/object-08.png" id="2_7vuoo"]
+[ext_resource type="Texture2D" uid="uid://cshdr1726vyq6" path="res://game/environment/spike/art/object-09.png" id="3_r3kaa"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="5_eov0l"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="6_xrq3q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6h3f"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r3kaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7vuoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_kihi4")
+}],
+"loop": false,
+"name": &"to_down",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7vuoo")
+}],
+"loop": false,
+"name": &"to_midle",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r3kaa")
+}],
+"loop": false,
+"name": &"to_up",
+"speed": 16.0
+}]
+
+[node name="Spike" type="StaticBody2D" node_paths=PackedStringArray("hitbox_component", "animated_sprite")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_aiy58")
+hitbox_component = NodePath("HitboxComponent")
+animated_sprite = NodePath("AnimatedSprite2D")
+hit_particles_scene = ExtResource("2_3wswp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v6h3f")
+animation = &"to_down"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-246, 0, -155, 55, 162, 55, 246, 1)
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("parent", "attack_data")]
+script = ExtResource("5_eov0l")
+parent = NodePath("..")
+attack_data = NodePath("../AttackData")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
+polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HitboxComponent"]
+position = Vector2(99, 0)
+polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="HitboxComponent"]
+position = Vector2(196, 0)
+polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="HitboxComponent"]
+position = Vector2(294, 0)
+polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="HitboxComponent"]
+position = Vector2(392, 0)
+polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+
+[node name="AttackData" type="Node" parent="."]
+script = ExtResource("6_xrq3q")
+team = 2
+damage = 1.0
+knock_back = 4000.0
+
+[connection signal="hit_gived_at" from="HitboxComponent" to="." method="_on_hitbox_component_hit_gived_at"]

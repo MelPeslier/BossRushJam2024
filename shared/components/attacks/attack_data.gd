@@ -3,7 +3,8 @@ extends Node
 
 enum Team {
 	ENEMY,
-	PLAYER
+	PLAYER,
+	SPIKE,
 }
 
 #enum AttackType {
