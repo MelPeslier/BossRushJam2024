@@ -1,23 +1,11 @@
 extends Node
 
 
-@export_group("Step", "step")
-@export var step_bus_name : String = "Sfx"
-@export var step_dirt: AudioStream
-@export var step_grass: AudioStream
-@export var step_stone: AudioStream
-@export var step_sand: AudioStream
-@export var step_snow: AudioStream
-
-@onready var asp := AudioStreamPlayer2D.new() as AudioStreamPlayer2D
+@export var metal_sounds: Array[AudioStreamPlayer2D]
 
 
-func _play(_audio_stream: AudioStream, _parent: Variant, _sound_data := SoundData.new(), _bus_name: String = "Master") -> void:
-	var _asp := asp.duplicate() as AudioStreamPlayer2D
-	_asp.stream = _audio_stream
-	_asp.attenuation = _sound_data.attenuation
-	_asp.max_distance = _sound_data.max_distance
-	_asp.bus = _bus_name
+func _play(_audio_stream_player: AudioStreamPlayer2D, _parent: Variant) -> void:
+	var _asp := _audio_stream_player.duplicate() as AudioStreamPlayer2D
 	_asp.finished.connect(_on_play_finished.bind(_asp))
 
 	if _parent is Vector2:
@@ -27,6 +15,7 @@ func _play(_audio_stream: AudioStream, _parent: Variant, _sound_data := SoundDat
 		print("type_vector")
 	elif _parent is Node2D:
 		_parent.add_child(_asp)
+		_asp.global_position = _parent.global_position
 		print("node2D")
 
 	_asp.play()
@@ -38,12 +27,8 @@ func _on_play_finished(_asp: AudioStreamPlayer2D) -> void:
 
 #region Step
 
-func play_step(_audio_stream: AudioStream, _parent: Variant, _sound_data := SoundData.new(), _bus_name: String = step_bus_name) -> void:
-	_play(_audio_stream, _parent, _sound_data, _bus_name)
-
-#
-#func play_other(_audio_stream: AudioStream, _bus: String = other_bus) -> void:
-	#_play(asp_other, _audio_stream, _bus)
-
-#endregion
+func play_metal(_metal: SoundList.Metal, _parent: Variant) -> void:
+	var _audio_stream_player: AudioStreamPlayer2D = metal_sounds[_metal]
+	if not _audio_stream_player: return
+	_play(_audio_stream_player, _parent)
 
