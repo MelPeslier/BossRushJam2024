@@ -124,7 +124,6 @@ health = 1000.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("3_gnf2v")
-max_fall_speed = 1800.0
 
 [node name="Components2D" type="Node2D" parent="."]
 

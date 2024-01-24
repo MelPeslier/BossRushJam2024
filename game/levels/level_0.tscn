@@ -172,6 +172,7 @@ cycle = 2.0
 
 [node name="Dummy" parent="LevelStuff2D/Part_1" instance=ExtResource("5_bbbes")]
 position = Vector2(4294, -1999)
+metadata/_edit_group_ = true
 
 [node name="Dummy2" parent="LevelStuff2D/Part_1" instance=ExtResource("5_bbbes")]
 position = Vector2(4754, -2006)

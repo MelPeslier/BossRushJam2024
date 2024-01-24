@@ -8,8 +8,7 @@ extends CharacterBody2D
 @export_range(1, 10) var damage_threshold: float
 
 
-func _on_hurtbox_component_hit_received(_kb: float, _dir: Vector2) -> void:
-	components_2d.scale.x = _dir.x * abs( components_2d.scale.x )
+
 
 
 func _on_health_component_health_damaged(_damage_amount: float) -> void:
@@ -19,3 +18,7 @@ func _on_health_component_health_damaged(_damage_amount: float) -> void:
 		animated_sprite.play("hit_low")
 
 
+
+
+func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2) -> void:
+	components_2d.scale.x = _dir.x * abs( components_2d.scale.x )

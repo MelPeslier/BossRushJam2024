@@ -28,8 +28,11 @@ enum MovementState{
 @export var my_collision_shape: CollisionShape2D
 
 var current_movement_state: MovementState
+var last_collider: KinematicCollision2D
+var last_collider_ground: KinematicCollision2D
 
 static var move_speed: float = -1
+
 
 func _ready() -> void:
 	move_speed = move_data.walk_distance
@@ -82,7 +85,6 @@ func _on_cinematic_ended() -> void:
 	set_process_unhandled_input(true)
 	set_physics_process(true)
 	set_process(true)
-
 
 
 
