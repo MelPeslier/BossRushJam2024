@@ -278,7 +278,7 @@ bus = &"SFX"
 
 [node name="MetalJumpLight" type="AudioStreamPlayer2D" parent="Metal"]
 stream = SubResource("AudioStreamRandomizer_nllkg")
-volume_db = 5.0
+volume_db = 10.0
 bus = &"SFX"
 
 [node name="MetalJumpMedium" type="AudioStreamPlayer2D" parent="Metal"]

@@ -6,8 +6,8 @@ extends PlayerState
 func enter() -> void:
 	super()
 	ability_input_component.disable_attack()
-	player.disable_input()
-	GameState.player_died()
+	move_data.disable_move()
+	#GameState.player_died()
 
 
 func spawn_soul() -> void:

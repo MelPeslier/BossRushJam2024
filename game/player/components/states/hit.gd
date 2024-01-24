@@ -12,12 +12,12 @@ var is_dead := false
 func enter() -> void:
 	super()
 	attack_input_component.disable_attack()
-	move_input_component.disable_input()
+	move_data.disable_move()
 
 
 func exit() -> void:
 	attack_input_component.enable_attack()
-	move_input_component.enable_input()
+	move_data.enable_move()
 
 
 func process_physics(delta: float) -> State:

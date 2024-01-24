@@ -21,6 +21,10 @@ func enter() -> void:
 	#if not parent.is_on_floor():
 		#spawn_step_light(move_data.get_jump_coef())
 	#spawn_light_particles(move_data.get_jump_coef())
+	if move_data.remaining_jumps == move_data.jumps_number:
+		match player.terrain_detector.get_terrain_type():
+			Terrain.TerrainType.METAL:
+				Sfx2d.play_metal(SoundList.Metal.JUMP_LIGHT, parent)
 	do_jump()
 	move_data.alter_jumps(-1)
 	move_data.jump_time = 0

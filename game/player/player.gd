@@ -28,6 +28,8 @@ enum MovementState{
 @export var my_collision_shape: CollisionShape2D
 @export var terrain_detector: TerrainDetector
 
+@export var die: State
+@export var hit: State
 
 
 var current_movement_state: MovementState
@@ -96,7 +98,12 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	if attack_manager.last_attack and is_instance_valid( attack_manager.last_attack ):
 		attack_manager.last_attack.interupt()
 
-
-	#player.movement_state_machine.change_state(self)
 	health_component.damage(_attack_data.damage)
 	velocity = _attack_data.knock_back * _dir
+
+
+
+	var next_state: State = hit
+	if health_component.health == 0:
+		next_state = die
+	movement_state_machine.change_state(next_state)

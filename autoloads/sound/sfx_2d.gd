@@ -12,11 +12,11 @@ func _play(_audio_stream_player: AudioStreamPlayer2D, _parent: Variant) -> void:
 		get_window().add_child(_asp)
 		var pos: Vector2 = _parent as Vector2
 		_asp.global_position = pos
-		print("type_vector")
+
 	elif _parent is Node2D:
 		_parent.add_child(_asp)
 		_asp.global_position = _parent.global_position
-		print("node2D")
+
 
 	_asp.play()
 

@@ -128,7 +128,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10vgk"]
 radius = 70.0
-height = 265.65
+height = 307.39
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_asghs"]
 shader = ExtResource("4_m6he1")
@@ -374,7 +374,7 @@ height = 261.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "die", "hit")]
 collision_layer = 8
 collision_mask = 17
 floor_constant_speed = true
@@ -396,6 +396,8 @@ camera = NodePath("Camera")
 need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager")]
 my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionShape2D")
 terrain_detector = NodePath("Components2D/TerrainDetector")
+die = NodePath("Components/StateMachine/die")
+hit = NodePath("Components/StateMachine/hit")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 energy_component = NodePath("../Components/Datas/EnergyComponent")
@@ -428,7 +430,7 @@ collision_mask = 17
 script = ExtResource("4_63l1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
-position = Vector2(-1, 120.305)
+position = Vector2(-1, 132.085)
 shape = SubResource("CapsuleShape2D_10vgk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Components2D"]

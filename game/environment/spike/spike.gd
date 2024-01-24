@@ -98,5 +98,5 @@ func alter_spike_collisions(_disabled: bool) -> void:
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:
 	if not BaseLevel.level: return
 	var instance = hit_particles_scene.instantiate() as Node2D
-
 	instance.global_position = _pos
+	BaseLevel.level.stuff_2d.add_child(instance)

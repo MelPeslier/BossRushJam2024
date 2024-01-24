@@ -16,6 +16,17 @@ func _exit_tree() -> void:
 	current_terrain = null
 
 
+func get_terrain_type() -> Terrain.TerrainType:
+	var terrain_type := Terrain.TerrainType.NONE
+	if current_terrain:
+		terrain_type = current_terrain.terrain_type
+	elif current_tile_data:
+		terrain_type = current_tile_data.get_custom_data(Terrain.custom_data_layers[0])
+	print(terrain_type)
+	return terrain_type
+
+
+
 func _process_tilemap_collision(tile_map: TileMap, body_rid: RID) -> void:
 	current_tilemap = tile_map
 	var layer := current_tilemap.get_layer_for_body_rid(body_rid)
@@ -37,19 +48,9 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		_process_terrain_collision(body)
 		return
 
-	print("unknown type entered: ", body.name)
-
 
 func _on_body_shape_exited(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body is TileMap:
-		if current_tilemap == body:
-			current_tilemap = null
-			current_tile_data = null
-		return
-
 	if body is Terrain:
 		if current_terrain == body:
 			current_terrain = null
 		return
-
-	print("unknown type exited: ", body.name)
