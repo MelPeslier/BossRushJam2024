@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ebgw31m2pm2y"
+path="res://.godot/imported/UIBeep_Lock On_01_SFRMS_SCIWPNS.wav-ac6884f7562ecadaef70e5f62577a332.sample"
+
+[deps]
+
+source_file="res://game/environment/checkpoint/audio/UIBeep_Lock On_01_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/UIBeep_Lock On_01_SFRMS_SCIWPNS.wav-ac6884f7562ecadaef70e5f62577a332.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

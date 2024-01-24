@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bp3xjdy6h1ux7"]
+[gd_scene load_steps=13 format=3 uid="uid://bp3xjdy6h1ux7"]
 
 [ext_resource type="Script" path="res://game/environment/checkpoint/checkpoint.gd" id="1_8epsj"]
 [ext_resource type="Texture2D" uid="uid://bs4i37q44qe1x" path="res://game/environment/checkpoint/art/object-19.png" id="2_okwgd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bbhmsxg65vps2" path="res://game/environment/checkpoint/art/object-21.png" id="4_guvtm"]
 [ext_resource type="Texture2D" uid="uid://cu4gt4m0x7ho5" path="res://shared/art/particles/circle_05.png" id="5_gig7b"]
 [ext_resource type="Script" path="res://shared/components/interactables/interact/interactable_component.gd" id="6_by1wk"]
+[ext_resource type="AudioStream" uid="uid://ebgw31m2pm2y" path="res://game/environment/checkpoint/audio/UIBeep_Lock On_01_SFRMS_SCIWPNS.wav" id="7_5getv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_to081"]
 animations = [{
@@ -87,5 +88,10 @@ script = ExtResource("6_by1wk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(0, -526.655)
 shape = SubResource("RectangleShape2D_r8m8p")
+
+[node name="Activate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5getv")
+volume_db = 5.0
+attenuation = 0.329877
 
 [connection signal="focused" from="InteractableComponent" to="." method="_on_interactable_component_focused"]

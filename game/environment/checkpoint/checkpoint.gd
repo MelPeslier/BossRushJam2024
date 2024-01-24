@@ -8,6 +8,7 @@ static var last_checkpoint: Checkpoint = null
 @export var collision_shape: CollisionShape2D
 @export var gpu_particles: GPUParticles2D
 @export var animated_sprite: AnimatedSprite2D
+@onready var activate: AudioStreamPlayer2D = $Activate
 
 
 func _ready() -> void:
@@ -51,4 +52,5 @@ func _deactivate() -> void:
 
 
 func _on_interactable_component_focused(_interactor: InteractorComponent) -> void:
+	activate.play()
 	_activate()
