@@ -16,7 +16,7 @@ var forward:= true
 static var level: BaseLevel = null
 
 @export var stuff_2d: Node2D
-@export var tile_map: TileMap
+
 
 
 func _ready() -> void:
@@ -28,6 +28,7 @@ func _ready() -> void:
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoint"):
 		if checkpoint.id == GameState.saved_game.level_check_point_id:
 			player.global_position = checkpoint.global_position - Vector2(0, player.my_collision_shape.shape.get_rect().size.y)
+			break
 
 
 func _on_intro_finished() -> void:
@@ -54,7 +55,3 @@ func _on_loop_finished() -> void:
 		if i == -1:
 			forward = true
 
-
-#region *** TileData ***
-
-#endregion

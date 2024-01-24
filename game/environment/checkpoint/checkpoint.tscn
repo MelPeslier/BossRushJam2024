@@ -58,7 +58,7 @@ turbulence_influence_min = 0.0
 turbulence_influence_max = 0.072
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8m8p"]
-size = Vector2(532, 1577.31)
+size = Vector2(512, 1024)
 
 [node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("collision_shape", "gpu_particles", "animated_sprite") groups=["checkpoint"]]
 script = ExtResource("1_8epsj")
@@ -67,14 +67,12 @@ gpu_particles = NodePath("GPUParticles2D")
 animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -128)
 sprite_frames = SubResource("SpriteFrames_to081")
 animation = &"open"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 1
 z_as_relative = false
-position = Vector2(0, -128)
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_scxqv")
 texture = ExtResource("5_gig7b")
@@ -82,11 +80,10 @@ lifetime = 4.0
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="InteractableComponent" type="Area2D" parent="."]
-position = Vector2(0, -128)
 script = ExtResource("6_by1wk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
-position = Vector2(0, -526.655)
+position = Vector2(0, -256)
 shape = SubResource("RectangleShape2D_r8m8p")
 
 [node name="Activate" type="AudioStreamPlayer2D" parent="."]

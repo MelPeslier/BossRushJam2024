@@ -12,6 +12,7 @@ static var last_checkpoint: Checkpoint = null
 
 
 func _ready() -> void:
+	print(name, " is ready")
 	ids += 1
 	id = ids
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 	gpu_particles.emitting = false
 
-	if GameState.saved_game.level_check_point_id == id:
+	if last_id == id:
 		_activate()
 	elif id < last_id:
 		_deactivate()

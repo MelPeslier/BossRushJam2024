@@ -1,5 +1,5 @@
 class_name Spike
-extends StaticBody2D
+extends Terrain
 
 enum Type {
 	ALWAYS,
@@ -14,13 +14,14 @@ enum Etat {
 
 const cycles : float = 3.0
 
-
-@export var hitbox_component: HitboxComponent
-@export var animated_sprite: AnimatedSprite2D
 @export var hit_particles_scene: PackedScene
-@export var to_down: AudioStreamPlayer2D
-@export var to_midle: AudioStreamPlayer2D
-@export var to_up: AudioStreamPlayer2D
+
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var to_down: AudioStreamPlayer2D = $ToDown
+@onready var to_midle: AudioStreamPlayer2D = $ToMidle
+@onready var to_up: AudioStreamPlayer2D = $ToUp
+
 
 
 
@@ -41,6 +42,7 @@ var etat := Etat.DOWN
 
 
 func _ready() -> void:
+	terrain_type = TerrainType.METAL
 	# 512.0 = sprite size
 	cycle_time = Player.move_speed * damaging_coef * 1.1 / 512.0
 

@@ -26,6 +26,9 @@ enum MovementState{
 @export var camera: MyCamera
 @export var need_dir: Array[Node2D]
 @export var my_collision_shape: CollisionShape2D
+@export var terrain_detector: TerrainDetector
+
+
 
 var current_movement_state: MovementState
 var last_collider: KinematicCollision2D
@@ -55,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	movement_state_machine.process_physics(delta)
 	attack_manager.process_physics(delta)
 	interactor_component.process_physics(delta)
+
 
 
 func _process(delta: float) -> void:

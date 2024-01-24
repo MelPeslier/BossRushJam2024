@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=89 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://game/player/components/interactables/player_interactor_component.gd" id="2_q8f32"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_7ycnr"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
+[ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="4_63l1n"]
 [ext_resource type="Shader" path="res://shared/materials/glow_effect/glow_effect.gdshader" id="4_m6he1"]
 [ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_ability_input_component.gd" id="4_o1kg2"]
@@ -124,6 +125,10 @@ _data = {
 "sword_3": SubResource("Animation_d86ax"),
 "walk": SubResource("Animation_3c8e8")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10vgk"]
+radius = 70.0
+height = 265.65
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_asghs"]
 shader = ExtResource("4_m6he1")
@@ -369,7 +374,7 @@ height = 261.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector")]
 collision_layer = 8
 collision_mask = 17
 floor_constant_speed = true
@@ -390,6 +395,7 @@ mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
 need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager")]
 my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionShape2D")
+terrain_detector = NodePath("Components2D/TerrainDetector")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 energy_component = NodePath("../Components/Datas/EnergyComponent")
@@ -415,6 +421,15 @@ libraries = {
 }
 
 [node name="Components2D" type="Node2D" parent="."]
+
+[node name="TerrainDetector" type="Area2D" parent="Components2D"]
+collision_layer = 0
+collision_mask = 17
+script = ExtResource("4_63l1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
+position = Vector2(-1, 120.305)
+shape = SubResource("CapsuleShape2D_10vgk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Components2D"]
 

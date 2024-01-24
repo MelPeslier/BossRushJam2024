@@ -26,14 +26,19 @@ func _ready() -> void:
 	for i: int in health_component.max_health:
 		var hp: HealthPoint = health_point_scene.instantiate() as HealthPoint
 		health_gui.add_child(hp)
-		if health_component.health >= i :
-			hp.gain_health()
-		else:
+		if i + 1 > health_component.health:
 			hp.lose_health()
+		else:
+			hp.gain_health()
 
 
 func _on_health_changed(_health: float, _max_health: float) -> void:
-	pass
+	for i in health_gui.get_child_count():
+		var hp: HealthPoint = health_gui.get_child(i) as HealthPoint
+		if i + 1 > health_component.health:
+			hp.lose_health()
+		else:
+			hp.gain_health()
 
 
 func _on_energy_updated(_energy: float, _energy_max: float) -> void:
