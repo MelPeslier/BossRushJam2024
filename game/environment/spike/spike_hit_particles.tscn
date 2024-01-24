@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://2l0xb07r5lgi"]
+[gd_scene load_steps=7 format=3 uid="uid://2l0xb07r5lgi"]
 
 [ext_resource type="Texture2D" uid="uid://b18wj3baojx2k" path="res://shared/art/particles/circle_02.png" id="1_qwyaw"]
 [ext_resource type="Script" path="res://game/environment/spike/spike_hit_particles.gd" id="2_ukcb6"]
+[ext_resource type="AudioStream" uid="uid://lvc70navbv2a" path="res://game/environment/spike/audio/PUNCH_ELECTRIC_LIGHT_06.wav" id="3_ejxqp"]
 
 [sub_resource type="Curve" id="Curve_h82nw"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0644068, 1), 0.0, 0.0, 0, 0, Vector2(0.854237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -36,5 +37,9 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 0.95
 script = ExtResource("2_ukcb6")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ejxqp")
+volume_db = 5.0
 
 [connection signal="finished" from="." to="." method="_on_finished"]

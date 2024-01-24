@@ -18,6 +18,11 @@ const cycles : float = 3.0
 @export var hitbox_component: HitboxComponent
 @export var animated_sprite: AnimatedSprite2D
 @export var hit_particles_scene: PackedScene
+@export var to_down: AudioStreamPlayer2D
+@export var to_midle: AudioStreamPlayer2D
+@export var to_up: AudioStreamPlayer2D
+
+
 
 @export var type: Type
 @export var custom_speed: float = 1
@@ -65,15 +70,18 @@ func _physics_process(delta: float) -> void:
 		Etat.DOWN:
 			if cycle_timer > cycle_time * coming_coef:
 				animated_sprite.play("to_midle")
+				to_midle.play()
 				etat = Etat.MIDLE
 		Etat.MIDLE:
 			if cycle_timer > cycle_time * damaging_coef:
 				animated_sprite.play("to_up")
+				to_up.play()
 				alter_spike_collisions(false)
 				etat = Etat.UP
 		Etat.UP:
 			if cycle_timer > cycle_time:
 				animated_sprite.play("to_down")
+				to_down.play()
 				alter_spike_collisions(true)
 				cycle_timer = fmod(cycle_timer, cycle_time)
 				etat = Etat.DOWN
