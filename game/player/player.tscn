@@ -542,7 +542,7 @@ damage = 9.0
 
 [node name="MoveData" type="Node" parent="Components/Datas"]
 script = ExtResource("3_7ycnr")
-test = true
+run_step_interval_time = 0.3
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")

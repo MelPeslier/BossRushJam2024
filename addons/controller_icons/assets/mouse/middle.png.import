@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e146nr3hsy0p"
-path="res://.godot/imported/middle.png-01f248dbdab856ae6ed2ee6cdb5ed595.ctex"
+path.s3tc="res://.godot/imported/middle.png-01f248dbdab856ae6ed2ee6cdb5ed595.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/mouse/middle.png"
-dest_files=["res://.godot/imported/middle.png-01f248dbdab856ae6ed2ee6cdb5ed595.ctex"]
+dest_files=["res://.godot/imported/middle.png-01f248dbdab856ae6ed2ee6cdb5ed595.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://78i5io3k54qf"
-path="res://.godot/imported/north.png-8eae94f078419a6dd29488ecb0e91781.ctex"
+path.s3tc="res://.godot/imported/north.png-8eae94f078419a6dd29488ecb0e91781.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/positional/north.png"
-dest_files=["res://.godot/imported/north.png-8eae94f078419a6dd29488ecb0e91781.ctex"]
+dest_files=["res://.godot/imported/north.png-8eae94f078419a6dd29488ecb0e91781.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

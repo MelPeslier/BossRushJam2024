@@ -24,7 +24,10 @@ func enter() -> void:
 	if move_data.remaining_jumps == move_data.jumps_number:
 		match player.terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
-				Sfx2d.play_metal(SoundList.Metal.JUMP_LIGHT, parent)
+				Sfx2d.play_metal(SoundList.Metal.JUMP_MEDIUM, parent.global_position)
+	else:
+		Sfx2d.play_metal(SoundList.Metal.JUMP_LIGHT, parent.global_position)
+
 	do_jump()
 	move_data.alter_jumps(-1)
 	move_data.jump_time = 0

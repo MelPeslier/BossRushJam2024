@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1g5qritfo14g"
-path="res://.godot/imported/muzzle_03_rotated.png-ce87c0d90d10ed8f8a533e9cdc1787c6.ctex"
+path.s3tc="res://.godot/imported/muzzle_03_rotated.png-ce87c0d90d10ed8f8a533e9cdc1787c6.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://shared/art/particles/rotated/muzzle_03_rotated.png"
-dest_files=["res://.godot/imported/muzzle_03_rotated.png-ce87c0d90d10ed8f8a533e9cdc1787c6.ctex"]
+dest_files=["res://.godot/imported/muzzle_03_rotated.png-ce87c0d90d10ed8f8a533e9cdc1787c6.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

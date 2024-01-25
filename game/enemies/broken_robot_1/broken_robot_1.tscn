@@ -1,0 +1,650 @@
+[gd_scene load_steps=146 format=3 uid="uid://clt5nw072wgqb"]
+
+[ext_resource type="Texture2D" uid="uid://bd1ey8el83jh" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_00.png" id="1_b1d0g"]
+[ext_resource type="Texture2D" uid="uid://dbvkgocqrawaj" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_00.png" id="1_ihxln"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/broken_robot_1.gd" id="1_xp6hc"]
+[ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="2_6aski"]
+[ext_resource type="Texture2D" uid="uid://ktpkdy3inkpr" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_01.png" id="2_jq61v"]
+[ext_resource type="Texture2D" uid="uid://b7vrwri4chx3k" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_01.png" id="2_lr0y0"]
+[ext_resource type="Texture2D" uid="uid://due0e88jjul3v" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_02.png" id="3_arxcn"]
+[ext_resource type="Texture2D" uid="uid://bm02sb2a1g048" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_02.png" id="3_hufaj"]
+[ext_resource type="Texture2D" uid="uid://cxvdw1qauu12c" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_03.png" id="4_7c2hd"]
+[ext_resource type="Texture2D" uid="uid://bt4lq4shr5sna" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_03.png" id="4_ats3t"]
+[ext_resource type="Texture2D" uid="uid://3ljc0hduyl03" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_04.png" id="5_i4frv"]
+[ext_resource type="Texture2D" uid="uid://dudtic2t8rk5h" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_04.png" id="5_lk6hw"]
+[ext_resource type="Texture2D" uid="uid://srga2rey05hd" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_05.png" id="6_8slpu"]
+[ext_resource type="Texture2D" uid="uid://db03qa1xhb1ts" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_05.png" id="6_ismhe"]
+[ext_resource type="Texture2D" uid="uid://d36re8h7niq2o" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_06.png" id="7_1adc4"]
+[ext_resource type="Texture2D" uid="uid://sqrocpp6kdmk" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_06.png" id="7_6j8vv"]
+[ext_resource type="Texture2D" uid="uid://cw011yjh6rcpw" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_07.png" id="8_ab8s1"]
+[ext_resource type="Texture2D" uid="uid://su6f3mlqb3se" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_07.png" id="8_p3mpj"]
+[ext_resource type="Texture2D" uid="uid://bxjiotlmq6mkq" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_08.png" id="9_g2t2u"]
+[ext_resource type="Texture2D" uid="uid://608ieh8i2ttk" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_08.png" id="9_isd8b"]
+[ext_resource type="Texture2D" uid="uid://f4se75g141pm" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_09.png" id="10_8oaos"]
+[ext_resource type="Texture2D" uid="uid://yj3c1vueti4f" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_09.png" id="10_yyxi8"]
+[ext_resource type="Texture2D" uid="uid://defu5xfulfc0e" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_10.png" id="11_1wstd"]
+[ext_resource type="Texture2D" uid="uid://bobj70543f4d7" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_10.png" id="11_x016m"]
+[ext_resource type="Texture2D" uid="uid://bs6sguwi8vn3n" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_11.png" id="12_ce2vq"]
+[ext_resource type="Texture2D" uid="uid://b425txy122026" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_11.png" id="12_n34w2"]
+[ext_resource type="Texture2D" uid="uid://6to1yf36utp" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_12.png" id="13_r4gys"]
+[ext_resource type="Texture2D" uid="uid://bqogcq682yvw6" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_12.png" id="13_xflvf"]
+[ext_resource type="Texture2D" uid="uid://dy8x6kitit2g8" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_13.png" id="14_of6pl"]
+[ext_resource type="Texture2D" uid="uid://b446ea50exobx" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_13.png" id="14_yjgcv"]
+[ext_resource type="Texture2D" uid="uid://cgqu0jxd3ty23" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_00.png" id="15_3ccnq"]
+[ext_resource type="Texture2D" uid="uid://5jipbirjh4j5" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_14.png" id="15_kka5w"]
+[ext_resource type="Texture2D" uid="uid://dsbhxqbxukss" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_15.png" id="16_cbkt7"]
+[ext_resource type="Texture2D" uid="uid://bvkpx8nuhwqar" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_01.png" id="16_xm28b"]
+[ext_resource type="Texture2D" uid="uid://bsnqnu246rb83" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_02.png" id="17_tqr23"]
+[ext_resource type="Texture2D" uid="uid://bmeqddgxqw645" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_16.png" id="17_wr6tw"]
+[ext_resource type="Texture2D" uid="uid://d30fdr8be45sh" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_17.png" id="18_p18km"]
+[ext_resource type="Texture2D" uid="uid://ox7tjomhtlrw" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_03.png" id="18_s8r6x"]
+[ext_resource type="Texture2D" uid="uid://d308kfrx0qdva" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_18.png" id="19_41aaw"]
+[ext_resource type="Texture2D" uid="uid://cd80fvx73t2ev" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_04.png" id="19_bsho2"]
+[ext_resource type="Texture2D" uid="uid://k8km3bdjeq6l" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_19.png" id="20_as3eh"]
+[ext_resource type="Texture2D" uid="uid://bwjtqdi8bkcct" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_05.png" id="20_bgf0p"]
+[ext_resource type="Texture2D" uid="uid://d4kpvn5ltoo7j" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_20.png" id="21_8d7ci"]
+[ext_resource type="Texture2D" uid="uid://pywiq2xvpqv5" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_06.png" id="21_s62kt"]
+[ext_resource type="Texture2D" uid="uid://sfalldnf41fj" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_07.png" id="22_3m5pd"]
+[ext_resource type="Texture2D" uid="uid://ccp0hb0vxg1v7" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_21.png" id="22_th3y7"]
+[ext_resource type="Texture2D" uid="uid://df4gk8wdycm5h" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_22.png" id="23_biowa"]
+[ext_resource type="Texture2D" uid="uid://yd5e0bi3ut14" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_08.png" id="23_oimt0"]
+[ext_resource type="Texture2D" uid="uid://wccom4ef5rm7" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_09.png" id="24_m6830"]
+[ext_resource type="Texture2D" uid="uid://d1gtb3fff2npd" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_23.png" id="24_vcq0f"]
+[ext_resource type="Texture2D" uid="uid://bvfdwpi1yjv" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_24.png" id="25_jg72r"]
+[ext_resource type="Texture2D" uid="uid://dggopj0k66oj6" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_10.png" id="25_ltb7m"]
+[ext_resource type="Texture2D" uid="uid://bg1ot2v2tmi1v" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_25.png" id="26_063l2"]
+[ext_resource type="Texture2D" uid="uid://dxhy46vkxbv5j" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_11.png" id="26_mlrkc"]
+[ext_resource type="Texture2D" uid="uid://c17e5b334jue4" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_12.png" id="27_bksx4"]
+[ext_resource type="Texture2D" uid="uid://b1opyky6jii3y" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_26.png" id="27_hpvc6"]
+[ext_resource type="Texture2D" uid="uid://ceg3r4yu6y0kq" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_27.png" id="28_8vr1a"]
+[ext_resource type="Texture2D" uid="uid://bhk001xtlgcqm" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_13.png" id="28_n7xng"]
+[ext_resource type="Texture2D" uid="uid://cy4j2jhlmibq1" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_28.png" id="29_v8r0o"]
+[ext_resource type="Texture2D" uid="uid://byqvqq6bkpp18" path="res://game/enemies/broken_robot_1/art/dead/broken_robot1_dead_14.png" id="29_vui45"]
+[ext_resource type="Texture2D" uid="uid://cr4w4v2bcj3fq" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_29.png" id="30_72eyy"]
+[ext_resource type="Texture2D" uid="uid://cltnkho8bh33r" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_30.png" id="31_vdsgr"]
+[ext_resource type="Texture2D" uid="uid://b068pynsdapas" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_31.png" id="32_oqq8u"]
+[ext_resource type="Texture2D" uid="uid://bq0rs4p1363c1" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_32.png" id="33_4ps5v"]
+[ext_resource type="Texture2D" uid="uid://2j8g178o7xf4" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_33.png" id="34_m81eo"]
+[ext_resource type="Texture2D" uid="uid://cksv2pme7nbuj" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_34.png" id="35_8mxox"]
+[ext_resource type="Texture2D" uid="uid://h62hdjid0ocp" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_35.png" id="36_pxkch"]
+[ext_resource type="Texture2D" uid="uid://b1hseh5hsftfl" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_36.png" id="37_y4hhb"]
+[ext_resource type="Texture2D" uid="uid://cdj8ui20rf4mc" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_00.png" id="56_4pjqy"]
+[ext_resource type="Texture2D" uid="uid://bfwk5kd2fxg68" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_01.png" id="57_y71f8"]
+[ext_resource type="Texture2D" uid="uid://b3ouwcramkib5" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_02.png" id="58_31clg"]
+[ext_resource type="Texture2D" uid="uid://cygvsrg60uysm" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_03.png" id="59_uw0qh"]
+[ext_resource type="Texture2D" uid="uid://dwfqyeu03iku2" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_04.png" id="60_1oyc7"]
+[ext_resource type="Texture2D" uid="uid://cv3harexs62iy" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_05.png" id="61_7hpgc"]
+[ext_resource type="Texture2D" uid="uid://co0vupc4r2v2i" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_06.png" id="62_6eyle"]
+[ext_resource type="Texture2D" uid="uid://bl03fmoacj8gf" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_07.png" id="63_84dro"]
+[ext_resource type="Texture2D" uid="uid://ddadgclsmkm5u" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_08.png" id="64_lxdv3"]
+[ext_resource type="Texture2D" uid="uid://bliea0okeyisg" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_09.png" id="65_mj2wm"]
+[ext_resource type="Texture2D" uid="uid://0g3ps7u5epab" path="res://game/enemies/broken_robot_1/art/get_hit/broken_robot1_get_hit_10.png" id="66_chx5u"]
+[ext_resource type="Texture2D" uid="uid://bwi1yxyqhjhnt" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_00.png" id="104_qryl5"]
+[ext_resource type="Texture2D" uid="uid://c8htv1xftv86p" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_01.png" id="105_8d266"]
+[ext_resource type="Texture2D" uid="uid://bviday8lhb373" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_02.png" id="106_e1gql"]
+[ext_resource type="Texture2D" uid="uid://bjag5thvk4clj" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_03.png" id="107_0socj"]
+[ext_resource type="Texture2D" uid="uid://dt5lbjwn1akat" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_04.png" id="108_ktxb7"]
+[ext_resource type="Texture2D" uid="uid://csrs7pjmij3w4" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_05.png" id="109_les7d"]
+[ext_resource type="Texture2D" uid="uid://6wic27e2asnw" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_06.png" id="110_88ylr"]
+[ext_resource type="Texture2D" uid="uid://tfuowpa4bwqx" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_07.png" id="111_0lscb"]
+[ext_resource type="Texture2D" uid="uid://dsx0qoucm30pb" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_08.png" id="112_8rdu6"]
+[ext_resource type="Texture2D" uid="uid://bdpuasx1i1b78" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_09.png" id="113_qc0io"]
+[ext_resource type="Texture2D" uid="uid://bsmp4gym1g307" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_10.png" id="114_cw131"]
+[ext_resource type="Texture2D" uid="uid://bwg74id64kfco" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_11.png" id="115_si5dh"]
+[ext_resource type="Texture2D" uid="uid://cimxe0l7h00fo" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_12.png" id="116_vjdos"]
+[ext_resource type="Texture2D" uid="uid://cup82nx4n185p" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_13.png" id="117_jqbsf"]
+[ext_resource type="Texture2D" uid="uid://c51tf2ee6tmi7" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_14.png" id="118_wpdol"]
+[ext_resource type="Texture2D" uid="uid://b4pq4y6o2gs8p" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_15.png" id="119_bfgvm"]
+[ext_resource type="Texture2D" uid="uid://blb50ud1jcgfm" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_16.png" id="120_h2qud"]
+[ext_resource type="Texture2D" uid="uid://c5lcja1cunnwv" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_17.png" id="121_ll8e3"]
+[ext_resource type="Texture2D" uid="uid://dolhiwvtkx41f" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_18.png" id="122_kgr3p"]
+[ext_resource type="Texture2D" uid="uid://da4idbl343kqm" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_19.png" id="123_80dea"]
+[ext_resource type="Texture2D" uid="uid://djn5vwv0qhdsa" path="res://game/enemies/broken_robot_1/art/run/broken_robot1_run_20.png" id="124_6s2fd"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/robot_1_input_component.gd" id="125_kapwk"]
+[ext_resource type="Texture2D" uid="uid://3jnnffhund85" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_00.png" id="125_y85np"]
+[ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="126_c21ek"]
+[ext_resource type="Texture2D" uid="uid://b5vgtvhm4183c" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_01.png" id="126_pwb0o"]
+[ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="127_hf2fj"]
+[ext_resource type="Texture2D" uid="uid://dejv54qp765ah" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_02.png" id="127_q0ar6"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/idle.gd" id="128_kkbkg"]
+[ext_resource type="Texture2D" uid="uid://c15vchvwq57nu" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_03.png" id="128_ocga1"]
+[ext_resource type="Texture2D" uid="uid://w7aemxtb21ff" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_04.png" id="129_5qtbo"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/run.gd" id="129_u0xah"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/walk.gd" id="130_o5max"]
+[ext_resource type="Texture2D" uid="uid://8rgimygwqkr0" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_05.png" id="130_x0jcn"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/attack.gd" id="131_0an3v"]
+[ext_resource type="Texture2D" uid="uid://dfvtj6g4mu2ro" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_06.png" id="131_m37lf"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/get_hit.gd" id="132_5iy1w"]
+[ext_resource type="Texture2D" uid="uid://cjabm7jggw8ab" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_07.png" id="132_awcrt"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/dead.gd" id="133_fjh4w"]
+[ext_resource type="Texture2D" uid="uid://d1rk138h0bxco" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_08.png" id="133_nmbub"]
+[ext_resource type="Texture2D" uid="uid://32b3cx6klob" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_09.png" id="134_b0xt6"]
+[ext_resource type="Texture2D" uid="uid://2cbkwm6sbkkh" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_10.png" id="135_a0hni"]
+[ext_resource type="Texture2D" uid="uid://cfkipcimpvl0x" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_11.png" id="136_sqoqi"]
+[ext_resource type="Texture2D" uid="uid://17yxbpkhpmp" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_12.png" id="137_gd15b"]
+[ext_resource type="Texture2D" uid="uid://cu2k4f7utlps7" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_13.png" id="138_3g3wt"]
+[ext_resource type="Texture2D" uid="uid://bpjhkjigkrgs8" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_14.png" id="139_22b16"]
+[ext_resource type="Texture2D" uid="uid://dn1vh8yhpcdk1" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_15.png" id="140_kheji"]
+[ext_resource type="Texture2D" uid="uid://c0wmp2u5hn4h8" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_16.png" id="141_83hjr"]
+[ext_resource type="Texture2D" uid="uid://c0jygyxmmwwvu" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_17.png" id="142_7buf8"]
+[ext_resource type="Texture2D" uid="uid://xfwwwr4xu08j" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_18.png" id="143_5yl3q"]
+[ext_resource type="Texture2D" uid="uid://byynarel4bqqi" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_19.png" id="144_t8f8t"]
+[ext_resource type="Texture2D" uid="uid://r64g33rhbhvk" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_20.png" id="145_kyc58"]
+[ext_resource type="Texture2D" uid="uid://jf5ucb1qq53q" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_21.png" id="146_3f8al"]
+[ext_resource type="Texture2D" uid="uid://bdb0g678l1yv5" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_22.png" id="147_dos1l"]
+[ext_resource type="Texture2D" uid="uid://chbtxpyh0xo0h" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_23.png" id="148_gj3vc"]
+[ext_resource type="Texture2D" uid="uid://dd0il1hu0hq7s" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_24.png" id="149_iedo5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyrdr"]
+size = Vector2(115.087, 397.307)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxvtc"]
+size = Vector2(39.8603, 106.356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_domfq"]
+size = Vector2(1208, 692.532)
+
+[sub_resource type="Animation" id="Animation_rfkpv"]
+resource_name = "attack"
+
+[sub_resource type="Animation" id="Animation_bkim2"]
+resource_name = "dead"
+
+[sub_resource type="Animation" id="Animation_jb7gk"]
+resource_name = "get_hit"
+
+[sub_resource type="Animation" id="Animation_8w3mq"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_ikr20"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_51ov1"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x7tcl"]
+_data = {
+"attack": SubResource("Animation_rfkpv"),
+"dead": SubResource("Animation_bkim2"),
+"get_hit": SubResource("Animation_jb7gk"),
+"idle": SubResource("Animation_8w3mq"),
+"run": SubResource("Animation_ikr20"),
+"walk": SubResource("Animation_51ov1")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj0kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_b1d0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jq61v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_arxcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ats3t")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_i4frv")
+}, {
+"duration": 2.0,
+"texture": ExtResource("6_8slpu")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7_6j8vv")
+}, {
+"duration": 5.0,
+"texture": ExtResource("8_ab8s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g2t2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yyxi8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1wstd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ce2vq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xflvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yjgcv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_3ccnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xm28b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_tqr23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_s8r6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bsho2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_bgf0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_s62kt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_3m5pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_oimt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_m6830")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ltb7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_mlrkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_bksx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_n7xng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_vui45")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("56_4pjqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_y71f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_31clg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_uw0qh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_1oyc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_7hpgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_6eyle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_84dro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_lxdv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_mj2wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_chx5u")
+}],
+"loop": false,
+"name": &"get_hit",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ihxln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lr0y0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hufaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7c2hd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lk6hw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ismhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1adc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p3mpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_isd8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8oaos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x016m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n34w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_r4gys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_of6pl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kka5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_cbkt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_wr6tw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_p18km")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_41aaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_as3eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8d7ci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_th3y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_biowa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vcq0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jg72r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_063l2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hpvc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_8vr1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_v8r0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_72eyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_vdsgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_oqq8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_4ps5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_m81eo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_8mxox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_pxkch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_y4hhb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("104_qryl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_8d266")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_e1gql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_0socj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_ktxb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_les7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_88ylr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_0lscb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_8rdu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_qc0io")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_cw131")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_si5dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_vjdos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_jqbsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_wpdol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_bfgvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_h2qud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_ll8e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_kgr3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_80dea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_6s2fd")
+}],
+"loop": true,
+"name": &"run",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("125_y85np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_pwb0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_q0ar6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_ocga1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_5qtbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_x0jcn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_m37lf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_awcrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_nmbub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_b0xt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_a0hni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_sqoqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_gd15b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_3g3wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_22b16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_kheji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_83hjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_7buf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_5yl3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_t8f8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_kyc58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_3f8al")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_dos1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_gj3vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_iedo5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 25.0
+}]
+
+[node name="BrokenRobot1" type="CharacterBody2D" node_paths=PackedStringArray("need_dir")]
+collision_layer = 8
+collision_mask = 17
+script = ExtResource("1_xp6hc")
+need_dir = [NodePath("CollisionShape2D"), NodePath("Detector"), NodePath("AnimatedSprite2D"), NodePath("TerrainDetector"), NodePath("attacks")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.37314, -22.8262)
+shape = SubResource("RectangleShape2D_iyrdr")
+
+[node name="TerrainDetector" type="Area2D" parent="."]
+script = ExtResource("2_6aski")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TerrainDetector"]
+position = Vector2(0, 172.98)
+shape = SubResource("RectangleShape2D_rxvtc")
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2(-306.415, -167.624)
+shape = SubResource("RectangleShape2D_domfq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x7tcl")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_vj0kg")
+animation = &"walk"
+frame = 24
+frame_progress = 1.0
+
+[node name="MoveInputComponent" type="Node" parent="."]
+script = ExtResource("125_kapwk")
+
+[node name="MoveData" type="Node" parent="."]
+script = ExtResource("126_c21ek")
+walk_distance = 500.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("127_hf2fj")
+starting_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk")]
+script = ExtResource("128_kkbkg")
+walk = NodePath("../walk")
+
+[node name="walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("terrain_detector", "idle")]
+script = ExtResource("130_o5max")
+terrain_detector = NodePath("../../TerrainDetector")
+idle = NodePath("../idle")
+
+[node name="run" type="Node" parent="StateMachine"]
+script = ExtResource("129_u0xah")
+
+[node name="attack" type="Node" parent="StateMachine"]
+script = ExtResource("131_0an3v")
+
+[node name="get_hit" type="Node" parent="StateMachine"]
+script = ExtResource("132_5iy1w")
+
+[node name="dead" type="Node" parent="StateMachine"]
+script = ExtResource("133_fjh4w")
+
+[node name="attacks" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
+[connection signal="dir_changed" from="MoveData" to="." method="_on_move_data_dir_changed"]

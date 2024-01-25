@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dim5mk7g4q043"
-path="res://.godot/imported/q.png-6ef53dece2e535e76ac4b6715c53b010.ctex"
+path.s3tc="res://.godot/imported/q.png-6ef53dece2e535e76ac4b6715c53b010.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/key/q.png"
-dest_files=["res://.godot/imported/q.png-6ef53dece2e535e76ac4b6715c53b010.ctex"]
+dest_files=["res://.godot/imported/q.png-6ef53dece2e535e76ac4b6715c53b010.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

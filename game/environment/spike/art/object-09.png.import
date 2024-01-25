@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cshdr1726vyq6"
-path="res://.godot/imported/object-09.png-7c9ef91321fbe24509078dd7260f49dd.ctex"
+path.s3tc="res://.godot/imported/object-09.png-7c9ef91321fbe24509078dd7260f49dd.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/environment/spike/art/object-09.png"
-dest_files=["res://.godot/imported/object-09.png-7c9ef91321fbe24509078dd7260f49dd.ctex"]
+dest_files=["res://.godot/imported/object-09.png-7c9ef91321fbe24509078dd7260f49dd.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

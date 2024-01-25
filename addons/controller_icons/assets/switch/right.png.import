@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clv4i78euervw"
-path="res://.godot/imported/right.png-4a1a0df486de8574bd3643a98f0f445e.ctex"
+path.s3tc="res://.godot/imported/right.png-4a1a0df486de8574bd3643a98f0f445e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/switch/right.png"
-dest_files=["res://.godot/imported/right.png-4a1a0df486de8574bd3643a98f0f445e.ctex"]
+dest_files=["res://.godot/imported/right.png-4a1a0df486de8574bd3643a98f0f445e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

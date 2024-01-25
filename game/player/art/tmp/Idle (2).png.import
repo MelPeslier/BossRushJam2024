@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://daolpk8v5x5ob"
-path="res://.godot/imported/Idle (2).png-4fdc0807dbe9f999cc51ce8aedc7d453.ctex"
+path.s3tc="res://.godot/imported/Idle (2).png-4fdc0807dbe9f999cc51ce8aedc7d453.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/tmp/Idle (2).png"
-dest_files=["res://.godot/imported/Idle (2).png-4fdc0807dbe9f999cc51ce8aedc7d453.ctex"]
+dest_files=["res://.godot/imported/Idle (2).png-4fdc0807dbe9f999cc51ce8aedc7d453.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -6,8 +6,20 @@ extends PlayerState
 @export var dash: State
 
 
+func enter() -> void:
+	super()
+	move_data.step_interval_timer *= 0.5
+
+
 func process_physics(delta: float) -> State:
 	super(delta)
+	move_data.step_interval_timer -= delta
+	if move_data.step_interval_timer < 0:
+		move_data.step_interval_timer = move_data.run_step_interval_time
+		match player.terrain_detector.get_terrain_type():
+			Terrain.TerrainType.METAL:
+				Sfx2d.play_metal(SoundList.Metal.RUN_LIGHT, parent.global_position)
+
 	move_data.dir = get_movement_input()
 	if not move_data.dir or not move_data.can_move:
 		return idle

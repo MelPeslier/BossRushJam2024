@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bap23yu4qfl3y"
-path="res://.godot/imported/num_lock.png-e2af79f4edd04e9ecf785f370befb814.ctex"
+path.s3tc="res://.godot/imported/num_lock.png-e2af79f4edd04e9ecf785f370befb814.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/key/num_lock.png"
-dest_files=["res://.godot/imported/num_lock.png-e2af79f4edd04e9ecf785f370befb814.ctex"]
+dest_files=["res://.godot/imported/num_lock.png-e2af79f4edd04e9ecf785f370befb814.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

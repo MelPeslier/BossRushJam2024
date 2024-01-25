@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vj1ljihmbyux"
-path="res://.godot/imported/circle_04.png-4b8771062aa1b982728aba767cf29f66.ctex"
+path.s3tc="res://.godot/imported/circle_04.png-4b8771062aa1b982728aba767cf29f66.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://shared/art/particles/circle_04.png"
-dest_files=["res://.godot/imported/circle_04.png-4b8771062aa1b982728aba767cf29f66.ctex"]
+dest_files=["res://.godot/imported/circle_04.png-4b8771062aa1b982728aba767cf29f66.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

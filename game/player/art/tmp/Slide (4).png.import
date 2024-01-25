@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://py5y4tr5r73o"
-path="res://.godot/imported/Slide (4).png-11eb1a83e84898cda415cb2b93b74271.ctex"
+path.s3tc="res://.godot/imported/Slide (4).png-11eb1a83e84898cda415cb2b93b74271.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/tmp/Slide (4).png"
-dest_files=["res://.godot/imported/Slide (4).png-11eb1a83e84898cda415cb2b93b74271.ctex"]
+dest_files=["res://.godot/imported/Slide (4).png-11eb1a83e84898cda415cb2b93b74271.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

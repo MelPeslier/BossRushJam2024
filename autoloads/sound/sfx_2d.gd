@@ -17,7 +17,6 @@ func _play(_audio_stream_player: AudioStreamPlayer2D, _parent: Variant) -> void:
 		_parent.add_child(_asp)
 		_asp.global_position = _parent.global_position
 
-
 	_asp.play()
 
 

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boql08xgrxn3c"
-path="res://.godot/imported/scorch_03.png-0cb15bacf9868767ddf805a10e36519d.ctex"
+path.s3tc="res://.godot/imported/scorch_03.png-0cb15bacf9868767ddf805a10e36519d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://shared/art/particles/scorch_03.png"
-dest_files=["res://.godot/imported/scorch_03.png-0cb15bacf9868767ddf805a10e36519d.ctex"]
+dest_files=["res://.godot/imported/scorch_03.png-0cb15bacf9868767ddf805a10e36519d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

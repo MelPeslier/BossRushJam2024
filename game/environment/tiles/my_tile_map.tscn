@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1uu6jjw185vi"]
+[gd_scene load_steps=6 format=3 uid="uid://c1uu6jjw185vi"]
 
 [ext_resource type="Texture2D" uid="uid://4jm3b2tqerwf" path="res://game/environment/tiles/tiles.png" id="1_3s7m4"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_41ntr"]
+resource_name = "Enemies"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j23nx"]
 resource_name = "Tiles"
@@ -312,6 +315,7 @@ custom_data_layer_1/name = "Border"
 custom_data_layer_1/type = 2
 sources/1 = SubResource("TileSetAtlasSource_j23nx")
 sources/3 = SubResource("TileSetScenesCollectionSource_icon2")
+sources/0 = SubResource("TileSetScenesCollectionSource_41ntr")
 
 [node name="MyTileMap" type="TileMap"]
 tile_set = SubResource("TileSet_h3ktg")

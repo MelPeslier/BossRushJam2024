@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdn4u2tc7w4n8"
-path="res://.godot/imported/Run+epe_Ok_-4.png-17d7997d68f0c404d90ea77afbe9e247.ctex"
+path.s3tc="res://.godot/imported/Run+epe_Ok_-4.png-17d7997d68f0c404d90ea77afbe9e247.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/Run/Run+epe_Ok_-4.png"
-dest_files=["res://.godot/imported/Run+epe_Ok_-4.png-17d7997d68f0c404d90ea77afbe9e247.ctex"]
+dest_files=["res://.godot/imported/Run+epe_Ok_-4.png-17d7997d68f0c404d90ea77afbe9e247.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tgpcpple5h2q"
-path="res://.godot/imported/view.png-ab4efd6aa8e0bf2549b9e03f65032d18.ctex"
+path.s3tc="res://.godot/imported/view.png-ab4efd6aa8e0bf2549b9e03f65032d18.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/xboxone/view.png"
-dest_files=["res://.godot/imported/view.png-ab4efd6aa8e0bf2549b9e03f65032d18.ctex"]
+dest_files=["res://.godot/imported/view.png-ab4efd6aa8e0bf2549b9e03f65032d18.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

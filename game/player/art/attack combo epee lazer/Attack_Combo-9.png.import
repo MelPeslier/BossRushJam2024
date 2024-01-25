@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh8p4p2dea61p"
-path="res://.godot/imported/Attack_Combo-9.png-54fdfda8531bfda4724fd2825e620c95.ctex"
+path.s3tc="res://.godot/imported/Attack_Combo-9.png-54fdfda8531bfda4724fd2825e620c95.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/attack combo epee lazer/Attack_Combo-9.png"
-dest_files=["res://.godot/imported/Attack_Combo-9.png-54fdfda8531bfda4724fd2825e620c95.ctex"]
+dest_files=["res://.godot/imported/Attack_Combo-9.png-54fdfda8531bfda4724fd2825e620c95.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

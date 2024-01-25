@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coxp4sapp4g8n"
-path="res://.godot/imported/start.png-4da2d3336d3215602b774e12f03ad8d1.ctex"
+path.s3tc="res://.godot/imported/start.png-4da2d3336d3215602b774e12f03ad8d1.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/xbox360/start.png"
-dest_files=["res://.godot/imported/start.png-4da2d3336d3215602b774e12f03ad8d1.ctex"]
+dest_files=["res://.godot/imported/start.png-4da2d3336d3215602b774e12f03ad8d1.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

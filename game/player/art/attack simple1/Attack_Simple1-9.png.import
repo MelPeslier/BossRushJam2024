@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://y0h3ly0lq67a"
-path="res://.godot/imported/Attack_Simple1-9.png-aabd7ad0eccf31e87b86fdc9a7553447.ctex"
+path.s3tc="res://.godot/imported/Attack_Simple1-9.png-aabd7ad0eccf31e87b86fdc9a7553447.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/attack simple1/Attack_Simple1-9.png"
-dest_files=["res://.godot/imported/Attack_Simple1-9.png-aabd7ad0eccf31e87b86fdc9a7553447.ctex"]
+dest_files=["res://.godot/imported/Attack_Simple1-9.png-aabd7ad0eccf31e87b86fdc9a7553447.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

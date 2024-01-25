@@ -60,6 +60,12 @@ folder_colors={
 theme/custom="res://ui/theme.tres"
 theme/custom_font="res://ui/fonts/Almendra/Almendra-Regular.ttf"
 
+[importer_defaults]
+
+texture={
+"compress/mode": 2
+}
+
 [input]
 
 up={

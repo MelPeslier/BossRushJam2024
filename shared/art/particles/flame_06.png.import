@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3oyjcmgeyd3q"
-path="res://.godot/imported/flame_06.png-bc1480e7e27749db6ba9fb095aa8402a.ctex"
+path.s3tc="res://.godot/imported/flame_06.png-bc1480e7e27749db6ba9fb095aa8402a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://shared/art/particles/flame_06.png"
-dest_files=["res://.godot/imported/flame_06.png-bc1480e7e27749db6ba9fb095aa8402a.ctex"]
+dest_files=["res://.godot/imported/flame_06.png-bc1480e7e27749db6ba9fb095aa8402a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

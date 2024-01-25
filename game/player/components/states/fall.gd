@@ -5,12 +5,17 @@ extends PlayerState
 @export var jump: State
 @export var dash: State
 
+var fall_timer: float = 0
+
+
 func enter() -> void:
 	super()
+	fall_timer = 0
 	move_data.jump_coyote_timer = move_data.jump_coyote_time
 
 func process_physics(delta: float) -> State:
 	super(delta)
+	fall_timer += delta
 	move_data.dir = get_movement_input()
 	if not move_data.dir:
 		do_walk_decelerate(delta)
@@ -25,6 +30,12 @@ func process_physics(delta: float) -> State:
 	move_data.dash_buffer_timer -= delta
 
 	if parent.is_on_floor():
+		match player.terrain_detector.get_terrain_type():
+			Terrain.TerrainType.METAL:
+				if fall_timer > move_data.jump_time_to_descent + 0.01:
+					Sfx2d.play_metal(SoundList.Metal.LAND_MEDIUM, parent.global_position)
+				else:
+					Sfx2d.play_metal(SoundList.Metal.LAND_LIGHT, parent.global_position)
 		# Is on floor and will change state, perfect moment to reset jumps
 		move_data.alter_jumps(move_data.jumps_number)
 

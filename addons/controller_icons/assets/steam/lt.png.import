@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b0s7pjaudi66e"
-path="res://.godot/imported/lt.png-44277066c93d3aa2a3b16029f6b6db5f.ctex"
+path.s3tc="res://.godot/imported/lt.png-44277066c93d3aa2a3b16029f6b6db5f.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/steam/lt.png"
-dest_files=["res://.godot/imported/lt.png-44277066c93d3aa2a3b16029f6b6db5f.ctex"]
+dest_files=["res://.godot/imported/lt.png-44277066c93d3aa2a3b16029f6b6db5f.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

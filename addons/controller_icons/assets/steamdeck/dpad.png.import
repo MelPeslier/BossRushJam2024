@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dm4e2w2a8r1l4"
-path="res://.godot/imported/dpad.png-d91578cac829c1bcc2a8d54711ef3af1.ctex"
+path.s3tc="res://.godot/imported/dpad.png-d91578cac829c1bcc2a8d54711ef3af1.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/steamdeck/dpad.png"
-dest_files=["res://.godot/imported/dpad.png-d91578cac829c1bcc2a8d54711ef3af1.ctex"]
+dest_files=["res://.godot/imported/dpad.png-d91578cac829c1bcc2a8d54711ef3af1.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

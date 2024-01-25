@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5jdsadpw6oru"
-path="res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.ctex"
+path.s3tc="res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/environment/laser/art/object-18.png"
-dest_files=["res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.ctex"]
+dest_files=["res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

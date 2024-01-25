@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuds8v7pvi4tj"
-path="res://.godot/imported/dpad.png-4b640d96766e8faba6142c2eff13caea.ctex"
+path.s3tc="res://.godot/imported/dpad.png-4b640d96766e8faba6142c2eff13caea.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/xbox360/dpad.png"
-dest_files=["res://.godot/imported/dpad.png-4b640d96766e8faba6142c2eff13caea.ctex"]
+dest_files=["res://.godot/imported/dpad.png-4b640d96766e8faba6142c2eff13caea.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

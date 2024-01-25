@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chis8pjw070yd"
-path="res://.godot/imported/left_track_center.png-f881a55ee2c591d91924bfeb7df3151e.ctex"
+path.s3tc="res://.godot/imported/left_track_center.png-f881a55ee2c591d91924bfeb7df3151e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://addons/controller_icons/assets/steam/left_track_center.png"
-dest_files=["res://.godot/imported/left_track_center.png-f881a55ee2c591d91924bfeb7df3151e.ctex"]
+dest_files=["res://.godot/imported/left_track_center.png-f881a55ee2c591d91924bfeb7df3151e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

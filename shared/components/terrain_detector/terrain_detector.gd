@@ -22,7 +22,6 @@ func get_terrain_type() -> Terrain.TerrainType:
 		terrain_type = current_terrain.terrain_type
 	elif current_tile_data:
 		terrain_type = current_tile_data.get_custom_data(Terrain.custom_data_layers[0])
-	print(terrain_type)
 	return terrain_type
 
 
@@ -49,7 +48,7 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int,
 		return
 
 
-func _on_body_shape_exited(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+func _on_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body is Terrain:
 		if current_terrain == body:
 			current_terrain = null

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2navf76171rm"
-path="res://.godot/imported/Fall_Épée_Ok-6.png-0e207f44e808ae6707eb0e7760f2203e.ctex"
+path.s3tc="res://.godot/imported/Fall_Épée_Ok-6.png-0e207f44e808ae6707eb0e7760f2203e.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/Fall/Fall_Épée_Ok-6.png"
-dest_files=["res://.godot/imported/Fall_Épée_Ok-6.png-0e207f44e808ae6707eb0e7760f2203e.ctex"]
+dest_files=["res://.godot/imported/Fall_Épée_Ok-6.png-0e207f44e808ae6707eb0e7760f2203e.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

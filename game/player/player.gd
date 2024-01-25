@@ -101,8 +101,6 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	health_component.damage(_attack_data.damage)
 	velocity = _attack_data.knock_back * _dir
 
-
-
 	var next_state: State = hit
 	if health_component.health == 0:
 		next_state = die

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdg0dgfdyuf5h"
-path="res://.godot/imported/scratch_01.png-0bc366e25cebd779becff02e8a2e8e19.ctex"
+path.s3tc="res://.godot/imported/scratch_01.png-0bc366e25cebd779becff02e8a2e8e19.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://shared/art/particles/scratch_01.png"
-dest_files=["res://.godot/imported/scratch_01.png-0bc366e25cebd779becff02e8a2e8e19.ctex"]
+dest_files=["res://.godot/imported/scratch_01.png-0bc366e25cebd779becff02e8a2e8e19.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7a6n0d2vofeb"
-path="res://.godot/imported/Dead (7).png-0a0d9443094b4c4afcf1d02cd924b093.ctex"
+path.s3tc="res://.godot/imported/Dead (7).png-0a0d9443094b4c4afcf1d02cd924b093.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://game/player/art/tmp/Dead (7).png"
-dest_files=["res://.godot/imported/Dead (7).png-0a0d9443094b4c4afcf1d02cd924b093.ctex"]
+dest_files=["res://.godot/imported/Dead (7).png-0a0d9443094b4c4afcf1d02cd924b093.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
