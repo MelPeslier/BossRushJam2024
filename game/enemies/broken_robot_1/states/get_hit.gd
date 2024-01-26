@@ -13,7 +13,7 @@ func exit() -> void:
 func process_physics(_delta: float) -> State:
 	if animated_sprite.is_playing(): return null
 
-	if not parent.is_on_floor():return fall
+	if not parent.is_on_floor(): return fall
 
 	return idle
 

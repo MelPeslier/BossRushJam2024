@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=98 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -64,16 +64,18 @@
 [ext_resource type="Texture2D" uid="uid://chl505aj4y1ur" path="res://game/player/art/Run/Run+epe_Ok_-7.png" id="53_53nu1"]
 [ext_resource type="Texture2D" uid="uid://hsy41t62jcpa" path="res://game/player/art/Run/Run+epe_Ok_-8.png" id="54_y6i8o"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_holder.gd" id="58_d7eiw"]
-[ext_resource type="PackedScene" uid="uid://bb3jrenjx6t7y" path="res://game/player/components/attacks/sword/sword_1.tscn" id="59_546gv"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="59_hfdwx"]
 [ext_resource type="Script" path="res://shared/components/attacks/energy_attack_holder.gd" id="60_3qfbr"]
-[ext_resource type="PackedScene" uid="uid://x1u1mr7yevef" path="res://game/player/components/attacks/hand/hand.tscn" id="62_detxh"]
+[ext_resource type="Script" path="res://game/player/components/states/sword_1.gd" id="67_1vje7"]
+[ext_resource type="Script" path="res://game/player/components/states/sword_2.gd" id="68_phhul"]
+[ext_resource type="Script" path="res://game/player/components/states/sword_3.gd" id="69_s4ivh"]
 [ext_resource type="AudioStream" uid="uid://16kb86le00pd" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_03.wav" id="70_14e1k"]
+[ext_resource type="Script" path="res://game/player/components/states/hand.gd" id="70_bv82a"]
 [ext_resource type="AudioStream" uid="uid://dr5licbssy58m" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_06.wav" id="71_3ndtk"]
+[ext_resource type="Script" path="res://game/player/components/states/arm.gd" id="71_sij7g"]
 [ext_resource type="AudioStream" uid="uid://dji6dphm6ac3a" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_05.wav" id="72_ajddw"]
 [ext_resource type="AudioStream" uid="uid://by5y1yix5nqtw" path="res://game/player/audio/dash/WHOOSH_AIRY_FLUTTER_01_WIDE.wav" id="73_hqpdl"]
 [ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
-[ext_resource type="Script" path="res://game/player/components/states/ability.gd" id="74_6efk3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dx5nc"]
 radius = 44.0
@@ -421,6 +423,13 @@ height = 261.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t76vn"]
+streams_count = 2
+stream_0/stream = ExtResource("73_hqpdl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("74_1y34r")
+stream_1/weight = 1.0
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4kpav"]
 playback_mode = 1
 random_volume_offset_db = 1.0
@@ -428,13 +437,6 @@ streams_count = 2
 stream_0/stream = ExtResource("70_14e1k")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("71_3ndtk")
-stream_1/weight = 1.0
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t76vn"]
-streams_count = 2
-stream_0/stream = ExtResource("73_hqpdl")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("74_1y34r")
 stream_1/weight = 1.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "die", "hit")]
@@ -536,36 +538,33 @@ attack_interval_time = 0.5
 attack_buffer_time = 0.3
 can_attack_buffer_time = 0.15
 
-[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
+[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state")]
 script = ExtResource("58_d7eiw")
 attack_data = NodePath("AttackData")
-attack_scene = ExtResource("59_546gv")
+attack_state = NodePath("../../../Components/StateMachine/sword_1")
 cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_1"]
 script = ExtResource("59_hfdwx")
 team = 1
 damage = 1.0
 
-[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
+[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state")]
 script = ExtResource("58_d7eiw")
 attack_data = NodePath("AttackData")
-attack_scene = ExtResource("59_546gv")
+attack_state = NodePath("../../../Components/StateMachine/sword_2")
 cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_2"]
 script = ExtResource("59_hfdwx")
 team = 1
 damage = 1.0
 
-[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
+[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state")]
 script = ExtResource("58_d7eiw")
 attack_data = NodePath("AttackData")
-attack_scene = ExtResource("59_546gv")
+attack_state = NodePath("../../../Components/StateMachine/sword_3")
 cooldown = 0.15
-ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_3"]
 script = ExtResource("59_hfdwx")
@@ -573,26 +572,24 @@ team = 1
 damage = 3.0
 knock_back = 200.0
 
-[node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
+[node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state")]
 script = ExtResource("60_3qfbr")
 energy_cost = 3.0
 attack_data = NodePath("AttackData")
-attack_scene = ExtResource("62_detxh")
+attack_state = NodePath("../../../Components/StateMachine/hand")
 cooldown = 0.25
-ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/hand"]
 script = ExtResource("59_hfdwx")
 team = 1
 damage = 2.0
 
-[node name="arm" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
+[node name="arm" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state")]
 script = ExtResource("60_3qfbr")
 energy_cost = 9.0
 attack_data = NodePath("AttackData")
-attack_scene = ExtResource("62_detxh")
+attack_state = NodePath("../../../Components/StateMachine/arm")
 cooldown = 3.0
-ability = NodePath("../../../Components/StateMachine/ability")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/arm"]
 script = ExtResource("59_hfdwx")
@@ -675,27 +672,58 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath("../dash")
 
-[node name="ability" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "attack_manager", "state_machine")]
-script = ExtResource("74_6efk3")
+[node name="sword_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("state_machine", "idle", "walk", "dash", "jump")]
+script = ExtResource("67_1vje7")
+state_machine = NodePath("..")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
-attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
+
+[node name="sword_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("state_machine", "idle", "walk", "dash", "jump")]
+script = ExtResource("68_phhul")
 state_machine = NodePath("..")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+dash = NodePath("../dash")
+jump = NodePath("../jump")
+
+[node name="sword_3" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("state_machine", "idle", "walk", "dash", "jump")]
+script = ExtResource("69_s4ivh")
+state_machine = NodePath("..")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+dash = NodePath("../dash")
+jump = NodePath("../jump")
+
+[node name="hand" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("state_machine", "idle", "walk", "dash", "jump")]
+script = ExtResource("70_bv82a")
+state_machine = NodePath("..")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+dash = NodePath("../dash")
+jump = NodePath("../jump")
+
+[node name="arm" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("state_machine", "idle", "walk", "dash", "jump")]
+script = ExtResource("71_sij7g")
+state_machine = NodePath("..")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+dash = NodePath("../dash")
+jump = NodePath("../jump")
 
 [node name="Audios" type="Node2D" parent="."]
 
-[node name="hit" type="AudioStreamPlayer2D" parent="Audios"]
-stream = SubResource("AudioStreamRandomizer_4kpav")
-bus = &"SFX"
+[node name="dash" type="AudioStreamPlayer2D" parent="Audios"]
+stream = SubResource("AudioStreamRandomizer_t76vn")
 
 [node name="die" type="AudioStreamPlayer2D" parent="Audios"]
 stream = ExtResource("72_ajddw")
 bus = &"SFX"
 
-[node name="dash" type="AudioStreamPlayer2D" parent="Audios"]
-stream = SubResource("AudioStreamRandomizer_t76vn")
+[node name="hit" type="AudioStreamPlayer2D" parent="Audios"]
+stream = SubResource("AudioStreamRandomizer_4kpav")
+bus = &"SFX"
 
 [connection signal="item_rect_changed" from="Camera" to="Camera" method="_on_item_rect_changed"]
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]

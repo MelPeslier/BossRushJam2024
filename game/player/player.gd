@@ -9,7 +9,11 @@ enum MovementState{
 	IDLE,
 	JUMP,
 	WALK,
-	ABILITY,
+	SWORD_1,
+	SWORD_2,
+	SWORD_3,
+	HAND,
+	ARM,
 }
 
 @export_category("Components & Nodes")

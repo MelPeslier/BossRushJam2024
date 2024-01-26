@@ -19,8 +19,8 @@ func enter() -> void:
 
 
 func exit() -> void:
-	attack_01_hitbox.deactivate()
 	animated_sprite.frame_changed.disconnect( _on_frame_changed )
+	attack_01_hitbox.deactivate()
 
 func _on_frame_changed() -> void:
 	if animated_sprite.frame == attack_frame_start:

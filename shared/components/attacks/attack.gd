@@ -1,12 +1,6 @@
 class_name Attack
 extends Node2D
 
-@export_category("Test")
-@export var testing := false
-
-@export_category("Specificity")
-@export var stick_to_parent := true
-@export var attack_special_effects: AttackSpecialEffects
 
 
 var parent: Node2D
@@ -23,12 +17,8 @@ var energy_component: EnergyComponent
 
 
 func _ready() -> void:
-	set_process_unhandled_input(testing)
-	if not testing:
-		attack_manager.last_attack = self
-	else:
-		add_child(Camera2D.new() )
-	animated_sprite_2d.visible = testing
+	attack_manager.last_attack = self
+	animated_sprite_2d.visible = false
 	if hitbox_component:
 		hitbox_component.attack_data = attack_data
 		hitbox_component.energy_component = energy_component
@@ -41,9 +31,6 @@ func _ready() -> void:
 
 func start() -> void:
 	animation_player.play("activate")
-	animated_sprite_2d.visible = testing
-	if testing:
-		animated_sprite_2d.play("default")
 
 
 func init(_parent: Node2D, _attack_data: AttackData, _attack_manager: AttackManager, _name: String, _energy_component: EnergyComponent) -> void:
@@ -52,13 +39,6 @@ func init(_parent: Node2D, _attack_data: AttackData, _attack_manager: AttackMana
 	attack_manager = _attack_manager
 	my_name = _name
 	energy_component = _energy_component
-
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("melee_attack"):
-		start()
-
-	if Input.is_action_just_pressed("distance_attack"):
-		interupt()
 
 
 func preparing(toglged_on: bool) -> void:
@@ -72,10 +52,7 @@ func interupt() -> void:
 		timer.timeout.connect( _on_timer_timeout )
 		timer.start(animation_player.current_animation_length - animation_player.current_animation_position)
 		animation_player.call_deferred("stop")
-		if testing:
-			animated_sprite_2d.pause()
 
 
 func _on_timer_timeout() -> void:
-	if testing : return
 	queue_free()

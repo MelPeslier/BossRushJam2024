@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bocqx5e7vd8ov"]
 
-[ext_resource type="Script" path="res://shared/components/attacks/bullet.gd" id="1_y3x05"]
+[ext_resource type="Script" path="res://shared/components/attacks/spell.gd" id="1_lieno"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="2_imwhj"]
 [ext_resource type="Texture2D" uid="uid://htwn0r3kqof0" path="res://shared/art/particles/rotated/muzzle_04_rotated.png" id="3_j5xp8"]
 
@@ -8,7 +8,7 @@
 size = Vector2(98, 46)
 
 [node name="HandLaser" type="Node2D"]
-script = ExtResource("1_y3x05")
+script = ExtResource("1_lieno")
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_imwhj")
