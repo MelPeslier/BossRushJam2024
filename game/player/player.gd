@@ -27,6 +27,7 @@ enum MovementState{
 @export var need_dir: Array[Node2D]
 @export var my_collision_shape: CollisionShape2D
 @export var terrain_detector: TerrainDetector
+@export var hurtbox_component: HurtboxComponent
 
 @export var die: State
 @export var hit: State
@@ -92,6 +93,9 @@ func _on_cinematic_ended() -> void:
 	set_physics_process(true)
 	set_process(true)
 
+
+func is_alive() -> bool:
+	return health_component.health > 0
 
 
 func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2) -> void:

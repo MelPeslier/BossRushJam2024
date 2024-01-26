@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cekqpaa7xjvy4"
-path="res://.godot/imported/WHOOSH_LOW_SWEEP_02.wav-fc55ee60783b287e5b75650cdcf45180.sample"
+path="res://.godot/imported/WHOOSH_LOW_SWEEP_02.wav-2a7531148c3576b1cd7c424ea29336b4.sample"
 
 [deps]
 
-source_file="res://shared/sound/player_sword/WHOOSH_LOW_SWEEP_02.wav"
-dest_files=["res://.godot/imported/WHOOSH_LOW_SWEEP_02.wav-fc55ee60783b287e5b75650cdcf45180.sample"]
+source_file="res://shared/sound/robot_swoosh/WHOOSH_LOW_SWEEP_02.wav"
+dest_files=["res://.godot/imported/WHOOSH_LOW_SWEEP_02.wav-2a7531148c3576b1cd7c424ea29336b4.sample"]
 
 [params]
 

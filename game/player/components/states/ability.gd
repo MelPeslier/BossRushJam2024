@@ -1,3 +1,4 @@
+class_name PlayerAbilityState
 extends PlayerState
 
 @export var idle: State
@@ -29,11 +30,6 @@ func process_physics(delta: float) -> State:
 	super(delta)
 
 
-	if parent.velocity.y < 0:
-		parent.velocity.y += move_data.gravity * delta
-	else:
-		parent.velocity.y += move_data.fall_gravity * delta
-		parent.velocity.y = minf(parent.velocity.y, move_data.max_fall_speed)
 
 	move_data.dir = get_movement_input()
 
@@ -54,7 +50,7 @@ func process_physics(delta: float) -> State:
 			do_walk_accelerate(delta)
 	else:
 		do_walk_decelerate(delta)
-
+	do_gravity(delta)
 	parent.move_and_slide()
 	return null
 

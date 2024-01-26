@@ -86,7 +86,7 @@ polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
 script = ExtResource("6_xrq3q")
 team = 2
 damage = 1.0
-knock_back = 4000.0
+knock_back = 500.0
 
 [node name="ToDown" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_mx03o")

@@ -10,8 +10,8 @@ signal dir_changed(new_dir: float)
 @export_range(0, 2000, 1) var walk_distance: float = 1000
 @export_range(0, 3) var walk_accel_time: float = 0.125
 @export_range(0, 3) var walk_decel_time: float = 0.2
-@export_range(0.01, 3) var walk_step_interval_time: float = 0.15
-@export_range(0.01, 3) var run_step_interval_time: float = 0.1
+@export_range(0.01, 3) var walk_step_interval_time: float = 0.45
+@export_range(0.01, 3) var run_step_interval_time: float = 0.3
 
 @export_category("air")
 @export_range(0.05, 100) var air_decel_time: float = 3

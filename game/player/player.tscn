@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=96 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -68,6 +68,11 @@
 [ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="59_hfdwx"]
 [ext_resource type="Script" path="res://shared/components/attacks/energy_attack_holder.gd" id="60_3qfbr"]
 [ext_resource type="PackedScene" uid="uid://x1u1mr7yevef" path="res://game/player/components/attacks/hand/hand.tscn" id="62_detxh"]
+[ext_resource type="AudioStream" uid="uid://16kb86le00pd" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_03.wav" id="70_14e1k"]
+[ext_resource type="AudioStream" uid="uid://dr5licbssy58m" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_06.wav" id="71_3ndtk"]
+[ext_resource type="AudioStream" uid="uid://dji6dphm6ac3a" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_05.wav" id="72_ajddw"]
+[ext_resource type="AudioStream" uid="uid://by5y1yix5nqtw" path="res://game/player/audio/dash/WHOOSH_AIRY_FLUTTER_01_WIDE.wav" id="73_hqpdl"]
+[ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
 [ext_resource type="Script" path="res://game/player/components/states/ability.gd" id="74_6efk3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dx5nc"]
@@ -79,9 +84,37 @@ resource_name = "arm"
 
 [sub_resource type="Animation" id="Animation_vxab7"]
 resource_name = "dash"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audios/dash")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mekx8"]
 resource_name = "die"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audios/die")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_dk6ef"]
 resource_name = "fall"
@@ -91,6 +124,20 @@ resource_name = "hand"
 
 [sub_resource type="Animation" id="Animation_c87bg"]
 resource_name = "hit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audios/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_hcmfn"]
 resource_name = "idle"
@@ -134,8 +181,8 @@ height = 307.39
 shader = ExtResource("4_m6he1")
 shader_parameter/color1 = Color(0.729412, 0.988235, 1, 1)
 shader_parameter/color2 = Color(0.729412, 0.988235, 1, 1)
-shader_parameter/threshold = 0.46
-shader_parameter/intensity = 3.0
+shader_parameter/threshold = 0.8
+shader_parameter/intensity = 3.3
 shader_parameter/opacity = 1.0
 shader_parameter/glow_color = Color(0.729412, 0.988235, 1, 1)
 
@@ -374,7 +421,23 @@ height = 261.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "die", "hit")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4kpav"]
+playback_mode = 1
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("70_14e1k")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("71_3ndtk")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t76vn"]
+streams_count = 2
+stream_0/stream = ExtResource("73_hqpdl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("74_1y34r")
+stream_1/weight = 1.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "die", "hit")]
 collision_layer = 8
 collision_mask = 17
 floor_constant_speed = true
@@ -393,9 +456,10 @@ interactor_component = NodePath("Components2D/PlayerInteractorComponent")
 bot_pos = NodePath("Components2D/OtherStuff/BotPos")
 mid_pos = NodePath("Components2D/OtherStuff/MidPos")
 camera = NodePath("Camera")
-need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager")]
+need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/PlayerInteractorComponent"), NodePath("Components2D/PlayerAttackManager"), NodePath("Components2D/HurtboxComponent")]
 my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionShape2D")
 terrain_detector = NodePath("Components2D/TerrainDetector")
+hurtbox_component = NodePath("Components2D/HurtboxComponent")
 die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
@@ -405,7 +469,7 @@ health_component = NodePath("../Components/Datas/HealthComponent")
 energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(0.615, 0.615)
+zoom = Vector2(0.6, 0.6)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_bottom_margin = 0.0
@@ -433,12 +497,10 @@ script = ExtResource("4_63l1n")
 position = Vector2(-1, 132.085)
 shape = SubResource("CapsuleShape2D_10vgk")
 
-[node name="Sprite2D" type="Sprite2D" parent="Components2D"]
-
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"idle"
+animation = &"jump"
 
 [node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "health_component")]
 position = Vector2(-1, 95.5)
@@ -488,7 +550,7 @@ damage = 1.0
 
 [node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
 script = ExtResource("58_d7eiw")
-attack_data = NodePath("../sword_1/AttackData")
+attack_data = NodePath("AttackData")
 attack_scene = ExtResource("59_546gv")
 cooldown = 0.25
 ability = NodePath("../../../Components/StateMachine/ability")
@@ -500,7 +562,7 @@ damage = 1.0
 
 [node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
 script = ExtResource("58_d7eiw")
-attack_data = NodePath("../sword_1/AttackData")
+attack_data = NodePath("AttackData")
 attack_scene = ExtResource("59_546gv")
 cooldown = 0.15
 ability = NodePath("../../../Components/StateMachine/ability")
@@ -509,6 +571,7 @@ ability = NodePath("../../../Components/StateMachine/ability")
 script = ExtResource("59_hfdwx")
 team = 1
 damage = 3.0
+knock_back = 200.0
 
 [node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "ability")]
 script = ExtResource("60_3qfbr")
@@ -535,6 +598,7 @@ ability = NodePath("../../../Components/StateMachine/ability")
 script = ExtResource("59_hfdwx")
 team = 1
 damage = 9.0
+knock_back = 1000.0
 
 [node name="Components" type="Node" parent="."]
 
@@ -542,7 +606,6 @@ damage = 9.0
 
 [node name="MoveData" type="Node" parent="Components/Datas"]
 script = ExtResource("3_7ycnr")
-run_step_interval_time = 0.3
 
 [node name="HealthComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("5_nbbkh")
@@ -585,12 +648,12 @@ walk = NodePath("../walk")
 jump = NodePath("../jump")
 dash = NodePath("../dash")
 
-[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die", "attack_input_component", "attack_manager")]
+[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die", "attack_input_component")]
 script = ExtResource("7_86s88")
 idle = NodePath("../idle")
 die = NodePath("../die")
 attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
-attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
+invicibility_time = 0.5
 
 [node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "jump", "fall", "dash")]
 script = ExtResource("8_eankw")
@@ -620,6 +683,19 @@ dash = NodePath("../dash")
 jump = NodePath("../jump")
 attack_manager = NodePath("../../../Components2D/PlayerAttackManager")
 state_machine = NodePath("..")
+
+[node name="Audios" type="Node2D" parent="."]
+
+[node name="hit" type="AudioStreamPlayer2D" parent="Audios"]
+stream = SubResource("AudioStreamRandomizer_4kpav")
+bus = &"SFX"
+
+[node name="die" type="AudioStreamPlayer2D" parent="Audios"]
+stream = ExtResource("72_ajddw")
+bus = &"SFX"
+
+[node name="dash" type="AudioStreamPlayer2D" parent="Audios"]
+stream = SubResource("AudioStreamRandomizer_t76vn")
 
 [connection signal="item_rect_changed" from="Camera" to="Camera" method="_on_item_rect_changed"]
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=3 uid="uid://clt5nw072wgqb"]
+[gd_scene load_steps=164 format=3 uid="uid://clt5nw072wgqb"]
 
 [ext_resource type="Texture2D" uid="uid://bd1ey8el83jh" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_00.png" id="1_b1d0g"]
 [ext_resource type="Texture2D" uid="uid://dbvkgocqrawaj" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_00.png" id="1_ihxln"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="2_6aski"]
 [ext_resource type="Texture2D" uid="uid://ktpkdy3inkpr" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_01.png" id="2_jq61v"]
 [ext_resource type="Texture2D" uid="uid://b7vrwri4chx3k" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_01.png" id="2_lr0y0"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="3_2rjh1"]
 [ext_resource type="Texture2D" uid="uid://due0e88jjul3v" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_02.png" id="3_arxcn"]
 [ext_resource type="Texture2D" uid="uid://bm02sb2a1g048" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_02.png" id="3_hufaj"]
 [ext_resource type="Texture2D" uid="uid://cxvdw1qauu12c" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_03.png" id="4_7c2hd"]
@@ -106,9 +107,12 @@
 [ext_resource type="Texture2D" uid="uid://b5vgtvhm4183c" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_01.png" id="126_pwb0o"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="127_hf2fj"]
 [ext_resource type="Texture2D" uid="uid://dejv54qp765ah" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_02.png" id="127_q0ar6"]
+[ext_resource type="AudioStream" uid="uid://byo1dryc5jroc" path="res://shared/sound/robot_swoosh/WHOOSH_LOW_SWEEP_01.wav" id="128_6cnl8"]
 [ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/idle.gd" id="128_kkbkg"]
 [ext_resource type="Texture2D" uid="uid://c15vchvwq57nu" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_03.png" id="128_ocga1"]
 [ext_resource type="Texture2D" uid="uid://w7aemxtb21ff" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_04.png" id="129_5qtbo"]
+[ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="129_8fgo8"]
+[ext_resource type="AudioStream" uid="uid://cekqpaa7xjvy4" path="res://shared/sound/robot_swoosh/WHOOSH_LOW_SWEEP_02.wav" id="129_s8n04"]
 [ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/run.gd" id="129_u0xah"]
 [ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/walk.gd" id="130_o5max"]
 [ext_resource type="Texture2D" uid="uid://8rgimygwqkr0" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_05.png" id="130_x0jcn"]
@@ -121,14 +125,23 @@
 [ext_resource type="Texture2D" uid="uid://32b3cx6klob" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_09.png" id="134_b0xt6"]
 [ext_resource type="Texture2D" uid="uid://2cbkwm6sbkkh" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_10.png" id="135_a0hni"]
 [ext_resource type="Texture2D" uid="uid://cfkipcimpvl0x" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_11.png" id="136_sqoqi"]
+[ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/fall.gd" id="137_8d2ca"]
 [ext_resource type="Texture2D" uid="uid://17yxbpkhpmp" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_12.png" id="137_gd15b"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="137_vc7gw"]
 [ext_resource type="Texture2D" uid="uid://cu2k4f7utlps7" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_13.png" id="138_3g3wt"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="138_6wqle"]
 [ext_resource type="Texture2D" uid="uid://bpjhkjigkrgs8" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_14.png" id="139_22b16"]
+[ext_resource type="AudioStream" uid="uid://c8tp1lg6uhx4r" path="res://shared/sound/robot_voice/ROBTVox_Robot Vocalisation_03_SFRMS_SCIWPNS.wav" id="140_4wngc"]
 [ext_resource type="Texture2D" uid="uid://dn1vh8yhpcdk1" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_15.png" id="140_kheji"]
 [ext_resource type="Texture2D" uid="uid://c0wmp2u5hn4h8" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_16.png" id="141_83hjr"]
+[ext_resource type="AudioStream" uid="uid://cqbdonjdanxbj" path="res://shared/sound/robot_voice/ROBTVox_Robot Vocalisation_02_SFRMS_SCIWPNS.wav" id="141_vnef3"]
 [ext_resource type="Texture2D" uid="uid://c0jygyxmmwwvu" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_17.png" id="142_7buf8"]
+[ext_resource type="AudioStream" uid="uid://dsw43udvd1j8r" path="res://shared/sound/robot_voice/ROBTVox_Robot Vocalisation_01_SFRMS_SCIWPNS.wav" id="142_kspqo"]
+[ext_resource type="AudioStream" uid="uid://cbauyydwvrt3d" path="res://shared/sound/hit/IMPACT_LOW_THUD_09.wav" id="143_1kn3a"]
 [ext_resource type="Texture2D" uid="uid://xfwwwr4xu08j" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_18.png" id="143_5yl3q"]
+[ext_resource type="AudioStream" uid="uid://b0bhnwj1lvwn3" path="res://shared/sound/hit/IMPACT_LOW_THUD_10.wav" id="144_nxmh7"]
 [ext_resource type="Texture2D" uid="uid://byynarel4bqqi" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_19.png" id="144_t8f8t"]
+[ext_resource type="AudioStream" uid="uid://e580mnpk32cg" path="res://shared/sound/hit/IMPACT_LOW_THUD_11.wav" id="145_etl3f"]
 [ext_resource type="Texture2D" uid="uid://r64g33rhbhvk" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_20.png" id="145_kyc58"]
 [ext_resource type="Texture2D" uid="uid://jf5ucb1qq53q" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_21.png" id="146_3f8al"]
 [ext_resource type="Texture2D" uid="uid://bdb0g678l1yv5" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_22.png" id="147_dos1l"]
@@ -141,17 +154,64 @@ size = Vector2(115.087, 397.307)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxvtc"]
 size = Vector2(39.8603, 106.356)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_domfq"]
-size = Vector2(1208, 692.532)
+[sub_resource type="CircleShape2D" id="CircleShape2D_h50nm"]
+radius = 900.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvep7"]
+radius = 100.865
+height = 406.246
 
 [sub_resource type="Animation" id="Animation_rfkpv"]
 resource_name = "attack"
 
 [sub_resource type="Animation" id="Animation_bkim2"]
 resource_name = "dead"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.9]
+}
+
+[sub_resource type="Animation" id="Animation_0sbag"]
+resource_name = "fall"
 
 [sub_resource type="Animation" id="Animation_jb7gk"]
 resource_name = "get_hit"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_8w3mq"]
 resource_name = "idle"
@@ -162,10 +222,27 @@ resource_name = "run"
 [sub_resource type="Animation" id="Animation_51ov1"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_15u2d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hit:pitch_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x7tcl"]
 _data = {
+"RESET": SubResource("Animation_15u2d"),
 "attack": SubResource("Animation_rfkpv"),
 "dead": SubResource("Animation_bkim2"),
+"fall": SubResource("Animation_0sbag"),
 "get_hit": SubResource("Animation_jb7gk"),
 "idle": SubResource("Animation_8w3mq"),
 "run": SubResource("Animation_ikr20"),
@@ -187,16 +264,16 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_ats3t")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": ExtResource("5_i4frv")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": ExtResource("6_8slpu")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": ExtResource("7_6j8vv")
 }, {
-"duration": 5.0,
+"duration": 1.0,
 "texture": ExtResource("8_ab8s1")
 }, {
 "duration": 1.0,
@@ -269,6 +346,44 @@ animations = [{
 }],
 "loop": false,
 "name": &"dead",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_8d7ci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_th3y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_biowa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vcq0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jg72r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_063l2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jg72r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vcq0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_biowa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_th3y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8d7ci")
+}],
+"loop": true,
+"name": &"fall",
 "speed": 25.0
 }, {
 "frames": [{
@@ -574,6 +689,27 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vfa87"]
+playback_mode = 1
+random_pitch = 1.1
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("128_6cnl8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("129_s8n04")
+stream_1/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_irmjc"]
+random_pitch = 1.5
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("143_1kn3a")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("144_nxmh7")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("145_etl3f")
+stream_2/weight = 1.0
+
 [node name="BrokenRobot1" type="CharacterBody2D" node_paths=PackedStringArray("need_dir")]
 collision_layer = 8
 collision_mask = 17
@@ -591,13 +727,28 @@ script = ExtResource("2_6aski")
 position = Vector2(0, 172.98)
 shape = SubResource("RectangleShape2D_rxvtc")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+modulate = Color(1, 0.831373, 0, 1)
+target_position = Vector2(-900, 0)
+collision_mask = 17
+hit_from_inside = true
+
 [node name="Detector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-position = Vector2(-306.415, -167.624)
-shape = SubResource("RectangleShape2D_domfq")
+shape = SubResource("CircleShape2D_h50nm")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("parent", "health_component")]
+script = ExtResource("3_2rjh1")
+parent = NodePath("..")
+health_component = NodePath("../HealthComponent")
+energy_to_give = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-20.2043, -17.9594)
+shape = SubResource("CapsuleShape2D_lvep7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -607,44 +758,114 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_vj0kg")
-animation = &"walk"
-frame = 24
+animation = &"get_hit"
+frame = 10
 frame_progress = 1.0
+
+[node name="attacks" type="Node2D" parent="."]
+
+[node name="attack_01_hitbox" type="Area2D" parent="attacks" node_paths=PackedStringArray("parent", "attack_data")]
+script = ExtResource("137_vc7gw")
+parent = NodePath("../..")
+attack_data = NodePath("../../StateMachine/attack/AttackData")
+
+[node name="attack_01" type="CollisionPolygon2D" parent="attacks/attack_01_hitbox"]
+polygon = PackedVector2Array(-72.9093, 174.845, -338.397, 174.845, -352.651, 165.491, -364.679, 56.8013, -318.352, -111.579, -247.971, -173.941, -154.349, -193.173, -69.714, -182.482, -182.044, -99.5514, -206.606, -2.59393, -177.907, 83.5032)
+disabled = true
+
+[node name="swoosh" type="AudioStreamPlayer2D" parent="attacks/attack_01_hitbox"]
+stream = SubResource("AudioStreamRandomizer_vfa87")
+bus = &"SFX"
 
 [node name="MoveInputComponent" type="Node" parent="."]
 script = ExtResource("125_kapwk")
 
 [node name="MoveData" type="Node" parent="."]
 script = ExtResource("126_c21ek")
-walk_distance = 500.0
+walk_distance = 1200.0
+run_step_interval_time = 0.25
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("129_8fgo8")
+max_health = 5.0
+health = 5.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("127_hf2fj")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk")]
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk", "run", "fall")]
 script = ExtResource("128_kkbkg")
 walk = NodePath("../walk")
+run = NodePath("../run")
+fall = NodePath("../fall")
 
-[node name="walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("terrain_detector", "idle")]
+[node name="walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("terrain_detector", "idle", "run", "fall")]
 script = ExtResource("130_o5max")
 terrain_detector = NodePath("../../TerrainDetector")
 idle = NodePath("../idle")
+run = NodePath("../run")
+fall = NodePath("../fall")
 
-[node name="run" type="Node" parent="StateMachine"]
+[node name="run" type="Node" parent="StateMachine" node_paths=PackedStringArray("terrain_detector", "attack", "idle", "fall")]
 script = ExtResource("129_u0xah")
+terrain_detector = NodePath("../../TerrainDetector")
+attack_range = 300.0
+attack = NodePath("../attack")
+idle = NodePath("../idle")
+fall = NodePath("../fall")
 
-[node name="attack" type="Node" parent="StateMachine"]
+[node name="attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "fall", "attack_01_hitbox", "swoosh", "hit_gived")]
 script = ExtResource("131_0an3v")
+idle = NodePath("../idle")
+fall = NodePath("../fall")
+attack_01_hitbox = NodePath("../../attacks/attack_01_hitbox")
+swoosh = NodePath("../../attacks/attack_01_hitbox/swoosh")
+hit_gived = NodePath("../../hit_gived")
 
-[node name="get_hit" type="Node" parent="StateMachine"]
+[node name="AttackData" type="Node" parent="StateMachine/attack"]
+script = ExtResource("138_6wqle")
+damage = 1.0
+knock_back = 300.0
+
+[node name="get_hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "fall")]
 script = ExtResource("132_5iy1w")
+idle = NodePath("../idle")
+fall = NodePath("../fall")
 
 [node name="dead" type="Node" parent="StateMachine"]
 script = ExtResource("133_fjh4w")
 
-[node name="attacks" type="Node2D" parent="."]
+[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "terrain_detector")]
+script = ExtResource("137_8d2ca")
+idle = NodePath("../idle")
+terrain_detector = NodePath("../../TerrainDetector")
+
+[node name="detected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("140_4wngc")
+volume_db = -4.0
+pitch_scale = 1.3
+bus = &"SFX"
+
+[node name="losed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("141_vnef3")
+volume_db = -4.0
+pitch_scale = 1.3
+bus = &"SFX"
+
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("142_kspqo")
+volume_db = -4.0
+pitch_scale = 1.3
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="hit_gived" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_irmjc")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
 [connection signal="body_exited" from="Detector" to="." method="_on_detector_body_exited"]
+[connection signal="hit_received" from="HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
+[connection signal="hit_gived_at" from="attacks/attack_01_hitbox" to="StateMachine/attack" method="_on_attack_01_hitbox_hit_gived_at"]
 [connection signal="dir_changed" from="MoveData" to="." method="_on_move_data_dir_changed"]

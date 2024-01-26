@@ -71,7 +71,7 @@ func interupt() -> void:
 		add_child(timer)
 		timer.timeout.connect( _on_timer_timeout )
 		timer.start(animation_player.current_animation_length - animation_player.current_animation_position)
-		animation_player.stop()
+		animation_player.call_deferred("stop")
 		if testing:
 			animated_sprite_2d.pause()
 

@@ -18,10 +18,10 @@ var wants_sword := false
 
 
 func process_unhandled_input(_event: InputEvent) -> void:
-	if attack_input_component.wants_melee_attack():
+	if attack_input_component.wants_main_attack():
 		attack_holder = swords[0]
 		wants_sword = true
-	if attack_input_component.wants_distance_attack():
+	if attack_input_component.wants_secondary_attack():
 		wants_sword = false
 		if arm.can_attack:
 			attack_holder = arm

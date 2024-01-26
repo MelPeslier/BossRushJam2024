@@ -7,7 +7,8 @@ func enter() -> void:
 	super()
 	ability_input_component.disable_attack()
 	move_data.disable_move()
-	#GameState.player_died()
+	player.hurtbox_component.deactivate()
+	GameEvents.player_died.emit()
 
 
 func spawn_soul() -> void:

@@ -41,6 +41,7 @@ func _on_timer_timeout() -> void:
 
 
 func spawn_attack() -> void:
+
 	var attack_instance: Attack = attack_scene.instantiate() as Attack
 	attack_instance.init(parent, attack_data, attack_manager, name, energy_component)
 	if attack_instance.stick_to_parent:

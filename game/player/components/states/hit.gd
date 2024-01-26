@@ -2,22 +2,22 @@ extends PlayerState
 
 @export var idle: State
 @export var die: State
-@export_range(0.05, 8) var hit_timer: float = 0.1
 @export var attack_input_component: AbilityInputComponent
-@export var attack_manager: AttackManager
+@export var invicibility_time: float = 0.3
 
-var is_dead := false
 
 
 func enter() -> void:
 	super()
 	attack_input_component.disable_attack()
 	move_data.disable_move()
+	player.hurtbox_component.deactivate()
 
 
 func exit() -> void:
 	attack_input_component.enable_attack()
 	move_data.enable_move()
+	player.hurtbox_component.activate(invicibility_time)
 
 
 func process_physics(delta: float) -> State:
@@ -26,7 +26,7 @@ func process_physics(delta: float) -> State:
 	do_gravity(delta)
 	parent.move_and_slide()
 
-	if animator.is_playing():
+	if animated_sprite.is_playing():
 		return null
 
 	return idle

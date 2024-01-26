@@ -7,7 +7,7 @@ signal menu_opened
 signal menu_closed
 
 signal zoom_changed
-
+signal player_died
 
 signal screen_shake(_strength: float, _fade: float)
 

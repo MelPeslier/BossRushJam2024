@@ -4,10 +4,10 @@ extends Node
 var _can_attack := true
 
 
-func wants_melee_attack() -> bool:
+func wants_main_attack() -> bool:
 	return false
 
-func wants_distance_attack() -> bool:
+func wants_secondary_attack() -> bool:
 	return false
 
 
