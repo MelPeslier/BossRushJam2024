@@ -18,7 +18,7 @@ func process_physics(delta: float) -> State:
 		move_data.step_interval_timer = move_data.run_step_interval_time
 		match player.terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
-				Sfx2d.play_metal(SoundList.Metal.RUN_LIGHT, parent.global_position)
+				Sfx2d.play_metal_movement(SoundList.MetalMovement.RUN_LIGHT, parent.global_position)
 
 	move_data.dir = get_movement_input()
 	if not move_data.dir or not move_data.can_move:

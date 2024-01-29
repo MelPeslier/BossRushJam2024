@@ -59,5 +59,5 @@ func process_frame(delta: float) -> State:
 		move_data.step_interval_timer = move_data.walk_step_interval_time
 		match terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
-				Sfx2d.play_metal(SoundList.Metal.WALK_LIGHT, parent.global_position)
+				Sfx2d.play_metal_movement(SoundList.MetalMovement.WALK_LIGHT, parent.global_position)
 	return null

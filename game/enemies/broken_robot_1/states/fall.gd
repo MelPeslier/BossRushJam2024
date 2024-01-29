@@ -21,8 +21,8 @@ func process_physics(delta: float) -> State:
 		match terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
 				if fall_timer > move_data.jump_time_to_descent + 0.01:
-					Sfx2d.play_metal(SoundList.Metal.LAND_MEDIUM, parent.global_position)
+					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_MEDIUM, parent.global_position)
 				else:
-					Sfx2d.play_metal(SoundList.Metal.LAND_LIGHT, parent.global_position)
+					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_LIGHT, parent.global_position)
 		return idle
 	return null

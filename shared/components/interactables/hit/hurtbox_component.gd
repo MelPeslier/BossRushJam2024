@@ -21,11 +21,10 @@ func _on_area_entered(hitbox: HitboxComponent) -> void:
 		return
 	if hitbox.parent == parent:
 		return
-	if hitbox.energy_component and energy_to_give > 0:
+	if hitbox.energy_component and energy_to_give > 0 and hitbox.attack_data.can_gain_energy :
 		hitbox.energy_component.gain(energy_to_give)
 
 	var attack_data := hitbox.attack_data
-
 
 	var dir := hitbox.parent.global_position.direction_to(global_position)
 

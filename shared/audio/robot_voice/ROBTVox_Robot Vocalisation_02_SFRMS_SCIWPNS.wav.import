@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cqbdonjdanxbj"
+path="res://.godot/imported/ROBTVox_Robot Vocalisation_02_SFRMS_SCIWPNS.wav-2a86d206c04b4fb0f02c8e0cfe9d2d71.sample"
+
+[deps]
+
+source_file="res://shared/audio/robot_voice/ROBTVox_Robot Vocalisation_02_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/ROBTVox_Robot Vocalisation_02_SFRMS_SCIWPNS.wav-2a86d206c04b4fb0f02c8e0cfe9d2d71.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

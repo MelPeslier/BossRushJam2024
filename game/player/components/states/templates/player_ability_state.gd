@@ -1,7 +1,6 @@
 class_name PlayerAbilityState
 extends PlayerState
 
-@export var state_machine: StateMachine
 @export var idle: State
 @export var walk: State
 @export var dash: State
@@ -10,53 +9,68 @@ extends PlayerState
 @export_category("Attack Specificity")
 @export var attack_frame_start: int = -1
 @export var attack_frame_end: int = -1
-@export var stick_to_parent := true
+@export var stick_to_parent := false
 @export var attack_juice: Array[PackedScene]
 
 @export_category("Spell to Spawn")
 @export var spell_scene: PackedScene = null
-@export var marker: Marker2D = null
 
 var attack_holder: AttackHolder
+
 
 func spawn_spell() -> void:
 	var spell_instance: Spell = spell_scene.instantiate() as Spell
 	spell_instance.init(parent, attack_holder.attack_data)
 	spell_instance.dir = attack_holder.attack_manager.scale.x
-	if spell_instance.stick_to_parent:
+	if stick_to_parent:
 		add_child(spell_instance)
 	elif BaseLevel.level.stuff_2d:
-		BaseLevel.level.setuff_2d.add_child(spell_instance)
+		BaseLevel.level.stuff_2d.add_child(spell_instance)
 	else:
 		print("player_ability_state : spell added to winddow  :  ", name)
 		get_window().add_child(spell_instance)
-	if marker:
-		spell_instance.global_position = marker.global_position
-	else:
-		spell_instance.global_position = attack_holder.global_position
+
+	spell_instance.global_position = attack_holder.global_position
 
 
 func enter() -> void:
 	super()
-	animated_sprite.animation_finished.connect( _on_animated_sprite_animation_finished )
 	animated_sprite.frame_changed.connect( _on_frame_changed )
+	if attack_holder.hitbox_component:
+		attack_holder.hitbox_component.hit_gived_at.connect( _on_hitbox_component_hit_gived_at, CONNECT_ONE_SHOT)
+	if attack_frame_start == -1:
+		activate()
 
-
-func _on_animated_sprite_animation_finished() -> void:
-	if move_data.dir == 0:
-		state_machine.change_state(idle)
-		return
-	else:
-		state_machine.change_state(walk)
-
-
-func _on_frame_changed() -> void:
-	pass
 
 
 func exit() -> void:
-	animated_sprite.animation_finished.disconnect( _on_animated_sprite_animation_finished )
 	animated_sprite.frame_changed.disconnect( _on_frame_changed )
+	if attack_frame_end == -1:
+		deactivate()
+
+
+func _on_frame_changed() -> void:
+	if animated_sprite.frame == attack_frame_start:
+		activate()
+		return
+
+	if animated_sprite.frame == attack_frame_end:
+		deactivate()
+		return
+
+
+func activate() -> void:
+	if attack_holder.asp:
+		attack_holder.asp.play()
+	if attack_holder.hitbox_component:
+		attack_holder.hitbox_component.activate()
+	if spell_scene:
+		spawn_spell()
+
+
+func deactivate() -> void:
+	if attack_holder.hitbox_component:
+			attack_holder.hitbox_component.deactivate()
 
 
 func process_physics(delta: float) -> State:
@@ -79,6 +93,11 @@ func process_physics(delta: float) -> State:
 		do_walk_decelerate(delta)
 	do_gravity(delta)
 	parent.move_and_slide()
+
+	if not animated_sprite.is_playing():
+		if move_data.dir == 0:
+			return idle
+		return walk
 	return null
 
 
@@ -96,5 +115,6 @@ func process_unhandled_input(_event: InputEvent) -> State:
 		move_data.jump_buffer_timer = move_data.jump_buffer_time
 	return null
 
-
+func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:
+	return
 

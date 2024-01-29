@@ -19,6 +19,7 @@ var energy_tween: Tween
 
 
 func _ready() -> void:
+	visible = true
 	energy_component.energy_updated.connect( _on_energy_updated )
 	health_component.health_changed.connect( _on_health_changed )
 	energy_component.energy = energy_component.energy

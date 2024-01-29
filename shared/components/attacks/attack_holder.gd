@@ -3,8 +3,10 @@ extends Node2D
 
 signal attack_up(_can_attack: bool, _damage: float)
 
+@export var hitbox_component: HitboxComponent
 @export var attack_data: AttackData
 @export var attack_state: PlayerAbilityState
+@export var asp: AudioStreamPlayer2D
 
 @export_range(0.05, 45) var cooldown: float
 
@@ -29,6 +31,12 @@ func init(_parent: Node2D, _attack_manager: AttackManager, _state_machine: State
 	attack_manager = _attack_manager
 	state_machine = _state_machine
 	energy_component = _energy_component
+	if hitbox_component:
+		hitbox_component.parent = parent
+		hitbox_component.attack_data = attack_data
+		hitbox_component.deactivate()
+		if energy_component:
+			hitbox_component.energy_component = energy_component
 
 
 func activate() -> void:
