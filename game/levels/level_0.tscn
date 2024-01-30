@@ -117,10 +117,8 @@ self_modulate = Color(1, 0.537255, 0.27451, 1)
 position = Vector2(22016, -2560)
 process_material = SubResource("ParticleProcessMaterial_we3f7")
 color = Color(1, 0.537255, 0.27451, 1)
-my_velocity_min = 100.0
-my_velocity_max = 150.0
 
-[node name="EnvironmentParticlesBackGround1" parent="LevelStuff2D/Particles" node_paths=PackedStringArray("player") instance=ExtResource("2_uw6t5")]
+[node name="EnvironmentParticlesBackGround1" parent="LevelStuff2D/Particles" instance=ExtResource("2_uw6t5")]
 self_modulate = Color(0.654902, 0.231373, 0, 1)
 z_index = -15
 position = Vector2(22016, -2560)
@@ -130,9 +128,8 @@ my_z_index = -15
 my_scale_max = 0.05
 my_velocity_min = 80.0
 my_velocity_max = 120.0
-player = NodePath("")
 
-[node name="EnvironmentParticlesBackGround2" parent="LevelStuff2D/Particles" node_paths=PackedStringArray("player") instance=ExtResource("2_uw6t5")]
+[node name="EnvironmentParticlesBackGround2" parent="LevelStuff2D/Particles" instance=ExtResource("2_uw6t5")]
 self_modulate = Color(0, 0.309804, 0.32549, 1)
 z_index = -30
 position = Vector2(22016, -2560)
@@ -142,7 +139,6 @@ my_z_index = -30
 my_scale_max = 0.04
 my_velocity_min = 60.0
 my_velocity_max = 100.0
-player = NodePath("")
 
 [node name="ForPlayer" type="Node2D" parent="LevelStuff2D"]
 

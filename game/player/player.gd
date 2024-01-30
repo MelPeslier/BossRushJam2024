@@ -118,14 +118,27 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	movement_state_machine.change_state(next_state)
 
 	if _attack_data.team == AttackData.Team.SPIKE:
-		hit_transition.appear(spike_hit_in)
+
+
+		hit.is_spike = true
+
 		var timer := Timer.new()
 		add_child(timer)
-		timer.start(spike_hit_in + 0.2)
+		timer.start(spike_hit_in)
+
+		hit_transition.appear(spike_hit_in)
+
+		timer.start(spike_hit_in)
+		await timer.timeout
+
+		global_position = terrain_detector.last_ground_tile_position
+
+		timer.start(0.2)
 		await timer.timeout
 		timer.queue_free()
-		global_position = terrain_detector.last_ground_tile_position
+
 		hit_transition.disappear(spike_hit_out)
+		hit.is_spike = false
 
 
 static func _set_move_speed(_new_speed: float) -> void:

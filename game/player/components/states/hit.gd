@@ -5,7 +5,7 @@ extends PlayerState
 @export var attack_input_component: AbilityInputComponent
 @export var invicibility_time: float = 0.3
 
-
+var is_spike := false
 
 func enter() -> void:
 	super()
@@ -22,11 +22,12 @@ func exit() -> void:
 
 func process_physics(delta: float) -> State:
 	super(delta)
+
 	do_air_decelerate(delta)
 	do_gravity(delta)
 	parent.move_and_slide()
 
-	if animated_sprite.is_playing():
+	if animated_sprite.is_playing() or is_spike:
 		return null
 
 	return idle
