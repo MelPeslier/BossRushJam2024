@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://gdmmh58tg7jw"]
+
+[ext_resource type="Texture2D" uid="uid://cu4gt4m0x7ho5" path="res://shared/art/particles/circle_05.png" id="1_xwxg6"]
+[ext_resource type="Script" path="res://game/environment/particles/environment_particles.gd" id="2_ar5y7"]
+
+[sub_resource type="Curve" id="Curve_gc3rh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.05, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fli6m"]
+curve = SubResource("Curve_gc3rh")
+
+[sub_resource type="Curve" id="Curve_48kjp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.995, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pvqkj"]
+curve = SubResource("Curve_48kjp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jsf1c"]
+resource_local_to_scene = true
+emission_shape_offset = Vector3(1000, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(4000, 1800, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, -0.1, 0)
+spread = 11.0
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 2, 0)
+scale_min = 0.05
+scale_max = 0.06
+scale_curve = SubResource("CurveTexture_pvqkj")
+alpha_curve = SubResource("CurveTexture_fli6m")
+
+[node name="EnvironmentParticles" type="GPUParticles2D"]
+self_modulate = Color(0, 0, 0, 1)
+z_index = 30
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_jsf1c")
+texture = ExtResource("1_xwxg6")
+lifetime = 15.0
+preprocess = 12.0
+randomness = 0.15
+visibility_rect = Rect2(-1000, -500, 2000, 1000)
+script = ExtResource("2_ar5y7")
+my_velocity_min = null
+my_velocity_max = null

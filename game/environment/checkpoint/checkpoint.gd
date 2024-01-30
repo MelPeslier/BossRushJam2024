@@ -1,10 +1,13 @@
 class_name Checkpoint
 extends Node2D
+
+
 static var ids: int = -1
 static var last_id: int = -1
 static var last_checkpoint: Checkpoint = null
-@export var id: int = 0
+var id: int = 0
 
+@export_file("*.tscn") var next_level_path : String
 @export var collision_shape: CollisionShape2D
 @export var gpu_particles: GPUParticles2D
 @export var animated_sprite: AnimatedSprite2D
@@ -34,10 +37,14 @@ func _activate() -> void:
 	collision_shape.disabled = true
 	gpu_particles.amount_ratio = 1.0
 	gpu_particles.emitting = true
+	animated_sprite.play("open")
+
+	if not next_level_path.is_empty():
+		SceneTransition.change_scene(next_level_path)
+		return
 	GameState.saved_game.level_check_point_id = id
 	GameState.save_game()
 	last_id = id
-	animated_sprite.play("open")
 
 	if last_checkpoint:
 		last_checkpoint._deactivate()

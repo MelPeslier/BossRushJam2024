@@ -1,23 +1,125 @@
-[gd_scene load_steps=5 format=3 uid="uid://bocqx5e7vd8ov"]
+[gd_scene load_steps=17 format=3 uid="uid://bocqx5e7vd8ov"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/spell.gd" id="1_lieno"]
+[ext_resource type="PackedScene" uid="uid://cqoty66hfnbad" path="res://game/player/components/attacks/hand/hand_laser_impact.tscn" id="2_gt5th"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="2_imwhj"]
 [ext_resource type="Texture2D" uid="uid://htwn0r3kqof0" path="res://shared/art/particles/rotated/muzzle_04_rotated.png" id="3_j5xp8"]
+[ext_resource type="Texture2D" uid="uid://csvtkqba2s8q8" path="res://shared/art/particles/flare_01.png" id="4_3lpdo"]
+[ext_resource type="Material" uid="uid://clnduyvralyxd" path="res://shared/materials/blend_mode/blend_add.tres" id="4_4fssa"]
+[ext_resource type="AudioStream" uid="uid://b5lm413pjahon" path="res://shared/audio/laser/LASRBeam_Plasma Loop_04_SFRMS_SCIWPNS.wav" id="5_mr7tc"]
+
+[sub_resource type="Animation" id="Animation_pbhtx"]
+resource_name = "activate"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("loop")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olh5r"]
+_data = {
+"activate": SubResource("Animation_pbhtx")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_570l0"]
-size = Vector2(98, 46)
+size = Vector2(108, 38)
+
+[sub_resource type="Curve" id="Curve_vfoey"]
+_data = [Vector2(1e-05, 0), 0.0, 1.98105, 0, 0, Vector2(0.640719, 1), -0.412927, 0.278277, 0, 0, Vector2(1, 0), -6.92551, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n618d"]
+curve = SubResource("Curve_vfoey")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lcfaq"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, 0, 0)
+spread = 15.0
+initial_velocity_min = 350.0
+initial_velocity_max = 500.0
+angular_velocity_min = -300.0
+angular_velocity_max = -100.0
+gravity = Vector3(0, -98, 0)
+damping_min = 150.0
+damping_max = 300.0
+scale_min = 0.45
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_n618d")
+color = Color(0.729412, 0.988235, 1, 1)
+
+[sub_resource type="Curve" id="Curve_1cgo3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2tyow"]
+curve = SubResource("Curve_1cgo3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qdpm6"]
+particle_flag_disable_z = true
+angle_min = 180.0
+angle_max = 180.0
+direction = Vector3(-1, 0, 0)
+spread = 5.0
+initial_velocity_min = 65.89
+initial_velocity_max = 198.89
+gravity = Vector3(0, 0, 0)
+scale_min = 0.45
+scale_max = 0.5
+color = Color(0.729412, 0.988235, 1, 1)
+alpha_curve = SubResource("CurveTexture_2tyow")
 
 [node name="HandLaser" type="Node2D"]
 script = ExtResource("1_lieno")
+speed = 1000.0
+impact_scene = ExtResource("2_gt5th")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_olh5r")
+}
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_imwhj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(50, 0)
+position = Vector2(29, 0)
 shape = SubResource("RectangleShape2D_570l0")
 
 [node name="Muzzle04Rotated" type="Sprite2D" parent="."]
+modulate = Color(0.729412, 0.988235, 1, 1)
 rotation = 3.14159
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_j5xp8")
+
+[node name="trail" type="GPUParticles2D" parent="."]
+material = ExtResource("4_4fssa")
+process_material = SubResource("ParticleProcessMaterial_lcfaq")
+texture = ExtResource("4_3lpdo")
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="main" type="GPUParticles2D" parent="."]
+material = ExtResource("4_4fssa")
+process_material = SubResource("ParticleProcessMaterial_qdpm6")
+texture = ExtResource("3_j5xp8")
+lifetime = 0.3
+local_coords = true
+
+[node name="loop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mr7tc")
+volume_db = -6.0
+pitch_scale = 1.1
+max_distance = 3000.0
+attenuation = 0.196146
+bus = &"SFX"

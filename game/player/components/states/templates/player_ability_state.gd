@@ -36,8 +36,8 @@ func spawn_spell() -> void:
 func enter() -> void:
 	super()
 	animated_sprite.frame_changed.connect( _on_frame_changed )
-	if attack_holder.hitbox_component:
-		attack_holder.hitbox_component.hit_gived_at.connect( _on_hitbox_component_hit_gived_at, CONNECT_ONE_SHOT)
+	if attack_holder.hitbox_component and not attack_holder.hitbox_component.hit_gived_at.is_connected(_on_hitbox_component_hit_gived_at):
+		attack_holder.hitbox_component.hit_gived_at.connect( _on_hitbox_component_hit_gived_at )
 	if attack_frame_start == -1:
 		activate()
 
@@ -60,8 +60,8 @@ func _on_frame_changed() -> void:
 
 
 func activate() -> void:
-	if attack_holder.asp:
-		attack_holder.asp.play()
+	if attack_holder.asp_hit_emit:
+		attack_holder.asp_hit_emit.play()
 	if attack_holder.hitbox_component:
 		attack_holder.hitbox_component.activate()
 	if spell_scene:
@@ -115,6 +115,7 @@ func process_unhandled_input(_event: InputEvent) -> State:
 		move_data.jump_buffer_timer = move_data.jump_buffer_time
 	return null
 
+
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:
-	return
+	Sfx2d._play(attack_holder.asp_hit_gived_at, _pos)
 

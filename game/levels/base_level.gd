@@ -37,13 +37,10 @@ func _on_intro_finished() -> void:
 # TODO DELETE : ONLY for testing
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("up"):
-		_on_loop_finished()
-
-	if Input.is_action_just_pressed("down"):
-		Music.change_sounds( [music_intro_path], Music.CrossFade.NONE )
+		enable_next_song()
 
 
-func _on_loop_finished() -> void:
+func enable_next_song() -> void:
 	if forward:
 		i += 1
 		Music.fade_sounds(Music.Fade.IN, i)

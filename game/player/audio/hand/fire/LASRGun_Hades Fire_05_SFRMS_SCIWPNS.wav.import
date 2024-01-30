@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cx3t7bsmc8se"
+path="res://.godot/imported/LASRGun_Hades Fire_05_SFRMS_SCIWPNS.wav-5b3398207957f86c671eef93e927c1f1.sample"
+
+[deps]
+
+source_file="res://game/player/audio/hand/fire/LASRGun_Hades Fire_05_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/LASRGun_Hades Fire_05_SFRMS_SCIWPNS.wav-5b3398207957f86c671eef93e927c1f1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

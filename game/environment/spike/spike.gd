@@ -91,8 +91,12 @@ func _physics_process(delta: float) -> void:
 
 
 func alter_spike_collisions(_disabled: bool) -> void:
-	for shape: CollisionPolygon2D in hitbox_component.get_children():
-		shape.disabled = _disabled
+	#for shape: CollisionPolygon2D in hitbox_component.get_children():
+		#shape.disabled = _disabled
+	if _disabled:
+		hitbox_component.deactivate()
+	else:
+		hitbox_component.activate()
 
 
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:

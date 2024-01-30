@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ciclcg332ibw7"]
+[gd_scene load_steps=13 format=3 uid="uid://ciclcg332ibw7"]
 
 [ext_resource type="Script" path="res://game/environment/spike/spike.gd" id="1_aiy58"]
 [ext_resource type="Texture2D" uid="uid://c3o6mxnyvwahu" path="res://game/environment/spike/art/object-07.png" id="1_kihi4"]
@@ -45,42 +45,33 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miulf"]
+size = Vector2(415, 151)
+
 [node name="Spike" type="StaticBody2D"]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_aiy58")
 hit_particles_scene = ExtResource("2_3wswp")
+terrain_type = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v6h3f")
 animation = &"to_down"
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-246, 0, -155, 55, 162, 55, 246, 1)
+polygon = PackedVector2Array(-248, 0, -155, 55, 162, 55, 248, 0)
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("parent", "attack_data")]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("5_eov0l")
 parent = NodePath("..")
 attack_data = NodePath("../AttackData")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
-polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="HitboxComponent"]
-position = Vector2(99, 0)
-polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="HitboxComponent"]
-position = Vector2(196, 0)
-polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="HitboxComponent"]
-position = Vector2(294, 0)
-polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
-
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="HitboxComponent"]
-position = Vector2(392, 0)
-polygon = PackedVector2Array(-196, -160, -225, -20, -167, -20)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(1.5, -87.5)
+shape = SubResource("RectangleShape2D_miulf")
 
 [node name="AttackData" type="Node" parent="."]
 script = ExtResource("6_xrq3q")

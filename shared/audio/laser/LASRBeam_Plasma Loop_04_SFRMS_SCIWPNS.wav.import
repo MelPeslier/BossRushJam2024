@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5lm413pjahon"
+path="res://.godot/imported/LASRBeam_Plasma Loop_04_SFRMS_SCIWPNS.wav-8c4ad7a7584b2f8e98db48eff874cf5b.sample"
+
+[deps]
+
+source_file="res://shared/audio/laser/LASRBeam_Plasma Loop_04_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/LASRBeam_Plasma Loop_04_SFRMS_SCIWPNS.wav-8c4ad7a7584b2f8e98db48eff874cf5b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

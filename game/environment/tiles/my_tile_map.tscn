@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1uu6jjw185vi"]
+[gd_scene load_steps=7 format=3 uid="uid://c1uu6jjw185vi"]
 
 [ext_resource type="Texture2D" uid="uid://4jm3b2tqerwf" path="res://game/environment/tiles/tiles.png" id="1_3s7m4"]
+[ext_resource type="PackedScene" uid="uid://clt5nw072wgqb" path="res://game/enemies/broken_robot_1/broken_robot_1.tscn" id="1_je3he"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_41ntr"]
 resource_name = "Enemies"
+scenes/1/scene = ExtResource("1_je3he")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j23nx"]
 resource_name = "Tiles"
@@ -14,7 +16,7 @@ texture_region_size = Vector2i(256, 256)
 0:0/0/terrain = 1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, -80.8421, -121.263, -74.1053, -121.263, 67.3684, -121.263, 67.3684, -40.4211, 87.5789, 128, 87.5789)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -121.263, -128, -121.263, 67.3684, -121.263, 67.3684, -40.4211, 87.5789, 128, 87.5789)
 0:0/0/terrains_peering_bit/right_side = 1
 0:0/0/custom_data_0 = 1
 0:0/0/custom_data_1 = -1
@@ -32,7 +34,7 @@ texture_region_size = Vector2i(256, 256)
 2:0/0/terrain = 1
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, -80.8421, 121.263, -74.1053, 121.263, 67.3684, 121.263, 67.3684, 40.4211, 87.5789, -128, 87.5789)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 121.263, -128, 121.263, 67.3684, 121.263, 67.3684, 40.4211, 87.5789, -128, 87.5789)
 2:0/0/terrains_peering_bit/left_side = 1
 2:0/0/custom_data_0 = 1
 2:0/0/custom_data_1 = 1
@@ -65,7 +67,7 @@ texture_region_size = Vector2i(256, 256)
 0:2/0/terrain = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, -78.9732, -121.263, -74.1053, -121.263, 128, 128, 128)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -121.263, -128, -121.263, 128, 128, 128)
 0:2/0/terrains_peering_bit/right_side = 0
 0:2/0/terrains_peering_bit/bottom_right_corner = 0
 0:2/0/terrains_peering_bit/bottom_side = 0
@@ -88,7 +90,7 @@ texture_region_size = Vector2i(256, 256)
 2:2/0/terrain = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, -78.9732, 121.263, -74.1053, 121.263, 128, -128, 128)
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 121.263, -128, 121.263, 128, -128, 128)
 2:2/0/terrains_peering_bit/bottom_side = 0
 2:2/0/terrains_peering_bit/bottom_left_corner = 0
 2:2/0/terrains_peering_bit/left_side = 0
@@ -220,7 +222,7 @@ texture_region_size = Vector2i(256, 256)
 7:4/0/terrain = 2
 7:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:4/0/physics_layer_0/angular_velocity = 0.0
-7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, -80.8421, 121.263, -74.1053, 121.263, 128, -128, 128)
+7:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 121.263, -128, 121.263, 128, -128, 128)
 7:4/0/terrains_peering_bit/bottom_side = 0
 7:4/0/terrains_peering_bit/bottom_left_corner = 0
 7:4/0/terrains_peering_bit/left_side = 0
@@ -268,7 +270,7 @@ texture_region_size = Vector2i(256, 256)
 0:8/0/terrain = 2
 0:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:8/0/physics_layer_0/angular_velocity = 0.0
-0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, -80.8421, -121.263, -74.1053, -121.263, 128, 128, 128)
+0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -121.263, -128, -121.263, 128, 128, 128)
 0:8/0/terrains_peering_bit/right_side = 0
 0:8/0/terrains_peering_bit/bottom_right_corner = 0
 0:8/0/terrains_peering_bit/bottom_side = 0
@@ -321,9 +323,13 @@ sources/0 = SubResource("TileSetScenesCollectionSource_41ntr")
 tile_set = SubResource("TileSet_h3ktg")
 format = 2
 layer_0/name = "Ground"
+layer_0/z_index = -1
 layer_1/name = "BackGround"
 layer_1/z_index = -10
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "ForeGround"
-layer_2/y_sort_origin = 10
+layer_2/z_index = 10
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Entities"
+layer_3/z_index = 1
+layer_3/tile_data = PackedInt32Array()

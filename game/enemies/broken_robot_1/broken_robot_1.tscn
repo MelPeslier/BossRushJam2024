@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://clt5nw072wgqb"]
+[gd_scene load_steps=165 format=3 uid="uid://clt5nw072wgqb"]
 
 [ext_resource type="Texture2D" uid="uid://bd1ey8el83jh" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_00.png" id="1_b1d0g"]
 [ext_resource type="Texture2D" uid="uid://dbvkgocqrawaj" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_00.png" id="1_ihxln"]
@@ -157,9 +157,8 @@ size = Vector2(39.8603, 106.356)
 [sub_resource type="CircleShape2D" id="CircleShape2D_h50nm"]
 radius = 900.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvep7"]
-radius = 100.865
-height = 406.246
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3wcii"]
+size = Vector2(115.087, 397.307)
 
 [sub_resource type="Animation" id="Animation_15u2d"]
 length = 0.001
@@ -689,6 +688,9 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgx07"]
+size = Vector2(238.442, 360.56)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vfa87"]
 playback_mode = 1
 random_pitch = 1.1
@@ -747,8 +749,8 @@ health_component = NodePath("../HealthComponent")
 energy_to_give = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(-20.2043, -17.9594)
-shape = SubResource("CapsuleShape2D_lvep7")
+position = Vector2(6.37314, -22.8262)
+shape = SubResource("RectangleShape2D_3wcii")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -758,9 +760,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_vj0kg")
-animation = &"get_hit"
-frame = 10
-frame_progress = 1.0
+animation = &"attack"
+frame = 9
 
 [node name="attacks" type="Node2D" parent="."]
 
@@ -769,8 +770,9 @@ script = ExtResource("137_vc7gw")
 parent = NodePath("../..")
 attack_data = NodePath("../../StateMachine/attack/AttackData")
 
-[node name="attack_01" type="CollisionPolygon2D" parent="attacks/attack_01_hitbox"]
-polygon = PackedVector2Array(-72.9093, 174.845, -338.397, 174.845, -352.651, 165.491, -364.679, 56.8013, -318.352, -111.579, -247.971, -173.941, -154.349, -193.173, -69.714, -182.482, -182.044, -99.5514, -206.606, -2.59393, -177.907, 83.5032)
+[node name="attack_01" type="CollisionShape2D" parent="attacks/attack_01_hitbox"]
+position = Vector2(-221.512, -6.19921)
+shape = SubResource("RectangleShape2D_xgx07")
 disabled = true
 
 [node name="swoosh" type="AudioStreamPlayer2D" parent="attacks/attack_01_hitbox"]
