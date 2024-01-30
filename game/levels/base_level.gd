@@ -1,13 +1,13 @@
 class_name BaseLevel
 extends Node2D
 
-@export var player: Player
-
 @export_file("*.wav") var music_intro_path: String
 @export_file("*.wav") var music_loop_1_path: String
 @export_file("*.wav") var music_loop_2_path: String
 @export_file("*.wav") var music_loop_3_path: String
 
+@export var for_player: Node2D
+var player : Player
 @onready var music_loop_paths: Array[String] = [music_loop_1_path, music_loop_2_path, music_loop_3_path]
 
 var i: int = 0;
@@ -16,11 +16,18 @@ var forward:= true
 static var level: BaseLevel = null
 
 @export var stuff_2d: Node2D
-
+@onready var player_scene: PackedScene = preload("res://game/player/player.tscn")
+@onready var particles: Node2D = $LevelStuff2D/Particles
 
 
 func _ready() -> void:
 	level = self
+	var player_instance :Player = player_scene.instantiate() as Player
+	player = player_instance
+	for_player.add_child(player_instance)
+
+	for i: EnvironementParticles in particles.get_children():
+		i.player = player
 
 	Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )

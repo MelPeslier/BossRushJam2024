@@ -6,9 +6,16 @@ enum TerrainType {
 	METAL,
 }
 
-const custom_data_layers: Array[StringName] = [
+enum CustomDataLayers {
+	TERRAIN_TYPE,
+	BORDER,
+	GROUND,
+}
+
+static var custom_data_layers: Array[StringName] = [
 	&"TerrainType",
 	&"Border",
+	&"Ground",
 ]
 
 @export var terrain_type: TerrainType

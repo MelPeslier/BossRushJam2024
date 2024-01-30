@@ -1,5 +1,5 @@
 @tool
-
+class_name EnvironementParticles
 extends GPUParticles2D
 
 @export var color: Color : set = _set_color

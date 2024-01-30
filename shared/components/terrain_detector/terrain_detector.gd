@@ -5,6 +5,7 @@ signal terrain_entered(terrain_type: Terrain.TerrainType)
 
 var current_tilemap: TileMap = null
 var current_tile_data: TileData = null
+var last_ground_tile_position := Vector2.ZERO
 var current_terrain: Terrain = null
 
 func _ready() -> void:
@@ -21,7 +22,7 @@ func get_terrain_type() -> Terrain.TerrainType:
 	if current_terrain:
 		terrain_type = current_terrain.terrain_type
 	elif current_tile_data:
-		terrain_type = current_tile_data.get_custom_data(Terrain.custom_data_layers[0])
+		terrain_type = current_tile_data.get_custom_data(Terrain.custom_data_layers[Terrain.CustomDataLayers.TERRAIN_TYPE])
 	return terrain_type
 
 
@@ -32,6 +33,9 @@ func _process_tilemap_collision(tile_map: TileMap, body_rid: RID) -> void:
 	var tile_coords: Vector2 = current_tilemap.get_coords_for_body_rid( body_rid )
 	var tile_data: TileData = current_tilemap.get_cell_tile_data(layer, tile_coords)
 	current_tile_data = tile_data
+
+	if current_tile_data.get_custom_data(Terrain.custom_data_layers[Terrain.CustomDataLayers.GROUND]):
+		last_ground_tile_position = global_position + Vector2(0, -20)
 
 
 func _process_terrain_collision(terrain: Terrain) -> void:

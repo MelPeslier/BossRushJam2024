@@ -5,6 +5,7 @@ extends PlayerState
 @export var walk: State
 @export var dash: State
 @export var jump: State
+@export var fall: State
 
 @export_category("Attack Specificity")
 @export var attack_frame_start: int = -1
@@ -86,18 +87,25 @@ func process_physics(delta: float) -> State:
 			return jump
 		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
 			return dash
+		if move_data.dir == 0 and parent.is_on_floor():
+			return walk
+		else:
+			return fall
 
-		if move_data.dir:
-			do_walk_accelerate(delta)
-	else:
-		do_walk_decelerate(delta)
-	do_gravity(delta)
+	do_walk_decelerate(delta)
+
+	parent.velocity.y = 0
 	parent.move_and_slide()
 
 	if not animated_sprite.is_playing():
+		if move_data.jump_buffer_timer > 0 and move_data.can_jump():
+			return jump
+		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
+			return dash
 		if move_data.dir == 0:
 			return idle
 		return walk
+
 	return null
 
 

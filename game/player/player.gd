@@ -16,6 +16,9 @@ enum MovementState{
 	ARM,
 }
 
+@export var spike_hit_in: float = 0.2
+@export var spike_hit_out: float = 0.3
+
 @export_category("Components & Nodes")
 @export var movement_state_machine: StateMachine
 @export var movement_animator: AnimationPlayer
@@ -32,6 +35,7 @@ enum MovementState{
 @export var my_collision_shape: CollisionShape2D
 @export var terrain_detector: TerrainDetector
 @export var hurtbox_component: HurtboxComponent
+@export var hit_transition: TransitionScreen
 
 @export var die: State
 @export var hit: State
@@ -41,7 +45,7 @@ var current_movement_state: MovementState
 var last_collider: KinematicCollision2D
 var last_collider_ground: KinematicCollision2D
 
-static var move_speed: float = -1
+static var move_speed: float = -1 : set = _set_move_speed
 
 
 func _ready() -> void:
@@ -65,7 +69,6 @@ func _physics_process(delta: float) -> void:
 	movement_state_machine.process_physics(delta)
 	attack_manager.process_physics(delta)
 	interactor_component.process_physics(delta)
-
 
 
 func _process(delta: float) -> void:
@@ -113,3 +116,18 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	if health_component.health == 0:
 		next_state = die
 	movement_state_machine.change_state(next_state)
+
+	if _attack_data.team == AttackData.Team.SPIKE:
+		hit_transition.appear(spike_hit_in)
+		var timer := Timer.new()
+		add_child(timer)
+		timer.start(spike_hit_in + 0.2)
+		await timer.timeout
+		timer.queue_free()
+		global_position = terrain_detector.last_ground_tile_position
+		hit_transition.disappear(spike_hit_out)
+
+
+static func _set_move_speed(_new_speed: float) -> void:
+	move_speed = _new_speed
+	GameEvents.player_move_speed_changed.emit(move_speed)

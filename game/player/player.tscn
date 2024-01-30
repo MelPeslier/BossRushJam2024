@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=115 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://game/player/components/interactables/player_interactor_component.gd" id="2_q8f32"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="3_7ycnr"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
+[ext_resource type="Script" path="res://ui/transitions/transition_screen.gd" id="3_f5q1u"]
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="4_63l1n"]
 [ext_resource type="Shader" path="res://shared/materials/glow_effect/glow_effect.gdshader" id="4_m6he1"]
 [ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
@@ -440,8 +441,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10vgk"]
-radius = 70.0
-height = 307.39
+radius = 14.0502
+height = 70.69
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5xqr"]
 radius = 44.0
@@ -510,7 +511,8 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("71_3ndtk")
 stream_1/weight = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "die", "hit")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "hit_transition", "die", "hit")]
+z_index = 1
 collision_layer = 8
 collision_mask = 17
 floor_constant_speed = true
@@ -518,6 +520,8 @@ floor_max_angle = 0.802851
 floor_snap_length = 20.0
 safe_margin = 0.2
 script = ExtResource("1_msn3r")
+spike_hit_in = 0.25
+spike_hit_out = 0.45
 movement_state_machine = NodePath("Components/StateMachine")
 movement_animator = NodePath("MovementAnimator")
 animated_sprite = NodePath("Components2D/AnimatedSprite")
@@ -533,6 +537,7 @@ need_dir = [NodePath("Components2D/AnimatedSprite"), NodePath("Components2D/Play
 my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionShape2D")
 terrain_detector = NodePath("Components2D/TerrainDetector")
 hurtbox_component = NodePath("Components2D/HurtboxComponent")
+hit_transition = NodePath("HitTransition")
 die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
@@ -541,6 +546,31 @@ visible = false
 energy_component = NodePath("../Components/Datas/EnergyComponent")
 health_component = NodePath("../Components/Datas/HealthComponent")
 energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
+
+[node name="HitTransition" type="CanvasLayer" parent="." node_paths=PackedStringArray("root_node")]
+layer = 2
+script = ExtResource("3_f5q1u")
+root_node = NodePath("RootNode")
+
+[node name="RootNode" type="Control" parent="HitTransition"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="HitTransition/RootNode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
@@ -576,7 +606,7 @@ collision_mask = 17
 script = ExtResource("4_63l1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
-position = Vector2(-1, 132.085)
+position = Vector2(-1, 216.515)
 shape = SubResource("CapsuleShape2D_10vgk")
 
 [node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "health_component")]
@@ -823,7 +853,7 @@ script = ExtResource("7_86s88")
 idle = NodePath("../idle")
 die = NodePath("../die")
 attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
-invicibility_time = 0.5
+invicibility_time = 1.0
 
 [node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "jump", "fall", "dash")]
 script = ExtResource("8_eankw")
@@ -845,45 +875,50 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath("../dash")
 
-[node name="sword_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump")]
+[node name="sword_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("67_1vje7")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
+fall = NodePath("../fall")
 attack_frame_start = 4
 
-[node name="sword_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump")]
+[node name="sword_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("68_phhul")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
+fall = NodePath("../fall")
 attack_frame_start = 4
 
-[node name="sword_3" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump")]
+[node name="sword_3" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("69_s4ivh")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
+fall = NodePath("../fall")
 attack_frame_start = 4
 
-[node name="hand" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump")]
+[node name="hand" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("70_bv82a")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
+fall = NodePath("../fall")
 attack_frame_start = 1
 spell_scene = ExtResource("72_ow08y")
 
-[node name="arm" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump")]
+[node name="arm" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("71_sij7g")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
+fall = NodePath("../fall")
 attack_frame_start = 4
 spell_scene = ExtResource("72_ow08y")
 

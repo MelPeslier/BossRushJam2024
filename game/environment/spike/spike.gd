@@ -42,9 +42,14 @@ var etat := Etat.DOWN
 
 
 func _ready() -> void:
+	set_physics_process(false)
+	GameEvents.player_move_speed_changed.connect( _on_player_move_speed_changed )
+
+
+func _on_player_move_speed_changed(_move_speed: float) -> void:
 	terrain_type = TerrainType.METAL
 	# 512.0 = sprite size
-	cycle_time = Player.move_speed * damaging_coef * 1.1 / 512.0
+	cycle_time = _move_speed * damaging_coef * 1.1 / 512.0
 
 	start_time = cycle_time * remap(cycle, 0, cycles, 0, 1)
 	#print(name, " : ", start_time)
