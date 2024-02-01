@@ -23,7 +23,10 @@ var attack_holder: AttackHolder
 
 func spawn_spell() -> void:
 	var spell_instance: Spell = spell_scene.instantiate() as Spell
-	spell_instance.init(parent, attack_holder.attack_data, Vector2(attack_holder.attack_manager.scale.x, 0))
+	var angle: float = 0
+	if move_data.old_dir < 0:
+		angle = PI
+	spell_instance.init(parent, attack_holder.attack_data, angle)
 	if stick_to_parent:
 		add_child(spell_instance)
 	elif BaseLevel.level.stuff_2d:

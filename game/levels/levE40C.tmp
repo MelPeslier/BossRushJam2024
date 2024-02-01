@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bgd8yibc2jxfp"]
 
 [ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_ueifi"]
-[ext_resource type="Environment" uid="uid://bh75dci8vy1cm" path="res://game/environment/world_environment.tres" id="2_p0g45"]
+[ext_resource type="PackedScene" uid="uid://3whu5sxdig2v" path="res://game/environment/world_environment.tscn" id="2_phpmv"]
 [ext_resource type="PackedScene" uid="uid://gdmmh58tg7jw" path="res://game/environment/particles/environment_particles.tscn" id="3_jjju4"]
 [ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="4_kh44h"]
 [ext_resource type="PackedScene" uid="uid://bp3xjdy6h1ux7" path="res://game/environment/checkpoint/checkpoint.tscn" id="5_tafuy"]
@@ -85,8 +85,7 @@ stuff_2d = NodePath("Stuff2d")
 level_path = "res://game/levels/level_1.tscn"
 particles = NodePath("Stuff2d/Particles")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_p0g45")
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_phpmv")]
 
 [node name="Stuff2d" type="Node2D" parent="."]
 

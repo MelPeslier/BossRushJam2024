@@ -31,6 +31,7 @@ func process_physics(delta: float) -> State:
 		return null
 
 	if parent.is_on_floor():
+		move_data.alter_jumps(move_data.jumps_number)
 		return idle
 	return fall
 

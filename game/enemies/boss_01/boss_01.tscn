@@ -682,17 +682,21 @@ health = 100.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("97_pbjfb")
+walk_distance = 1500.0
+walk_accel_time = 1.0
 
 [node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("96_7pxjr")
 starting_state = NodePath("idle")
 
-[node name="get_hit" type="Node" parent="Components/StateMachine"]
+[node name="get_hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle")]
 script = ExtResource("102_w0vms")
+idle = NodePath("../idle")
 
-[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "shoot_1", "shoot_2")]
+[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "get_hit", "shoot_1", "shoot_2")]
 script = ExtResource("100_5iwmv")
 walk = NodePath("../walk")
+get_hit = NodePath("../get_hit")
 shoot_1 = NodePath("../shoot_1")
 shoot_2 = NodePath("../shoot_2")
 

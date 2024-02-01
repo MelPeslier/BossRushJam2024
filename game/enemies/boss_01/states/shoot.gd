@@ -23,17 +23,16 @@ extends MoveState
 var pattern_index: int = 0
 var attack_index: int = 0
 var finished := false
-var wait_timer : float = 0
+var interval_timer : float = 0
 
 
 func spawn_spell() -> void:
 	var spell_instance: Spell = spell_scene.instantiate() as Spell
 
-	var angle_to_player = Vector2(move_data.dir, 0).angle_to(parent.target.global_position)
+	var angle_to_player = marker.global_position.angle_to_point(parent.target.global_position)
 	angle_to_player = MyRng.get_random(angle_to_player, deg_to_rad( angle_diff_margin ) )
-	var velocity_dir : Vector2 = Vector2( cos(angle_to_player),sin(angle_to_player) ).normalized()
 
-	spell_instance.init(parent, attack_data, velocity_dir)
+	spell_instance.init(parent, attack_data, angle_to_player)
 
 	if stick_to_parent:
 		add_child(spell_instance)
@@ -77,8 +76,7 @@ func _on_animation_finished() -> void:
 	if pattern_index >= shoot_attacks.size() :
 		finished = true
 		return
-	animated_sprite.play(animation_name)
-
+	interval_timer = shoot_attacks[pattern_index][1]
 
 
 func process_physics(_delta: float) -> State:
@@ -92,11 +90,14 @@ func process_physics(_delta: float) -> State:
 	return null
 
 
-func process_frame(_delta: float) -> State:
+func process_frame(delta: float) -> State:
 	if not parent.target: return idle
 
 	if finished and not animated_sprite.is_playing():
 		return idle
+	interval_timer -= delta
+	if interval_timer <= 0:
+		animated_sprite.play(animation_name)
 
 	return null
 

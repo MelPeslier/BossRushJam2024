@@ -25,6 +25,7 @@ extends CharacterBody2D
 
 var target: Node2D
 var phase: int = 1
+var be_down = false
 
 func _ready() -> void:
 	detector_collision.disabled = false
@@ -60,7 +61,7 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 		if health_component.health <= health_component.max_health * phase_2_threshold:
 			phase = 2
 			Music.fade_sounds(Music.Fade.IN, 1)
-			state_machine.change_state(get_hit)
+			be_down = true
 	elif not health_component.alive:
 			state_machine.change_state(dead)
 	else:

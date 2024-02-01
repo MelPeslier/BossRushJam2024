@@ -5,6 +5,7 @@ extends MoveState
 @export var idle_time_phase_2: float = 5
 
 @export var walk: State
+@export var get_hit: State
 @export var shoot_1: State
 @export var shoot_2: State
 
@@ -33,6 +34,9 @@ func process_physics(delta: float) -> State:
 
 func process_frame(delta: float) -> State:
 	if not parent.target: return null
+	if parent.be_down:
+		return get_hit
+
 	idle_timer -= delta
 	if idle_timer <= 0:
 		if start:

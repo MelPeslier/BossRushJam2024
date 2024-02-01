@@ -7,8 +7,8 @@ extends Node2D
 
 var parent: Node2D
 var attack_data: AttackData
-var dir := Vector2.RIGHT
-
+var velocity_dir := Vector2.RIGHT
+var angle: float = 0
 
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -18,18 +18,19 @@ func _ready() -> void:
 	hitbox_component.attack_data = attack_data
 	hitbox_component.parent = parent
 	hitbox_component.hit_gived_at.connect( _on_hitbox_component_hit_gived_at )
-	scale.x *= 1 if dir.x > 0 else -1
+	velocity_dir = Vector2( cos(angle),sin(angle) ).normalized()
+	rotation = angle
 	animation_player.play("activate")
 
 
 func _physics_process(delta: float) -> void:
-	global_position += speed * delta * dir
+	global_position += speed * delta * velocity_dir
 
 
-func init(_parent : Node2D, _attack_data : AttackData, _dir: Vector2) -> void:
+func init(_parent : Node2D, _attack_data : AttackData, _angle: float) -> void:
 	parent = _parent
 	attack_data = _attack_data
-	dir = _dir
+	angle = _angle
 
 
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:

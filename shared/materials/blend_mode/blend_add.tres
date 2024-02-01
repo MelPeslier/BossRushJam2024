@@ -4,3 +4,5 @@
 
 [resource]
 shader = ExtResource("1_uu07s")
+shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
+shader_parameter/margin = 0.295

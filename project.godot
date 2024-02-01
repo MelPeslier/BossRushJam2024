@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="BossRushJam2024"
+config/name="Mirage"
 config/version="1"
 config/tags=PackedStringArray("jam")
 run/main_scene="res://ui/menus/main_menu/main_menu.tscn"
