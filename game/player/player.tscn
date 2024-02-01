@@ -640,11 +640,10 @@ script = ExtResource("4_63l1n")
 position = Vector2(-1, 216.515)
 shape = SubResource("CapsuleShape2D_10vgk")
 
-[node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent")]
 position = Vector2(-1, 95.5)
 script = ExtResource("47_e78ti")
 parent = NodePath("../..")
-health_component = NodePath("../../Components/Datas/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
 shape = SubResource("CapsuleShape2D_v5xqr")

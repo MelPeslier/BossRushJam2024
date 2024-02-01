@@ -50,6 +50,7 @@ func change_sounds(_audio_paths: Array[String], _cross_fade: CrossFade = CrossFa
 			var tween: Tween = create_tween()
 			_fade_out(tween, _fade_time.y, audio_stream_players[i])
 			tween.tween_callback( _change_stream.bind( _audio_paths[i], audio_stream_players[i] ) )
+			tween.tween_callback(_set_volume.bind( MIN_LINEAR, audio_stream_players[i]) )
 
 		audio_stream_players[i].play(audio_stream_players[0].get_playback_position())
 
@@ -81,6 +82,7 @@ func fade_sounds(_fade: Fade, list_index: int = 0, _fade_time := Vector2(0.3, 0.
 func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: CrossFade, _fade_time: Vector2) -> void:
 	match _cross_fade:
 		CrossFade.NONE:
+			_set_volume( db_to_linear(db_volume), _asp )
 			_change_stream(_song_path, _asp)
 			_asp.play()
 
@@ -101,6 +103,7 @@ func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: Cro
 			var _tween: Tween = create_tween()
 			_tween.set_parallel(false)
 			_fade_out(_tween, _fade_time.y, _asp)
+			_tween.tween_callback( _set_volume.bind( db_to_linear(db_volume), _asp ) )
 			_tween.tween_callback( _change_stream.bind( _song_path, _asp ) )
 			_tween.tween_callback( _asp.play )
 			_fade_in(_tween, _fade_time.x, _asp)
@@ -111,7 +114,6 @@ func _change_stream(_new_song_path: String, asp: AudioStreamPlayer) -> void:
 	if audio_stream == null:
 		print("can't load audio file")
 		return
-	_set_volume( db_to_linear(db_volume), asp )
 	asp.stream = audio_stream
 
 

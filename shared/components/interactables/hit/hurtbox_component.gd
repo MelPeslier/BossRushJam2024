@@ -4,7 +4,6 @@ extends Area2D
 signal hit_received(_attack_data: AttackData, _dir: Vector2)
 
 @export var parent: Node2D
-@export var health_component: HealthComponent
 @export_range(0, 10, 1) var energy_to_give: float
 @onready var collision_shape: CollisionShape2D = get_child(0) as CollisionShape2D
 
@@ -24,7 +23,6 @@ func _on_area_shape_entered(_area_rid: RID, hitbox: HitboxComponent, _area_shape
 	if hitbox.energy_component and energy_to_give > 0 and hitbox.attack_data.can_gain_energy :
 		hitbox.energy_component.gain(energy_to_give)
 
-	var attack_data := hitbox.attack_data
 
 	var dir := hitbox.parent.global_position.direction_to(parent.global_position)
 
@@ -33,6 +31,7 @@ func _on_area_shape_entered(_area_rid: RID, hitbox: HitboxComponent, _area_shape
 	dir.x = 1 if dir.x > 0 else -1
 	dir.y = 1 if dir.y > 0 else -1
 
+	var attack_data := hitbox.attack_data
 	hit_received.emit(attack_data, dir)
 
 

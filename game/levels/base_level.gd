@@ -24,17 +24,17 @@ static var level: BaseLevel = null
 
 func _ready() -> void:
 	level = self
-	for integer: int in music_loop_paths.size():
+	for integer: int in range( music_loop_paths.size() -1, -1, -1):
 		if music_loop_paths[integer] == "":
 			music_loop_paths.pop_at(integer)
-			integer -= 1
 
 	for ep: EnvironementParticles in particles.get_children():
 		ep.player = player
 
 	Music.db_volume = db_music_volume
-	Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
-	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
+	if not music_intro_path.is_empty():
+		Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
+		Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
 	GameState.in_game = true
 
 	if not GameState.saved_game.level_path == level_path:
@@ -53,25 +53,6 @@ func _ready() -> void:
 
 
 func _on_intro_finished() -> void:
+	if music_loop_paths.is_empty(): return
 	Music.change_sounds(music_loop_paths, Music.CrossFade.NONE)
-
-# TODO DELETE : ONLY for testing
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("up"):
-		enable_next_song()
-
-
-func enable_next_song() -> void:
-	if forward:
-		print("forward, ", i)
-		i += 1
-		Music.fade_sounds(Music.Fade.IN, i)
-		if i == 3:
-			forward = false
-	else:
-		print("backward , ", i)
-		i -= 1
-		Music.fade_sounds(Music.Fade.OUT, i)
-		if i == -1:
-			forward = true
 

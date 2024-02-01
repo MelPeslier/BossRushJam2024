@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=122 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -94,8 +94,138 @@
 [ext_resource type="Texture2D" uid="uid://c8ha8p2u7uq33" path="res://game/enemies/boss_01/art/walk/walk_018.png" id="92_f0a7b"]
 [ext_resource type="Texture2D" uid="uid://cpag1npwunfjy" path="res://game/enemies/boss_01/art/walk/walk_019.png" id="93_3rcfs"]
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="94_48pt6"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="94_cdmyh"]
+[ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="95_dhxdm"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="95_v5ssi"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="96_7pxjr"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/boss_1_move_input_component.gd" id="96_m61ly"]
+[ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="96_ug0ga"]
+[ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="97_pbjfb"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/idle.gd" id="100_5iwmv"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/walk.gd" id="101_jxumy"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/get_hit.gd" id="102_w0vms"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/dead.gd" id="103_wrw5b"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot.gd" id="104_7i1o3"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_2.gd" id="105_12t38"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
+size = Vector2(440.389, 464.539)
+
+[sub_resource type="Animation" id="Animation_h1gn3"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0xi02"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oalhx"]
+resource_name = "walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_10o78"]
+resource_name = "get_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_jjkey"]
+resource_name = "shoot_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nq30v"]
+resource_name = "shoot_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7usts"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(34, 28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_va5vc"]
+_data = {
+"RESET": SubResource("Animation_0xi02"),
+"dead": SubResource("Animation_7usts"),
+"get_hit": SubResource("Animation_10o78"),
+"idle": SubResource("Animation_h1gn3"),
+"shoot_1": SubResource("Animation_jjkey"),
+"shoot_2": SubResource("Animation_nq30v"),
+"walk": SubResource("Animation_oalhx")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x8mg6"]
 animations = [{
@@ -162,7 +292,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dead",
-"speed": 20.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -292,7 +422,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 20.0
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -332,8 +462,49 @@ animations = [{
 "texture": ExtResource("73_h0hpj")
 }],
 "loop": false,
-"name": &"shoot",
-"speed": 20.0
+"name": &"shoot_1",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("62_dwxq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_0u2l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_1nt1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_4fe1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_i8hhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_erhdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_8127n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_myvsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_am5vk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_nulst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_odk1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_h0hpj")
+}],
+"loop": false,
+"name": &"shoot_2",
+"speed": 25.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -398,28 +569,137 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 30.0
+"speed": 25.0
 }]
 
-[node name="Boss_01" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffpg2"]
+size = Vector2(448.769, 465.974)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oon0b"]
+size = Vector2(20, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onc4p"]
+size = Vector2(443.852, 468.162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocw6d"]
+size = Vector2(2222.69, 3193.89)
+
+[node name="Boss_01" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "state_machine", "animator", "animated_sprite", "move_input_component", "move_data", "terrain_detector", "health_component", "detector_collision", "get_hit", "dead")]
+collision_layer = 8
+collision_mask = 17
 script = ExtResource("1_djtax")
+need_dir = [NodePath("Components2D/AnimatedSprite2D"), NodePath("Components2D/Attacks")]
+state_machine = NodePath("Components/StateMachine")
+animator = NodePath("AnimationPlayer")
+animated_sprite = NodePath("Components2D/AnimatedSprite2D")
+move_input_component = NodePath("Components/MoveInputComponent")
+move_data = NodePath("Components/MoveData")
+terrain_detector = NodePath("Components2D/TerrainDetector")
+health_component = NodePath("Components/HealthComponent")
+detector_collision = NodePath("Components2D/Detector/CollisionShape2D")
+get_hit = NodePath("Components/StateMachine/get_hit")
+dead = NodePath("Components/StateMachine/dead")
+db_music_volume = -10.0
+music_intro_path = "res://shared/audio/boss/boss_2/Boss2Intro_157bpm.wav"
+music_loop_1_path = "res://shared/audio/boss/boss_2/Boss2Phase1_157bpm.wav"
+music_loop_2_path = "res://shared/audio/boss/boss_2/Boss2Phase2_157bpm.wav"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 77.179)
+shape = SubResource("RectangleShape2D_y76iy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_va5vc")
+}
 
 [node name="Components2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
 animation = &"walk"
-frame_progress = 0.590393
+
+[node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
+script = ExtResource("94_cdmyh")
+parent = NodePath("../..")
+attack_data = NodePath("AttackData")
+
+[node name="AttackData" type="Node" parent="Components2D/HitboxComponent"]
+script = ExtResource("95_dhxdm")
+damage = 1.0
+knock_back = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HitboxComponent"]
+position = Vector2(0, 75.3475)
+shape = SubResource("RectangleShape2D_ffpg2")
 
 [node name="TerrainDetector" type="Area2D" parent="Components2D"]
 script = ExtResource("94_48pt6")
 
-[node name="HurtboxComponent" type="Area2D" parent="Components2D"]
-script = ExtResource("95_v5ssi")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
+position = Vector2(-0.592041, 306.637)
+shape = SubResource("RectangleShape2D_oon0b")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent")]
+script = ExtResource("95_v5ssi")
+parent = NodePath("../..")
+energy_to_give = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
+position = Vector2(0, 76.7038)
+shape = SubResource("RectangleShape2D_onc4p")
+
+[node name="Detector" type="Area2D" parent="Components2D"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/Detector"]
+position = Vector2(0, -1146.31)
+shape = SubResource("RectangleShape2D_ocw6d")
+
+[node name="Attacks" type="Node2D" parent="Components2D"]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="MoveInputComponent" type="Node" parent="Components"]
+script = ExtResource("96_m61ly")
+
+[node name="HealthComponent" type="Node" parent="Components"]
+script = ExtResource("96_ug0ga")
+max_health = 100.0
+health = 100.0
+
+[node name="MoveData" type="Node" parent="Components"]
+script = ExtResource("97_pbjfb")
+
+[node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("96_7pxjr")
+starting_state = NodePath("idle")
+
+[node name="get_hit" type="Node" parent="Components/StateMachine"]
+script = ExtResource("102_w0vms")
+
+[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("shoot_1", "shoot_2")]
+script = ExtResource("100_5iwmv")
+shoot_1 = NodePath("../shoot_1")
+shoot_2 = NodePath("../shoot_2")
+
+[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "idle")]
+script = ExtResource("101_jxumy")
+walk_speed_coef = 2.0
+terrain_detector = NodePath("../../../Components2D/TerrainDetector")
+idle = NodePath("../idle")
+
+[node name="dead" type="Node" parent="Components/StateMachine"]
+script = ExtResource("103_wrw5b")
+
+[node name="shoot_1" type="Node" parent="Components/StateMachine"]
+script = ExtResource("104_7i1o3")
+
+[node name="shoot_2" type="Node" parent="Components/StateMachine"]
+script = ExtResource("105_12t38")
+
+[connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
+[connection signal="body_entered" from="Components2D/Detector" to="." method="_on_detector_body_entered"]
+[connection signal="dir_changed" from="Components/MoveData" to="." method="_on_move_data_dir_changed"]

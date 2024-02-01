@@ -7,6 +7,7 @@ signal health_healed(_heal_amount: float)
 
 @export var max_health: float
 @export var health: float = 1: set = _set_health
+var alive := true
 
 
 func damage(_damage: float) -> void:
@@ -21,4 +22,6 @@ func heal(amount: float) -> void:
 
 func _set_health(_health: float) -> void:
 	health = clampf(_health, 0, max_health)
+	if health == 0:
+		alive = false
 	health_changed.emit(health, max_health)
