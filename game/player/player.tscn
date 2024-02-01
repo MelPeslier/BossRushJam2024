@@ -92,6 +92,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6bk8"]
 shader = ExtResource("4_pqjcb")
 shader_parameter/progress = 0.0
+shader_parameter/visibility = 1.0
 shader_parameter/bg_color = Color(0, 0, 0, 0)
 shader_parameter/wave_1_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 shader_parameter/wave_2_color = null
@@ -123,6 +124,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_mekx8"]
 resource_name = "die"
+length = 3.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,6 +137,20 @@ tracks/0/keys = {
 "values": [{
 "args": [0.0],
 "method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Components/StateMachine/die")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
 }]
 }
 
@@ -224,7 +240,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"arm",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -280,7 +296,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hand",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,7 +333,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -366,7 +382,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword_1",
-"speed": 16.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -392,7 +408,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword_2",
-"speed": 16.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -418,7 +434,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword_3",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -607,7 +623,9 @@ libraries = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"idle"
+animation = &"sword_3"
+frame = 6
+frame_progress = 1.0
 
 [node name="TerrainDetector" type="Area2D" parent="Components2D"]
 collision_layer = 0
@@ -857,10 +875,10 @@ walk = NodePath("../walk")
 jump = NodePath("../jump")
 dash = NodePath("../dash")
 
-[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "die", "attack_input_component")]
+[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "fall", "attack_input_component")]
 script = ExtResource("7_86s88")
 idle = NodePath("../idle")
-die = NodePath("../die")
+fall = NodePath("../fall")
 attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
 invicibility_time = 1.0
 
@@ -891,6 +909,7 @@ walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
+movements_allowed = true
 attack_frame_start = 4
 
 [node name="sword_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
@@ -900,6 +919,7 @@ walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
+movements_allowed = true
 attack_frame_start = 4
 
 [node name="sword_3" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
@@ -909,6 +929,7 @@ walk = NodePath("../walk")
 dash = NodePath("../dash")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
+movements_allowed = true
 attack_frame_start = 4
 
 [node name="hand" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]

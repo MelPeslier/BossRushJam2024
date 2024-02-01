@@ -16,8 +16,9 @@ var forward:= true
 static var level: BaseLevel = null
 
 @export var stuff_2d: Node2D
+@export var level_path: String
+@export var particles: Node2D
 @onready var player_scene: PackedScene = preload("res://game/player/player.tscn")
-@onready var particles: Node2D = $LevelStuff2D/Particles
 
 
 func _ready() -> void:
@@ -26,12 +27,18 @@ func _ready() -> void:
 	player = player_instance
 	for_player.add_child(player_instance)
 
-	for i: EnvironementParticles in particles.get_children():
-		i.player = player
+	for ep: EnvironementParticles in particles.get_children():
+		ep.player = player
 
 	Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
 	GameState.in_game = true
+
+	if not GameState.saved_game.level_path == level_path:
+		GameState.saved_game.level_check_point_id = 0
+		GameState.saved_game.level_path = level_path
+		GameState.save_game()
+
 	for checkpoint: Checkpoint in get_tree().get_nodes_in_group("checkpoint"):
 		if checkpoint.id == GameState.saved_game.level_check_point_id:
 			player.global_position = checkpoint.global_position - Vector2(0, player.my_collision_shape.shape.get_rect().size.y)

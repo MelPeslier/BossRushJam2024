@@ -112,13 +112,14 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	health_component.damage(_attack_data.damage)
 	velocity = _attack_data.knock_back * _dir
 
-	var next_state: State = hit
+
 	if health_component.health == 0:
-		next_state = die
-	movement_state_machine.change_state(next_state)
+		movement_state_machine.change_state(die)
+		return
+
+	movement_state_machine.change_state(hit)
 
 	if _attack_data.team == AttackData.Team.SPIKE:
-
 
 		hit.is_spike = true
 
@@ -132,6 +133,8 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 		await timer.timeout
 
 		global_position = terrain_detector.last_ground_tile_position
+		move_data.reload_dashes()
+		move_data.alter_jumps(move_data.jumps_number)
 
 		timer.start(0.2)
 		await timer.timeout

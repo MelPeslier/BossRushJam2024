@@ -15,8 +15,8 @@ grow_vertical = 2
 script = ExtResource("1_qn88j")
 credits_canvas_layer = NodePath("CreditCanvasLayer")
 buttons_container = NodePath("VBoxContainer/ButtonsContainer")
-music_intro_path = "res://shared/sound/main_menu/main_menu_intro.wav"
-music_loop_path = "res://shared/sound/main_menu/main_menu_boucle.wav"
+music_intro_path = "res://shared/audio/main_menu/main_menu_intro.wav"
+music_loop_path = "res://shared/audio/main_menu/main_menu_boucle.wav"
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1

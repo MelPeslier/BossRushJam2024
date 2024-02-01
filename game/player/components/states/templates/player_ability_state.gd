@@ -7,6 +7,8 @@ extends PlayerState
 @export var jump: State
 @export var fall: State
 
+@export var movements_allowed := false
+
 @export_category("Attack Specificity")
 @export var attack_frame_start: int = -1
 @export var attack_frame_end: int = -1
@@ -94,7 +96,10 @@ func process_physics(delta: float) -> State:
 
 	do_walk_decelerate(delta)
 
-	parent.velocity.y = 0
+	if movements_allowed:
+		do_gravity(delta)
+	else:
+		parent.velocity.y = 0
 	parent.move_and_slide()
 
 	if not animated_sprite.is_playing():
@@ -102,9 +107,12 @@ func process_physics(delta: float) -> State:
 			return jump
 		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
 			return dash
-		if move_data.dir == 0:
-			return idle
-		return walk
+		if parent.is_on_floor():
+			move_data.alter_jumps(move_data.jumps_number)
+			if move_data.dir == 0:
+				return idle
+			return walk
+		return fall
 
 	return null
 

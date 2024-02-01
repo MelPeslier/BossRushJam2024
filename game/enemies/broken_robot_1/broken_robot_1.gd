@@ -94,7 +94,7 @@ func _on_detector_body_exited(body: Node2D) -> void:
 		target = null
 
 
-func _on_player_died() -> void:
+func _on_player_died(_pos: Vector2) -> void:
 	ray_cast_2d.enabled = false
 	target = null
 	losing_aggro = false

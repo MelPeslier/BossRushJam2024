@@ -37,4 +37,4 @@ func _get_random_val(val: float) -> Vector2:
 
 
 func _on_item_rect_changed() -> void:
-	print("ok")
+	print("camera item rect changed : ok")

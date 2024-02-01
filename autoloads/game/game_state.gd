@@ -17,10 +17,6 @@ func save_game() -> void:
 	saved_game.save()
 
 
-func erase_game() -> void:
-	pass
-
-
 func new_game() -> void:
 	saved_game = GameSave.reset()
 

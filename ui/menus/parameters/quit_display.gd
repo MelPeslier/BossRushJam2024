@@ -53,9 +53,11 @@ func _on_back_button_button_down() -> void:
 
 
 func _on_continue_button_button_down() -> void:
-	SceneTransition.change_scene(menu_path)
 	match type:
 		Type.RETURN:
 			GameState.save_game()
 		Type.ABANDON:
-			GameState.erase_game()
+			GameState.new_game()
+	hide_content()
+	Parameters.resume_game()
+	SceneTransition.change_scene(menu_path)

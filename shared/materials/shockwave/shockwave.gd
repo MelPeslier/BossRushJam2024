@@ -1,12 +1,13 @@
 @tool
 extends Sprite2D
 
+
 func _ready() -> void:
 	GameEvents.zoom_changed.connect( _on_zoom_changed )
 	_on_zoom_changed()
 	_on_item_rect_changed()
-	#TODO connecter la caméra à ce script
-	if Engine.is_editor_hint():
+
+	if not Engine.is_editor_hint():
 		set_process(false)
 	return
 

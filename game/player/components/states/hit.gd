@@ -1,7 +1,7 @@
 extends PlayerState
 
 @export var idle: State
-@export var die: State
+@export var fall: State
 @export var attack_input_component: AbilityInputComponent
 @export var invicibility_time: float = 0.3
 
@@ -30,6 +30,8 @@ func process_physics(delta: float) -> State:
 	if animated_sprite.is_playing() or is_spike:
 		return null
 
-	return idle
+	if parent.is_on_floor():
+		return idle
+	return fall
 
 

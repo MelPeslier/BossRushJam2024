@@ -7,7 +7,7 @@ signal menu_opened
 signal menu_closed
 
 signal zoom_changed
-signal player_died
+signal player_died(_pos: Vector2)
 
 signal player_move_speed_changed( _move_speed: float)
 

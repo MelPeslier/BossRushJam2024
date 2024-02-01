@@ -32,6 +32,15 @@ func _ready() -> void:
 		collision_shape.disabled = false
 
 
+static func reset() -> void:
+	ids = -1
+	last_id = -1
+	last_checkpoint = null
+
+
+func _exit_tree() -> void:
+	Checkpoint.reset()
+
 
 func _activate() -> void:
 	collision_shape.disabled = true

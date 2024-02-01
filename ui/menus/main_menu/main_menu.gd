@@ -7,10 +7,11 @@ extends Control
 
 
 func _ready() -> void:
+	GameState.in_game = false
 	Music.change_sounds([music_intro_path], Music.CrossFade.NONE)
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished )
 
-	if GameState.saved_game.level == 0 and GameState.saved_game.level_check_point_id == 0:
+	if GameState.saved_game.level_path == GameState.saved_game.start_level_path and GameState.saved_game.level_check_point_id == 0:
 		buttons_container.get_child(0).visible = false
 
 	for button: MyButton in buttons_container.get_children():
