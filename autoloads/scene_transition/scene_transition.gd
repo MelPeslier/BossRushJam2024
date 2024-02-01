@@ -19,16 +19,22 @@ func _ready() -> void:
 
 
 func reload_current_scene() -> void:
-	get_tree().reload_current_scene()
+	appear()
+	await animator.animation_finished
+
+	if progress_tween and progress_tween.is_running():
+		progress_tween.kill()
+	progress_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	progress_tween.tween_property(self, "progress", 1, fill_speed)
+	progress_tween.tween_callback( get_tree().reload_current_scene )
+	progress_tween.tween_interval( 0.15 )
+	progress_tween.tween_callback( disappear )
+
 
 
 func change_scene(_target_path: String) -> void:
-	GameState.in_cinematic = true
-	control_root.mouse_filter = Control.MOUSE_FILTER_STOP
-	visible = true
+	appear()
 	_scene_path = _target_path
-	progress = 0.0
-	animator.play("appear")
 	ResourceLoader.load_threaded_request( _target_path )
 	set_process(true)
 
@@ -38,7 +44,7 @@ func _process(_delta: float) -> void:
 	if progress_tween and progress_tween.is_running():
 		progress_tween.kill()
 	progress_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	progress_tween.tween_property(self, "progress", get_progress(), fill_speed)
+	progress_tween.tween_property(self, "progress", max(get_progress(), 0.33), fill_speed)
 
 	match(status):
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
@@ -78,6 +84,14 @@ func change_scene_to_resource() -> void:
 	if err:
 		push_error("failed to change scenes: %d" % err)
 		get_tree().quit()
+
+
+func appear() -> void:
+	GameState.in_cinematic = true
+	control_root.mouse_filter = Control.MOUSE_FILTER_STOP
+	visible = true
+	progress = 0.0
+	animator.play("appear")
 
 
 func disappear() -> void:

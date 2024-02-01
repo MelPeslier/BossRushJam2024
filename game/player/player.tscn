@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="3_8188k"]
 [ext_resource type="Script" path="res://ui/transitions/transition_screen.gd" id="3_f5q1u"]
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="4_63l1n"]
+[ext_resource type="Shader" path="res://game/gui/energy/hit_fil.gdshader" id="4_aal8x"]
 [ext_resource type="Shader" path="res://shared/materials/glow_effect/glow_effect.gdshader" id="4_m6he1"]
 [ext_resource type="Script" path="res://game/player/components/states/dash.gd" id="4_noi8l"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_ability_input_component.gd" id="4_o1kg2"]
-[ext_resource type="Shader" path="res://game/gui/energy/wavy.gdshader" id="4_pqjcb"]
 [ext_resource type="Script" path="res://game/player/components/states/die.gd" id="5_1w3nl"]
 [ext_resource type="Script" path="res://shared/components/camera/my_camera.gd" id="5_2i0cb"]
 [ext_resource type="Script" path="res://game/player/components/movements/player_move_input_component.gd" id="5_bbfuc"]
@@ -90,10 +90,9 @@
 [ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6bk8"]
-shader = ExtResource("4_pqjcb")
-shader_parameter/progress = 0.0
-shader_parameter/visibility = 1.0
-shader_parameter/bg_color = Color(0, 0, 0, 0)
+shader = ExtResource("4_aal8x")
+shader_parameter/progress = 0.455
+shader_parameter/bg_color = Color(1, 1, 1, 0)
 shader_parameter/wave_1_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 shader_parameter/wave_2_color = null
 shader_parameter/wave_1_speed = -1.7
@@ -575,6 +574,7 @@ energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
 
 [node name="HitTransition" type="CanvasLayer" parent="." node_paths=PackedStringArray("root_node")]
 layer = 2
+visible = false
 script = ExtResource("3_f5q1u")
 root_node = NodePath("RootNode")
 
