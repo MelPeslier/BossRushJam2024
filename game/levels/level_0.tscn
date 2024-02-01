@@ -90,6 +90,7 @@ alpha_curve = SubResource("CurveTexture_74bf7")
 
 [node name="MainLevel" type="Node2D" node_paths=PackedStringArray("for_player", "stuff_2d", "particles")]
 script = ExtResource("1_decge")
+db_music_volume = -25.0
 music_intro_path = "res://shared/audio/boss/boss_1/Boss1Intro_142bpm.wav"
 music_loop_1_path = "res://shared/audio/boss/boss_1/Boss1Phase1_142bpm.wav"
 music_loop_2_path = "res://shared/audio/boss/boss_1/Boss1Phase2_142bpm.wav"

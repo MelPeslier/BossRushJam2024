@@ -24,7 +24,7 @@ func reload_current_scene() -> void:
 
 	if progress_tween and progress_tween.is_running():
 		progress_tween.kill()
-	progress_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	progress_tween = create_tween()
 	progress_tween.tween_property(self, "progress", 1, fill_speed)
 	progress_tween.tween_callback( get_tree().reload_current_scene )
 	progress_tween.tween_interval( 0.15 )
@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 	var status = get_status()
 	if progress_tween and progress_tween.is_running():
 		progress_tween.kill()
-	progress_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	progress_tween = create_tween()
 	progress_tween.tween_property(self, "progress", max(get_progress(), 0.33), fill_speed)
 
 	match(status):
@@ -91,6 +91,7 @@ func appear() -> void:
 	control_root.mouse_filter = Control.MOUSE_FILTER_STOP
 	visible = true
 	progress = 0.0
+	visibility = 0.0
 	animator.play("appear")
 
 

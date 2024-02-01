@@ -56,3 +56,7 @@ func end_spell() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(0,0), 0.01)
 	tween.tween_callback(queue_free)
+
+
+func _on_self_destruct_timer_timeout() -> void:
+	end_spell()

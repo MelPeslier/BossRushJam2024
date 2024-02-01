@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=118 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -88,6 +88,10 @@
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="72_ow08y"]
 [ext_resource type="AudioStream" uid="uid://by5y1yix5nqtw" path="res://game/player/audio/dash/WHOOSH_AIRY_FLUTTER_01_WIDE.wav" id="73_hqpdl"]
 [ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
+[ext_resource type="AudioStream" uid="uid://136rrt5udcs8" path="res://shared/audio/shock_wave/EXPLDsgn_Distant Shockwave Bass_06_SFRMS_SCIWPNS.wav" id="78_gtgqm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cctlt"]
+size = Vector2(127.355, 226.244)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6bk8"]
 shader = ExtResource("4_aal8x")
@@ -97,9 +101,6 @@ shader_parameter/wave_1_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
 shader_parameter/wave_2_color = null
 shader_parameter/wave_1_speed = -1.7
 shader_parameter/wave_2_speed = 2.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cctlt"]
-size = Vector2(127.355, 226.244)
 
 [sub_resource type="Animation" id="Animation_nwt0g"]
 resource_name = "arm"
@@ -145,9 +146,12 @@ tracks/1/path = NodePath("Components/StateMachine/die")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.9, 1),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"play_stream"
+}, {
 "args": [],
 "method": &"restart"
 }]
@@ -566,6 +570,10 @@ hit_transition = NodePath("HitTransition")
 die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 105.276)
+shape = SubResource("RectangleShape2D_cctlt")
+
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
 visible = false
 energy_component = NodePath("../Components/Datas/EnergyComponent")
@@ -608,10 +616,6 @@ drag_bottom_margin = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("5_2i0cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 105.276)
-shape = SubResource("RectangleShape2D_cctlt")
 
 [node name="MovementAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -864,9 +868,14 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath(".")
 
-[node name="die" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("ability_input_component")]
+[node name="die" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("ability_input_component", "shocwave_sound")]
 script = ExtResource("5_1w3nl")
 ability_input_component = NodePath("../../Inputs/AbilityInputComponent")
+shocwave_sound = NodePath("ShockwaveReload")
+
+[node name="ShockwaveReload" type="AudioStreamPlayer" parent="Components/StateMachine/die"]
+stream = ExtResource("78_gtgqm")
+bus = &"SFX"
 
 [node name="fall" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "dash")]
 script = ExtResource("6_0uwup")

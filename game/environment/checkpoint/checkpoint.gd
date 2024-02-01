@@ -51,9 +51,10 @@ func _activate() -> void:
 	if not next_level_path.is_empty():
 		SceneTransition.change_scene(next_level_path)
 		return
-	GameState.saved_game.level_check_point_id = id
-	GameState.save_game()
-	last_id = id
+	else:
+		GameState.saved_game.level_check_point_id = id
+		GameState.save_game()
+		last_id = id
 
 	if last_checkpoint:
 		last_checkpoint._deactivate()

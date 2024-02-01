@@ -16,12 +16,14 @@ const MIN_LINEAR := 0.001
 
 @export var bus_name: String = "Music"
 
-var current_index: int = 0
+#var current_index: int = 0
+var db_volume : float = 0 : set = _set_db_volume
 
 @onready var audio_stream_players : Array[AudioStreamPlayer] = [AudioStreamPlayer.new()]
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child( audio_stream_players[0] )
 	audio_stream_players[0].bus = bus_name
 
@@ -47,7 +49,7 @@ func change_sounds(_audio_paths: Array[String], _cross_fade: CrossFade = CrossFa
 		else:
 			var tween: Tween = create_tween()
 			_fade_out(tween, _fade_time.y, audio_stream_players[i])
-			tween.tween_callback( _change_stream.bind( _audio_paths, audio_stream_players[i] ) )
+			tween.tween_callback( _change_stream.bind( _audio_paths[i], audio_stream_players[i] ) )
 
 		audio_stream_players[i].play(audio_stream_players[0].get_playback_position())
 
@@ -100,7 +102,7 @@ func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: Cro
 			_tween.set_parallel(false)
 			_fade_out(_tween, _fade_time.y, _asp)
 			_tween.tween_callback( _change_stream.bind( _song_path, _asp ) )
-			_asp.play()
+			_tween.tween_callback( _asp.play )
 			_fade_in(_tween, _fade_time.x, _asp)
 
 
@@ -109,6 +111,7 @@ func _change_stream(_new_song_path: String, asp: AudioStreamPlayer) -> void:
 	if audio_stream == null:
 		print("can't load audio file")
 		return
+	_set_volume( db_to_linear(db_volume), asp )
 	asp.stream = audio_stream
 
 
@@ -126,8 +129,12 @@ func _fade_out(_tween: Tween, _speed: float, _asp: AudioStreamPlayer) -> void:
 
 
 func _fade_in(_tween: Tween, _speed: float, _asp: AudioStreamPlayer) -> void:
-	_tween.tween_method(_set_volume.bind(_asp), MIN_LINEAR, db_to_linear(0), _speed)
+	_tween.tween_method(_set_volume.bind(_asp), MIN_LINEAR, db_to_linear(db_volume), _speed)
 
 
 func _set_volume(_val: float, _asp: AudioStreamPlayer) -> void:
 	_asp.volume_db = linear_to_db(_val)
+
+
+func _set_db_volume(_linear_volume: float) -> void:
+	db_volume = clampf(_linear_volume, -60, 0)

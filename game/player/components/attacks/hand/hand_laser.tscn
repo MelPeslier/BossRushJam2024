@@ -123,3 +123,10 @@ pitch_scale = 1.1
 max_distance = 3000.0
 attenuation = 0.196146
 bus = &"SFX"
+
+[node name="SelfDestructTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SelfDestructTimer" to="." method="_on_self_destruct_timer_timeout"]
