@@ -59,7 +59,7 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	if phase == 1:
 		if health_component.health <= health_component.max_health * phase_2_threshold:
 			phase = 2
-			Music.fade_sounds(1, Music.Fade.IN)
+			Music.fade_sounds(Music.Fade.IN, 1)
 			state_machine.change_state(get_hit)
 	elif not health_component.alive:
 			state_machine.change_state(dead)

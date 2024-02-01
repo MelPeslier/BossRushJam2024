@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=123 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -105,26 +105,12 @@
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/walk.gd" id="101_jxumy"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/get_hit.gd" id="102_w0vms"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/dead.gd" id="103_wrw5b"]
-[ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot.gd" id="104_7i1o3"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_2.gd" id="105_12t38"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_1.gd" id="107_yr634"]
+[ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="109_hkeot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
 size = Vector2(440.389, 464.539)
-
-[sub_resource type="Animation" id="Animation_h1gn3"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_0xi02"]
 resource_name = "RESET"
@@ -141,8 +127,8 @@ tracks/0/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_oalhx"]
-resource_name = "walk"
+[sub_resource type="Animation" id="Animation_7usts"]
+resource_name = "dead"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -153,7 +139,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -7)]
+"values": [Vector2(34, 28)]
 }
 
 [sub_resource type="Animation" id="Animation_10o78"]
@@ -169,6 +155,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_h1gn3"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jjkey"]
@@ -201,8 +202,8 @@ tracks/0/keys = {
 "values": [Vector2(100, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7usts"]
-resource_name = "dead"
+[sub_resource type="Animation" id="Animation_oalhx"]
+resource_name = "walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -213,7 +214,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(34, 28)]
+"values": [Vector2(0, -7)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_va5vc"]
@@ -605,6 +606,7 @@ music_loop_1_path = "res://shared/audio/boss/boss_2/Boss2Phase1_157bpm.wav"
 music_loop_2_path = "res://shared/audio/boss/boss_2/Boss2Phase2_157bpm.wav"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 77.179)
 shape = SubResource("RectangleShape2D_y76iy")
 
@@ -618,7 +620,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"walk"
+animation = &"shoot_1"
+frame = 6
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")
@@ -631,6 +634,7 @@ damage = 1.0
 knock_back = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HitboxComponent"]
+visible = false
 position = Vector2(0, 75.3475)
 shape = SubResource("RectangleShape2D_ffpg2")
 
@@ -638,6 +642,7 @@ shape = SubResource("RectangleShape2D_ffpg2")
 script = ExtResource("94_48pt6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
+visible = false
 position = Vector2(-0.592041, 306.637)
 shape = SubResource("RectangleShape2D_oon0b")
 
@@ -647,6 +652,7 @@ parent = NodePath("../..")
 energy_to_give = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
+visible = false
 position = Vector2(0, 76.7038)
 shape = SubResource("RectangleShape2D_onc4p")
 
@@ -655,10 +661,14 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/Detector"]
+visible = false
 position = Vector2(0, -1146.31)
 shape = SubResource("RectangleShape2D_ocw6d")
 
 [node name="Attacks" type="Node2D" parent="Components2D"]
+
+[node name="Shoot" type="Marker2D" parent="Components2D/Attacks"]
+position = Vector2(440.63, -227.042)
 
 [node name="Components" type="Node" parent="."]
 
@@ -680,8 +690,9 @@ starting_state = NodePath("idle")
 [node name="get_hit" type="Node" parent="Components/StateMachine"]
 script = ExtResource("102_w0vms")
 
-[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("shoot_1", "shoot_2")]
+[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "shoot_1", "shoot_2")]
 script = ExtResource("100_5iwmv")
+walk = NodePath("../walk")
 shoot_1 = NodePath("../shoot_1")
 shoot_2 = NodePath("../shoot_2")
 
@@ -694,11 +705,40 @@ idle = NodePath("../idle")
 [node name="dead" type="Node" parent="Components/StateMachine"]
 script = ExtResource("103_wrw5b")
 
-[node name="shoot_1" type="Node" parent="Components/StateMachine"]
-script = ExtResource("104_7i1o3")
+[node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "attack_data", "attacks", "marker")]
+script = ExtResource("107_yr634")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+spell_scene = ExtResource("109_hkeot")
+attack_data = NodePath("AttackData")
+attacks = NodePath("../../../Components2D/Attacks")
+marker = NodePath("../../../Components2D/Attacks/Shoot")
+shoot_attacks = [[10, 0.5], [2, 0.5], [3, 0.33]]
+attack_frame_start = 6
+attack_frame_end = 10
 
-[node name="shoot_2" type="Node" parent="Components/StateMachine"]
+[node name="AttackData" type="Node" parent="Components/StateMachine/shoot_1"]
+script = ExtResource("95_dhxdm")
+damage = 1.0
+knock_back = 400.0
+
+[node name="shoot_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "attack_data", "attacks", "marker")]
 script = ExtResource("105_12t38")
+idle = NodePath("../idle")
+walk = NodePath("../walk")
+spell_scene = ExtResource("109_hkeot")
+attack_data = NodePath("AttackData")
+attacks = NodePath("../../../Components2D/Attacks")
+marker = NodePath("../../../Components2D/Attacks/Shoot")
+shoot_attacks = [[3, 1], [2, 1.0], [5, 0.33]]
+angle_diff_margin = 10.0
+attack_frame_start = 6
+attack_frame_end = 10
+
+[node name="AttackData" type="Node" parent="Components/StateMachine/shoot_2"]
+script = ExtResource("95_dhxdm")
+damage = 1.0
+knock_back = 800.0
 
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
 [connection signal="body_entered" from="Components2D/Detector" to="." method="_on_detector_body_entered"]

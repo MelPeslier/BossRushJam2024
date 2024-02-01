@@ -627,9 +627,7 @@ libraries = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"sword_3"
-frame = 6
-frame_progress = 1.0
+animation = &"walk"
 
 [node name="TerrainDetector" type="Area2D" parent="Components2D"]
 collision_layer = 0
