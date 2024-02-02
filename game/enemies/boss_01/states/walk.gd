@@ -37,7 +37,8 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x += move_data.dir * move_data.walk_accel * delta * speed_coef
 		parent.velocity.x = move_data.dir * min( abs(parent.velocity.x), move_data.walk_distance * speed_coef )
 		parent.move_and_slide()
-
+		print("idle preshot",idle.pre_shot)
+		idle.pre_shot = true
 		return idle
 
 	return null
@@ -48,5 +49,8 @@ func process_frame(delta: float) -> State:
 		move_data.step_interval_timer = move_data.walk_step_interval_time
 		match terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
-				Sfx2d.play_metal_movement(SoundList.MetalMovement.WALK_MEDIUM, parent.global_position)
+				if parent.phase == 2:
+					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_MEDIUM, parent.global_position)
+				else:
+					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_MEDIUM, parent.global_position)
 	return null

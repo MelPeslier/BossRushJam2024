@@ -279,8 +279,8 @@ bus = &"SFX"
 
 [node name="MetalWalkMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
 stream = SubResource("AudioStreamRandomizer_uq024")
-volume_db = 8.0
-max_distance = 3000.0
+volume_db = 10.0
+max_distance = 4000.0
 bus = &"SFX"
 
 [node name="MetalRunLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
@@ -290,8 +290,8 @@ bus = &"SFX"
 
 [node name="MetalRunMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
 stream = SubResource("AudioStreamRandomizer_57gtw")
-volume_db = 5.0
-max_distance = 3000.0
+volume_db = 10.0
+max_distance = 4000.0
 bus = &"SFX"
 
 [node name="MetalJumpLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
@@ -302,7 +302,7 @@ bus = &"SFX"
 [node name="MetalJumpMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
 stream = SubResource("AudioStreamRandomizer_qyv26")
 volume_db = 10.0
-max_distance = 3000.0
+max_distance = 4000.0
 bus = &"SFX"
 
 [node name="MetalLandLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
@@ -311,7 +311,7 @@ bus = &"SFX"
 
 [node name="MetalLandMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
 stream = SubResource("AudioStreamRandomizer_3whtg")
-max_distance = 3000.0
+max_distance = 4000.0
 bus = &"SFX"
 
 [node name="MetalSwordHit" type="Node" parent="Metal"]

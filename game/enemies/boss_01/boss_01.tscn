@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=126 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -72,7 +72,6 @@
 [ext_resource type="Texture2D" uid="uid://c8iu284i1brsf" path="res://game/enemies/boss_01/art/shoot_w_fx/shoot_w_fx_008.png" id="70_am5vk"]
 [ext_resource type="Texture2D" uid="uid://dttlvre4qgvsp" path="res://game/enemies/boss_01/art/shoot_w_fx/shoot_w_fx_009.png" id="71_nulst"]
 [ext_resource type="Texture2D" uid="uid://cxpu0q5kmyc5f" path="res://game/enemies/boss_01/art/shoot_w_fx/shoot_w_fx_010.png" id="72_odk1i"]
-[ext_resource type="Texture2D" uid="uid://6d36xx43hs4n" path="res://game/enemies/boss_01/art/shoot_w_fx/shoot_w_fx_011.png" id="73_h0hpj"]
 [ext_resource type="Texture2D" uid="uid://icbmmrjqho07" path="res://game/enemies/boss_01/art/walk/walk_000.png" id="74_ehn4j"]
 [ext_resource type="Texture2D" uid="uid://c3npggdf0s6hb" path="res://game/enemies/boss_01/art/walk/walk_001.png" id="75_ruyhl"]
 [ext_resource type="Texture2D" uid="uid://cedmuscdmn3a1" path="res://game/enemies/boss_01/art/walk/walk_002.png" id="76_7xnw7"]
@@ -105,9 +104,11 @@
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/walk.gd" id="101_jxumy"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/get_hit.gd" id="102_w0vms"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/dead.gd" id="103_wrw5b"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/pre_walk.gd" id="104_wt5c0"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_2.gd" id="105_12t38"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_1.gd" id="107_yr634"]
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="109_hkeot"]
+[ext_resource type="Script" path="res://game/enemies/boss_01/states/aim.gd" id="110_p1pxi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
 size = Vector2(440.389, 464.539)
@@ -217,12 +218,44 @@ tracks/0/keys = {
 "values": [Vector2(0, -7)]
 }
 
+[sub_resource type="Animation" id="Animation_jploq"]
+resource_name = "pre_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_jertm"]
+resource_name = "aim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_va5vc"]
 _data = {
 "RESET": SubResource("Animation_0xi02"),
+"aim": SubResource("Animation_jertm"),
 "dead": SubResource("Animation_7usts"),
 "get_hit": SubResource("Animation_10o78"),
 "idle": SubResource("Animation_h1gn3"),
+"pre_walk": SubResource("Animation_jploq"),
 "shoot_1": SubResource("Animation_jjkey"),
 "shoot_2": SubResource("Animation_nq30v"),
 "walk": SubResource("Animation_oalhx")
@@ -230,6 +263,35 @@ _data = {
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x8mg6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("62_dwxq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_0u2l7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_1nt1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_4fe1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_i8hhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_erhdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_erhdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_erhdo")
+}],
+"loop": false,
+"name": &"aim",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ybp7r")
@@ -297,9 +359,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("22_1cvg6")
-}, {
-"duration": 1.0,
 "texture": ExtResource("23_nsl6r")
 }, {
 "duration": 1.0,
@@ -313,6 +372,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("27_riwi5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_1cvg6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("28_vjmuv")
@@ -427,20 +489,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("62_dwxq4")
+"texture": ExtResource("89_nw6fu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("63_0u2l7")
+"texture": ExtResource("90_rlekh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("64_1nt1y")
+"texture": ExtResource("91_cbpdb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("65_4fe1h")
+"texture": ExtResource("92_f0a7b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("66_i8hhy")
+"texture": ExtResource("93_3rcfs")
 }, {
+"duration": 1.0,
+"texture": ExtResource("89_nw6fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_rlekh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_cbpdb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_f0a7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_3rcfs")
+}],
+"loop": false,
+"name": &"pre_walk",
+"speed": 10.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("67_erhdo")
 }, {
@@ -460,7 +542,10 @@ animations = [{
 "texture": ExtResource("72_odk1i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("73_h0hpj")
+"texture": ExtResource("72_odk1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_odk1i")
 }],
 "loop": false,
 "name": &"shoot_1",
@@ -468,21 +553,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("62_dwxq4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("63_0u2l7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("64_1nt1y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("65_4fe1h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("66_i8hhy")
-}, {
-"duration": 1.0,
 "texture": ExtResource("67_erhdo")
 }, {
 "duration": 1.0,
@@ -499,9 +569,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("72_odk1i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("73_h0hpj")
 }],
 "loop": false,
 "name": &"shoot_2",
@@ -620,8 +687,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"shoot_1"
-frame = 6
+animation = &"shoot_2"
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")
@@ -678,71 +744,84 @@ script = ExtResource("96_m61ly")
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("96_ug0ga")
 max_health = 100.0
-health = 100.0
+health = 30.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("97_pbjfb")
-walk_distance = 1500.0
+walk_distance = 1300.0
 walk_accel_time = 1.0
+walk_step_interval_time = 0.35
+run_step_interval_time = 0.2
 
 [node name="StateMachine" type="Node" parent="Components" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("96_7pxjr")
 starting_state = NodePath("idle")
 
-[node name="get_hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle")]
+[node name="get_hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("pre_walk")]
 script = ExtResource("102_w0vms")
-idle = NodePath("../idle")
+pre_walk = NodePath("../pre_walk")
 
-[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "get_hit", "shoot_1", "shoot_2")]
-script = ExtResource("100_5iwmv")
-walk = NodePath("../walk")
-get_hit = NodePath("../get_hit")
-shoot_1 = NodePath("../shoot_1")
-shoot_2 = NodePath("../shoot_2")
+[node name="dead" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("collision_shapes")]
+script = ExtResource("103_wrw5b")
+collision_shapes = [NodePath("../../../Components2D/HitboxComponent/CollisionShape2D"), NodePath("../../../Components2D/HurtboxComponent/CollisionShape2D")]
 
 [node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "idle")]
 script = ExtResource("101_jxumy")
-walk_speed_coef = 2.0
+walk_speed_coef = 1.5
 terrain_detector = NodePath("../../../Components2D/TerrainDetector")
 idle = NodePath("../idle")
 
-[node name="dead" type="Node" parent="Components/StateMachine"]
-script = ExtResource("103_wrw5b")
+[node name="pre_walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk")]
+script = ExtResource("104_wt5c0")
+walk = NodePath("../walk")
+phase_2_walk_start_frame = 5
 
-[node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "attack_data", "attacks", "marker")]
+[node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("pre_walk", "get_hit", "aim")]
+script = ExtResource("100_5iwmv")
+pre_walk = NodePath("../pre_walk")
+get_hit = NodePath("../get_hit")
+aim = NodePath("../aim")
+
+[node name="aim" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("shoot_1", "shoot_2")]
+script = ExtResource("110_p1pxi")
+shoot_1 = NodePath("../shoot_1")
+shoot_2 = NodePath("../shoot_2")
+
+[node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker")]
 script = ExtResource("107_yr634")
 idle = NodePath("../idle")
-walk = NodePath("../walk")
+pre_walk = NodePath("../pre_walk")
 spell_scene = ExtResource("109_hkeot")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
-shoot_attacks = [[10, 0.5], [2, 0.5], [3, 0.33]]
-attack_frame_start = 6
-attack_frame_end = 10
+shoot_attacks = [[3, 0.5], [2, 0.0], [3, 0.5]]
+angle_diff_margin = 5.0
+attack_frame_start = 1
+attack_frame_end = 7
 
 [node name="AttackData" type="Node" parent="Components/StateMachine/shoot_1"]
 script = ExtResource("95_dhxdm")
 damage = 1.0
-knock_back = 400.0
+knock_back = 800.0
 
-[node name="shoot_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "attack_data", "attacks", "marker")]
+[node name="shoot_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker")]
 script = ExtResource("105_12t38")
 idle = NodePath("../idle")
-walk = NodePath("../walk")
+pre_walk = NodePath("../pre_walk")
 spell_scene = ExtResource("109_hkeot")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
-shoot_attacks = [[3, 1], [2, 1.0], [5, 0.33]]
-angle_diff_margin = 10.0
-attack_frame_start = 6
-attack_frame_end = 10
+shoot_attacks = [[5, 0.33], [3, 1.0], [10, 0.0]]
+angle_diff_margin = 15.0
+attack_frame_start = 1
+attack_frame_end = 5
 
 [node name="AttackData" type="Node" parent="Components/StateMachine/shoot_2"]
 script = ExtResource("95_dhxdm")
 damage = 1.0
-knock_back = 800.0
+knock_back = 1600.0
 
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
 [connection signal="body_entered" from="Components2D/Detector" to="." method="_on_detector_body_entered"]

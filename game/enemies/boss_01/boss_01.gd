@@ -60,7 +60,6 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	if phase == 1:
 		if health_component.health <= health_component.max_health * phase_2_threshold:
 			phase = 2
-			Music.fade_sounds(Music.Fade.IN, 1)
 			be_down = true
 	elif not health_component.alive:
 			state_machine.change_state(dead)
@@ -77,6 +76,7 @@ func _on_detector_body_entered(body: Node2D) -> void:
 	detector_collision.set_deferred("disabled", true)
 
 	#TODO le combat commence !
+	Music.db_volume = db_music_volume
 	Music.change_sounds([music_intro_path], Music.CrossFade.OUT_IN)
 	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
 	target = body

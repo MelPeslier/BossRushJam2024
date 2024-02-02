@@ -32,7 +32,7 @@ func _ready() -> void:
 # ****************** #
 #  PUBLIC functions  #
 # ****************** #
-func change_sounds(_audio_paths: Array[String], _cross_fade: CrossFade = CrossFade.CROSS, _fade_time := Vector2(3, 3) ) -> void:
+func change_sounds(_audio_paths: Array[String], _cross_fade: CrossFade = CrossFade.CROSS, _fade_time := Vector2(1.5, 1.5) ) -> void:
 	for i: int in _audio_paths.size():
 		if audio_stream_players.size() <= i:
 			var asp := AudioStreamPlayer.new()
@@ -69,7 +69,7 @@ func fade_sounds(_fade: Fade, list_index: int = 0, _fade_time := Vector2(0.3, 0.
 					_fade_in(tween, _fade_time.x, audio_stream_players[i])
 
 			Fade.OUT:
-				if i >= list_index and audio_stream_players[i].volume_db > -1:
+				if i >= list_index and audio_stream_players[i].volume_db >= db_volume:
 					var tween: Tween = create_tween()
 					_fade_out(tween, _fade_time.y, audio_stream_players[i])
 

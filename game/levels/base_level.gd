@@ -33,7 +33,7 @@ func _ready() -> void:
 
 	Music.db_volume = db_music_volume
 	if not music_intro_path.is_empty():
-		Music.change_sounds( [music_intro_path], Music.CrossFade.CROSS )
+		Music.change_sounds( [music_intro_path], Music.CrossFade.OUT_IN )
 		Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
 	GameState.in_game = true
 

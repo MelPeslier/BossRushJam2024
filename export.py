@@ -5,7 +5,7 @@ import shutil
 
 godot_path = 'godot.exe'
 butler_path = 'butler.exe'
-butler_game = 'melpeslier/teambossrushjam'
+butler_game = 'melpeslier/mirage'
 
 # # Found under the Steam sdk > tools > ContentBuilder > builder
 # steamcmd_path = 'steamcmd.exe'
@@ -17,7 +17,7 @@ butler_game = 'melpeslier/teambossrushjam'
 # steam_credentials_path = 'steam_credentials.txt'
 
 build_path = '../../Godot Export/BossRushJam2024/'
-game_name = 'game_name'
+game_name = 'mirage'
 exe_name_windows = game_name + '.exe'
 exe_name_linux = game_name + '.x86_64'
 

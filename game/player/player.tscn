@@ -635,6 +635,7 @@ collision_mask = 17
 script = ExtResource("4_63l1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
+visible = false
 position = Vector2(-1, 216.515)
 shape = SubResource("CapsuleShape2D_10vgk")
 
@@ -651,6 +652,7 @@ script = ExtResource("2_q8f32")
 player = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/PlayerInteractorComponent"]
+visible = false
 shape = SubResource("CircleShape2D_jjjul")
 
 [node name="OtherStuff" type="Node2D" parent="Components2D"]
@@ -660,6 +662,7 @@ shape = SubResource("CircleShape2D_jjjul")
 [node name="MidPos" type="Marker2D" parent="Components2D/OtherStuff"]
 
 [node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("swords", "hand", "arm", "attack_input_component", "energy_component")]
+visible = false
 script = ExtResource("2_0x4jq")
 combo_time = 1.5
 swords = [NodePath("sword_1"), NodePath("sword_2"), NodePath("sword_3")]
@@ -881,10 +884,13 @@ walk = NodePath("../walk")
 jump = NodePath("../jump")
 dash = NodePath("../dash")
 
-[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "fall", "attack_input_component")]
+[node name="hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "fall", "walk", "jump", "dash", "attack_input_component")]
 script = ExtResource("7_86s88")
 idle = NodePath("../idle")
 fall = NodePath("../fall")
+walk = NodePath("../walk")
+jump = NodePath("../jump")
+dash = NodePath("../dash")
 attack_input_component = NodePath("../../Inputs/AbilityInputComponent")
 invicibility_time = 1.0
 

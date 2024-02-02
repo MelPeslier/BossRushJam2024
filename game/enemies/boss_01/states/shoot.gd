@@ -2,7 +2,7 @@ class_name BossShootState
 extends MoveState
 
 @export var idle: State
-@export var walk: State
+@export var pre_walk: State
 
 @export var spell_scene : PackedScene
 @export var attack_data: AttackData
@@ -85,7 +85,8 @@ func process_physics(_delta: float) -> State:
 	var dir := parent.global_position.direction_to(parent.target.global_position)
 	dir.x = 1 if dir.x > 0 else -1
 	if signf( move_data.dir ) != signf( dir.x ):
-		return walk
+		idle.pre_shot = true
+		return pre_walk
 
 	return null
 
