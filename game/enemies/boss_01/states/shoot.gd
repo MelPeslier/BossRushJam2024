@@ -49,7 +49,6 @@ func spawn_spell() -> void:
 
 
 func enter() -> void:
-	print("\n\nSHOOT ENTERED **********")
 	super()
 	pattern_index = 0
 	attack_index = 0

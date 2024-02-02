@@ -119,10 +119,10 @@
 [ext_resource type="AudioStream" uid="uid://be0055mm8cq01" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_03.wav" id="107_xsb28"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_1.gd" id="107_yr634"]
 [ext_resource type="AudioStream" uid="uid://dblbto3al5e0n" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_04.wav" id="108_i7w58"]
-[ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="109_hkeot"]
 [ext_resource type="AudioStream" uid="uid://bpabqkmsdusd0" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_02.wav" id="110_lv6qo"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/aim.gd" id="110_p1pxi"]
 [ext_resource type="AudioStream" uid="uid://cw6el0xa8duc4" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_06.wav" id="111_et2st"]
+[ext_resource type="PackedScene" uid="uid://c7nvph0tn3tyl" path="res://game/enemies/boss_01/attacks/boss_1_laser.tscn" id="122_nbioy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
 size = Vector2(440.389, 464.539)
@@ -140,6 +140,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jertm"]
+resource_name = "aim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7usts"]
@@ -187,6 +202,21 @@ tracks/0/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_jploq"]
+resource_name = "pre_walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
 [sub_resource type="Animation" id="Animation_jjkey"]
 resource_name = "shoot_1"
 tracks/0/type = "value"
@@ -230,36 +260,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, -7)]
-}
-
-[sub_resource type="Animation" id="Animation_jploq"]
-resource_name = "pre_walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -7)]
-}
-
-[sub_resource type="Animation" id="Animation_jertm"]
-resource_name = "aim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(100, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_va5vc"]
@@ -664,7 +664,7 @@ size = Vector2(20, 80)
 size = Vector2(443.852, 468.162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocw6d"]
-size = Vector2(2222.69, 3193.89)
+size = Vector2(3479.57, 1874.85)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kk4ee"]
 random_volume_offset_db = 1.0
@@ -699,6 +699,7 @@ stream_2/weight = 1.0
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("1_djtax")
+next_scene_path = "res://ui/menus/main_menu/main_menu.tscn"
 need_dir = [NodePath("Components2D/AnimatedSprite2D"), NodePath("Components2D/Attacks")]
 state_machine = NodePath("Components/StateMachine")
 animator = NodePath("AnimationPlayer")
@@ -730,9 +731,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"pre_walk"
-frame = 9
-frame_progress = 1.0
+animation = &"shoot_1"
+frame = 4
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")
@@ -742,7 +742,7 @@ attack_data = NodePath("AttackData")
 [node name="AttackData" type="Node" parent="Components2D/HitboxComponent"]
 script = ExtResource("95_dhxdm")
 damage = 1.0
-knock_back = 1000.0
+knock_back = 3000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HitboxComponent"]
 visible = false
@@ -773,7 +773,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/Detector"]
 visible = false
-position = Vector2(0, -1146.31)
+position = Vector2(-799.789, -517.029)
 shape = SubResource("RectangleShape2D_ocw6d")
 
 [node name="Attacks" type="Node2D" parent="Components2D"]
@@ -782,6 +782,7 @@ shape = SubResource("RectangleShape2D_ocw6d")
 position = Vector2(388.571, -232.381)
 
 [node name="ShootAudio" type="AudioStreamPlayer2D" parent="Components2D/Attacks/Shoot"]
+position = Vector2(-258.361, 1.7818)
 stream = SubResource("AudioStreamRandomizer_kk4ee")
 max_distance = 4000.0
 attenuation = 0.435275
@@ -889,7 +890,7 @@ aim_2 = NodePath("../../../Components2D/Sounds/Aim/Aim2")
 script = ExtResource("107_yr634")
 idle = NodePath("../idle")
 pre_walk = NodePath("../pre_walk")
-spell_scene = ExtResource("109_hkeot")
+spell_scene = ExtResource("122_nbioy")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
@@ -908,7 +909,7 @@ knock_back = 800.0
 script = ExtResource("105_12t38")
 idle = NodePath("../idle")
 pre_walk = NodePath("../pre_walk")
-spell_scene = ExtResource("109_hkeot")
+spell_scene = ExtResource("122_nbioy")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")

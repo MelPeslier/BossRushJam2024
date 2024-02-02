@@ -13,7 +13,6 @@ var pre_shot = true
 var idle_timer: float = 0
 
 func enter() -> void:
-	print("\n\nIDLE ENTERED **********")
 	super()
 	if start:
 		idle_timer = cinematic_wait_time

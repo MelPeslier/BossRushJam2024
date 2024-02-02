@@ -14,6 +14,11 @@ enum Ui {
 	MENU_CLOSED,
 }
 
+enum Action {
+	BOSS_KILLED,
+}
+
+
 enum MetalMovement {
 	WALK_LIGHT,
 	WALK_MEDIUM,

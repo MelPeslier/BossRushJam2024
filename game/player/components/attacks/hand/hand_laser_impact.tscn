@@ -92,6 +92,8 @@ color = Color(0.729412, 0.988235, 1, 1)
 alpha_curve = SubResource("CurveTexture_t3qdi")
 
 [node name="Impact" type="Node2D"]
+z_index = 2
+z_as_relative = false
 script = ExtResource("1_3xe24")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

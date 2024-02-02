@@ -81,6 +81,8 @@ color = Color(0.729412, 0.988235, 1, 1)
 alpha_curve = SubResource("CurveTexture_2tyow")
 
 [node name="HandLaser" type="Node2D"]
+z_index = 2
+z_as_relative = false
 script = ExtResource("1_lieno")
 impact_scene = ExtResource("2_gt5th")
 

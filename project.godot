@@ -51,6 +51,7 @@ folder_colors={
 "res://addons/": "gray",
 "res://autoloads/": "red",
 "res://ressources/": "yellow",
+"res://shared/": "purple",
 "res://shared/materials/": "teal",
 "res://ui/menus/parameters/": "red"
 }

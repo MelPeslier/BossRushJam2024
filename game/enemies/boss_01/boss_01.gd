@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export_file("*.tscn") var next_scene_path: String
+
 @export var need_dir: Array[Node2D]
 
 @export var state_machine: StateMachine

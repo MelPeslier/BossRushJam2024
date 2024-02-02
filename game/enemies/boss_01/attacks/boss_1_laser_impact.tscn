@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckjm13tt5l6jm"]
+
+[ext_resource type="Script" path="res://shared/components/attacks/impact.gd" id="1_r5oca"]
+[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="2_a5blq"]
+[ext_resource type="Texture2D" uid="uid://cjl1n51cv8w12" path="res://shared/art/particles/circle_01.png" id="3_rv1ij"]
+[ext_resource type="AudioStream" uid="uid://byo586o4m1i4f" path="res://game/enemies/boss_01/audio/shoot/impact/EXPLDsgn_Implode_04_SFRMS_SCIWPNS.wav" id="4_p4hou"]
+
+[sub_resource type="Animation" id="Animation_rdnh4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_j6tc7"]
+resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f36y8"]
+_data = {
+"RESET": SubResource("Animation_rdnh4"),
+"activate": SubResource("Animation_j6tc7")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k71se"]
+shader = ExtResource("2_a5blq")
+shader_parameter/color = Color(0.654902, 0.231373, 0, 1)
+shader_parameter/margin = 0.71
+
+[sub_resource type="Curve" id="Curve_qdcu2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.239521, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_esvq3"]
+curve = SubResource("Curve_qdcu2")
+
+[sub_resource type="Curve" id="Curve_7c80j"]
+max_value = 2.0
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.371258, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.37146), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wndsd"]
+curve = SubResource("Curve_7c80j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m36l8"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.9
+scale_curve = SubResource("CurveTexture_wndsd")
+alpha_curve = SubResource("CurveTexture_esvq3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g4sf3"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("4_p4hou")
+stream_0/weight = 1.0
+
+[node name="Impact" type="Node2D"]
+z_index = 2
+z_as_relative = false
+script = ExtResource("1_r5oca")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f36y8")
+}
+
+[node name="explosion" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_k71se")
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_m36l8")
+texture = ExtResource("3_rv1ij")
+one_shot = true
+explosiveness = 0.75
+
+[node name="explosion_sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_g4sf3")
+volume_db = 3.0
+autoplay = true
+max_distance = 4000.0
+attenuation = 0.732043
+bus = &"SFX"

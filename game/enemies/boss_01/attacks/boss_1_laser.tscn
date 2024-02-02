@@ -1,0 +1,140 @@
+[gd_scene load_steps=24 format=3 uid="uid://c7nvph0tn3tyl"]
+
+[ext_resource type="Script" path="res://shared/components/attacks/spell.gd" id="1_my0bl"]
+[ext_resource type="PackedScene" uid="uid://ckjm13tt5l6jm" path="res://game/enemies/boss_01/attacks/boss_1_laser_impact.tscn" id="2_yq5o1"]
+[ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="2_ytxx7"]
+[ext_resource type="Material" uid="uid://c8he8a3kqt0ly" path="res://game/enemies/boss_01/attacks/boss_1_laser.tres" id="4_4po3f"]
+[ext_resource type="Texture2D" uid="uid://bdi4vyhmwrvt1" path="res://shared/art/particles/muzzle_05.png" id="4_454g3"]
+[ext_resource type="Texture2D" uid="uid://bjhg0smgf5x47" path="res://shared/art/particles/flame_03.png" id="5_hxu2e"]
+[ext_resource type="AudioStream" uid="uid://mt4i4eh0p7d3" path="res://game/enemies/boss_01/audio/shoot/laser_loop/Ambiance_Firecamp_Medium_Loop_Mono.wav" id="6_heefx"]
+[ext_resource type="AudioStream" uid="uid://b4dxj6d8b2e3m" path="res://game/enemies/boss_01/audio/shoot/laser_loop/Ambiance_Firecamp_Small_Loop_Mono.wav" id="7_6r501"]
+[ext_resource type="AudioStream" uid="uid://jb5ljmesbs2k" path="res://game/enemies/boss_01/audio/shoot/laser_loop/Ambiance_Fire_Big_Loop_Mono.wav" id="8_x4vmm"]
+
+[sub_resource type="Animation" id="Animation_po5a5"]
+resource_name = "activate"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0sxqa"]
+_data = {
+"activate": SubResource("Animation_po5a5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57v0j"]
+radius = 72.4017
+
+[sub_resource type="Curve" id="Curve_4evdt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.257485, 1), 0.0, 0.0, 0, 0, Vector2(0.757485, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qs71t"]
+curve = SubResource("Curve_4evdt")
+
+[sub_resource type="Curve" id="Curve_837fr"]
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.257485, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a5dsw"]
+curve = SubResource("Curve_837fr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_le5x5"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-1, 0, 0)
+spread = 13.0
+initial_velocity_min = 400.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, -100, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_a5dsw")
+alpha_curve = SubResource("CurveTexture_qs71t")
+
+[sub_resource type="Curve" id="Curve_6f0ve"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.47006, 1), 0.0, 0.0, 0, 0, Vector2(0.494012, 1), 0.0, 0.0, 0, 0, Vector2(0.497006, 1), 0.0, 0.0, 0, 0, Vector2(0.751497, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_juegf"]
+curve = SubResource("Curve_6f0ve")
+
+[sub_resource type="Curve" id="Curve_vujtv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.511976, 1), 0.0, 0.0, 0, 0, Vector2(0.538922, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_nbxip"]
+curve = SubResource("Curve_vujtv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jgxc8"]
+lifetime_randomness = 0.05
+particle_flag_disable_z = true
+angle_min = 88.0
+angle_max = 92.0
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_nbxip")
+alpha_curve = SubResource("CurveTexture_juegf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_anh01"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("6_heefx")
+stream_0/weight = 2.0
+stream_1/stream = ExtResource("7_6r501")
+stream_1/weight = 3.0
+stream_2/stream = ExtResource("8_x4vmm")
+stream_2/weight = 1.0
+
+[node name="Spell" type="Node2D"]
+z_index = 2
+z_as_relative = false
+script = ExtResource("1_my0bl")
+speed = 1600.0
+impact_scene = ExtResource("2_yq5o1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0sxqa")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.654902, 0.231373, 0, 1)
+position = Vector2(-127, 0)
+rotation = -1.5708
+texture = ExtResource("4_454g3")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("2_ytxx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-32, 0)
+shape = SubResource("CircleShape2D_57v0j")
+
+[node name="trail" type="GPUParticles2D" parent="."]
+material = ExtResource("4_4po3f")
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_le5x5")
+texture = ExtResource("5_hxu2e")
+preprocess = 0.5
+visibility_rect = Rect2(-1500, -1000, 2000, 2000)
+local_coords = true
+
+[node name="main" type="GPUParticles2D" parent="."]
+material = ExtResource("4_4po3f")
+process_material = SubResource("ParticleProcessMaterial_jgxc8")
+texture = ExtResource("4_454g3")
+preprocess = 0.5
+visibility_rect = Rect2(-500, -500, 1000, 1000)
+local_coords = true
+
+[node name="loop" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_anh01")
+volume_db = -10.0
+pitch_scale = 1.5
+autoplay = true
+max_distance = 3000.0
+bus = &"SFX"
