@@ -10,6 +10,8 @@ extends MoveState
 @export var marker: Marker2D
 @export var stick_to_parent: bool = false
 
+@export var shoot_audio: AudioStreamPlayer2D
+
 #nb attacks / interval
 @export var shoot_attacks: Array = [
 	[1, 1.1],
@@ -43,6 +45,7 @@ func spawn_spell() -> void:
 		get_window().add_child(spell_instance)
 
 	spell_instance.global_position = marker.global_position
+	shoot_audio.play()
 
 
 func enter() -> void:

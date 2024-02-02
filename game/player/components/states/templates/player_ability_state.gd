@@ -29,7 +29,7 @@ func spawn_spell() -> void:
 	spell_instance.init(parent, attack_holder.attack_data, angle)
 	if stick_to_parent:
 		add_child(spell_instance)
-	elif BaseLevel.level.stuff_2d:
+	elif BaseLevel.level and BaseLevel.level.stuff_2d:
 		BaseLevel.level.stuff_2d.add_child(spell_instance)
 	else:
 		print("player_ability_state : spell added to winddow  :  ", name)

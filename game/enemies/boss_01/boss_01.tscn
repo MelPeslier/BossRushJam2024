@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=142 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -99,19 +99,30 @@
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="96_7pxjr"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_1_move_input_component.gd" id="96_m61ly"]
 [ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="96_ug0ga"]
+[ext_resource type="AudioStream" uid="uid://fescxhslqtt" path="res://game/enemies/boss_01/audio/shoot/charge/SCIMisc_Charge Weapon_06_SFRMS_SCIWPNS.wav" id="97_bt1l7"]
+[ext_resource type="AudioStream" uid="uid://cjd57tmmi6u1n" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_01_SFRMS_SCIWPNS.wav" id="97_lx0lh"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="97_pbjfb"]
-[ext_resource type="AudioStream" uid="uid://cuwecalofxgpe" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_06_SFRMS_SCIWPNS.wav" id="97_q5522"]
-[ext_resource type="AudioStream" uid="uid://bjaeyfdl8wf0g" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_07_SFRMS_SCIWPNS.wav" id="98_sqrjh"]
-[ext_resource type="AudioStream" uid="uid://e0s2qgae8vpv" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_09_SFRMS_SCIWPNS.wav" id="99_m0f5p"]
+[ext_resource type="AudioStream" uid="uid://ra7qx01o4nqj" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_02_SFRMS_SCIWPNS.wav" id="98_2ksj7"]
+[ext_resource type="AudioStream" uid="uid://bhyh15gutvxl6" path="res://game/enemies/boss_01/audio/shoot/charge/SCIMisc_Charge Weapon_13_SFRMS_SCIWPNS.wav" id="98_q3snx"]
+[ext_resource type="AudioStream" uid="uid://cs8i5hjo0cqsf" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_03_SFRMS_SCIWPNS.wav" id="99_8tho0"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/idle.gd" id="100_5iwmv"]
+[ext_resource type="AudioStream" uid="uid://oc0dyl36q8mc" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_04_SFRMS_SCIWPNS.wav" id="100_scmy0"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/walk.gd" id="101_jxumy"]
+[ext_resource type="AudioStream" uid="uid://dhrl3m1ab3vol" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_05_SFRMS_SCIWPNS.wav" id="101_sw27p"]
+[ext_resource type="AudioStream" uid="uid://dc3c6ssxl3vsi" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_06_SFRMS_SCIWPNS.wav" id="102_g75sy"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/get_hit.gd" id="102_w0vms"]
+[ext_resource type="AudioStream" uid="uid://brpcj3hk0wstr" path="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_07_SFRMS_SCIWPNS.wav" id="103_e2nws"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/dead.gd" id="103_wrw5b"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/pre_walk.gd" id="104_wt5c0"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_2.gd" id="105_12t38"]
+[ext_resource type="AudioStream" uid="uid://vibcij25pfwq" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_01.wav" id="106_a4knv"]
+[ext_resource type="AudioStream" uid="uid://be0055mm8cq01" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_03.wav" id="107_xsb28"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/shoot_1.gd" id="107_yr634"]
+[ext_resource type="AudioStream" uid="uid://dblbto3al5e0n" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_04.wav" id="108_i7w58"]
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="109_hkeot"]
+[ext_resource type="AudioStream" uid="uid://bpabqkmsdusd0" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_02.wav" id="110_lv6qo"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/aim.gd" id="110_p1pxi"]
+[ext_resource type="AudioStream" uid="uid://cw6el0xa8duc4" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_06.wav" id="111_et2st"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
 size = Vector2(440.389, 464.539)
@@ -523,7 +534,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pre_walk",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -655,12 +666,34 @@ size = Vector2(443.852, 468.162)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocw6d"]
 size = Vector2(2222.69, 3193.89)
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pjbwn"]
-streams_count = 2
-stream_0/stream = ExtResource("97_q5522")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kk4ee"]
+random_volume_offset_db = 1.0
+streams_count = 7
+stream_0/stream = ExtResource("97_lx0lh")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("98_sqrjh")
+stream_1/stream = ExtResource("98_2ksj7")
 stream_1/weight = 1.0
+stream_2/stream = ExtResource("99_8tho0")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("100_scmy0")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("101_sw27p")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("102_g75sy")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("103_e2nws")
+stream_6/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8dn4j"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("106_a4knv")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("107_xsb28")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("108_i7w58")
+stream_2/weight = 1.0
 
 [node name="Boss_01" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "state_machine", "animator", "animated_sprite", "move_input_component", "move_data", "terrain_detector", "health_component", "detector_collision", "get_hit", "dead")]
 collision_layer = 8
@@ -697,7 +730,9 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"shoot_2"
+animation = &"pre_walk"
+frame = 9
+frame_progress = 1.0
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")
@@ -744,20 +779,53 @@ shape = SubResource("RectangleShape2D_ocw6d")
 [node name="Attacks" type="Node2D" parent="Components2D"]
 
 [node name="Shoot" type="Marker2D" parent="Components2D/Attacks"]
-position = Vector2(440.63, -227.042)
+position = Vector2(388.571, -232.381)
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="Components2D/Attacks/Shoot"]
+stream = SubResource("AudioStreamRandomizer_kk4ee")
+max_distance = 4000.0
+attenuation = 0.435275
+max_polyphony = 6
+bus = &"SFX"
 
 [node name="Sounds" type="Node2D" parent="Components2D"]
 
 [node name="Aim" type="Node2D" parent="Components2D/Sounds"]
+position = Vector2(60, -104)
 
 [node name="Aim" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Aim"]
-stream = SubResource("AudioStreamRandomizer_pjbwn")
+stream = ExtResource("97_bt1l7")
 max_distance = 4000.0
+attenuation = 0.435275
 bus = &"SFX"
 
 [node name="Aim2" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Aim"]
-stream = ExtResource("99_m0f5p")
+stream = ExtResource("98_q3snx")
 max_distance = 4000.0
+attenuation = 0.435275
+bus = &"SFX"
+
+[node name="Walk" type="Node2D" parent="Components2D/Sounds"]
+
+[node name="WalkAudio" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Walk"]
+stream = SubResource("AudioStreamRandomizer_8dn4j")
+max_distance = 4000.0
+attenuation = 0.420448
+max_polyphony = 5
+bus = &"SFX"
+
+[node name="PreWalkAudio" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Walk"]
+stream = ExtResource("110_lv6qo")
+volume_db = 2.0
+max_distance = 4000.0
+attenuation = 0.366021
+bus = &"SFX"
+
+[node name="PreWalkAudio2" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Walk"]
+stream = ExtResource("111_et2st")
+volume_db = 4.0
+max_distance = 4000.0
+attenuation = 0.366021
 bus = &"SFX"
 
 [node name="Components" type="Node" parent="."]
@@ -789,16 +857,20 @@ pre_walk = NodePath("../pre_walk")
 script = ExtResource("103_wrw5b")
 collision_shapes = [NodePath("../../../Components2D/HitboxComponent/CollisionShape2D"), NodePath("../../../Components2D/HurtboxComponent/CollisionShape2D")]
 
-[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "idle")]
+[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "walk_audio", "idle")]
 script = ExtResource("101_jxumy")
 walk_speed_coef = 1.5
 terrain_detector = NodePath("../../../Components2D/TerrainDetector")
+walk_audio = NodePath("../../../Components2D/Sounds/Walk/WalkAudio")
 idle = NodePath("../idle")
 
-[node name="pre_walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk")]
+[node name="pre_walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "pre_walk_audio", "pre_walk_audio_2")]
 script = ExtResource("104_wt5c0")
 walk = NodePath("../walk")
 phase_2_walk_start_frame = 5
+sound_frames = Array[int]([4, 9])
+pre_walk_audio = NodePath("../../../Components2D/Sounds/Walk/PreWalkAudio")
+pre_walk_audio_2 = NodePath("../../../Components2D/Sounds/Walk/PreWalkAudio2")
 
 [node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("pre_walk", "get_hit", "aim")]
 script = ExtResource("100_5iwmv")
@@ -813,7 +885,7 @@ shoot_2 = NodePath("../shoot_2")
 aim = NodePath("../../../Components2D/Sounds/Aim/Aim")
 aim_2 = NodePath("../../../Components2D/Sounds/Aim/Aim2")
 
-[node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker")]
+[node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker", "shoot_audio")]
 script = ExtResource("107_yr634")
 idle = NodePath("../idle")
 pre_walk = NodePath("../pre_walk")
@@ -821,6 +893,7 @@ spell_scene = ExtResource("109_hkeot")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
+shoot_audio = NodePath("../../../Components2D/Attacks/Shoot/ShootAudio")
 shoot_attacks = [[3, 0.5], [2, 0.0], [3, 0.5]]
 angle_diff_margin = 5.0
 attack_frame_start = 1
@@ -831,7 +904,7 @@ script = ExtResource("95_dhxdm")
 damage = 1.0
 knock_back = 800.0
 
-[node name="shoot_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker")]
+[node name="shoot_2" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker", "shoot_audio")]
 script = ExtResource("105_12t38")
 idle = NodePath("../idle")
 pre_walk = NodePath("../pre_walk")
@@ -839,6 +912,7 @@ spell_scene = ExtResource("109_hkeot")
 attack_data = NodePath("AttackData")
 attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
+shoot_audio = NodePath("../../../Components2D/Attacks/Shoot/ShootAudio")
 shoot_attacks = [[5, 0.33], [3, 1.0], [10, 0.0]]
 angle_diff_margin = 15.0
 attack_frame_start = 1

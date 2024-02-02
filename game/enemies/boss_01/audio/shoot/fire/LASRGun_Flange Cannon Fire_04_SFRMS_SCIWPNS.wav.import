@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://oc0dyl36q8mc"
+path="res://.godot/imported/LASRGun_Flange Cannon Fire_04_SFRMS_SCIWPNS.wav-00a4e8d701c015c960056ea5ef69dbb7.sample"
+
+[deps]
+
+source_file="res://game/enemies/boss_01/audio/shoot/fire/LASRGun_Flange Cannon Fire_04_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/LASRGun_Flange Cannon Fire_04_SFRMS_SCIWPNS.wav-00a4e8d701c015c960056ea5ef69dbb7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

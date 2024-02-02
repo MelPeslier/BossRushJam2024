@@ -1,7 +1,7 @@
 class_name Spell
 extends Node2D
 
-@export var speed: float = 600
+@export var speed: float = 1200
 @export var hits : int = 1
 @export var impact_scene: PackedScene
 

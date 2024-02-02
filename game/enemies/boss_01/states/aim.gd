@@ -14,7 +14,7 @@ func enter() -> void:
 		aim_2.play()
 
 
-func process_frame(delta: float) -> State:
+func process_frame(_delta: float) -> State:
 	if not animated_sprite.is_playing():
 		if parent.phase == 1:
 			return shoot_1

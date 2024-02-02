@@ -82,7 +82,6 @@ alpha_curve = SubResource("CurveTexture_2tyow")
 
 [node name="HandLaser" type="Node2D"]
 script = ExtResource("1_lieno")
-speed = 1000.0
 impact_scene = ExtResource("2_gt5th")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

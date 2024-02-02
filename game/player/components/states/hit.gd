@@ -54,10 +54,6 @@ func process_physics(delta: float) -> State:
 	return fall
 
 
-
-
-	return null
-
 func process_unhandled_input(_event: InputEvent) -> State:
 	if get_dash():
 		move_data.dash_buffer_timer = move_data.dash_buffer_time
