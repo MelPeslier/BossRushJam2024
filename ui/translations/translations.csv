@@ -15,7 +15,7 @@ CREDITS_MADE_BY_CONTENT,"Juan-Carlos, Yasmina & Mel",
 DISPLAY,Display,Affichage
 DISPLAY_MODE,Display mode,Mode d'affichage
 DISPLAY_SCREEN,Display screen,Ecran d'affichage
-DISTANCE_ATTACK,Distance attack,Attaque à distance
+SECONDARY_ATTACK,Secondary attack,Attaque secondaire
 DOWN,Down,Bas
 FRAMERATE_LIMIT,Framerate limit,Limite de la fréquence d'affichage
 FULL_SCREEN,Full screen,Plein écran
@@ -27,7 +27,7 @@ INTERACT,Interact,Intéragir
 LANGUAGES,Languages,Langues
 LEFT,Left,Gauche
 MASTER,Master,Général
-MELEE_ATTACK,Melee attack,Attaque de mêlée
+PRIMARY_ATTACK,Primary attack,Attaque primaire
 MUSIC,Music,Musique
 NEW_GAME,New game,Nouvelle partie
 PARAMETERS,Parameters,Paramètres

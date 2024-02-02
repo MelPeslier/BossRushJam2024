@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=130 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -100,6 +100,9 @@
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_1_move_input_component.gd" id="96_m61ly"]
 [ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="96_ug0ga"]
 [ext_resource type="Script" path="res://shared/components/move/move_data.gd" id="97_pbjfb"]
+[ext_resource type="AudioStream" uid="uid://cuwecalofxgpe" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_06_SFRMS_SCIWPNS.wav" id="97_q5522"]
+[ext_resource type="AudioStream" uid="uid://bjaeyfdl8wf0g" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_07_SFRMS_SCIWPNS.wav" id="98_sqrjh"]
+[ext_resource type="AudioStream" uid="uid://e0s2qgae8vpv" path="res://game/enemies/boss_01/audio/shoot/targeting/BEEP_Targeting Beep_09_SFRMS_SCIWPNS.wav" id="99_m0f5p"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/idle.gd" id="100_5iwmv"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/walk.gd" id="101_jxumy"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/get_hit.gd" id="102_w0vms"]
@@ -652,6 +655,13 @@ size = Vector2(443.852, 468.162)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocw6d"]
 size = Vector2(2222.69, 3193.89)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pjbwn"]
+streams_count = 2
+stream_0/stream = ExtResource("97_q5522")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("98_sqrjh")
+stream_1/weight = 1.0
+
 [node name="Boss_01" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "state_machine", "animator", "animated_sprite", "move_input_component", "move_data", "terrain_detector", "health_component", "detector_collision", "get_hit", "dead")]
 collision_layer = 8
 collision_mask = 17
@@ -736,6 +746,20 @@ shape = SubResource("RectangleShape2D_ocw6d")
 [node name="Shoot" type="Marker2D" parent="Components2D/Attacks"]
 position = Vector2(440.63, -227.042)
 
+[node name="Sounds" type="Node2D" parent="Components2D"]
+
+[node name="Aim" type="Node2D" parent="Components2D/Sounds"]
+
+[node name="Aim" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Aim"]
+stream = SubResource("AudioStreamRandomizer_pjbwn")
+max_distance = 4000.0
+bus = &"SFX"
+
+[node name="Aim2" type="AudioStreamPlayer2D" parent="Components2D/Sounds/Aim"]
+stream = ExtResource("99_m0f5p")
+max_distance = 4000.0
+bus = &"SFX"
+
 [node name="Components" type="Node" parent="."]
 
 [node name="MoveInputComponent" type="Node" parent="Components"]
@@ -743,8 +767,8 @@ script = ExtResource("96_m61ly")
 
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("96_ug0ga")
-max_health = 100.0
-health = 30.0
+max_health = 120.0
+health = 120.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("97_pbjfb")
@@ -782,10 +806,12 @@ pre_walk = NodePath("../pre_walk")
 get_hit = NodePath("../get_hit")
 aim = NodePath("../aim")
 
-[node name="aim" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("shoot_1", "shoot_2")]
+[node name="aim" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("shoot_1", "shoot_2", "aim", "aim_2")]
 script = ExtResource("110_p1pxi")
 shoot_1 = NodePath("../shoot_1")
 shoot_2 = NodePath("../shoot_2")
+aim = NodePath("../../../Components2D/Sounds/Aim/Aim")
+aim_2 = NodePath("../../../Components2D/Sounds/Aim/Aim2")
 
 [node name="shoot_1" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "pre_walk", "attack_data", "attacks", "marker")]
 script = ExtResource("107_yr634")

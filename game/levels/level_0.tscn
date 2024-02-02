@@ -1,19 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://dry5pvwo8v6i3"]
+[gd_scene load_steps=21 format=3 uid="uid://dry5pvwo8v6i3"]
 
 [ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_decge"]
-[ext_resource type="Script" path="res://game/levels/tutorial/tutorial.gd" id="2_1fp5q"]
 [ext_resource type="Environment" uid="uid://bh75dci8vy1cm" path="res://game/environment/world_environment.tres" id="2_qmkqr"]
 [ext_resource type="PackedScene" uid="uid://gdmmh58tg7jw" path="res://game/environment/particles/environment_particles.tscn" id="2_uw6t5"]
-[ext_resource type="Texture2D" uid="uid://dvu4qvrwgslv3" path="res://addons/controller_icons/assets/key/z.png" id="3_1m3iq"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/Sprite.gd" id="4_kyh46"]
-[ext_resource type="Texture2D" uid="uid://db6nbed6w2fis" path="res://addons/controller_icons/assets/key/s.png" id="5_fmy4b"]
 [ext_resource type="Texture2D" uid="uid://dim5mk7g4q043" path="res://addons/controller_icons/assets/key/q.png" id="6_o7cgq"]
 [ext_resource type="Texture2D" uid="uid://dlwamiuq1f5t6" path="res://addons/controller_icons/assets/key/d.png" id="7_45spq"]
 [ext_resource type="Texture2D" uid="uid://dq0fide2iu37s" path="res://addons/controller_icons/assets/key/shift_alt.png" id="8_qxgwn"]
-[ext_resource type="Texture2D" uid="uid://b8vuy7l8npt6w" path="res://addons/controller_icons/assets/mouse/left.png" id="9_j1bkk"]
 [ext_resource type="Texture2D" uid="uid://coqj2fcsaxvcn" path="res://addons/controller_icons/assets/key/space.png" id="9_qc86g"]
-[ext_resource type="Texture2D" uid="uid://cy7e67qj2flir" path="res://addons/controller_icons/assets/mouse/right.png" id="10_dod64"]
-[ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="11_hgimj"]
 [ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="12_t8ran"]
 [ext_resource type="PackedScene" uid="uid://c1uu6jjw185vi" path="res://game/environment/tiles/my_tile_map.tscn" id="13_w8hd8"]
 [ext_resource type="PackedScene" uid="uid://bp3xjdy6h1ux7" path="res://game/environment/checkpoint/checkpoint.tscn" id="14_c7rcm"]
@@ -140,28 +134,6 @@ my_velocity_max = 100.0
 [node name="Part_1" type="Node2D" parent="LevelStuff2D"]
 
 [node name="Tutorial" type="Node2D" parent="LevelStuff2D/Part_1"]
-script = ExtResource("2_1fp5q")
-
-[node name="up" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
-visible = false
-position = Vector2(4228, -1998)
-texture = ExtResource("3_1m3iq")
-script = ExtResource("4_kyh46")
-path = "up"
-
-[node name="down" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
-visible = false
-position = Vector2(4232, -1909)
-texture = ExtResource("5_fmy4b")
-script = ExtResource("4_kyh46")
-path = "down"
-
-[node name="interact" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
-visible = false
-position = Vector2(18738, -1463)
-texture = ExtResource("11_hgimj")
-script = ExtResource("4_kyh46")
-path = "interact"
 
 [node name="left" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
 position = Vector2(3328, -952.5)
@@ -213,15 +185,13 @@ path = "jump"
 
 [node name="melee_attack" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
 position = Vector2(30208, -2204)
-texture = ExtResource("9_j1bkk")
 script = ExtResource("4_kyh46")
-path = "melee_attack"
+path = "primary_attack"
 
 [node name="distance_attack" type="Sprite2D" parent="LevelStuff2D/Part_1/Tutorial"]
 position = Vector2(30464, -2204)
-texture = ExtResource("10_dod64")
 script = ExtResource("4_kyh46")
-path = "distance_attack"
+path = "secondary_attack"
 
 [node name="BackGround" type="Node2D" parent="LevelStuff2D/Part_1"]
 metadata/_edit_lock_ = true

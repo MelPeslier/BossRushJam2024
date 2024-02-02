@@ -1,0 +1,341 @@
+[gd_scene load_steps=92 format=3 uid="uid://co6iklh6gfdx3"]
+
+[ext_resource type="Script" path="res://autoloads/audio/sfx_2d.gd" id="1_n484p"]
+[ext_resource type="AudioStream" uid="uid://drkv74ml8hrim" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_01.wav" id="2_3j2xs"]
+[ext_resource type="AudioStream" uid="uid://hitty80lqpuv" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_02.wav" id="3_mrx5o"]
+[ext_resource type="AudioStream" uid="uid://bou0o63oin67b" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_11.wav" id="4_o4iok"]
+[ext_resource type="AudioStream" uid="uid://drbkei1uvo8pk" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_12.wav" id="5_cnb05"]
+[ext_resource type="AudioStream" uid="uid://bylo7sgqhac2t" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_13.wav" id="6_q4xox"]
+[ext_resource type="AudioStream" uid="uid://hlfgkvb7wboy" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_14.wav" id="7_wkpnf"]
+[ext_resource type="AudioStream" uid="uid://b0q1k1g7txw0i" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_15.wav" id="8_d1gwl"]
+[ext_resource type="AudioStream" uid="uid://vmxqymla3m6i" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_03.wav" id="9_scj3y"]
+[ext_resource type="AudioStream" uid="uid://n50i7a7vh7gk" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_04.wav" id="10_kxobv"]
+[ext_resource type="AudioStream" uid="uid://bh2npetrqy3xu" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_05.wav" id="11_ritcg"]
+[ext_resource type="AudioStream" uid="uid://dcppqdg8eq7fx" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_06.wav" id="12_wi3vp"]
+[ext_resource type="AudioStream" uid="uid://b7okhnr6xg6g3" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_07.wav" id="13_i07nn"]
+[ext_resource type="AudioStream" uid="uid://d36worw3ma71o" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_08.wav" id="14_tswqf"]
+[ext_resource type="AudioStream" uid="uid://bq30hmxx54lh7" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_09.wav" id="15_reit1"]
+[ext_resource type="AudioStream" uid="uid://dynjxgytyickq" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV1_Walk_10.wav" id="16_k474q"]
+[ext_resource type="AudioStream" uid="uid://dufuoma5cos8w" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_01.wav" id="17_2ky3r"]
+[ext_resource type="AudioStream" uid="uid://vljnvpyfn40r" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_02.wav" id="18_cq82x"]
+[ext_resource type="AudioStream" uid="uid://bcdg0vk0dvgi4" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_11.wav" id="19_npuks"]
+[ext_resource type="AudioStream" uid="uid://c6cstr5cid337" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_12.wav" id="20_dtlv4"]
+[ext_resource type="AudioStream" uid="uid://uaxlk28j86sh" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_13.wav" id="21_dk2eq"]
+[ext_resource type="AudioStream" uid="uid://bjvodwaeplapm" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_14.wav" id="22_u7fq1"]
+[ext_resource type="AudioStream" uid="uid://bvtfhhry60bs4" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_15.wav" id="23_mlkgt"]
+[ext_resource type="AudioStream" uid="uid://detf4kixor6sk" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_03.wav" id="24_27evl"]
+[ext_resource type="AudioStream" uid="uid://bwpr6v1kdh8b7" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_04.wav" id="25_4nj47"]
+[ext_resource type="AudioStream" uid="uid://csigikxkl4fwk" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_05.wav" id="26_6p0f4"]
+[ext_resource type="AudioStream" uid="uid://cqne3jlosc4f3" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_06.wav" id="27_ul6u5"]
+[ext_resource type="AudioStream" uid="uid://myi4ixml4vw3" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_07.wav" id="28_v6b5m"]
+[ext_resource type="AudioStream" uid="uid://qqjb5omwoexa" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_08.wav" id="29_lrs5l"]
+[ext_resource type="AudioStream" uid="uid://bwtxpew104iqn" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_09.wav" id="30_o4m07"]
+[ext_resource type="AudioStream" uid="uid://bklhukr81q3ch" path="res://shared/audio/movements/metals/walk/Footsteps_MetalV2_Walk_10.wav" id="31_x85ry"]
+[ext_resource type="AudioStream" uid="uid://br0oofmu0cdgj" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_01.wav" id="32_ygapi"]
+[ext_resource type="AudioStream" uid="uid://b0rghkmtl2ivv" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_02.wav" id="33_egv5y"]
+[ext_resource type="AudioStream" uid="uid://bjserin08lxgt" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_11.wav" id="34_8ph8p"]
+[ext_resource type="AudioStream" uid="uid://cllkddbums6of" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_12.wav" id="35_yba1y"]
+[ext_resource type="AudioStream" uid="uid://bqf5ekgmkxbr4" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_13.wav" id="36_ng32v"]
+[ext_resource type="AudioStream" uid="uid://bolvfv7yymhp0" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_14.wav" id="37_v1b8r"]
+[ext_resource type="AudioStream" uid="uid://h27augc8r70" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_15.wav" id="38_khs62"]
+[ext_resource type="AudioStream" uid="uid://dcyuy2f7ckx1x" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_03.wav" id="39_u18oj"]
+[ext_resource type="AudioStream" uid="uid://bkw6q3o1xdmlk" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_04.wav" id="40_hd475"]
+[ext_resource type="AudioStream" uid="uid://st2e64731uvi" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_05.wav" id="41_6xbw6"]
+[ext_resource type="AudioStream" uid="uid://soe8sak2w8kh" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_06.wav" id="42_gpy4j"]
+[ext_resource type="AudioStream" uid="uid://brmktiikxf4a2" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_07.wav" id="43_2kik6"]
+[ext_resource type="AudioStream" uid="uid://cou4hofftxotj" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_08.wav" id="44_ev0wj"]
+[ext_resource type="AudioStream" uid="uid://dss3h2o4h05el" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_09.wav" id="45_6ffic"]
+[ext_resource type="AudioStream" uid="uid://d2gq3wglnegjm" path="res://shared/audio/movements/metals/run/Footsteps_MetalV1_Run_10.wav" id="46_7h16o"]
+[ext_resource type="AudioStream" uid="uid://cuc77qoxnvvl4" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_01.wav" id="47_8oc75"]
+[ext_resource type="AudioStream" uid="uid://c8t543x6423l7" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_02.wav" id="48_73eh0"]
+[ext_resource type="AudioStream" uid="uid://b03spomclj7g3" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_11.wav" id="49_lgnbs"]
+[ext_resource type="AudioStream" uid="uid://1vem4h36po1d" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_12.wav" id="50_nl6ej"]
+[ext_resource type="AudioStream" uid="uid://c0mogti2pk8gs" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_13.wav" id="51_cwoct"]
+[ext_resource type="AudioStream" uid="uid://cbkylhegrkdc3" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_14.wav" id="52_svmg3"]
+[ext_resource type="AudioStream" uid="uid://cxnvesub4kcrn" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_15.wav" id="53_e68gi"]
+[ext_resource type="AudioStream" uid="uid://ervw2dbb54ea" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_03.wav" id="54_kqpud"]
+[ext_resource type="AudioStream" uid="uid://jiqes7nbn01u" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_04.wav" id="55_lj751"]
+[ext_resource type="AudioStream" uid="uid://bm83i5t7enjks" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_05.wav" id="56_x8gd0"]
+[ext_resource type="AudioStream" uid="uid://c4y74mv1y30nh" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_06.wav" id="57_poh1x"]
+[ext_resource type="AudioStream" uid="uid://dpts4w6r2xpgd" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_07.wav" id="58_5cx3a"]
+[ext_resource type="AudioStream" uid="uid://b7ysp2xlyukhd" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_08.wav" id="59_1pfml"]
+[ext_resource type="AudioStream" uid="uid://cd21jxqh4tmwa" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_09.wav" id="60_7ddfa"]
+[ext_resource type="AudioStream" uid="uid://csjjvatxd6d7l" path="res://shared/audio/movements/metals/run/Footsteps_MetalV2_Run_10.wav" id="61_nny4o"]
+[ext_resource type="AudioStream" uid="uid://d33tkr3bo2alv" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Start_01.wav" id="62_ir1jw"]
+[ext_resource type="AudioStream" uid="uid://vswt721ofimr" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Start_02.wav" id="63_dkxky"]
+[ext_resource type="AudioStream" uid="uid://3ptfkqhfrhb" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Start_03.wav" id="64_866qe"]
+[ext_resource type="AudioStream" uid="uid://hvjfuoqb3ssa" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Start_04.wav" id="65_h0trk"]
+[ext_resource type="AudioStream" uid="uid://b10cge358sern" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Start_01.wav" id="66_nixe8"]
+[ext_resource type="AudioStream" uid="uid://btoyetlxbv848" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Start_02.wav" id="67_m421k"]
+[ext_resource type="AudioStream" uid="uid://cvqt3x0yogb58" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Start_03.wav" id="68_ys4gb"]
+[ext_resource type="AudioStream" uid="uid://1ubpwcg03oxx" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Land_01.wav" id="69_v33u2"]
+[ext_resource type="AudioStream" uid="uid://cfufy1svuuc7e" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Land_02.wav" id="70_kkxeh"]
+[ext_resource type="AudioStream" uid="uid://dh2bbqxtu31a7" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Land_03.wav" id="71_isjwx"]
+[ext_resource type="AudioStream" uid="uid://b67s57bspyp1l" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV1_Jump_Land_04.wav" id="72_t42y5"]
+[ext_resource type="AudioStream" uid="uid://bogwwj67iok8w" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Land_01.wav" id="73_8rpcs"]
+[ext_resource type="AudioStream" uid="uid://u56utvjylxxt" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Land_02.wav" id="74_013e0"]
+[ext_resource type="AudioStream" uid="uid://cqsql66jtxt2g" path="res://shared/audio/movements/metals/jump/Footsteps_MetalV2_Jump_Land_03.wav" id="75_vir7g"]
+[ext_resource type="AudioStream" uid="uid://dc80jroucgr8l" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_LIGHT_01.wav" id="76_wfbfy"]
+[ext_resource type="AudioStream" uid="uid://cntkk75t6e6rq" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_MEDIUM_01.wav" id="77_7actn"]
+[ext_resource type="AudioStream" uid="uid://bws37wqx2bkys" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_MEDIUM_02.wav" id="78_vsvev"]
+[ext_resource type="AudioStream" uid="uid://dfae3pg1ebjki" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_HEAVY_02.wav" id="79_2j8vo"]
+[ext_resource type="AudioStream" uid="uid://moqjsd5fl57u" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_HEAVY_01.wav" id="80_ghdcr"]
+[ext_resource type="AudioStream" uid="uid://bcrv32452eggn" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_HEAVIEST_02.wav" id="81_7splc"]
+[ext_resource type="AudioStream" uid="uid://bvd6klhu3oduh" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_HEAVIEST_01.wav" id="82_iprux"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kg12o"]
+streams_count = 15
+stream_0/stream = ExtResource("2_3j2xs")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_mrx5o")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("9_scj3y")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("10_kxobv")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("11_ritcg")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("12_wi3vp")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("13_i07nn")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("14_tswqf")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("15_reit1")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("16_k474q")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("4_o4iok")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("5_cnb05")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("6_q4xox")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("7_wkpnf")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("8_d1gwl")
+stream_14/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uq024"]
+streams_count = 15
+stream_0/stream = ExtResource("17_2ky3r")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("18_cq82x")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("24_27evl")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("25_4nj47")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("26_6p0f4")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("27_ul6u5")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("28_v6b5m")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("29_lrs5l")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("30_o4m07")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("31_x85ry")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("19_npuks")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("20_dtlv4")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("21_dk2eq")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("22_u7fq1")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("23_mlkgt")
+stream_14/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hbrkr"]
+streams_count = 15
+stream_0/stream = ExtResource("32_ygapi")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("33_egv5y")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("39_u18oj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("40_hd475")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("41_6xbw6")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("42_gpy4j")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("43_2kik6")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("44_ev0wj")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("45_6ffic")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("46_7h16o")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("34_8ph8p")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("35_yba1y")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("36_ng32v")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("37_v1b8r")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("38_khs62")
+stream_14/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57gtw"]
+streams_count = 15
+stream_0/stream = ExtResource("47_8oc75")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("48_73eh0")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("54_kqpud")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("55_lj751")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("56_x8gd0")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("57_poh1x")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("58_5cx3a")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("59_1pfml")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("60_7ddfa")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("61_nny4o")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("49_lgnbs")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("50_nl6ej")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("51_cwoct")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("52_svmg3")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("53_e68gi")
+stream_14/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nllkg"]
+streams_count = 4
+stream_0/stream = ExtResource("62_ir1jw")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("63_dkxky")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("64_866qe")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("65_h0trk")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qyv26"]
+streams_count = 3
+stream_0/stream = ExtResource("66_nixe8")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("67_m421k")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("68_ys4gb")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_km7gl"]
+streams_count = 4
+stream_0/stream = ExtResource("69_v33u2")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("70_kkxeh")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("71_isjwx")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("72_t42y5")
+stream_3/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3whtg"]
+streams_count = 3
+stream_0/stream = ExtResource("73_8rpcs")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("74_013e0")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("75_vir7g")
+stream_2/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2n5ui"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("77_7actn")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("78_vsvev")
+stream_1/weight = 1.0
+
+[node name="Sfx2d" type="Node" node_paths=PackedStringArray("metal_movement_sounds", "metal_sword_hit_sounds")]
+script = ExtResource("1_n484p")
+metal_movement_sounds = [NodePath("Metal/MetalMovement/MetalWalkLight"), NodePath("Metal/MetalMovement/MetalWalkMedium"), NodePath("Metal/MetalMovement/MetalRunLight"), NodePath("Metal/MetalMovement/MetalRunMedium"), NodePath("Metal/MetalMovement/MetalJumpLight"), NodePath("Metal/MetalMovement/MetalJumpMedium"), NodePath("Metal/MetalMovement/MetalLandLight"), NodePath("Metal/MetalMovement/MetalLandMedium")]
+metal_sword_hit_sounds = [NodePath("Metal/MetalSwordHit/MetalLight"), NodePath("Metal/MetalSwordHit/MetalMedium"), NodePath("Metal/MetalSwordHit/MetalHeavy"), NodePath("Metal/MetalSwordHit/MetalHeavySlow"), NodePath("Metal/MetalSwordHit/MetalHeaviest"), NodePath("Metal/MetalSwordHit/MetalHeaviestSlow")]
+
+[node name="Metal" type="Node" parent="."]
+
+[node name="MetalMovement" type="Node" parent="Metal"]
+
+[node name="MetalWalkLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_kg12o")
+volume_db = 5.0
+bus = &"SFX"
+
+[node name="MetalWalkMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_uq024")
+volume_db = 10.0
+max_distance = 4000.0
+bus = &"SFX"
+
+[node name="MetalRunLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_hbrkr")
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="MetalRunMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_57gtw")
+volume_db = 10.0
+max_distance = 4000.0
+bus = &"SFX"
+
+[node name="MetalJumpLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_nllkg")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="MetalJumpMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_qyv26")
+volume_db = 10.0
+max_distance = 4000.0
+bus = &"SFX"
+
+[node name="MetalLandLight" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_km7gl")
+bus = &"SFX"
+
+[node name="MetalLandMedium" type="AudioStreamPlayer2D" parent="Metal/MetalMovement"]
+stream = SubResource("AudioStreamRandomizer_3whtg")
+max_distance = 4000.0
+bus = &"SFX"
+
+[node name="MetalSwordHit" type="Node" parent="Metal"]
+
+[node name="MetalLight" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = ExtResource("76_wfbfy")
+bus = &"SFX"
+
+[node name="MetalMedium" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = SubResource("AudioStreamRandomizer_2n5ui")
+bus = &"SFX"
+
+[node name="MetalHeavy" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = ExtResource("79_2j8vo")
+bus = &"SFX"
+
+[node name="MetalHeavySlow" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = ExtResource("80_ghdcr")
+bus = &"SFX"
+
+[node name="MetalHeaviest" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = ExtResource("81_7splc")
+bus = &"SFX"
+
+[node name="MetalHeaviestSlow" type="AudioStreamPlayer2D" parent="Metal/MetalSwordHit"]
+stream = ExtResource("82_iprux")
+bus = &"SFX"

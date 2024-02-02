@@ -11,8 +11,8 @@ var action_names: Array[String] = [
 	"jump",
 	"dash",
 	"interact",
-	"melee_attack",
-	"distance_attack",
+	"primary_attack",
+	"secondary_attack",
 ]
 var special_action_names: Array[String] = [
 	"back"
