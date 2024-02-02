@@ -32,8 +32,7 @@ func save() -> void:
 static func load_or_create() -> UserControlsPreferences:
 	var res: UserControlsPreferences = SafeResourceLoader.load(SAVE_PATH) as UserControlsPreferences
 	if not res:
-		res = UserControlsPreferences.new()
-		res._take_user_input_map()
+		res = UserControlsPreferences.reset()
 	else:
 		res._replace_user_input_map()
 	return res
@@ -41,6 +40,7 @@ static func load_or_create() -> UserControlsPreferences:
 static func reset() -> UserControlsPreferences:
 	var res: UserControlsPreferences = UserControlsPreferences.new()
 	res._take_user_input_map()
+	res.save()
 	return res
 
 
