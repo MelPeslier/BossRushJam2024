@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var detected: AudioStreamPlayer2D = $detected
 @onready var losed: AudioStreamPlayer2D = $losed
 
+@export var flash_effect: FlashEffect
 
 
 var target: Node2D
@@ -114,9 +115,12 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 
 	var next_state: State = hit
 	if health_component.health == 0:
+		flash_effect.flash_twice()
 		next_state = die
 		if target and target is Player:
 			target.battle.emit(-1)
+	else:
+		flash_effect.flash_normal()
 	state_machine.change_state(next_state)
 
 

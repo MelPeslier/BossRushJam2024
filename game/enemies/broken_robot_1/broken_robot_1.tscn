@@ -1,7 +1,6 @@
 [gd_scene load_steps=166 format=3 uid="uid://clt5nw072wgqb"]
 
 [ext_resource type="Texture2D" uid="uid://bd1ey8el83jh" path="res://game/enemies/broken_robot_1/art/attack/broken_robot1_attack_00.png" id="1_b1d0g"]
-[ext_resource type="Material" uid="uid://cqx3lfpgat3un" path="res://shared/materials/flash/flash.tres" id="1_fm0tp"]
 [ext_resource type="Texture2D" uid="uid://dbvkgocqrawaj" path="res://game/enemies/broken_robot_1/art/idle/broken_robot1_idle_00.png" id="1_ihxln"]
 [ext_resource type="Script" path="res://game/enemies/broken_robot_1/broken_robot_1.gd" id="1_xp6hc"]
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="2_6aski"]
@@ -111,6 +110,7 @@
 [ext_resource type="AudioStream" uid="uid://byo1dryc5jroc" path="res://shared/audio/robot_swoosh/WHOOSH_LOW_SWEEP_01.wav" id="128_5bf04"]
 [ext_resource type="Script" path="res://game/enemies/broken_robot_1/states/idle.gd" id="128_kkbkg"]
 [ext_resource type="Texture2D" uid="uid://c15vchvwq57nu" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_03.png" id="128_ocga1"]
+[ext_resource type="Script" path="res://shared/materials/flash/flash_effect.gd" id="128_q8bwj"]
 [ext_resource type="Texture2D" uid="uid://w7aemxtb21ff" path="res://game/enemies/broken_robot_1/art/walk/broken_robot1_walk_04.png" id="129_5qtbo"]
 [ext_resource type="Script" path="res://shared/components/stats/health_component.gd" id="129_8fgo8"]
 [ext_resource type="AudioStream" uid="uid://cekqpaa7xjvy4" path="res://shared/audio/robot_swoosh/WHOOSH_LOW_SWEEP_02.wav" id="129_dyulc"]
@@ -175,30 +175,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.3]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/coef")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.537255, 0.27451, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_rfkpv"]
 resource_name = "attack"
@@ -232,18 +208,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.9]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/coef")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.25, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0.0, 1.0, 0.5, 1.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_0sbag"]
 resource_name = "fall"
@@ -263,30 +227,6 @@ tracks/0/keys = {
 "args": [0.0],
 "method": &"play"
 }]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/coef")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:material:shader_parameter/color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.537255, 0.27451, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_8w3mq"]
@@ -774,12 +714,12 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("147_275kk")
 stream_2/weight = 1.0
 
-[node name="BrokenRobot1" type="CharacterBody2D" node_paths=PackedStringArray("need_dir")]
-material = ExtResource("1_fm0tp")
+[node name="BrokenRobot1" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "flash_effect")]
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("1_xp6hc")
 need_dir = [NodePath("CollisionShape2D"), NodePath("Detector"), NodePath("AnimatedSprite2D"), NodePath("TerrainDetector"), NodePath("attacks")]
+flash_effect = NodePath("AnimatedSprite2D/FlashEffect")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -823,10 +763,14 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-use_parent_material = true
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_vj0kg")
 animation = &"attack"
+
+[node name="FlashEffect" type="Node" parent="AnimatedSprite2D" node_paths=PackedStringArray("node")]
+script = ExtResource("128_q8bwj")
+node = NodePath("..")
+color = Color(1, 0.537255, 0.27451, 1)
 
 [node name="attacks" type="Node2D" parent="."]
 

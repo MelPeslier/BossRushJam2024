@@ -3,9 +3,11 @@ extends Area2D
 
 signal hit_received(_attack_data: AttackData, _dir: Vector2)
 
+@export var team := AttackData.Team.ENEMY
 @export var parent: Node2D
 @export_range(0, 10, 1) var energy_to_give: float
 @onready var collision_shape: CollisionShape2D = get_child(0) as CollisionShape2D
+
 
 func _init() -> void:
 	collision_layer = 0
@@ -48,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	var pos := hitbox.global_position
 
 	if not from_inside:
-		dir = -result["normal"]
+		dir = result["normal"]
 		pos = result["position"]
 
 	hitbox.hit_gived_at.emit( pos )
@@ -57,10 +59,9 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_shape_entered(_area_rid: RID, _hitbox: HitboxComponent, _area_shape_index: int, _local_shape_index: int) -> void:
-	if not _hitbox:
-		return
-	if _hitbox.parent == parent:
-		return
+	if not _hitbox: return
+	if _hitbox.parent == parent: return
+	if _hitbox.attack_data.team == team: return
 	hitbox = _hitbox
 	__index = _area_shape_index
 	set_physics_process(true)

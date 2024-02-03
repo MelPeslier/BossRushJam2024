@@ -1,7 +1,6 @@
-[gd_scene load_steps=143 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=142 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
-[ext_resource type="Material" uid="uid://cqx3lfpgat3un" path="res://shared/materials/flash/flash.tres" id="2_dkbdg"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
 [ext_resource type="Texture2D" uid="uid://duaw4egg8qy2a" path="res://game/enemies/boss_01/art/dead_1/dead_1_001.png" id="3_wsooj"]
 [ext_resource type="Texture2D" uid="uid://db1iix45d26jd" path="res://game/enemies/boss_01/art/dead_1/dead_1_002.png" id="4_1kfae"]
@@ -712,7 +711,6 @@ get_hit = NodePath("Components/StateMachine/get_hit")
 dead = NodePath("Components/StateMachine/dead")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 77.179)
 shape = SubResource("RectangleShape2D_y76iy")
 
@@ -724,15 +722,14 @@ libraries = {
 [node name="Components2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
-material = ExtResource("2_dkbdg")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"shoot_1"
-frame = 4
+animation = &"idle"
 
 [node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite2D" node_paths=PackedStringArray("node")]
 script = ExtResource("94_owtar")
 node = NodePath("..")
+color = Color(0.956863, 0.952941, 0.8, 1)
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")

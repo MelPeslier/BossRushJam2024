@@ -39,6 +39,7 @@ enum MovementState{
 @export var hurtbox_component: HurtboxComponent
 @export var hit_transition: TransitionScreen
 @export var battle_timer: Timer
+@export var flash_effect: FlashEffect
 
 @export var die: State
 @export var hit: State
@@ -120,8 +121,10 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 
 	if health_component.health == 0:
 		movement_state_machine.change_state(die)
+		flash_effect.flash_twice()
 		return
 
+	flash_effect.flash_normal()
 	movement_state_machine.change_state(hit)
 
 	if _attack_data.team == AttackData.Team.SPIKE:

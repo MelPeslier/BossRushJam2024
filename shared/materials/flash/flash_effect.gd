@@ -5,7 +5,6 @@ const P_COEF: String = "material:shader_parameter/coef"
 const P_COLOR: String = "material:shader_parameter/color"
 
 @export var node : Node2D
-@onready var flash_mat = preload("res://shared/materials/flash/flash.tres")
 
 @export var color := Color.WHITE
 @export var normal_coef_time: Array[float] = [
@@ -19,21 +18,22 @@ const P_COLOR: String = "material:shader_parameter/color"
 	0.0, 0.16,
 ]
 
+@onready var shader_mat = preload("res://shared/materials/flash/flash.tres")
+var old_mat = null
 var tween: Tween = null
 
 func flash( _coef_time: Array[float] , _color := Color.WHITE, _trans := Tween.TRANS_LINEAR, _ease := Tween.EASE_OUT_IN) -> void:
-	node.material = flash_mat
-	var mat: ShaderMaterial = node.material as ShaderMaterial
-	mat.resource_local_to_scene = true
-	mat.set_shader_parameter(P_COLOR, _color)
-
 	if tween and tween.is_running():
+		node.material = old_mat
 		tween.kill()
+	old_mat = node.material
+	node.material = shader_mat.duplicate()
 	tween = create_tween().set_trans(_trans).set_ease(_ease)
-
+	tween.tween_property(node, P_COLOR, _color, 0)
 	# time -> value  ...
 	for i: int in range(0, _coef_time.size(), 2):
 		tween.tween_property(node, P_COEF, _coef_time[i], _coef_time[i+1])
+	tween.tween_property(node, "material", old_mat, 0)
 
 
 func flash_normal() -> void:

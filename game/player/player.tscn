@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=120 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://doeu4kvfi4fv1" path="res://game/player/art/attack simple1/Attack_Simple1-5.png" id="34_dqphw"]
 [ext_resource type="Texture2D" uid="uid://cscrn0641v1vf" path="res://game/player/art/attack simple1/Attack_Simple1-7.png" id="35_kt1h7"]
 [ext_resource type="Texture2D" uid="uid://y0h3ly0lq67a" path="res://game/player/art/attack simple1/Attack_Simple1-9.png" id="36_o56gq"]
+[ext_resource type="Script" path="res://shared/materials/flash/flash_effect.gd" id="40_wp1vg"]
 [ext_resource type="AudioStream" uid="uid://dl0fxkion4meo" path="res://game/player/audio/sword/WHOOSH_ARM_SWING_01_WIDE.wav" id="45_hpe04"]
 [ext_resource type="AudioStream" uid="uid://dc80jroucgr8l" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_LIGHT_01.wav" id="46_6nh62"]
 [ext_resource type="Texture2D" uid="uid://d37ed555tkayn" path="res://game/player/art/attack combo epee lazer/Attack_Combo-11.png" id="46_f6g4d"]
@@ -541,7 +542,7 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("71_3ndtk")
 stream_1/weight = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "hit_transition", "battle_timer", "die", "hit")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "hit_transition", "battle_timer", "flash_effect", "die", "hit")]
 z_index = 1
 collision_layer = 8
 collision_mask = 17
@@ -569,6 +570,7 @@ terrain_detector = NodePath("Components2D/TerrainDetector")
 hurtbox_component = NodePath("Components2D/HurtboxComponent")
 hit_transition = NodePath("HitTransition")
 battle_timer = NodePath("Components/BattleTimer")
+flash_effect = NodePath("Components2D/AnimatedSprite/FlashEffect")
 die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
@@ -632,6 +634,11 @@ material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
 animation = &"walk"
 
+[node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite" node_paths=PackedStringArray("node")]
+script = ExtResource("40_wp1vg")
+node = NodePath("..")
+color = Color(0.729412, 0.988235, 1, 1)
+
 [node name="TerrainDetector" type="Area2D" parent="Components2D"]
 collision_layer = 0
 collision_mask = 17
@@ -645,6 +652,7 @@ shape = SubResource("CapsuleShape2D_10vgk")
 [node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent")]
 position = Vector2(-1, 95.5)
 script = ExtResource("47_e78ti")
+team = 1
 parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
