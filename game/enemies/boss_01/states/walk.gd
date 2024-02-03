@@ -8,7 +8,6 @@ extends MoveState
 var speed_coef : float = 1.0
 
 func enter() -> void:
-	print("\n\nWALK ENTERED **********")
 	super()
 	if parent.phase == 1:
 		speed_coef = 1

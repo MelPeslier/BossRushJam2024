@@ -138,6 +138,7 @@ func pause_game() -> void:
 		Sfx.play_ui(SoundList.Ui.MENU_OPEN)
 		back_to_menu.visible = true
 		abandon.visible = true
+		show_mouse()
 	else:
 		back.text = "BACK"
 		back_to_menu.visible = false
@@ -151,7 +152,20 @@ func resume_game() -> void:
 	visible = false
 	if GameState.in_game:
 		get_tree().paused = false
+		hide_mouse()
 		Sfx.play_ui(SoundList.Ui.MENU_CLOSED)
+
+func hide_mouse() -> void:
+	if user_display_prefs.constrain_mouse:
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CONFINED_HIDDEN)
+	else:
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+
+func show_mouse() -> void:
+	if user_display_prefs.constrain_mouse:
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CONFINED)
+	else:
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 #endregion
 
 

@@ -60,4 +60,5 @@ func _on_continue_button_button_down() -> void:
 			GameState.new_game()
 	hide_content()
 	Parameters.resume_game()
+	BaseLevel.level.process_mode = Node.PROCESS_MODE_DISABLED
 	SceneTransition.change_scene(menu_path)

@@ -2,7 +2,7 @@ class_name CreditCanvasLayer
 extends CanvasLayer
 
 @onready var back: MyButton = $Control/Back
-
+@export var menu: MainMenu
 
 func _ready() -> void:
 	hide_content()
@@ -25,6 +25,8 @@ func hide_content() -> void:
 	visible = false
 	back.disabled = true
 	set_process_unhandled_input(false)
+	if menu.last_button:
+		menu.last_button.grab_focus()
 
 
 func _on_back_button_down() -> void:

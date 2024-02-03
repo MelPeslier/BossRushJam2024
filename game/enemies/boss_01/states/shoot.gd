@@ -65,7 +65,6 @@ func exit() -> void:
 func _on_frame_changed() -> void:
 	if animated_sprite.frame == attack_frame_start:
 		spawn_spell()
-		print("attack index : ", attack_index, "   pattern index : ", pattern_index)
 		attack_index += 1
 
 		if attack_index >= shoot_attacks[pattern_index][0]:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c7nvph0tn3tyl"]
+[gd_scene load_steps=25 format=3 uid="uid://c7nvph0tn3tyl"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/spell.gd" id="1_my0bl"]
 [ext_resource type="PackedScene" uid="uid://ckjm13tt5l6jm" path="res://game/enemies/boss_01/attacks/boss_1_laser_impact.tscn" id="2_yq5o1"]
@@ -12,9 +12,37 @@
 
 [sub_resource type="Animation" id="Animation_po5a5"]
 resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NeedScale:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y2xf0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NeedScale:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0sxqa"]
 _data = {
+"RESET": SubResource("Animation_y2xf0"),
 "activate": SubResource("Animation_po5a5")
 }
 
@@ -101,12 +129,6 @@ libraries = {
 "": SubResource("AnimationLibrary_0sxqa")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.654902, 0.231373, 0, 1)
-position = Vector2(-127, 0)
-rotation = -1.5708
-texture = ExtResource("4_454g3")
-
 [node name="HitboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_ytxx7")
 
@@ -114,16 +136,24 @@ script = ExtResource("2_ytxx7")
 position = Vector2(-32, 0)
 shape = SubResource("CircleShape2D_57v0j")
 
-[node name="trail" type="GPUParticles2D" parent="."]
+[node name="NeedScale" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="NeedScale"]
+modulate = Color(0.654902, 0.231373, 0, 1)
+position = Vector2(-127, 0)
+rotation = -1.5708
+texture = ExtResource("4_454g3")
+
+[node name="trail" type="GPUParticles2D" parent="NeedScale"]
 material = ExtResource("4_4po3f")
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_le5x5")
 texture = ExtResource("5_hxu2e")
-preprocess = 0.5
+preprocess = 0.1
 visibility_rect = Rect2(-1500, -1000, 2000, 2000)
 local_coords = true
 
-[node name="main" type="GPUParticles2D" parent="."]
+[node name="main" type="GPUParticles2D" parent="NeedScale"]
 material = ExtResource("4_4po3f")
 process_material = SubResource("ParticleProcessMaterial_jgxc8")
 texture = ExtResource("4_454g3")

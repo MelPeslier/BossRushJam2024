@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal battle(_add: int)
+
 enum MovementState{
 	DASH,
 	DIE,
@@ -36,6 +38,7 @@ enum MovementState{
 @export var terrain_detector: TerrainDetector
 @export var hurtbox_component: HurtboxComponent
 @export var hit_transition: TransitionScreen
+@export var battle_timer: Timer
 
 @export var die: State
 @export var hit: State
@@ -46,9 +49,11 @@ var last_collider: KinematicCollision2D
 var last_collider_ground: KinematicCollision2D
 
 static var move_speed: float = -1 : set = _set_move_speed
-
+var ennemies : int
+var in_battle : bool = false
 
 func _ready() -> void:
+	battle.connect( _on_battle )
 	move_speed = move_data.walk_distance
 	movement_state_machine.init(self, movement_animator, animated_sprite, move_input_component, move_data)
 	GameEvents.cinematic_ended.connect( _on_cinematic_ended )
@@ -147,3 +152,20 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 static func _set_move_speed(_new_speed: float) -> void:
 	move_speed = _new_speed
 	GameEvents.player_move_speed_changed.emit(move_speed)
+
+
+func _on_battle(_add : int) -> void:
+	ennemies += _add
+	ennemies = maxi(ennemies, 0)
+	if ennemies == 0:
+		battle_timer.start()
+	elif not in_battle:
+		battle_timer.stop()
+		in_battle = true
+		BaseLevel.level.alternative_loop_start.emit()
+
+
+func _on_battle_timer_timeout() -> void:
+	if ennemies == 0:
+		in_battle = false
+		BaseLevel.level.music_loop_start.emit()

@@ -87,11 +87,9 @@ func process_physics(delta: float) -> State:
 	move_data.dash_buffer_timer -= delta
 
 	if attack_frame_end != -1 and animated_sprite.frame >= attack_frame_end:
-		if move_data.jump_buffer_timer > 0 and move_data.can_jump():
-			return jump
-		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
-			return dash
-		if move_data.dir == 0 and parent.is_on_floor():
+		if parent.is_on_floor():
+			if move_data.dir == 0:
+				return idle
 			return walk
 		else:
 			return fall
@@ -104,13 +102,15 @@ func process_physics(delta: float) -> State:
 		parent.velocity.y = 0
 	parent.move_and_slide()
 
-	if not animated_sprite.is_playing():
+	if not animated_sprite.is_playing() or (attack_frame_end != -1 and animated_sprite.frame >= attack_frame_end):
+		if parent.is_on_floor():
+			move_data.alter_jumps(move_data.jumps_number)
 		if move_data.jump_buffer_timer > 0 and move_data.can_jump():
 			return jump
 		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
 			return dash
+
 		if parent.is_on_floor():
-			move_data.alter_jumps(move_data.jumps_number)
 			if move_data.dir == 0:
 				return idle
 			return walk
@@ -120,15 +120,13 @@ func process_physics(delta: float) -> State:
 
 
 func process_unhandled_input(_event: InputEvent) -> State:
-	if attack_frame_end == -1: return
-
 	if get_dash():
-		if move_data.can_dash() and animated_sprite.frame >= attack_frame_end:
+		if move_data.can_dash() and not attack_frame_end == -1 and animated_sprite.frame >= attack_frame_end:
 			return dash
 		move_data.dash_buffer_timer = move_data.dash_buffer_time
 
 	if get_jump():
-		if move_data.can_jump() and animated_sprite.frame >= attack_frame_end:
+		if move_data.can_jump() and not attack_frame_end == -1 and animated_sprite.frame >= attack_frame_end:
 			return jump
 		move_data.jump_buffer_timer = move_data.jump_buffer_time
 	return null

@@ -3,6 +3,9 @@ extends Node
 var in_game := false
 var in_cinematic := false
 
+# For main menu to know how to transite song
+var game_started := false
+
 var saved_game: GameSave
 
 func _ready() -> void:
@@ -23,3 +26,4 @@ func new_game() -> void:
 
 func can_pause() -> bool:
 	return not in_cinematic
+

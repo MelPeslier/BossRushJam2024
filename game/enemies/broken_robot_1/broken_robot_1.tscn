@@ -742,10 +742,9 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 shape = SubResource("CircleShape2D_h50nm")
 
-[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("parent", "health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("3_2rjh1")
 parent = NodePath("..")
-health_component = NodePath("../HealthComponent")
 energy_to_give = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
@@ -838,8 +837,9 @@ fall = NodePath("../fall")
 [node name="dead" type="Node" parent="StateMachine"]
 script = ExtResource("133_fjh4w")
 
-[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "terrain_detector")]
+[node name="fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("run", "idle", "terrain_detector")]
 script = ExtResource("137_8d2ca")
+run = NodePath("../run")
 idle = NodePath("../idle")
 terrain_detector = NodePath("../../TerrainDetector")
 

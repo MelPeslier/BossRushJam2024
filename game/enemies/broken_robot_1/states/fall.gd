@@ -1,5 +1,6 @@
 extends MoveState
 
+@export var run: State
 @export var idle: State
 @export var terrain_detector: TerrainDetector
 
@@ -24,5 +25,8 @@ func process_physics(delta: float) -> State:
 					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_MEDIUM, parent.global_position)
 				else:
 					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_LIGHT, parent.global_position)
+
+		if parent.target and parent.is_target_valid:
+			return run
 		return idle
 	return null

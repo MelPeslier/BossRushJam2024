@@ -26,7 +26,6 @@ func exit() -> void:
 
 func process_physics(delta: float) -> State:
 	super(delta)
-
 	do_air_decelerate(delta)
 	do_gravity(delta)
 	parent.move_and_slide()
@@ -48,7 +47,7 @@ func process_physics(delta: float) -> State:
 			return jump
 		if move_data.dash_buffer_timer > 0 and move_data.can_dash():
 			return dash
-		if get_movement_input():
+		if move_input_component.get_movement_direction():
 			return walk
 		return idle
 	return fall

@@ -540,7 +540,7 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("71_3ndtk")
 stream_1/weight = 1.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "hit_transition", "die", "hit")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_state_machine", "movement_animator", "animated_sprite", "move_input_component", "health_component", "move_data", "attack_manager", "interactor_component", "bot_pos", "mid_pos", "camera", "need_dir", "my_collision_shape", "terrain_detector", "hurtbox_component", "hit_transition", "battle_timer", "die", "hit")]
 z_index = 1
 collision_layer = 8
 collision_mask = 17
@@ -567,6 +567,7 @@ my_collision_shape = NodePath("Components2D/PlayerInteractorComponent/CollisionS
 terrain_detector = NodePath("Components2D/TerrainDetector")
 hurtbox_component = NodePath("Components2D/HurtboxComponent")
 hit_transition = NodePath("HitTransition")
+battle_timer = NodePath("Components/BattleTimer")
 die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
@@ -833,6 +834,11 @@ bus = &"SFX"
 
 [node name="Components" type="Node" parent="."]
 
+[node name="BattleTimer" type="Timer" parent="Components"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
 [node name="Datas" type="Node" parent="Components"]
 
 [node name="MoveData" type="Node" parent="Components/Datas"]
@@ -966,4 +972,5 @@ spell_scene = ExtResource("72_ow08y")
 
 [connection signal="item_rect_changed" from="Camera" to="Camera" method="_on_item_rect_changed"]
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
+[connection signal="timeout" from="Components/BattleTimer" to="." method="_on_battle_timer_timeout"]
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]

@@ -1,5 +1,6 @@
 extends Node
 
+signal stream_changed
 
 enum CrossFade {
 	NONE,
@@ -42,6 +43,7 @@ func change_sounds(_audio_paths: Array[String], _cross_fade: CrossFade = CrossFa
 
 		if i == 0:
 			_change_sound( _audio_paths[i], audio_stream_players[i], _cross_fade, _fade_time )
+			stream_changed.emit()
 			continue
 		if _cross_fade == CrossFade.NONE:
 			audio_stream_players[i].volume_db = -60
@@ -89,15 +91,21 @@ func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: Cro
 		CrossFade.CROSS:
 			var dummy_player := AudioStreamPlayer.new()
 			dummy_player.bus = bus_name
-			dummy_player.volume_db = -60
+			dummy_player.volume_db = db_volume
+			dummy_player.stream = _asp.stream
 			add_child( dummy_player )
-			_change_stream(_song_path, dummy_player)
-			dummy_player.play()
+			dummy_player.play(_asp.get_playback_position())
+			_asp.stop()
+			_change_stream(_song_path, _asp)
+			_asp.volume_db = linear_to_db(MIN_LINEAR)
+			_asp.play()
 			var _tween: Tween = create_tween()
 			_tween.set_parallel()
-			_fade_in( _tween, _fade_time.x, dummy_player )
-			_fade_out( _tween, _fade_time.y, _asp )
-			_tween.chain().tween_callback( _update_stream_player.bind( dummy_player, _asp ) )
+			_fade_in( _tween, _fade_time.x, _asp )
+			_fade_out( _tween, _fade_time.y, dummy_player )
+			_tween.set_parallel(false)
+			_tween.tween_callback( dummy_player.stop )
+			_tween.tween_callback( dummy_player.queue_free )
 
 		CrossFade.OUT_IN:
 			var _tween: Tween = create_tween()
@@ -115,15 +123,6 @@ func _change_stream(_new_song_path: String, asp: AudioStreamPlayer) -> void:
 		print("can't load audio file")
 		return
 	asp.stream = audio_stream
-
-
-func _update_stream_player(_dummy: AudioStreamPlayer, _asp: AudioStreamPlayer) -> void:
-	_asp.volume_db = _dummy.volume_db
-	_asp.stream = _dummy.stream
-	_asp.play(_dummy.get_playback_position())
-	_dummy.stop()
-	_dummy.queue_free()
-
 
 
 func _fade_out(_tween: Tween, _speed: float, _asp: AudioStreamPlayer) -> void:

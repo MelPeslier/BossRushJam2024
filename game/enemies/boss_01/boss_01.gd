@@ -11,26 +11,18 @@ extends CharacterBody2D
 @export var move_data: MoveData
 @export var terrain_detector: TerrainDetector
 @export var health_component: HealthComponent
-@export var detector_collision: CollisionShape2D
+
 @export var get_hit: State
 @export var dead: State
 
 @export_category("Specific")
 @export var phase_2_threshold: float = 0.5
 
-@export_category("Music")
-@export_range(-60, 0) var db_music_volume: float = 0
-@export_file("*.wav") var music_intro_path: String = ""
-@export_file("*.wav") var music_loop_1_path: String = ""
-@export_file("*.wav") var music_loop_2_path: String = ""
-@onready var music_loop_paths: Array[String] = [music_loop_1_path, music_loop_2_path]
-
 var target: Node2D
 var phase: int = 1
 var be_down = false
 
 func _ready() -> void:
-	detector_collision.disabled = false
 	state_machine.init(self, animator, animated_sprite, move_input_component, move_data)
 	move_data.dir = - move_data.dir
 	GameEvents.player_died.connect( _on_player_died )
@@ -68,21 +60,10 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	else:
 		hit_no_state()
 
-
 func hit_no_state() -> void:
 	pass
 
 
-func _on_detector_body_entered(body: Node2D) -> void:
-	if not body is Player: return
-	detector_collision.set_deferred("disabled", true)
 
-	#TODO le combat commence !
-	Music.db_volume = db_music_volume
-	Music.change_sounds([music_intro_path], Music.CrossFade.OUT_IN)
-	Music.audio_stream_players[0].finished.connect( _on_intro_finished, CONNECT_ONE_SHOT )
-	target = body
-
-func _on_intro_finished() -> void:
-	if music_loop_paths.is_empty(): return
-	Music.change_sounds(music_loop_paths, Music.CrossFade.NONE)
+func _on_my_camera_spot_player_entered(_player: Player) -> void:
+	target = _player

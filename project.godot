@@ -32,6 +32,7 @@ ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 GameState="*res://autoloads/game/game_state.gd"
 Parameters="*res://ui/menus/parameters/parameters.tscn"
 GameEvents="*res://autoloads/game/game_events.gd"
+CameraTransition="*res://autoloads/cameras/camera_transition/camera_transition.gd"
 
 [display]
 

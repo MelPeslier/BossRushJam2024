@@ -7,6 +7,7 @@ signal menu_opened
 signal menu_closed
 
 signal zoom_changed
+
 signal player_died(_pos: Vector2)
 signal boss_killed(_pos: Vector2)
 

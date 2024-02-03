@@ -50,6 +50,7 @@ func _activate() -> void:
 
 	if not next_level_path.is_empty():
 		SceneTransition.change_scene(next_level_path)
+		BaseLevel.level.process_mode = Node.PROCESS_MODE_DISABLED
 		return
 	else:
 		GameState.saved_game.level_check_point_id = id

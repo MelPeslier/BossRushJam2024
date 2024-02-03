@@ -44,6 +44,8 @@ func _physics_process(delta: float) -> void:
 			if not ray_cast_2d.is_colliding():
 				is_target_valid = true
 				ray_cast_2d.enabled = false
+				var player: Player = target as Player
+				player.battle.emit(1)
 				detected.play()
 				#Start chase
 		else:
@@ -52,6 +54,8 @@ func _physics_process(delta: float) -> void:
 	if losing_aggro:
 		aggro_timer -= delta
 		if aggro_timer <= 0:
+			var player: Player = target as Player
+			player.battle.emit(-1)
 			target = null
 			losing_aggro = false
 			is_target_valid = false
@@ -102,6 +106,7 @@ func _on_player_died(_pos: Vector2) -> void:
 
 
 
+
 func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2) -> void:
 	#interupt()
 	health_component.damage(_attack_data.damage)
@@ -110,6 +115,8 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 	var next_state: State = hit
 	if health_component.health == 0:
 		next_state = die
+		if target and target is Player:
+			target.battle.emit(-1)
 	state_machine.change_state(next_state)
 
 

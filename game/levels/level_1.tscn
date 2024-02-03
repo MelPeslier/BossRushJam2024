@@ -1,10 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgd8yibc2jxfp"]
+[gd_scene load_steps=20 format=3 uid="uid://bgd8yibc2jxfp"]
 
 [ext_resource type="Script" path="res://game/levels/base_level.gd" id="1_ueifi"]
 [ext_resource type="Environment" uid="uid://bh75dci8vy1cm" path="res://game/environment/world_environment.tres" id="2_p0g45"]
 [ext_resource type="PackedScene" uid="uid://gdmmh58tg7jw" path="res://game/environment/particles/environment_particles.tscn" id="3_jjju4"]
 [ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="4_kh44h"]
+[ext_resource type="Script" path="res://shared/components/camera/camera_spot/camera_spot.gd" id="4_ud8b0"]
+[ext_resource type="Script" path="res://game/levels/level_1/camera_music_player.gd" id="5_72y4j"]
 [ext_resource type="PackedScene" uid="uid://bp3xjdy6h1ux7" path="res://game/environment/checkpoint/checkpoint.tscn" id="5_tafuy"]
+[ext_resource type="AudioStream" uid="uid://boc3172y6jrno" path="res://shared/audio/shock_wave/EXPLDsgn_Distant Shockwave Bass_02_SFRMS_SCIWPNS.wav" id="6_l5own"]
 [ext_resource type="PackedScene" uid="uid://c1uu6jjw185vi" path="res://game/environment/tiles/my_tile_map.tscn" id="6_shd3c"]
 [ext_resource type="PackedScene" uid="uid://247skqs7x8en" path="res://shared/materials/water/water.tscn" id="7_ifms4"]
 [ext_resource type="PackedScene" uid="uid://nyl0ie46yll4" path="res://game/enemies/boss_01/boss_01.tscn" id="8_1kp60"]
@@ -77,9 +80,13 @@ scale_max = 0.04
 scale_curve = SubResource("CurveTexture_pvqkj")
 alpha_curve = SubResource("CurveTexture_fli6m")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85edf"]
+size = Vector2(4608, 2048)
+
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("for_player", "stuff_2d", "particles")]
 script = ExtResource("1_ueifi")
 db_music_volume = -10.0
+music_loop_1_path = "res://shared/audio/ambiances/AMBIENCE_FIRST_CONTACT_LOOP.wav"
 for_player = NodePath("Stuff2d/forPlayer")
 stuff_2d = NodePath("Stuff2d")
 level_path = "res://game/levels/level_1.tscn"
@@ -124,6 +131,34 @@ my_velocity_max = 100.0
 
 [node name="Part1" type="Node2D" parent="Stuff2d"]
 
+[node name="MyCameraSpot" type="Camera2D" parent="Stuff2d/Part1" node_paths=PackedStringArray("player_detector", "in_audio_stream")]
+position = Vector2(5888, -1536)
+zoom = Vector2(0.6, 0.6)
+script = ExtResource("4_ud8b0")
+player_detector = NodePath("PlayerDetector")
+in_audio_stream = NodePath("AudioStreamPlayer")
+in_transition = 3.0
+unfocus_on_exit_zone = false
+
+[node name="MusicPlayer" type="Node" parent="Stuff2d/Part1/MyCameraSpot" node_paths=PackedStringArray("my_camera_spot")]
+script = ExtResource("5_72y4j")
+my_camera_spot = NodePath("..")
+db_music_volume = -10.0
+music_intro_path = "res://shared/audio/boss/boss_2/Boss2Intro_157bpm.wav"
+music_loop_paths = Array[String](["res://shared/audio/boss/boss_2/Boss2Phase1_157bpm.wav", "res://shared/audio/boss/boss_2/Boss2Phase2_157bpm.wav"])
+
+[node name="PlayerDetector" type="Area2D" parent="Stuff2d/Part1/MyCameraSpot"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stuff2d/Part1/MyCameraSpot/PlayerDetector"]
+position = Vector2(0, -512)
+shape = SubResource("RectangleShape2D_85edf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Stuff2d/Part1/MyCameraSpot"]
+stream = ExtResource("6_l5own")
+bus = &"SFX"
+
 [node name="BackGrounds" type="Node2D" parent="Stuff2d/Part1"]
 
 [node name="Background00" type="Sprite2D" parent="Stuff2d/Part1/BackGrounds"]
@@ -151,3 +186,5 @@ layer_0/tile_data = PackedInt32Array(-65536, 1, 4, -65535, 65537, 4, -65534, 655
 [node name="Water" parent="Stuff2d/Waters" instance=ExtResource("7_ifms4")]
 position = Vector2(5824, -142)
 scale = Vector2(49, 12)
+
+[connection signal="player_entered" from="Stuff2d/Part1/MyCameraSpot" to="Stuff2d/Part1/Entities/Boss_01" method="_on_my_camera_spot_player_entered"]

@@ -34,7 +34,5 @@ func _on_screen_shake(_strength: float, _fade: float) -> void:
 func _get_random_val(val: float) -> Vector2:
 	return Vector2(rng.randf_range( -val, val ), rng.randf_range( -val, val ) )
 
-
-
 func _on_item_rect_changed() -> void:
 	print("camera item rect changed : ok")

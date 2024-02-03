@@ -33,7 +33,6 @@ func get_movement_input() -> float:
 		return 0
 	return move_input_component.get_movement_direction()
 
-
 func get_jump() -> bool:
 	return move_input_component.wants_jump()
 
