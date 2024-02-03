@@ -27,6 +27,9 @@ func process_physics(delta: float) -> State:
 					Sfx2d.play_metal_movement(SoundList.MetalMovement.LAND_LIGHT, parent.global_position)
 
 		if parent.target and parent.is_target_valid:
+			var dir := parent.global_position.direction_to(parent.target.global_position)
+			dir.x = 1 if dir.x > 0 else -1
+			move_data.dir = dir.x
 			return run
 		return idle
 	return null

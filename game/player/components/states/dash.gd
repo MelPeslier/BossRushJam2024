@@ -6,21 +6,15 @@ extends PlayerState
 @export var fall: State
 @export var dash: State
 
-@export_category("light_particles")
-@export var light_particles_number: int
-@export var light_particles_sphere_size: float
-@export var light_particles_lifetime: float
-@export var light_particles_explosiveness: float
-
-var light_particles_scene: PackedScene
-var dash_particles_scene: PackedScene
+@export var dash_particles_scene: PackedScene
+@export var dash_marker: Marker2D
 
 
 func enter() -> void:
 	super()
+	spawn_particles()
 	move_data.alter_dashes(-1)
 	move_data.can_reload_dashes = false
-	#spawn_particles()
 	move_data.dash_timer = move_data.dash_time
 	move_data.dash_interval_timer = move_data.dash_interval_time
 	parent.velocity.y = 0
@@ -73,12 +67,11 @@ func process_frame(_delta: float) -> State:
 
 
 func spawn_particles() -> void:
-	var dash_instance = dash_particles_scene.instantiate()
+	var dash_instance: ParticlesEffect = dash_particles_scene.instantiate() as ParticlesEffect
 	parent.add_child(dash_instance)
-	dash_instance.position = player.mid_pos.position
-	dash_instance.play(move_data.old_dir)
+	dash_instance.global_position = dash_marker.global_position
+	var angle: float = 0
+	if move_data.old_dir <= 0.0 :
+		angle = PI
+	dash_instance.activate(angle)
 
-	var light_instance = light_particles_scene.instantiate()
-	parent.add_child(light_instance)
-	light_instance.position = player.mid_pos.position
-	light_instance.play(light_particles_number, light_particles_sphere_size, light_particles_lifetime, light_particles_explosiveness)

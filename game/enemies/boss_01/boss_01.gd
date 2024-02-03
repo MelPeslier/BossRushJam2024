@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export_file("*.tscn") var next_scene_path: String
 
 @export var need_dir: Array[Node2D]
-
+@export var flash_effect: FlashEffect
 @export var state_machine: StateMachine
 @export var animator: AnimationPlayer
 @export var animated_sprite: AnimatedSprite2D
@@ -51,18 +51,17 @@ func _on_player_died(_pos: Vector2) -> void:
 
 func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2) -> void:
 	health_component.damage(_attack_data.damage)
+	if _attack_data.damage >= 3:
+		flash_effect.flash_twice()
+	else:
+		flash_effect.flash_normal()
+
 	if phase == 1:
 		if health_component.health <= health_component.max_health * phase_2_threshold:
 			phase = 2
 			be_down = true
 	elif not health_component.alive:
-			state_machine.change_state(dead)
-	else:
-		hit_no_state()
-
-func hit_no_state() -> void:
-	pass
-
+		state_machine.change_state(dead)
 
 
 func _on_my_camera_spot_player_entered(_player: Player) -> void:

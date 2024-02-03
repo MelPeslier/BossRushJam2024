@@ -1,6 +1,7 @@
-[gd_scene load_steps=141 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=143 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
+[ext_resource type="Material" uid="uid://cqx3lfpgat3un" path="res://shared/materials/flash/flash.tres" id="2_dkbdg"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
 [ext_resource type="Texture2D" uid="uid://duaw4egg8qy2a" path="res://game/enemies/boss_01/art/dead_1/dead_1_001.png" id="3_wsooj"]
 [ext_resource type="Texture2D" uid="uid://db1iix45d26jd" path="res://game/enemies/boss_01/art/dead_1/dead_1_002.png" id="4_1kfae"]
@@ -94,6 +95,7 @@
 [ext_resource type="Texture2D" uid="uid://cpag1npwunfjy" path="res://game/enemies/boss_01/art/walk/walk_019.png" id="93_3rcfs"]
 [ext_resource type="Script" path="res://shared/components/terrain_detector/terrain_detector.gd" id="94_48pt6"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="94_cdmyh"]
+[ext_resource type="Script" path="res://shared/materials/flash/flash_effect.gd" id="94_owtar"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_data.gd" id="95_dhxdm"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="95_v5ssi"]
 [ext_resource type="Script" path="res://shared/components/states/state_machine.gd" id="96_7pxjr"]
@@ -692,12 +694,13 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("108_i7w58")
 stream_2/weight = 1.0
 
-[node name="Boss_01" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "state_machine", "animator", "animated_sprite", "move_input_component", "move_data", "terrain_detector", "health_component", "get_hit", "dead")]
+[node name="Boss_01" type="CharacterBody2D" node_paths=PackedStringArray("need_dir", "flash_effect", "state_machine", "animator", "animated_sprite", "move_input_component", "move_data", "terrain_detector", "health_component", "get_hit", "dead")]
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("1_djtax")
 next_scene_path = "res://ui/menus/main_menu/main_menu.tscn"
 need_dir = [NodePath("Components2D/AnimatedSprite2D"), NodePath("Components2D/Attacks")]
+flash_effect = NodePath("Components2D/AnimatedSprite2D/FlashEffect")
 state_machine = NodePath("Components/StateMachine")
 animator = NodePath("AnimationPlayer")
 animated_sprite = NodePath("Components2D/AnimatedSprite2D")
@@ -721,10 +724,15 @@ libraries = {
 [node name="Components2D" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
+material = ExtResource("2_dkbdg")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
 animation = &"shoot_1"
 frame = 4
+
+[node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite2D" node_paths=PackedStringArray("node")]
+script = ExtResource("94_owtar")
+node = NodePath("..")
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent", "attack_data")]
 script = ExtResource("94_cdmyh")

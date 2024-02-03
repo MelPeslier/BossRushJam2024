@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd3yrjgvpm4jh"]
+
+[ext_resource type="Script" path="res://shared/components/particles_effects/particles_effect.gd" id="1_pjq0q"]
+[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="3_8k700"]
+[ext_resource type="Texture2D" uid="uid://cx0vkhdfhstjo" path="res://shared/art/particles/trace_01.png" id="4_a5cax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blp3k"]
+shader = ExtResource("3_8k700")
+shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
+shader_parameter/margin = 0.295
+
+[sub_resource type="Curve" id="Curve_dlenp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.862275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y6ok1"]
+curve = SubResource("Curve_dlenp")
+
+[sub_resource type="Curve" id="Curve_2gtxy"]
+_data = [Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.143713, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.14274, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n8ydi"]
+curve = SubResource("Curve_2gtxy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8v0mo"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 0)
+angle_min = -91.0
+angle_max = -89.0
+spread = 1.0
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_n8ydi")
+alpha_curve = SubResource("CurveTexture_y6ok1")
+
+[node name="DashParticles" type="Node2D" node_paths=PackedStringArray("nodes", "particles")]
+script = ExtResource("1_pjq0q")
+nodes = [NodePath("GPUParticles2D")]
+particles = [NodePath("GPUParticles2D")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_blp3k")
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_8v0mo")
+texture = ExtResource("4_a5cax")
+lifetime = 0.25
+one_shot = true

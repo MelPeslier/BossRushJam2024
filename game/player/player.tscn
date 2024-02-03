@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=119 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -88,6 +88,7 @@
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="72_ow08y"]
 [ext_resource type="AudioStream" uid="uid://by5y1yix5nqtw" path="res://game/player/audio/dash/WHOOSH_AIRY_FLUTTER_01_WIDE.wav" id="73_hqpdl"]
 [ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
+[ext_resource type="PackedScene" uid="uid://bd3yrjgvpm4jh" path="res://game/player/components/movements/particles_effects/dash_particles.tscn" id="77_0rykm"]
 [ext_resource type="AudioStream" uid="uid://136rrt5udcs8" path="res://shared/audio/shock_wave/EXPLDsgn_Distant Shockwave Bass_06_SFRMS_SCIWPNS.wav" id="78_gtgqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cctlt"]
@@ -572,6 +573,7 @@ die = NodePath("Components/StateMachine/die")
 hit = NodePath("Components/StateMachine/hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 105.276)
 shape = SubResource("RectangleShape2D_cctlt")
 
@@ -832,6 +834,9 @@ stream = SubResource("AudioStreamRandomizer_4kpav")
 max_polyphony = 2
 bus = &"SFX"
 
+[node name="DashMarker" type="Marker2D" parent="Components2D"]
+position = Vector2(0.890869, 69.4901)
+
 [node name="Components" type="Node" parent="."]
 
 [node name="BattleTimer" type="Timer" parent="Components"]
@@ -866,13 +871,15 @@ script = ExtResource("5_bbfuc")
 script = ExtResource("3_8188k")
 starting_state = NodePath("idle")
 
-[node name="dash" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "fall", "dash")]
+[node name="dash" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "jump", "fall", "dash", "dash_marker")]
 script = ExtResource("4_noi8l")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
 dash = NodePath(".")
+dash_particles_scene = ExtResource("77_0rykm")
+dash_marker = NodePath("../../../Components2D/DashMarker")
 
 [node name="die" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("ability_input_component", "shocwave_sound")]
 script = ExtResource("5_1w3nl")
