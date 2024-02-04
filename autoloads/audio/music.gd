@@ -68,7 +68,7 @@ func fade_sounds(_fade: Fade, list_index: int = 0, _fade_time := Vector2(0.3, 0.
 			Fade.IN:
 				if i <= list_index and audio_stream_players[i].volume_db <= -60:
 					var tween: Tween = create_tween()
-					_fade_in(tween, _fade_time.x, audio_stream_players[i])
+					_fade_in(tween, _fade_time.x, audio_stream_players[i], db_volume)
 
 			Fade.OUT:
 				if i >= list_index and audio_stream_players[i].volume_db >= db_volume:
@@ -101,7 +101,7 @@ func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: Cro
 			_asp.play()
 			var _tween: Tween = create_tween()
 			_tween.set_parallel()
-			_fade_in( _tween, _fade_time.x, _asp )
+			_fade_in( _tween, _fade_time.x, _asp, db_volume )
 			_fade_out( _tween, _fade_time.y, dummy_player )
 			_tween.set_parallel(false)
 			_tween.tween_callback( dummy_player.stop )
@@ -114,7 +114,7 @@ func _change_sound(_song_path: String, _asp: AudioStreamPlayer, _cross_fade: Cro
 			_tween.tween_callback( _set_volume.bind( db_to_linear(db_volume), _asp ) )
 			_tween.tween_callback( _change_stream.bind( _song_path, _asp ) )
 			_tween.tween_callback( _asp.play )
-			_fade_in(_tween, _fade_time.x, _asp)
+			_fade_in(_tween, _fade_time.x, _asp, db_volume)
 
 
 func _change_stream(_new_song_path: String, asp: AudioStreamPlayer) -> void:
@@ -129,8 +129,8 @@ func _fade_out(_tween: Tween, _speed: float, _asp: AudioStreamPlayer) -> void:
 	_tween.tween_method(_set_volume.bind(_asp), db_to_linear(_asp.volume_db), MIN_LINEAR, _speed)
 
 
-func _fade_in(_tween: Tween, _speed: float, _asp: AudioStreamPlayer) -> void:
-	_tween.tween_method(_set_volume.bind(_asp), MIN_LINEAR, db_to_linear(db_volume), _speed)
+func _fade_in(_tween: Tween, _speed: float, _asp: AudioStreamPlayer, _db_volume) -> void:
+	_tween.tween_method(_set_volume.bind(_asp), MIN_LINEAR, db_to_linear(_db_volume), _speed)
 
 
 func _set_volume(_val: float, _asp: AudioStreamPlayer) -> void:

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5jdsadpw6oru"
-path.s3tc="res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.s3tc.ctex"
+uid="uid://cyy1gdt8knfk7"
+path.s3tc="res://.godot/imported/energy.png-7df2e9f14c19ae47aba06cf59e3daf44.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://game/environment/laser/art/object-18.png"
-dest_files=["res://.godot/imported/object-18.png-0ed901de1e31cdd51b49e2d4a2d70bf4.s3tc.ctex"]
+source_file="res://game/gui/energy/art/energy.png"
+dest_files=["res://.godot/imported/energy.png-7df2e9f14c19ae47aba06cf59e3daf44.s3tc.ctex"]
 
 [params]
 

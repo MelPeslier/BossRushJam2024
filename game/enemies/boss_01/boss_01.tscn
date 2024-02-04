@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://nyl0ie46yll4"]
+[gd_scene load_steps=143 format=3 uid="uid://nyl0ie46yll4"]
 
 [ext_resource type="Script" path="res://game/enemies/boss_01/boss_01.gd" id="1_djtax"]
 [ext_resource type="Texture2D" uid="uid://p3stugvu4xde" path="res://game/enemies/boss_01/art/dead_1/dead_1_000.png" id="2_ybp7r"]
@@ -123,6 +123,7 @@
 [ext_resource type="AudioStream" uid="uid://bpabqkmsdusd0" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_02.wav" id="110_lv6qo"]
 [ext_resource type="Script" path="res://game/enemies/boss_01/states/aim.gd" id="110_p1pxi"]
 [ext_resource type="AudioStream" uid="uid://cw6el0xa8duc4" path="res://game/enemies/boss_01/audio/walk/Vehicle_Truck_Trunk_Closing_Stereo_06.wav" id="111_et2st"]
+[ext_resource type="PackedScene" uid="uid://kgot18ce5ugf" path="res://game/enemies/boss_01/movement/walk_particles.tscn" id="119_edwft"]
 [ext_resource type="PackedScene" uid="uid://c7nvph0tn3tyl" path="res://game/enemies/boss_01/attacks/boss_1_laser.tscn" id="122_nbioy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y76iy"]
@@ -724,7 +725,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"idle"
+animation = &"walk"
 
 [node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite2D" node_paths=PackedStringArray("node")]
 script = ExtResource("94_owtar")
@@ -776,6 +777,12 @@ attenuation = 0.435275
 max_polyphony = 6
 bus = &"SFX"
 
+[node name="StepMarker" type="Marker2D" parent="Components2D/Attacks"]
+position = Vector2(1.78186, 306.469)
+
+[node name="StepMarker2" type="Marker2D" parent="Components2D/Attacks"]
+position = Vector2(167.489, 299.342)
+
 [node name="Sounds" type="Node2D" parent="Components2D"]
 
 [node name="Aim" type="Node2D" parent="Components2D/Sounds"]
@@ -824,7 +831,7 @@ script = ExtResource("96_m61ly")
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("96_ug0ga")
 max_health = 120.0
-health = 120.0
+health = 3.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("97_pbjfb")
@@ -840,25 +847,32 @@ starting_state = NodePath("idle")
 [node name="get_hit" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("pre_walk")]
 script = ExtResource("102_w0vms")
 pre_walk = NodePath("../pre_walk")
+down_time = 2.5
 
 [node name="dead" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("collision_shapes")]
 script = ExtResource("103_wrw5b")
 collision_shapes = [NodePath("../../../Components2D/HitboxComponent/CollisionShape2D"), NodePath("../../../Components2D/HurtboxComponent/CollisionShape2D")]
+strength = 200.0
+time_to_change_scene = 5.0
 
-[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "walk_audio", "idle")]
+[node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "step_markers", "walk_audio", "idle")]
 script = ExtResource("101_jxumy")
 walk_speed_coef = 1.5
 terrain_detector = NodePath("../../../Components2D/TerrainDetector")
+walk_particles_scene = ExtResource("119_edwft")
+step_markers = [NodePath("../../../Components2D/Attacks/StepMarker"), NodePath("../../../Components2D/Attacks/StepMarker2")]
 walk_audio = NodePath("../../../Components2D/Sounds/Walk/WalkAudio")
 idle = NodePath("../idle")
 
-[node name="pre_walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "pre_walk_audio", "pre_walk_audio_2")]
+[node name="pre_walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("walk", "pre_walk_audio", "pre_walk_audio_2", "step_marker")]
 script = ExtResource("104_wt5c0")
 walk = NodePath("../walk")
 phase_2_walk_start_frame = 5
 sound_frames = Array[int]([4, 9])
 pre_walk_audio = NodePath("../../../Components2D/Sounds/Walk/PreWalkAudio")
 pre_walk_audio_2 = NodePath("../../../Components2D/Sounds/Walk/PreWalkAudio2")
+walk_particles_scene = ExtResource("119_edwft")
+step_marker = NodePath("../../../Components2D/Attacks/StepMarker2")
 
 [node name="idle" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("pre_walk", "get_hit", "aim")]
 script = ExtResource("100_5iwmv")

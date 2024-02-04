@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg50i53wie1sx"]
+[gd_scene load_steps=10 format=3 uid="uid://bg50i53wie1sx"]
 
 [ext_resource type="Material" uid="uid://kk6an5b8n84n" path="res://game/gui/energy/energy_bar.tres" id="1_3m31a"]
 [ext_resource type="Script" path="res://game/gui/gui.gd" id="1_t8w72"]
 [ext_resource type="PackedScene" uid="uid://5k0g2xrbjy4m" path="res://game/gui/health/health_point.tscn" id="3_1s2yv"]
 [ext_resource type="Script" path="res://game/gui/gui_spell.gd" id="4_goygt"]
+[ext_resource type="AudioStream" uid="uid://c31ccmfw3dyd6" path="res://game/gui/sounds/AMBIENCE_HEARTBEAT_LOOP.wav" id="5_ieunm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_41d60"]
 
@@ -13,11 +14,12 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_npltm"]
 
-[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("fill", "health_gui", "spell_1", "spell_2")]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("health_gui", "heart_beat", "fill", "spell_1", "spell_2")]
 script = ExtResource("1_t8w72")
 health_point_scene = ExtResource("3_1s2yv")
-fill = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/Fill")
 health_gui = NodePath("ControlRoot/MarginContainer/HBoxContainer/HealtGUI")
+heart_beat = NodePath("HeartBeat")
+fill = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/Fill")
 spell_1 = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer/Spell1")
 spell_2 = NodePath("ControlRoot/MarginContainer/HBoxContainer/EnergyGUI/VBoxContainer/Spell2")
 
@@ -95,4 +97,8 @@ script = ExtResource("4_goygt")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 25
+theme_override_constants/separation = 40
+
+[node name="HeartBeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ieunm")
+bus = &"SFX"

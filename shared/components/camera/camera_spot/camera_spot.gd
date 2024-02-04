@@ -18,6 +18,7 @@ func _init() -> void:
 	enabled = false
 
 func _ready() -> void:
+	super()
 	player_detector.body_entered.connect( _on_player_detector_body_entered )
 	player_detector.body_exited.connect( _on_player_detector_body_exited )
 

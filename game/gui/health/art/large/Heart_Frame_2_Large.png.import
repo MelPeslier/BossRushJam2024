@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbvif5wxloy5m"
-path.s3tc="res://.godot/imported/object-14.png-f615e2d07078604f1e905e8b218e6d7c.s3tc.ctex"
+uid="uid://cfb2cd2gjv4ww"
+path.s3tc="res://.godot/imported/Heart_Frame_2_Large.png-a25936c88b55ce9bc48565d6a889da7c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://game/environment/laser/art/object-14.png"
-dest_files=["res://.godot/imported/object-14.png-f615e2d07078604f1e905e8b218e6d7c.s3tc.ctex"]
+source_file="res://game/gui/health/art/large/Heart_Frame_2_Large.png"
+dest_files=["res://.godot/imported/Heart_Frame_2_Large.png-a25936c88b55ce9bc48565d6a889da7c.s3tc.ctex"]
 
 [params]
 

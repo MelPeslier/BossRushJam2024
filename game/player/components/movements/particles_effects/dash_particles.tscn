@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blp3k"]
 shader = ExtResource("3_8k700")
 shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
-shader_parameter/margin = 0.295
+shader_parameter/margin = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_dlenp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.862275, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -38,9 +38,9 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_n8ydi")
 alpha_curve = SubResource("CurveTexture_y6ok1")
 
-[node name="DashParticles" type="Node2D" node_paths=PackedStringArray("nodes", "particles")]
+[node name="DashParticles" type="Node2D" node_paths=PackedStringArray("dir_nodes", "particles")]
 script = ExtResource("1_pjq0q")
-nodes = [NodePath("GPUParticles2D")]
+dir_nodes = [NodePath("GPUParticles2D")]
 particles = [NodePath("GPUParticles2D")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

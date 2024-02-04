@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://kgot18ce5ugf"]
+
+[ext_resource type="Script" path="res://shared/components/particles_effects/particles_effect.gd" id="1_j8ncu"]
+[ext_resource type="Texture2D" uid="uid://boql08xgrxn3c" path="res://shared/art/particles/scorch_03.png" id="2_3ecbw"]
+
+[sub_resource type="Curve" id="Curve_myluv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.739521, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g3ex2"]
+curve = SubResource("Curve_myluv")
+
+[sub_resource type="Gradient" id="Gradient_k28mb"]
+offsets = PackedFloat32Array(0, 0.30719, 0.79085)
+colors = PackedColorArray(1, 1, 1, 1, 0.589096, 0.589096, 0.589096, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4i4he"]
+gradient = SubResource("Gradient_k28mb")
+
+[sub_resource type="Curve" id="Curve_ei446"]
+_data = [Vector2(0, 0), 0.0, 5.36411, 0, 0, Vector2(0.51497, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.35415, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ieip4"]
+curve = SubResource("Curve_ei446")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fesds"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(-0.5, -1, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 120, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ieip4")
+color = Color(0.882353, 0.882353, 0.882353, 1)
+color_ramp = SubResource("GradientTexture1D_4i4he")
+alpha_curve = SubResource("CurveTexture_g3ex2")
+
+[node name="WalkParticles" type="Node2D" node_paths=PackedStringArray("dir_nodes", "particles")]
+script = ExtResource("1_j8ncu")
+dir_nodes = [NodePath("GPUParticles2D")]
+particles = [NodePath("GPUParticles2D")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
+z_as_relative = false
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_fesds")
+texture = ExtResource("2_3ecbw")
+lifetime = 0.25
+one_shot = true
+explosiveness = 0.99

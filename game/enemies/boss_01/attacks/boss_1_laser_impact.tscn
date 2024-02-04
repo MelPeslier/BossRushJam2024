@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ckjm13tt5l6jm"]
+[gd_scene load_steps=14 format=3 uid="uid://ckjm13tt5l6jm"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/impact.gd" id="1_r5oca"]
-[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="2_a5blq"]
+[ext_resource type="Material" uid="uid://c8he8a3kqt0ly" path="res://game/enemies/boss_01/attacks/boss_1_laser.tres" id="2_k22q6"]
 [ext_resource type="Texture2D" uid="uid://cjl1n51cv8w12" path="res://shared/art/particles/circle_01.png" id="3_rv1ij"]
 [ext_resource type="AudioStream" uid="uid://byo586o4m1i4f" path="res://game/enemies/boss_01/audio/shoot/impact/EXPLDsgn_Implode_04_SFRMS_SCIWPNS.wav" id="4_p4hou"]
 
@@ -40,11 +40,6 @@ _data = {
 "RESET": SubResource("Animation_rdnh4"),
 "activate": SubResource("Animation_j6tc7")
 }
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k71se"]
-shader = ExtResource("2_a5blq")
-shader_parameter/color = Color(0.654902, 0.231373, 0, 1)
-shader_parameter/margin = 0.71
 
 [sub_resource type="Curve" id="Curve_qdcu2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.239521, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -88,7 +83,7 @@ libraries = {
 }
 
 [node name="explosion" type="GPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_k71se")
+material = ExtResource("2_k22q6")
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_m36l8")
 texture = ExtResource("3_rv1ij")

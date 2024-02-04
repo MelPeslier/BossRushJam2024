@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0qtprwafk7iw"
+path="res://.godot/imported/SCIMisc_Reload Tremolo_05_SFRMS_SCIWPNS.wav-a153e2d3e7b5e7bf0b8a58a4b927da6d.sample"
+
+[deps]
+
+source_file="res://game/gui/sounds/reload_big/SCIMisc_Reload Tremolo_05_SFRMS_SCIWPNS.wav"
+dest_files=["res://.godot/imported/SCIMisc_Reload Tremolo_05_SFRMS_SCIWPNS.wav-a153e2d3e7b5e7bf0b8a58a4b927da6d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
