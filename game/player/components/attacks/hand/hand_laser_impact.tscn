@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqoty66hfnbad"]
+[gd_scene load_steps=15 format=3 uid="uid://cqoty66hfnbad"]
 
 [ext_resource type="Script" path="res://shared/components/attacks/impact.gd" id="1_3xe24"]
-[ext_resource type="Material" uid="uid://clnduyvralyxd" path="res://shared/materials/blend_mode/blend_add.tres" id="2_mflnb"]
-[ext_resource type="Texture2D" uid="uid://bucm8gergn8s6" path="res://shared/art/particles/light_01.png" id="3_64hm8"]
+[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="2_qc8va"]
+[ext_resource type="Texture2D" uid="uid://da6owqc8q2rqi" path="res://shared/art/particles/circle_03.png" id="3_0n6kk"]
 [ext_resource type="AudioStream" uid="uid://hutewcx203da" path="res://game/player/audio/hand/explosion/EXPLDsgn_Implode_02_SFRMS_SCIWPNS.wav" id="4_fso7e"]
 
 [sub_resource type="Animation" id="Animation_fqy16"]
@@ -54,12 +54,17 @@ _data = {
 "activate": SubResource("Animation_fqy16")
 }
 
-[sub_resource type="Curve" id="Curve_hwnv7"]
-_data = [Vector2(0, 0), 0.0, 3.44166, 0, 0, Vector2(0.745509, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.78786, 0.0, 0, 0]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yqsc"]
+shader = ExtResource("2_qc8va")
+shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
+shader_parameter/margin = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_lukhv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.505988, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_t3qdi"]
-curve = SubResource("Curve_hwnv7")
+[sub_resource type="CurveTexture" id="CurveTexture_5flv4"]
+curve = SubResource("Curve_lukhv")
 
 [sub_resource type="Curve" id="Curve_cv573"]
 min_value = -1.0
@@ -71,8 +76,8 @@ curve = SubResource("Curve_cv573")
 
 [sub_resource type="Curve" id="Curve_5kngo"]
 max_value = 2.0
-_data = [Vector2(0, 0), 0.0, 3.35225, 0, 0, Vector2(0.745509, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.93868), 12.5163, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_hrerb"]
 curve = SubResource("Curve_5kngo")
@@ -89,7 +94,7 @@ scale_min = 0.35
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_hrerb")
 color = Color(0.729412, 0.988235, 1, 1)
-alpha_curve = SubResource("CurveTexture_t3qdi")
+alpha_curve = SubResource("CurveTexture_5flv4")
 
 [node name="Impact" type="Node2D"]
 z_index = 2
@@ -102,14 +107,14 @@ libraries = {
 }
 
 [node name="explosion" type="GPUParticles2D" parent="."]
-material = ExtResource("2_mflnb")
+material = SubResource("ShaderMaterial_0yqsc")
 emitting = false
-amount = 4
+amount = 16
 process_material = SubResource("ParticleProcessMaterial_ussvt")
-texture = ExtResource("3_64hm8")
+texture = ExtResource("3_0n6kk")
 lifetime = 0.4
 one_shot = true
-explosiveness = 0.92
+explosiveness = 0.65
 
 [node name="AudioExplosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_fso7e")

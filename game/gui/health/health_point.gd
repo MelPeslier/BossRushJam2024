@@ -10,7 +10,7 @@ extends PanelContainer
 
 var progress: float : set = _set_progress
 var tween: Tween
-var index: int
+#var index: int
 
 func _ready() -> void:
 	progress = 0

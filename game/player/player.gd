@@ -54,6 +54,8 @@ var ennemies : int
 var in_battle : bool = false
 
 func _ready() -> void:
+	hurtbox_component.position = Vector2.ZERO
+
 	battle.connect( _on_battle )
 	move_speed = move_data.walk_distance
 	movement_state_machine.init(self, movement_animator, animated_sprite, move_input_component, move_data)
@@ -172,3 +174,34 @@ func _on_battle_timer_timeout() -> void:
 	if ennemies == 0:
 		in_battle = false
 		BaseLevel.level.music_loop_start.emit()
+
+
+func _on_animated_sprite_frame_changed() -> void:
+	var _offset := Vector2.ZERO
+	match animated_sprite.animation:
+		&"arm":
+			_offset = Vector2( 0, -100 )
+		&"dash":
+			_offset = Vector2( 0, -122 )
+		&"die":
+			_offset = Vector2( -160, -50 )
+		&"fall":
+			_offset = Vector2( -7, -45 )
+		&"hand":
+			_offset = Vector2( 0, -100 )
+		&"hit":
+			_offset = Vector2( -125, -87 )
+		&"idle":
+			_offset = Vector2( 0, -89 )
+		&"jump":
+			_offset = Vector2( 0, -122 )
+		&"sword_1":
+			_offset = Vector2( 0, -70 )
+		&"sword_2":
+			_offset = Vector2( 0, -70 )
+		&"sword_3":
+			_offset = Vector2( 0, -70 )
+		&"walk":
+			_offset = Vector2( -12, -4 )
+
+	animated_sprite.offset = _offset

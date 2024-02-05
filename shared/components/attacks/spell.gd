@@ -34,10 +34,8 @@ func init(_parent : Node2D, _attack_data : AttackData, _angle: float) -> void:
 
 
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:
-	hits -= 1
-
 	spawn_impact(_pos)
-
+	hits -= 1
 	if hits <= 0:
 		end_spell()
 

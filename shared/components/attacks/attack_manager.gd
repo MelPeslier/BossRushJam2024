@@ -48,7 +48,7 @@ func process_physics(delta: float) -> void:
 
 
 func process_unhandled_input(_event: InputEvent) -> void:
-	pass
+	return
 
 
 func timers(delta: float) -> void:

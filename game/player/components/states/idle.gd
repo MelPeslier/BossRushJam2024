@@ -5,6 +5,10 @@ extends PlayerState
 @export var fall: State
 @export var dash: State
 
+func enter() -> void:
+	animated_sprite.offset = Vector2( 0, -89 )
+	super()
+
 func process_physics(delta: float) -> State:
 	super(delta)
 	do_walk_decelerate(delta)

@@ -7,7 +7,7 @@ signal attack_up(_can_attack: bool, _damage: float)
 @export var attack_data: AttackData
 @export var attack_state: PlayerAbilityState
 @export var asp_hit_emit: AudioStreamPlayer2D
-@export var asp_hit_gived_at: AudioStreamPlayer2D
+@export var impact_scene: PackedScene
 
 @export_range(0.05, 45) var cooldown: float
 

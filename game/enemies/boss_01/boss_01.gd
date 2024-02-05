@@ -66,3 +66,25 @@ func _on_hurtbox_component_hit_received(_attack_data: AttackData, _dir: Vector2)
 
 func _on_my_camera_spot_player_entered(_player: Player) -> void:
 	target = _player
+
+
+func _on_animated_sprite_2d_animation_changed() -> void:
+	var _offset := Vector2.ZERO
+	match animated_sprite.animation:
+		&"aim":
+			_offset = Vector2( 100, 1 )
+		&"dead":
+			_offset = Vector2( 34, 28 )
+		&"get_hit":
+			_offset = Vector2( 0, -10 )
+		&"idle":
+			_offset = Vector2( 0, 0 )
+		&"pre_walk":
+			_offset = Vector2( 0, -7 )
+		&"shoot_1":
+			_offset = Vector2( 100, 1 )
+		&"shoot_2":
+			_offset = Vector2( 100, 1 )
+		&"walk":
+			_offset = Vector2( 0, -7 )
+	animated_sprite.offset = _offset

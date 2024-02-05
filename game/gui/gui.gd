@@ -21,11 +21,15 @@ var db_volume : float
 @export var fill: TextureRect
 @export var spell_1: GUI_Spell
 @export var spell_2: GUI_Spell
+@export var energy_max_audio: AudioStreamPlayer
+@export var energy_max_particles: GPUParticles2D
+var is_energy_max := false
 
 var energy_tween: Tween
 
 
 func _ready() -> void:
+	energy = 0
 	visible = true
 	db_volume = heart_beat.volume_db
 	energy_component.energy_updated.connect( _on_energy_updated )
@@ -103,6 +107,15 @@ func _on_energy_updated(_energy: float, _energy_max: float) -> void:
 	else:
 		spell_2.hide_possible()
 
+	if _energy == energy_component.max_energy:
+		if not is_energy_max:
+			energy_max_audio.play()
+			energy_max_particles.emitting = true
+			is_energy_max = true
+	elif is_energy_max:
+		energy_max_particles.emitting = false
+		is_energy_max = false
+
 	var new_energy = clampf( remap(_energy, 0, _energy_max, 0, 1), 0, 1)
 	if energy_tween and energy_tween.is_running():
 		energy_tween.kill()
@@ -119,4 +132,4 @@ func _set_energy(new_energy: float) -> void:
 	energy = new_energy
 
 	var mat: ShaderMaterial = fill.material as ShaderMaterial
-	mat.set_shader_parameter("energy", energy)
+	mat.set_shader_parameter("progress", energy)

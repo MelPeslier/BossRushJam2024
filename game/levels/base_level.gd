@@ -1,6 +1,7 @@
 class_name BaseLevel
 extends Node2D
 
+signal player_entered(_player : Player)
 signal alternative_loop_start
 signal music_loop_start
 signal loop_up(_index: int)
@@ -26,6 +27,7 @@ static var level: BaseLevel = null
 @export var stuff_2d: Node2D
 @export var level_path: String
 @export var particles: Node2D
+
 @onready var player_scene: PackedScene = preload("res://game/player/player.tscn")
 
 
@@ -66,6 +68,8 @@ func _ready() -> void:
 
 	for ep: EnvironementParticles in particles.get_children():
 		ep.player = player
+
+	player_entered.emit(player)
 
 
 func _on_intro_finished() -> void:

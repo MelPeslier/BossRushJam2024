@@ -84,6 +84,7 @@ alpha_curve = SubResource("CurveTexture_2tyow")
 z_index = 2
 z_as_relative = false
 script = ExtResource("1_lieno")
+speed = 1400.0
 impact_scene = ExtResource("2_gt5th")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

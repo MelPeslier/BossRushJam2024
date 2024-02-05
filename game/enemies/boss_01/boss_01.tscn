@@ -131,138 +131,30 @@ size = Vector2(440.389, 464.539)
 
 [sub_resource type="Animation" id="Animation_0xi02"]
 resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_jertm"]
 resource_name = "aim"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(100, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_7usts"]
 resource_name = "dead"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(34, 28)]
-}
 
 [sub_resource type="Animation" id="Animation_10o78"]
 resource_name = "get_hit"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -10)]
-}
 
 [sub_resource type="Animation" id="Animation_h1gn3"]
 resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_jploq"]
 resource_name = "pre_walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -7)]
-}
 
 [sub_resource type="Animation" id="Animation_jjkey"]
 resource_name = "shoot_1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(100, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_nq30v"]
 resource_name = "shoot_2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(100, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_oalhx"]
 resource_name = "walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Components2D/AnimatedSprite2D:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -7)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_va5vc"]
 _data = {
@@ -725,7 +617,8 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Components2D"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_x8mg6")
-animation = &"walk"
+animation = &"aim"
+offset = Vector2(0, -7)
 
 [node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite2D" node_paths=PackedStringArray("node")]
 script = ExtResource("94_owtar")
@@ -830,8 +723,8 @@ script = ExtResource("96_m61ly")
 
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("96_ug0ga")
-max_health = 120.0
-health = 3.0
+max_health = 150.0
+health = 150.0
 
 [node name="MoveData" type="Node" parent="Components"]
 script = ExtResource("97_pbjfb")
@@ -852,8 +745,7 @@ down_time = 2.5
 [node name="dead" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("collision_shapes")]
 script = ExtResource("103_wrw5b")
 collision_shapes = [NodePath("../../../Components2D/HitboxComponent/CollisionShape2D"), NodePath("../../../Components2D/HurtboxComponent/CollisionShape2D")]
-strength = 200.0
-time_to_change_scene = 5.0
+fade = 2.0
 
 [node name="walk" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("terrain_detector", "step_markers", "walk_audio", "idle")]
 script = ExtResource("101_jxumy")
@@ -897,7 +789,7 @@ attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
 shoot_audio = NodePath("../../../Components2D/Attacks/Shoot/ShootAudio")
 shoot_attacks = [[3, 0.5], [2, 0.0], [3, 0.5]]
-angle_diff_margin = 5.0
+angle_diff_margin = 3.0
 attack_frame_start = 1
 attack_frame_end = 7
 
@@ -916,7 +808,7 @@ attacks = NodePath("../../../Components2D/Attacks")
 marker = NodePath("../../../Components2D/Attacks/Shoot")
 shoot_audio = NodePath("../../../Components2D/Attacks/Shoot/ShootAudio")
 shoot_attacks = [[5, 0.33], [3, 1.0], [10, 0.0]]
-angle_diff_margin = 3.0
+angle_diff_margin = 5.0
 attack_frame_start = 1
 attack_frame_end = 5
 
@@ -925,5 +817,6 @@ script = ExtResource("95_dhxdm")
 damage = 1.0
 knock_back = 2000.0
 
+[connection signal="animation_changed" from="Components2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
 [connection signal="dir_changed" from="Components/MoveData" to="." method="_on_move_data_dir_changed"]

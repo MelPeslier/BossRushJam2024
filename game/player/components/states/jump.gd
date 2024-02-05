@@ -4,23 +4,11 @@ extends PlayerState
 @export var fall: State
 @export var dash: State
 
-@export_category("light_particles")
-@export var light_particles_number: int
-@export var light_particles_sphere_size: float
-@export var light_particles_lifetime: float
-@export var light_particles_explosiveness: float
-
-#var light_particles_scene: PackedScene
-#var step_light_particles_scene: PackedScene
-
 var want_jump := true
 
 
 func enter() -> void:
 	super()
-	#if not parent.is_on_floor():
-		#spawn_step_light(move_data.get_jump_coef())
-	#spawn_light_particles(move_data.get_jump_coef())
 	if move_data.remaining_jumps == move_data.jumps_number:
 		match player.terrain_detector.get_terrain_type():
 			Terrain.TerrainType.METAL:
@@ -32,6 +20,29 @@ func enter() -> void:
 	move_data.alter_jumps(-1)
 	move_data.jump_time = 0
 	want_jump = true
+	animated_sprite.frame_changed.connect( _on_frame_changed )
+
+
+func exit() -> void:
+	animated_sprite.frame_changed.disconnect( _on_frame_changed )
+
+
+func _on_frame_changed() -> void:
+	var _offset = Vector2.ZERO
+	match animated_sprite.frame:
+		1:
+			_offset = Vector2( 0, -101 )
+		2:
+			_offset = Vector2( 0, -43 )
+		1:
+			_offset = Vector2( -13, -30 )
+		3:
+			_offset = Vector2( -13, -30 )
+		4:
+			_offset = Vector2( -2, -47 )
+		5:
+			_offset = Vector2( -2, -47 )
+	animated_sprite.offset = _offset
 
 
 func process_physics(delta: float) -> State:
@@ -76,17 +87,3 @@ func process_unhandled_input(_event: InputEvent) -> State:
 func process_frame(_delta: float) -> State:
 	return null
 
-
-#func spawn_step_light(coef: float) -> void:
-	#var step_instance = step_light_particles_scene.instantiate()
-	#parent.add_child(step_instance)
-	#step_instance.position = player.bot_pos.position
-	#step_instance.play(coef)
-#
-#
-#func spawn_light_particles(coef: float) -> void:
-	#var light_instance = light_particles_scene.instantiate()
-	#parent.add_child(light_instance)
-	#light_instance.position = player.bot_pos.position
-	#var number := int (light_particles_number * coef)
-	#light_instance.play(number, light_particles_sphere_size, light_particles_lifetime, light_particles_explosiveness)

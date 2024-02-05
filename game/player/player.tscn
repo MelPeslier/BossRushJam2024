@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=131 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -19,9 +19,14 @@
 [ext_resource type="Script" path="res://game/player/components/states/fall.gd" id="6_0uwup"]
 [ext_resource type="Script" path="res://shared/components/stats/energy_component.gd" id="6_1m6jn"]
 [ext_resource type="Script" path="res://game/player/components/states/hit.gd" id="7_86s88"]
+[ext_resource type="Texture2D" uid="uid://dtami7t4gps1s" path="res://game/player/art/arm/Attack_Combo-8.png" id="7_r4gu4"]
+[ext_resource type="Texture2D" uid="uid://d34gwcmtbk1g2" path="res://game/player/art/arm/Attack_Combo-7.png" id="8_238qx"]
 [ext_resource type="Script" path="res://game/player/components/states/idle.gd" id="8_eankw"]
 [ext_resource type="Script" path="res://game/player/components/states/jump.gd" id="9_4m1xy"]
+[ext_resource type="Texture2D" uid="uid://b3rin6txsbm4c" path="res://game/player/art/arm/Attack_Combo-6.png" id="9_amsdi"]
 [ext_resource type="Script" path="res://game/player/components/states/walk.gd" id="10_03hiq"]
+[ext_resource type="Texture2D" uid="uid://d37ed555tkayn" path="res://game/player/art/arm/Attack_Combo-11.png" id="10_8lj1b"]
+[ext_resource type="Texture2D" uid="uid://db6oojfshjkaa" path="res://game/player/art/arm/Attack_Combo-5.png" id="10_w7jgk"]
 [ext_resource type="Texture2D" uid="uid://due0r7ow5iccy" path="res://game/player/art/Fall/Fall_Épée_Ok-1.png" id="13_e4cys"]
 [ext_resource type="Texture2D" uid="uid://iukbpba3oxbe" path="res://game/player/art/Fall/Fall_Épée_Ok-2.png" id="14_chcyb"]
 [ext_resource type="Texture2D" uid="uid://crgpg6qvd5rk8" path="res://game/player/art/Fall/Fall_Épée_Ok-3.png" id="15_e0l47"]
@@ -48,27 +53,26 @@
 [ext_resource type="Texture2D" uid="uid://y0h3ly0lq67a" path="res://game/player/art/attack simple1/Attack_Simple1-9.png" id="36_o56gq"]
 [ext_resource type="Script" path="res://shared/materials/flash/flash_effect.gd" id="40_wp1vg"]
 [ext_resource type="AudioStream" uid="uid://dl0fxkion4meo" path="res://game/player/audio/sword/WHOOSH_ARM_SWING_01_WIDE.wav" id="45_hpe04"]
-[ext_resource type="AudioStream" uid="uid://dc80jroucgr8l" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_LIGHT_01.wav" id="46_6nh62"]
-[ext_resource type="Texture2D" uid="uid://d37ed555tkayn" path="res://game/player/art/attack combo epee lazer/Attack_Combo-11.png" id="46_f6g4d"]
 [ext_resource type="AudioStream" uid="uid://piqkxgfevkbr" path="res://game/player/audio/sword/WHOOSH_ARM_SWING_02_WIDE.wav" id="46_vddd0"]
 [ext_resource type="AudioStream" uid="uid://cryhj6622lswa" path="res://game/player/audio/sword/WHOOSH_ARM_SWING_03_WIDE.wav" id="47_cugfx"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hurtbox_component.gd" id="47_e78ti"]
 [ext_resource type="Texture2D" uid="uid://citvmp7ocfylu" path="res://game/player/art/Run/Run+epe_Ok_-1.png" id="47_kvhx2"]
-[ext_resource type="AudioStream" uid="uid://cntkk75t6e6rq" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_MEDIUM_01.wav" id="48_6mgvc"]
 [ext_resource type="Texture2D" uid="uid://bo8m6i2ojaa0b" path="res://game/player/art/Run/Run+epe_Ok_-2.png" id="48_f8kmk"]
-[ext_resource type="AudioStream" uid="uid://bws37wqx2bkys" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_MEDIUM_02.wav" id="49_siirg"]
 [ext_resource type="Texture2D" uid="uid://br48djixupfdp" path="res://game/player/art/Run/Run+epe_Ok_-3.png" id="49_wiuim"]
+[ext_resource type="PackedScene" uid="uid://dc1vkeq53wif7" path="res://game/player/components/attacks/melee/sword_1_impact.tscn" id="50_l65mk"]
 [ext_resource type="Texture2D" uid="uid://bdn4u2tc7w4n8" path="res://game/player/art/Run/Run+epe_Ok_-4.png" id="50_mb3io"]
 [ext_resource type="Texture2D" uid="uid://bct1dw63ppw0u" path="res://game/player/art/Run/Run+epe_Ok_-5.png" id="51_sr3bl"]
-[ext_resource type="AudioStream" uid="uid://bvd6klhu3oduh" path="res://shared/audio/metal_hit/HIT_METAL_WRENCH_HEAVIEST_01.wav" id="51_uq7wf"]
+[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="52_7xjp7"]
 [ext_resource type="Texture2D" uid="uid://3kdd6bmv37e8" path="res://game/player/art/Run/Run+epe_Ok_-6.png" id="52_120ry"]
 [ext_resource type="Texture2D" uid="uid://chl505aj4y1ur" path="res://game/player/art/Run/Run+epe_Ok_-7.png" id="53_53nu1"]
 [ext_resource type="Script" path="res://shared/components/interactables/hit/hitbox_component.gd" id="53_a1j17"]
 [ext_resource type="AudioStream" uid="uid://mjaoqinin53u" path="res://game/player/audio/hand/fire/LASRGun_Hades Fire_01_SFRMS_SCIWPNS.wav" id="53_mq6jx"]
 [ext_resource type="AudioStream" uid="uid://bk3uydkw82c28" path="res://game/player/audio/hand/fire/LASRGun_Hades Fire_02_SFRMS_SCIWPNS.wav" id="54_hvvxw"]
+[ext_resource type="PackedScene" uid="uid://bw1npyca8r6us" path="res://game/player/components/attacks/melee/sword_2_impact.tscn" id="54_neb6m"]
 [ext_resource type="Texture2D" uid="uid://hsy41t62jcpa" path="res://game/player/art/Run/Run+epe_Ok_-8.png" id="54_y6i8o"]
 [ext_resource type="AudioStream" uid="uid://duyia327oicta" path="res://game/player/audio/hand/fire/LASRGun_Hades Fire_03_SFRMS_SCIWPNS.wav" id="55_sa0lf"]
 [ext_resource type="AudioStream" uid="uid://bvx2ixq6ny2ip" path="res://game/player/audio/hand/fire/LASRGun_Hades Fire_04_SFRMS_SCIWPNS.wav" id="56_1ero8"]
+[ext_resource type="PackedScene" uid="uid://cpxdsvfwgo5e2" path="res://game/player/components/attacks/melee/sword_3_impact.tscn" id="56_wpicf"]
 [ext_resource type="AudioStream" uid="uid://cx3t7bsmc8se" path="res://game/player/audio/hand/fire/LASRGun_Hades Fire_05_SFRMS_SCIWPNS.wav" id="57_d5mqj"]
 [ext_resource type="Script" path="res://shared/components/attacks/attack_holder.gd" id="58_d7eiw"]
 [ext_resource type="AudioStream" uid="uid://bvwvj7katqom5" path="res://game/player/audio/arm/fire/LASRGun_Hades Fire Heavy_01_SFRMS_SCIWPNS.wav" id="58_t55tk"]
@@ -85,15 +89,17 @@
 [ext_resource type="Script" path="res://game/player/components/states/hand.gd" id="70_bv82a"]
 [ext_resource type="AudioStream" uid="uid://dr5licbssy58m" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_06.wav" id="71_3ndtk"]
 [ext_resource type="Script" path="res://game/player/components/states/arm.gd" id="71_sij7g"]
+[ext_resource type="Texture2D" uid="uid://c674blw1ivcjh" path="res://shared/art/particles/flame_04.png" id="71_svc17"]
 [ext_resource type="AudioStream" uid="uid://dji6dphm6ac3a" path="res://game/player/audio/hit/VOCAL_EXERTION_DISTORTED_05.wav" id="72_ajddw"]
 [ext_resource type="PackedScene" uid="uid://bocqx5e7vd8ov" path="res://game/player/components/attacks/hand/hand_laser.tscn" id="72_ow08y"]
 [ext_resource type="AudioStream" uid="uid://by5y1yix5nqtw" path="res://game/player/audio/dash/WHOOSH_AIRY_FLUTTER_01_WIDE.wav" id="73_hqpdl"]
 [ext_resource type="AudioStream" uid="uid://dqsdiued3anem" path="res://game/player/audio/dash/WHOOSH_AIRY_01_WIDE.wav" id="74_1y34r"]
 [ext_resource type="PackedScene" uid="uid://bd3yrjgvpm4jh" path="res://game/player/components/movements/particles_effects/dash_particles.tscn" id="77_0rykm"]
 [ext_resource type="AudioStream" uid="uid://136rrt5udcs8" path="res://shared/audio/shock_wave/EXPLDsgn_Distant Shockwave Bass_06_SFRMS_SCIWPNS.wav" id="78_gtgqm"]
+[ext_resource type="PackedScene" uid="uid://dari3cvxcrqrj" path="res://game/player/components/attacks/hand/arm_spell.tscn" id="97_780sr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cctlt"]
-size = Vector2(127.355, 226.244)
+size = Vector2(100.387, 229.892)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6bk8"]
 shader = ExtResource("4_aal8x")
@@ -229,19 +235,19 @@ shader_parameter/glow_color = Color(0.729412, 0.988235, 1, 1)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("7_r4gu4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("8_238qx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("9_amsdi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("10_w7jgk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("10_8lj1b")
 }],
 "loop": false,
 "name": &"arm",
@@ -294,10 +300,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("10_8lj1b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_f6g4d")
+"texture": ExtResource("10_8lj1b")
 }],
 "loop": false,
 "name": &"hand",
@@ -379,10 +385,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("35_kt1h7")
 }, {
-"duration": 1.0,
-"texture": ExtResource("36_o56gq")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("36_o56gq")
 }],
 "loop": false,
@@ -405,10 +408,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("35_kt1h7")
 }, {
-"duration": 1.0,
-"texture": ExtResource("36_o56gq")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("36_o56gq")
 }],
 "loop": false,
@@ -431,10 +431,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("35_kt1h7")
 }, {
-"duration": 1.0,
-"texture": ExtResource("36_o56gq")
-}, {
-"duration": 1.0,
+"duration": 3.5,
 "texture": ExtResource("36_o56gq")
 }],
 "loop": false,
@@ -476,8 +473,8 @@ radius = 14.0502
 height = 70.69
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v5xqr"]
-radius = 44.0
-height = 261.0
+radius = 56.2358
+height = 215.175
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jjjul"]
 radius = 290.629
@@ -487,15 +484,6 @@ size = Vector2(216, 302)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8iqrw"]
 size = Vector2(216, 302)
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ets50"]
-random_pitch = 1.1
-random_volume_offset_db = 0.3
-streams_count = 2
-stream_0/stream = ExtResource("48_6mgvc")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("49_siirg")
-stream_1/weight = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loxkc"]
 size = Vector2(216, 302)
@@ -513,7 +501,42 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("57_d5mqj")
 stream_4/weight = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24wwf"]
+shader = ExtResource("52_7xjp7")
+shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
+shader_parameter/margin = Color(0, 0, 1, 1)
+
+[sub_resource type="Curve" id="Curve_ixffb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248503, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n23vb"]
+curve = SubResource("Curve_ixffb")
+
+[sub_resource type="Curve" id="Curve_htrup"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.251497, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bfutr"]
+curve = SubResource("Curve_htrup")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3eomo"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 11.0
+initial_velocity_min = -400.0
+initial_velocity_max = -400.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_bfutr")
+alpha_curve = SubResource("CurveTexture_n23vb")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r35ci"]
+random_volume_offset_db = 1.0
 streams_count = 5
 stream_0/stream = ExtResource("58_t55tk")
 stream_0/weight = 1.0
@@ -577,17 +600,18 @@ hit = NodePath("Components/StateMachine/hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-1, 105.276)
+position = Vector2(-7.16539, 16.5122)
 shape = SubResource("RectangleShape2D_cctlt")
 
 [node name="GUI" parent="." node_paths=PackedStringArray("energy_component", "health_component", "energy_ability") instance=ExtResource("2_c5wfi")]
+layer = 4
 visible = false
 energy_component = NodePath("../Components/Datas/EnergyComponent")
 health_component = NodePath("../Components/Datas/HealthComponent")
 energy_ability = NodePath("../Components2D/PlayerAttackManager/hand")
 
 [node name="HitTransition" type="CanvasLayer" parent="." node_paths=PackedStringArray("root_node")]
-layer = 2
+layer = 5
 visible = false
 script = ExtResource("3_f5q1u")
 root_node = NodePath("RootNode")
@@ -633,7 +657,9 @@ libraries = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"walk"
+animation = &"arm"
+frame = 4
+offset = Vector2(0, -97.085)
 
 [node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite" node_paths=PackedStringArray("node")]
 script = ExtResource("40_wp1vg")
@@ -647,16 +673,18 @@ script = ExtResource("4_63l1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/TerrainDetector"]
 visible = false
-position = Vector2(-1, 216.515)
+position = Vector2(0, 142.185)
 shape = SubResource("CapsuleShape2D_10vgk")
 
 [node name="HurtboxComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("parent")]
-position = Vector2(-1, 95.5)
 script = ExtResource("47_e78ti")
 team = 1
 parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/HurtboxComponent"]
+visible = false
+position = Vector2(2, -22.5)
+rotation = 0.588675
 shape = SubResource("CapsuleShape2D_v5xqr")
 
 [node name="PlayerInteractorComponent" type="Area2D" parent="Components2D" node_paths=PackedStringArray("player")]
@@ -674,7 +702,6 @@ shape = SubResource("CircleShape2D_jjjul")
 [node name="MidPos" type="Marker2D" parent="Components2D/OtherStuff"]
 
 [node name="PlayerAttackManager" type="Node2D" parent="Components2D" node_paths=PackedStringArray("swords", "hand", "arm", "attack_input_component", "energy_component")]
-visible = false
 script = ExtResource("2_0x4jq")
 combo_time = 1.5
 swords = [NodePath("sword_1"), NodePath("sword_2"), NodePath("sword_3")]
@@ -684,17 +711,17 @@ attack_input_component = NodePath("../../Components/Inputs/AbilityInputComponent
 energy_component = NodePath("../../Components/Datas/EnergyComponent")
 attack_interval_time = 0.5
 attack_buffer_time = 0.3
-can_attack_buffer_time = 0.15
+can_attack_buffer_time = 0.5
 
-[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit", "asp_hit_gived_at")]
-position = Vector2(180, 58)
+[node name="sword_1" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit")]
+position = Vector2(180, 0)
 script = ExtResource("58_d7eiw")
 hitbox_component = NodePath("HitboxComponent")
 attack_data = NodePath("AttackData")
 attack_state = NodePath("../../../Components/StateMachine/sword_1")
 asp_hit_emit = NodePath("AudioSword1")
-asp_hit_gived_at = NodePath("AudioSword1HitMetal")
-cooldown = 0.25
+impact_scene = ExtResource("50_l65mk")
+cooldown = 0.5
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_1"]
 script = ExtResource("59_hfdwx")
@@ -704,10 +731,10 @@ knock_back = 200.0
 can_gain_energy = true
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D/PlayerAttackManager/sword_1"]
+visible = false
 script = ExtResource("53_a1j17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/PlayerAttackManager/sword_1/HitboxComponent"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_0dlqg")
 
 [node name="AudioSword1" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_1"]
@@ -715,20 +742,15 @@ stream = ExtResource("45_hpe04")
 max_polyphony = 2
 bus = &"SFX"
 
-[node name="AudioSword1HitMetal" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_1"]
-stream = ExtResource("46_6nh62")
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit", "asp_hit_gived_at")]
-position = Vector2(180, 58)
+[node name="sword_2" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit")]
+position = Vector2(180, 0)
 script = ExtResource("58_d7eiw")
 hitbox_component = NodePath("HitboxComponent")
 attack_data = NodePath("AttackData2")
 attack_state = NodePath("../../../Components/StateMachine/sword_2")
 asp_hit_emit = NodePath("AudioSword2")
-asp_hit_gived_at = NodePath("AudioSword2HitMetal")
-cooldown = 0.25
+impact_scene = ExtResource("54_neb6m")
+cooldown = 0.5
 
 [node name="AttackData2" type="Node" parent="Components2D/PlayerAttackManager/sword_2"]
 script = ExtResource("59_hfdwx")
@@ -738,10 +760,10 @@ knock_back = 400.0
 can_gain_energy = true
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D/PlayerAttackManager/sword_2"]
+visible = false
 script = ExtResource("53_a1j17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/PlayerAttackManager/sword_2/HitboxComponent"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_8iqrw")
 
 [node name="AudioSword2" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_2"]
@@ -749,20 +771,15 @@ stream = ExtResource("46_vddd0")
 max_polyphony = 2
 bus = &"SFX"
 
-[node name="AudioSword2HitMetal" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_2"]
-stream = SubResource("AudioStreamRandomizer_ets50")
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit", "asp_hit_gived_at")]
-position = Vector2(180, 58)
+[node name="sword_3" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("hitbox_component", "attack_data", "attack_state", "asp_hit_emit")]
+position = Vector2(180, 0)
 script = ExtResource("58_d7eiw")
 hitbox_component = NodePath("HitboxComponent")
 attack_data = NodePath("AttackData")
 attack_state = NodePath("../../../Components/StateMachine/sword_3")
 asp_hit_emit = NodePath("AudioSword3")
-asp_hit_gived_at = NodePath("AudioSword3HitMetal")
-cooldown = 0.15
+impact_scene = ExtResource("56_wpicf")
+cooldown = 1.0
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/sword_3"]
 script = ExtResource("59_hfdwx")
@@ -772,10 +789,10 @@ knock_back = 600.0
 can_gain_energy = true
 
 [node name="HitboxComponent" type="Area2D" parent="Components2D/PlayerAttackManager/sword_3"]
+visible = false
 script = ExtResource("53_a1j17")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components2D/PlayerAttackManager/sword_3/HitboxComponent"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_loxkc")
 
 [node name="AudioSword3" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_3"]
@@ -783,19 +800,14 @@ stream = ExtResource("47_cugfx")
 max_polyphony = 2
 bus = &"SFX"
 
-[node name="AudioSword3HitMetal" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/sword_3"]
-stream = ExtResource("51_uq7wf")
-max_polyphony = 2
-bus = &"SFX"
-
 [node name="hand" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state", "asp_hit_emit")]
-position = Vector2(184.139, -30.9543)
+position = Vector2(180.772, -131.976)
 script = ExtResource("60_3qfbr")
 energy_cost = 3.0
 attack_data = NodePath("AttackData")
 attack_state = NodePath("../../../Components/StateMachine/hand")
 asp_hit_emit = NodePath("AudioHand")
-cooldown = 0.45
+cooldown = 0.75
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/hand"]
 script = ExtResource("59_hfdwx")
@@ -804,17 +816,27 @@ damage = 2.0
 
 [node name="AudioHand" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/hand"]
 stream = SubResource("AudioStreamRandomizer_ddln7")
+volume_db = 2.0
+max_distance = 3000.0
+attenuation = 0.297302
 max_polyphony = 2
 bus = &"SFX"
 
 [node name="arm" type="Node2D" parent="Components2D/PlayerAttackManager" node_paths=PackedStringArray("attack_data", "attack_state", "asp_hit_emit")]
-position = Vector2(184.139, -30.9543)
+position = Vector2(187.506, -129.731)
 script = ExtResource("60_3qfbr")
 energy_cost = 9.0
 attack_data = NodePath("AttackData")
 attack_state = NodePath("../../../Components/StateMachine/arm")
 asp_hit_emit = NodePath("AudioArm")
-cooldown = 3.0
+cooldown = 1.0
+
+[node name="arm_trail" type="GPUParticles2D" parent="Components2D/PlayerAttackManager/arm"]
+visible = false
+material = SubResource("ShaderMaterial_24wwf")
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_3eomo")
+texture = ExtResource("71_svc17")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/arm"]
 script = ExtResource("59_hfdwx")
@@ -824,6 +846,9 @@ knock_back = 1000.0
 
 [node name="AudioArm" type="AudioStreamPlayer2D" parent="Components2D/PlayerAttackManager/arm"]
 stream = SubResource("AudioStreamRandomizer_r35ci")
+volume_db = 4.0
+max_distance = 4000.0
+attenuation = 0.307786
 max_polyphony = 2
 bus = &"SFX"
 
@@ -845,7 +870,7 @@ max_polyphony = 2
 bus = &"SFX"
 
 [node name="DashMarker" type="Marker2D" parent="Components2D"]
-position = Vector2(0.890869, 69.4901)
+position = Vector2(4.25824, -0.102554)
 
 [node name="Components" type="Node" parent="."]
 
@@ -867,7 +892,7 @@ health = 4.0
 [node name="EnergyComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("6_1m6jn")
 max_energy = 9.0
-energy = 3.0
+energy = 9.0
 
 [node name="Inputs" type="Node" parent="Components"]
 
@@ -985,9 +1010,10 @@ dash = NodePath("../dash")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
 attack_frame_start = 4
-spell_scene = ExtResource("72_ow08y")
+spell_scene = ExtResource("97_780sr")
 
 [connection signal="item_rect_changed" from="Camera" to="Camera" method="_on_item_rect_changed"]
+[connection signal="frame_changed" from="Components2D/AnimatedSprite" to="." method="_on_animated_sprite_frame_changed"]
 [connection signal="hit_received" from="Components2D/HurtboxComponent" to="." method="_on_hurtbox_component_hit_received"]
 [connection signal="timeout" from="Components/BattleTimer" to="." method="_on_battle_timer_timeout"]
 [connection signal="dir_changed" from="Components/Datas/MoveData" to="." method="_on_move_data_dir_changed"]

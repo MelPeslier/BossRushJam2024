@@ -2,9 +2,9 @@ extends MoveState
 
 @export var collision_shapes: Array[CollisionShape2D]
 @export_category("screen_shake")
-@export var strength: float
-@export var fade: float = 1
-@export var time_to_change_scene: float = 1
+@export var strength: float = 200
+@export var fade: float = 4
+@export var time_to_change_scene: float = 5
 
 func enter() -> void:
 	super()

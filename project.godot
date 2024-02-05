@@ -15,6 +15,8 @@ config/version="1"
 config/tags=PackedStringArray("jam")
 run/main_scene="res://ui/menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0.0196078, 0.0196078, 0.0196078, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]
@@ -39,7 +41,7 @@ CameraTransition="*res://autoloads/cameras/camera_transition/camera_transition.g
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/bg_color=Color(0.0196078, 0.0196078, 0.0196078, 1)
 
 [editor_plugins]
 

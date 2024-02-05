@@ -156,10 +156,7 @@ func resume_game() -> void:
 		Sfx.play_ui(SoundList.Ui.MENU_CLOSED)
 
 func hide_mouse() -> void:
-	if user_display_prefs.constrain_mouse:
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CONFINED_HIDDEN)
-	else:
-		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_HIDDEN)
+	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 
 func show_mouse() -> void:
 	if user_display_prefs.constrain_mouse:

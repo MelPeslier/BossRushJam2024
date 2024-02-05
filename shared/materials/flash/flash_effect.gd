@@ -9,13 +9,13 @@ const P_COLOR: String = "material:shader_parameter/color"
 @export var color := Color.WHITE
 @export var normal_coef_time: Array[float] = [
 	1.0, 0.08,
-	0.0, 0.16,
+	0.0, 0.08,
 ]
 @export var twice_coef_time: Array[float] = [
 	1.0, 0.08,
 	0.5, 0.08,
 	1.0, 0.08,
-	0.0, 0.16,
+	0.0, 0.08,
 ]
 
 @onready var shader_mat = preload("res://shared/materials/flash/flash.tres")

@@ -38,8 +38,8 @@ func launch_attack() -> void:
 		attack_holder = swords[sword_index]
 		sword_index += 1
 		sword_index = sword_index % swords.size()
-		wants_sword = false
 		combo_timer = combo_time
+		wants_sword = false
 
 	super()
 

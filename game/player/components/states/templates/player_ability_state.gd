@@ -133,5 +133,16 @@ func process_unhandled_input(_event: InputEvent) -> State:
 
 
 func _on_hitbox_component_hit_gived_at(_pos: Vector2) -> void:
-	Sfx2d._play(attack_holder.asp_hit_gived_at, _pos)
+	spawn_impact(_pos)
+
+
+func spawn_impact(_pos: Vector2) -> void:
+	var impact_instance: Impact = attack_holder.impact_scene.instantiate() as Impact
+	if BaseLevel.level.stuff_2d:
+		BaseLevel.level.stuff_2d.add_child(impact_instance)
+	else:
+		print("player_ability_state.gd : impact added to winddow  :  ", name)
+		get_window().add_child(impact_instance)
+
+	impact_instance.global_position = _pos
 

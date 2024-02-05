@@ -56,7 +56,7 @@ shader_parameter/activate_luminosity = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8qul"]
 resource_local_to_scene = true
 shader = ExtResource("4_a2l3t")
-shader_parameter/progress = 1.0
+shader_parameter/progress = 0.492
 shader_parameter/wave_1_speed = -3.0
 shader_parameter/wave_2_speed = -1.75
 

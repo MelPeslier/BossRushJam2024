@@ -9,6 +9,9 @@ signal hit_received(_attack_data: AttackData, _dir: Vector2)
 @onready var collision_shape: CollisionShape2D = get_child(0) as CollisionShape2D
 
 
+var hitbox: HitboxComponent = null
+var from_inside := false
+
 func _init() -> void:
 	collision_layer = 0
 	collision_mask = 2
@@ -16,10 +19,6 @@ func _init() -> void:
 func _ready() -> void:
 	area_shape_entered.connect(_on_area_shape_entered)
 	set_physics_process(false)
-
-var hitbox: HitboxComponent = null
-var __index: int
-var from_inside := false
 
 func _physics_process(_delta: float) -> void:
 	if hitbox == null:
@@ -36,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 		result = get_world_2d().direct_space_state.intersect_ray(query)
 
 	if result.is_empty():
-		print("hurtbox.gd : none from outside and inside l-39 :/")
+		print("hurtbox.gd : none from outside and inside l-39 :/ hit missed !")
 		hitbox = null
 		return
 
@@ -63,7 +62,6 @@ func _on_area_shape_entered(_area_rid: RID, _hitbox: HitboxComponent, _area_shap
 	if _hitbox.parent == parent: return
 	if _hitbox.attack_data.team == team: return
 	hitbox = _hitbox
-	__index = _area_shape_index
 	set_physics_process(true)
 
 
