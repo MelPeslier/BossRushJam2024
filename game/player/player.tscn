@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://duxsyfskxdlf3"]
+[gd_scene load_steps=132 format=3 uid="uid://duxsyfskxdlf3"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_msn3r"]
 [ext_resource type="Script" path="res://game/player/components/attacks/player_attack_manager.gd" id="2_0x4jq"]
@@ -112,6 +112,32 @@ shader_parameter/wave_2_speed = 2.0
 
 [sub_resource type="Animation" id="Animation_nwt0g"]
 resource_name = "arm"
+length = 0.62
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/PlayerAttackManager/arm/arm_trail:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.61),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Components2D/PlayerAttackManager/arm/arm_trail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14, 0.21, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-104.652, 185.262), Vector2(-311.173, 126.698), Vector2(-279.48, 18.2089), Vector2(-108.574, -91.2973), Vector2(29.3544, 10.6487)]
+}
 
 [sub_resource type="Animation" id="Animation_vxab7"]
 resource_name = "dash"
@@ -206,8 +232,36 @@ resource_name = "sword_3"
 [sub_resource type="Animation" id="Animation_3c8e8"]
 resource_name = "walk"
 
+[sub_resource type="Animation" id="Animation_44n8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Components2D/PlayerAttackManager/arm/arm_trail:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Components2D/PlayerAttackManager/arm/arm_trail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0aoxb"]
 _data = {
+"RESET": SubResource("Animation_44n8x"),
 "arm": SubResource("Animation_nwt0g"),
 "dash": SubResource("Animation_vxab7"),
 "die": SubResource("Animation_mekx8"),
@@ -506,34 +560,34 @@ shader = ExtResource("52_7xjp7")
 shader_parameter/color = Color(0, 0.309804, 0.32549, 1)
 shader_parameter/margin = Color(0, 0, 1, 1)
 
-[sub_resource type="Curve" id="Curve_ixffb"]
+[sub_resource type="Curve" id="Curve_vsqdh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248503, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_n23vb"]
-curve = SubResource("Curve_ixffb")
+[sub_resource type="CurveTexture" id="CurveTexture_q5a7u"]
+curve = SubResource("Curve_vsqdh")
 
-[sub_resource type="Curve" id="Curve_htrup"]
+[sub_resource type="Curve" id="Curve_6o6fp"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.251497, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_bfutr"]
-curve = SubResource("Curve_htrup")
+[sub_resource type="CurveTexture" id="CurveTexture_uy3gy"]
+curve = SubResource("Curve_6o6fp")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3eomo"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_04gbu"]
 particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
-spread = 11.0
-initial_velocity_min = -400.0
-initial_velocity_max = -400.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
 angular_velocity_min = -200.0
 angular_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.3
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_bfutr")
-alpha_curve = SubResource("CurveTexture_n23vb")
+scale_curve = SubResource("CurveTexture_uy3gy")
+alpha_curve = SubResource("CurveTexture_q5a7u")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r35ci"]
 random_volume_offset_db = 1.0
@@ -657,9 +711,8 @@ libraries = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="Components2D"]
 material = SubResource("ShaderMaterial_asghs")
 sprite_frames = SubResource("SpriteFrames_u75w7")
-animation = &"arm"
-frame = 4
-offset = Vector2(0, -97.085)
+animation = &"idle"
+offset = Vector2(0, -89)
 
 [node name="FlashEffect" type="Node" parent="Components2D/AnimatedSprite" node_paths=PackedStringArray("node")]
 script = ExtResource("40_wp1vg")
@@ -832,10 +885,10 @@ asp_hit_emit = NodePath("AudioArm")
 cooldown = 1.0
 
 [node name="arm_trail" type="GPUParticles2D" parent="Components2D/PlayerAttackManager/arm"]
-visible = false
 material = SubResource("ShaderMaterial_24wwf")
-amount = 64
-process_material = SubResource("ParticleProcessMaterial_3eomo")
+emitting = false
+amount = 512
+process_material = SubResource("ParticleProcessMaterial_04gbu")
 texture = ExtResource("71_svc17")
 
 [node name="AttackData" type="Node" parent="Components2D/PlayerAttackManager/arm"]
@@ -892,7 +945,7 @@ health = 4.0
 [node name="EnergyComponent" type="Node" parent="Components/Datas"]
 script = ExtResource("6_1m6jn")
 max_energy = 9.0
-energy = 9.0
+energy = 2.0
 
 [node name="Inputs" type="Node" parent="Components"]
 
@@ -1002,8 +1055,9 @@ fall = NodePath("../fall")
 attack_frame_start = 1
 spell_scene = ExtResource("72_ow08y")
 
-[node name="arm" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("idle", "walk", "dash", "jump", "fall")]
+[node name="arm" type="Node" parent="Components/StateMachine" node_paths=PackedStringArray("arm_juice", "idle", "walk", "dash", "jump", "fall")]
 script = ExtResource("71_sij7g")
+arm_juice = NodePath("../../../Components2D/PlayerAttackManager/arm/arm_trail")
 idle = NodePath("../idle")
 walk = NodePath("../walk")
 dash = NodePath("../dash")

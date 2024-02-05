@@ -203,5 +203,5 @@ bus = &"SFX"
 
 [node name="Energy_max_reload" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_h5ank")
-pitch_scale = 0.8
+volume_db = -10.0
 bus = &"SFX"

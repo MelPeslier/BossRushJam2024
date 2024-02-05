@@ -1,9 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpdiyf0f7e3tq"]
+[gd_scene load_steps=11 format=3 uid="uid://bpdiyf0f7e3tq"]
 
 [ext_resource type="Script" path="res://ui/menus/main_menu/main_menu.gd" id="1_qn88j"]
 [ext_resource type="Script" path="res://ui/menus/templates/button/my_button.gd" id="2_fcyyy"]
 [ext_resource type="Texture2D" uid="uid://1dpgtf31ft78" path="res://game/environment/background/background_00.png" id="2_w6bii"]
 [ext_resource type="PackedScene" uid="uid://dfx3sw5lhdmun" path="res://ui/menus/Credits/credit_canvas_layer.tscn" id="3_xr1nn"]
+[ext_resource type="Shader" path="res://shared/materials/blend_mode/blend_add.gdshader" id="5_2agvq"]
+[ext_resource type="Texture2D" uid="uid://csvtkqba2s8q8" path="res://shared/art/particles/flare_01.png" id="6_llito"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2sau"]
+shader = ExtResource("5_2agvq")
+shader_parameter/color = Color(0.654902, 0.231373, 0, 1)
+shader_parameter/margin = Color(1, 0, 1, 1)
+
+[sub_resource type="Curve" id="Curve_vsjs1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.0628743, 1), 0.0, 0.0, 0, 0, Vector2(0.91018, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_kg6ho"]
+curve = SubResource("Curve_vsjs1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gyg38"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 14, 0)
+spread = 75.0
+initial_velocity_min = 38.13
+initial_velocity_max = 163.65
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_kg6ho")
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("credits_canvas_layer", "buttons_container")]
 layout_mode = 3
@@ -106,6 +135,18 @@ size_flags_vertical = 3
 [node name="CreditCanvasLayer" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3_xr1nn")]
 visible = false
 menu = NodePath("..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_x2sau")
+position = Vector2(966, -419)
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_gyg38")
+texture = ExtResource("6_llito")
+lifetime = 15.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [connection signal="button_down" from="VBoxContainer/ButtonsContainer/Continue" to="." method="_on_continue_button_down"]
 [connection signal="button_down" from="VBoxContainer/ButtonsContainer/NewGame" to="." method="_on_new_game_button_down"]
